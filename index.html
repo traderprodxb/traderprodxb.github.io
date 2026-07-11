@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TraderProDXB</title>
     <style>
-        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0a0a0a; color: #ffffff; text-align: center; display: flex; flex-direction: column; min-height: 100vh; }
-        .header { padding: 40px 20px 20px; border-bottom: 1px solid #1a1a1a; background-color: #050505; }
-        .logo-img { width: 140px; height: auto; border-radius: 8px; }
-        .content { padding: 40px 20px; max-width: 800px; margin: 0 auto; flex: 1; }
-        .footer { padding: 25px; border-top: 1px solid #1a1a1a; background-color: #050505; font-size: 14px; color: #666666; letter-spacing: 1px; }
-        .footer a { color: #00ff88; text-decoration: none; }
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0a0a0a; color: #ffffff; text-align: center; display: flex; flex-direction: column; min-height: 100vh; font-size: 20px; line-height: 1.8; }
+        .header { padding: 50px 20px; border-bottom: 2px solid #1a1a1a; background-color: #050505; }
+        .logo-img { width: 220px; height: auto; border-radius: 12px; }
+        .content { padding: 60px 20px; max-width: 600px; margin: 0 auto; flex: 1; }
+        h2 { font-size: 32px; color: #00ff88; margin-bottom: 30px; }
+        .data-box { margin-top: 40px; padding: 30px; border: 2px solid #333; border-radius: 15px; text-align: left; background: #050505; }
+        .footer { padding: 40px; border-top: 2px solid #1a1a1a; background-color: #050505; font-size: 18px; color: #999; }
+        .footer a { color: #ffffff; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -20,11 +22,11 @@
     <div class="content">
         <h2>Compounding System</h2>
         <p>Execution is binary. Emotion is void.</p>
-        <div style="margin-top: 30px; padding: 20px; border: 1px dashed #333; border-radius: 8px; display: inline-block; text-align: left;">
-            <ul style="list-style-type: none; padding: 0; margin: 0; color: #aaaaaa;">
-                <li><strong>Broker:</strong> BlackBull MT5</li>
-                <li><strong>Target:</strong> 6% ROI TP</li>
-                <li><strong>Risk Limit:</strong> 6% ROI SL</li>
+        <div class="data-box">
+            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 15px;"><strong>Broker:</strong> BlackBull MT5</li>
+                <li style="margin-bottom: 15px;"><strong>Target:</strong> 6% ROI TP</li>
+                <li style="margin-bottom: 15px;"><strong>Risk Limit:</strong> 6% ROI SL</li>
                 <li><strong>Protocol:</strong> 'This' dictates action.</li>
             </ul>
         </div>
