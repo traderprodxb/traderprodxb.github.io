@@ -8,6 +8,10 @@
         .card { border: 2px solid #CC0000; padding: 40px; max-width: 700px; margin: 40px auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
         h1 { color: #CC0000; letter-spacing: 2px; font-size: 2.2em; }
         .accent { color: #FFD700; }
+        
+        /* Widget Styling */
+        .fx-widget { margin: 30px auto; border: 2px solid #555; border-radius: 10px; display: inline-block; overflow: hidden; }
+        
         .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 30px; }
         .btn { display: block; padding: 12px 5px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 0.8em; }
         .btn.active { background-color: #FFD700; color: #1A1A1A; }
@@ -18,7 +22,11 @@
     <div class="card">
         <h1>PERFORMANCE <span class="accent">TRACKER</span></h1>
         <p>Machine-like execution. Verified live data.</p>
-        <a href="YOUR_LINK" class="btn" style="background:#FFD700; color:#1A1A1A; margin-top:20px;">VIEW LIVE DATA</a>
+        
+        <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" class="fx-widget">
+            <img alt="Myfxbook Performance" src="https://widget.myfxbook.com/widget/widget.png?accountOid=12106666&type=1&color=red"/>
+        </a>
+
         <div class="nav-grid">
             <a href="index.html" class="btn">HOME</a>
             <a href="blueprint.html" class="btn">BLUEPRINT</a>
