@@ -9,8 +9,8 @@
         h1 { color: #CC0000; letter-spacing: 2px; font-size: 2.2em; }
         .accent { color: #FFD700; }
         
-        /* Widget Styling */
-        .fx-widget { margin: 30px auto; border: 2px solid #555; border-radius: 10px; display: inline-block; overflow: hidden; }
+        /* Widget Container */
+        .fx-widget-wrapper { margin: 30px auto; padding: 10px; background: #1a1a1a; border-radius: 10px; border: 1px solid #444; display: inline-block; }
         
         .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 30px; }
         .btn { display: block; padding: 12px 5px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 0.8em; }
@@ -23,9 +23,11 @@
         <h1>PERFORMANCE <span class="accent">TRACKER</span></h1>
         <p>Machine-like execution. Verified live data.</p>
         
-        <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" class="fx-widget">
-            <img alt="Myfxbook Performance" src="https://widget.myfxbook.com/widget/widget.png?accountOid=12106666&type=1&color=red"/>
-        </a>
+        <div class="fx-widget-wrapper">
+            <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank">
+                <img src="https://widget.myfxbook.com/widget/12106666/medium.jpg" alt="Myfxbook Performance Widget"/>
+            </a>
+        </div>
 
         <div class="nav-grid">
             <a href="index.html" class="btn">HOME</a>
