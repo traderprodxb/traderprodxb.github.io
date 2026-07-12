@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TraderProDXB Blueprint</title>
 <style>
-    body { background-color: #0a0a0a; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 20px; }
-    .grid-container { 
-        display: grid; 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 20px; 
-        max-width: 1000px; 
-        margin: auto; 
-    }
-    .rule-box { 
-        padding: 25px; 
-        border-radius: 12px; 
-        border-left: 6px solid #d9480f; 
-        transition: transform 0.2s;
-    }
+    body { background-color: #0a0a0a; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 20px; margin: 0; }
+    nav { text-align: center; margin-bottom: 30px; padding: 10px; border-bottom: 1px solid #333; }
+    nav a { color: #f1c40f; text-decoration: none; margin: 0 15px; font-weight: bold; }
+    .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1000px; margin: auto; }
+    .rule-box { padding: 25px; border-radius: 12px; border-left: 6px solid #d9480f; transition: transform 0.2s; }
     .rule-box:nth-child(even) { background-color: #1a1a1a; border-color: #f1c40f; }
     .rule-box:nth-child(odd) { background-color: #262626; border-color: #d9480f; }
     h2 { margin-top: 0; color: #ffffff; font-size: 1.2rem; text-transform: uppercase; }
     p { line-height: 1.6; font-size: 1rem; }
+    footer { text-align: center; margin-top: 50px; font-size: 0.8rem; color: #666; border-top: 1px solid #333; padding-top: 20px; }
 </style>
 </head>
 <body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="journey.html">Journey</a>
+    <a href="blueprint.html">Blueprint</a>
+</nav>
 
 <div class="grid-container">
     <div class="rule-box">
@@ -58,6 +59,10 @@
         <p>Zero execution near high-impact calendar events to prevent 1.5% base boundaries.</p>
     </div>
 </div>
+
+<footer>
+    <p>Disclaimer: Trading involves significant risk. This is a personal mechanical protocol, not financial advice.</p>
+</footer>
 
 </body>
 </html>
