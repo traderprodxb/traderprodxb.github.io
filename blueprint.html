@@ -3,19 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TraderProDXB Home</title>
+<title>Blueprint | TraderProDXB</title>
 <style>
-    body { background-color: #0a0a0a; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 20px; margin: 0; }
-    nav { text-align: center; margin-bottom: 40px; padding: 15px; border-bottom: 1px solid #333; }
-    nav a { color: #f1c40f; text-decoration: none; margin: 0 20px; font-weight: bold; font-size: 1.1rem; }
-    .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1000px; margin: auto; }
-    .rule-box { padding: 30px; border-radius: 12px; border: 2px solid transparent; transition: transform 0.2s; }
-    /* Alternating Contrast Colors */
-    .rule-box:nth-child(odd) { background-color: #1a1a1a; border-color: #d9480f; }
-    .rule-box:nth-child(even) { background-color: #262626; border-color: #f1c40f; }
-    h2 { margin-top: 0; color: #ffffff; font-size: 1.3rem; text-transform: uppercase; }
-    p { line-height: 1.6; font-size: 1.05rem; color: #cccccc; }
-    footer { text-align: center; margin-top: 60px; font-size: 0.8rem; color: #666; border-top: 1px solid #333; padding-top: 20px; }
+    body { background-color: #0a0a0a; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+    
+    /* Navigation */
+    nav { text-align: center; padding: 20px; border-bottom: 1px solid #333; }
+    nav a { color: #ffffff; text-decoration: none; margin: 0 15px; font-weight: bold; padding: 8px 16px; border-radius: 5px; }
+    nav a.active { color: #f1c40f; border: 2px solid #f1c40f; }
+
+    /* Grid Layout */
+    .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    .rule-box { padding: 30px; border-radius: 12px; border: 2px solid #333; }
+    .rule-box.filled { background-color: #1a1a1a; border-color: #d9480f; }
+    .rule-box.empty { background-color: transparent; border: none; }
+    
+    h2 { color: #ffffff; text-transform: uppercase; margin-top: 0; }
+    p { line-height: 1.6; color: #cccccc; }
+    
+    footer { text-align: center; margin-top: 60px; padding: 20px; border-top: 1px solid #333; color: #666; font-size: 0.8rem; }
 </style>
 </head>
 <body>
@@ -23,41 +29,58 @@
 <nav>
     <a href="index.html">Home</a>
     <a href="journey.html">Journey</a>
-    <a href="blueprint.html">Blueprint</a>
+    <a href="infrastructure.html">Infrastructure</a>
+    <a href="blueprint.html" class="active">Blueprint</a>
+    <a href="track-record.html">Track Record</a>
 </nav>
 
 <div class="grid-container">
-    <div class="rule-box">
+    <div class="rule-box filled">
         <h2>1. 5 Win Max</h2>
         <p>Cap the day at 5 winning trades; do not overtrade.</p>
     </div>
-    <div class="rule-box">
+    <div class="rule-box empty"></div>
+
+    <div class="rule-box empty"></div>
+    <div class="rule-box filled">
         <h2>2. 30 Min Win Buffer</h2>
         <p>Walk away for 30 minutes after a win; physical movement only, no screen.</p>
     </div>
-    <div class="rule-box">
+
+    <div class="rule-box filled">
         <h2>3. Strict 18% SL</h2>
-        <p>This is your ultimate circuit breaker to prevent revenge. Accept this fixed 18% stop loss instantly; never move it or slide into denial. (Optimal SL is 6%.)</p>
+        <p>Ultimate circuit breaker to prevent revenge. (Optimal SL is 6% ROI).</p>
     </div>
-    <div class="rule-box">
+    <div class="rule-box empty"></div>
+
+    <div class="rule-box empty"></div>
+    <div class="rule-box filled">
         <h2>4. Body Check Minds</h2>
         <p>Poor sleep or disrupted diet equals fatigue; stop trading immediately.</p>
     </div>
-    <div class="rule-box">
+
+    <div class="rule-box filled">
         <h2>5. 2 Loss & Out</h2>
         <p>After 2 losing trades, close MT5 for the day to prevent revenge trading.</p>
     </div>
-    <div class="rule-box">
+    <div class="rule-box empty"></div>
+
+    <div class="rule-box empty"></div>
+    <div class="rule-box filled">
         <h2>6. Strict 6% ROI Cap</h2>
         <p>Target exactly 6% ROI; higher demands are greed and euphoria.</p>
     </div>
-    <div class="rule-box">
+
+    <div class="rule-box filled">
         <h2>7. Urgency Kills</h2>
         <p>Slow down; haste is the sole cause of execution losses.</p>
     </div>
-    <div class="rule-box">
+    <div class="rule-box empty"></div>
+
+    <div class="rule-box empty"></div>
+    <div class="rule-box filled">
         <h2>8. News Blackout</h2>
-        <p>Zero execution near high-impact calendar events to prevent 1.5% base boundaries.</p>
+        <p>Zero execution near high-impact events to prevent 1.5% base boundaries.</p>
     </div>
 </div>
 
