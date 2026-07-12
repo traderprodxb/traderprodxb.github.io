@@ -4,48 +4,43 @@
     <meta charset="UTF-8">
     <title>TraderProDXB | Blueprint</title>
     <style>
-        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; font-size: 1.1em; }
-        .card { border: 2px solid #CC0000; padding: 40px; max-width: 700px; margin: 40px auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
+        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; font-size: 1.3em; }
+        .card { border: 2px solid #CC0000; padding: 40px; max-width: 800px; margin: 40px auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
         h1 { color: #CC0000; letter-spacing: 2px; font-size: 2.2em; }
         .accent { color: #FFD700; }
-        
-        /* Blueprint Artistic Grid */
         .blueprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 30px 0; text-align: left; }
         .rule-box { padding: 20px; border-radius: 10px; border: 1px solid #444; }
         .rule-box.filled { background-color: #1a1a1a; border-left: 4px solid #CC0000; }
         .rule-box.empty { background-color: transparent; border: none; }
         h2 { font-size: 0.9em; color: #FFD700; margin-top: 0; text-transform: uppercase; }
         p { font-size: 0.85em; margin-bottom: 0; color: #ccc; }
-
         .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 30px; }
         .btn { display: block; padding: 12px 5px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 0.75em; }
         .btn.active { background-color: #FFD700; color: #1A1A1A; }
-        footer { font-size: 0.7em; color: #888; margin-top: 30px; line-height: 1.4; }
+        footer { font-size: 0.6em; color: #888; margin-top: 30px; line-height: 1.4; }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>THE <span class="accent">BLUEPRINT</span></h1>
-        
         <div class="blueprint-grid">
-            <div class="rule-box filled"><h2>1. 5 Win Max</h2><p>Cap the day at 5 winning trades; do not overtrade.</p></div>
+            <div class="rule-box filled"><h2>1. 5 Win Max</h2><p>Cap the day at 5 winning trades.</p></div>
             <div class="rule-box empty"></div>
             <div class="rule-box empty"></div>
-            <div class="rule-box filled"><h2>2. 30 Min Win Buffer</h2><p>Walk away 30 min after a win; physical movement only.</p></div>
-            <div class="rule-box filled"><h2>3. Strict 18% SL</h2><p>Ultimate circuit breaker. (Optimal SL: 6% ROI).</p></div>
+            <div class="rule-box filled"><h2>2. 30 Min Buffer</h2><p>Walk away 30 min after a win.</p></div>
+            <div class="rule-box filled"><h2>3. Strict 18% SL</h2><p>Ultimate circuit breaker.</p></div>
             <div class="rule-box empty"></div>
             <div class="rule-box empty"></div>
-            <div class="rule-box filled"><h2>4. Body Check Minds</h2><p>Poor health equals fatigue; stop trading immediately.</p></div>
-            <div class="rule-box filled"><h2>5. 2 Loss & Out</h2><p>Close MT5 after 2 losses to prevent revenge trading.</p></div>
+            <div class="rule-box filled"><h2>4. Body Check</h2><p>Fatigue = Stop trading.</p></div>
+            <div class="rule-box filled"><h2>5. 2 Loss & Out</h2><p>Stop after 2 losses.</p></div>
             <div class="rule-box empty"></div>
             <div class="rule-box empty"></div>
-            <div class="rule-box filled"><h2>6. Strict 6% ROI Cap</h2><p>Target exactly 6% ROI; no greed.</p></div>
-            <div class="rule-box filled"><h2>7. Urgency Kills</h2><p>Slow down; haste causes execution losses.</p></div>
+            <div class="rule-box filled"><h2>6. 6% ROI Cap</h2><p>Target exactly 6%.</p></div>
+            <div class="rule-box filled"><h2>7. Slow Down</h2><p>Haste kills execution.</p></div>
             <div class="rule-box empty"></div>
             <div class="rule-box empty"></div>
-            <div class="rule-box filled"><h2>8. News Blackout</h2><p>Zero execution near high-impact events.</p></div>
+            <div class="rule-box filled"><h2>8. News Blackout</h2><p>Zero execution near impact.</p></div>
         </div>
-
         <div class="nav-grid">
             <a href="index.html" class="btn">HOME</a>
             <a href="blueprint.html" class="btn active">BLUEPRINT</a>
@@ -53,7 +48,7 @@
             <a href="journey.html" class="btn">JOURNEY</a>
             <a href="track-record.html" class="btn">TRACK</a>
         </div>
-        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss and is not suitable for every investor. Past performance is not indicative of future results. All trading strategies are shared for educational purposes only and do not constitute financial advice. You are responsible for your own capital.</footer>
+        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss. Past performance is not indicative of future results. All strategies are educational.</footer>
     </div>
 </body>
 </html>
