@@ -1,32 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>TraderProDXB | Blueprint</title>
-    <style>
-        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; font-size: 1.1em; }
-        .card { border: 2px solid #CC0000; padding: 40px; max-width: 700px; margin: 40px auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
-        h1 { color: #CC0000; letter-spacing: 2px; font-size: 2.2em; }
-        .accent { color: #FFD700; }
-        .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 30px; }
-        .btn { display: block; padding: 12px 5px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 0.8em; }
-        .btn.active { background-color: #FFD700; color: #1A1A1A; }
-        footer { font-size: 0.7em; color: #888; margin-top: 30px; line-height: 1.4; }
-    </style>
+<style>
+    body { background-color: #0a0a0a; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+    .grid-container { 
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 20px; 
+        max-width: 1000px; 
+        margin: auto; 
+    }
+    .rule-box { 
+        padding: 25px; 
+        border-radius: 12px; 
+        border-left: 6px solid #d9480f; 
+        transition: transform 0.2s;
+    }
+    .rule-box:nth-child(even) { background-color: #1a1a1a; border-color: #f1c40f; }
+    .rule-box:nth-child(odd) { background-color: #262626; border-color: #d9480f; }
+    h2 { margin-top: 0; color: #ffffff; font-size: 1.2rem; text-transform: uppercase; }
+    p { line-height: 1.6; font-size: 1rem; }
+</style>
 </head>
 <body>
-    <div class="card">
-        <h1>THE <span class="accent">BLUEPRINT</span></h1>
-        <p>Protocol: 5 trades per day. 6% ROI target per trade.</p>
-        <p>Risk Management: Daily loss is strictly capped at a maximum of 25% of the total account balance.</p>
-        <div class="nav-grid">
-            <a href="index.html" class="btn">HOME</a>
-            <a href="blueprint.html" class="btn active">BLUEPRINT</a>
-            <a href="infrastructure.html" class="btn">INFRA</a>
-            <a href="journey.html" class="btn">JOURNEY</a>
-            <a href="track-record.html" class="btn">TRACK</a>
-        </div>
-        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss and is not suitable for every investor. Past performance is not indicative of future results. All trading strategies are shared for educational purposes only and do not constitute financial advice. You are responsible for your own capital.</footer>
+
+<div class="grid-container">
+    <div class="rule-box">
+        <h2>1. 5 Win Max</h2>
+        <p>Cap the day at 5 winning trades; do not overtrade.</p>
     </div>
+    <div class="rule-box">
+        <h2>2. 30 Min Win Buffer</h2>
+        <p>Walk away for 30 minutes after a win; physical movement only, no screen.</p>
+    </div>
+    <div class="rule-box">
+        <h2>3. Strict 18% SL</h2>
+        <p>This is your ultimate circuit breaker to prevent revenge. Accept this fixed 18% stop loss instantly; never move it or slide into denial. (Optimal SL is 6%.)</p>
+    </div>
+    <div class="rule-box">
+        <h2>4. Body Check Minds</h2>
+        <p>Poor sleep or disrupted diet equals fatigue; stop trading immediately.</p>
+    </div>
+    <div class="rule-box">
+        <h2>5. 2 Loss & Out</h2>
+        <p>After 2 losing trades, close MT5 for the day to prevent revenge trading.</p>
+    </div>
+    <div class="rule-box">
+        <h2>6. Strict 6% ROI Cap</h2>
+        <p>Target exactly 6% ROI; higher demands are greed and euphoria.</p>
+    </div>
+    <div class="rule-box">
+        <h2>7. Urgency Kills</h2>
+        <p>Slow down; haste is the sole cause of execution losses.</p>
+    </div>
+    <div class="rule-box">
+        <h2>8. News Blackout</h2>
+        <p>Zero execution near high-impact calendar events to prevent 1.5% base boundaries.</p>
+    </div>
+</div>
+
 </body>
 </html>
