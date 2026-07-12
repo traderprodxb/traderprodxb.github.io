@@ -9,8 +9,9 @@
         h1 { color: #CC0000; letter-spacing: 2px; font-size: 2.2em; }
         .accent { color: #FFD700; }
         
-        /* Widget Container */
-        .fx-widget-wrapper { margin: 30px auto; padding: 10px; background: #1a1a1a; border-radius: 10px; border: 1px solid #444; display: inline-block; }
+        /* Widget Container with Backup Link */
+        .fx-widget-wrapper { margin: 30px auto; padding: 15px; background: #1a1a1a; border-radius: 10px; border: 1px solid #444; display: block; }
+        .backup-btn { display: block; margin-top: 15px; padding: 15px; background-color: #FFD700; color: #1A1A1A; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center; font-size: 0.9em; }
         
         .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 30px; }
         .btn { display: block; padding: 12px 5px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 0.8em; }
@@ -23,10 +24,13 @@
         <h1>PERFORMANCE <span class="accent">TRACKER</span></h1>
         <p>Machine-like execution. Verified live data.</p>
         
+        <!-- Myfxbook Widget Section -->
         <div class="fx-widget-wrapper">
-            <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank">
-                <img src="https://widget.myfxbook.com/widget/12106666/medium.jpg" alt="Myfxbook Performance Widget"/>
+            <a href="https://www.myfxbook.com/portfolio/traderprodxb/12106666" target="_blank">
+                <img src="https://widget.myfxbook.com/widget/12106666/medium.jpg" alt="Myfxbook Performance Widget" style="max-width: 100%; height: auto;"/>
             </a>
+            <!-- Always available backup link -->
+            <a href="https://www.myfxbook.com/portfolio/traderprodxb/12106666" target="_blank" class="backup-btn">VIEW LIVE DATA ON MYFXBOOK</a>
         </div>
 
         <div class="nav-grid">
