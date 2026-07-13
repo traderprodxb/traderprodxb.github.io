@@ -4,53 +4,38 @@
     <meta charset="UTF-8">
     <title>TraderProDXB | Infrastructure</title>
     <style>
-        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; font-size: 1.3em; }
-        .card { border: 2px solid #CC0000; padding: 40px; max-width: 700px; margin: 40px auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
+        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; min-height: 100vh; }
+        .sidebar { width: 200px; background: #252525; padding: 20px; border-right: 2px solid #CC0000; position: fixed; height: 100vh; display: flex; flex-direction: column; gap: 10px; }
+        .sidebar h2 { color: #CC0000; font-size: 1.2em; margin-bottom: 20px; text-align: center; }
+        .btn { display: block; padding: 15px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center; font-size: 0.9em; }
+        .btn.active { background-color: #FFD700; color: #1A1A1A; }
+        .main-content { margin-left: 240px; padding: 40px; width: 100%; text-align: center; }
+        .card { border: 2px solid #CC0000; padding: 40px; max-width: 700px; margin: 0 auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
         h1 { color: #CC0000; letter-spacing: 2px; font-size: 2.2em; }
         .accent { color: #FFD700; }
-        
-        .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 30px; }
-        .btn { display: block; padding: 12px 5px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 0.8em; }
-        .btn.active { background-color: #FFD700; color: #1A1A1A; }
-        
-        /* Infrastructure specific styles */
         .broker-box { border: 1px solid #555; padding: 20px; margin: 20px 0; border-radius: 10px; text-align: left; }
-        .trade-btn { display: block; margin-top: 15px; padding: 15px; background-color: #FFD700; color: #1A1A1A; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center; font-size: 0.9em; }
-        
-        footer { font-size: 0.6em; color: #888; margin-top: 30px; line-height: 1.4; }
+        .trade-btn { display: block; margin-top: 15px; padding: 15px; background-color: #FFD700; color: #1A1A1A; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center; }
+        footer { font-size: 0.6em; color: #888; margin-top: 40px; line-height: 1.4; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>SYSTEM <span class="accent">INFRA</span></h1>
-        
-        <div class="broker-box">
-            <h3>BlackBull (Primary)</h3>
-            <p>Best-in-class execution speed for my 5-trade daily cycle.</p>
-            <a href="https://blackbullmarkets.com/en/open-an-account/?ib=2201386795" class="trade-btn">TRADE WITH MY SYSTEM</a>
+    <div class="sidebar">
+        <h2>PRO<span class="accent">DXB</span></h2>
+        <a href="index.html" class="btn">HOME</a>
+        <a href="blueprint.html" class="btn">BLUEPRINT</a>
+        <a href="infrastructure.html" class="btn active">INFRA</a>
+        <a href="journey.html" class="btn">JOURNEY</a>
+        <a href="track-record.html" class="btn">TRACK</a>
+        <a href="reflections.html" class="btn">REFLECT</a>
+    </div>
+    <div class="main-content">
+        <div class="card">
+            <h1>SYSTEM <span class="accent">INFRA</span></h1>
+            <div class="broker-box"><h3>BlackBull (Primary)</h3><p>Fast execution for 5-trade cycle.</p><a href="https://blackbullmarkets.com/en/open-an-account/?ib=2201386795" class="trade-btn">TRADE WITH MY SYSTEM</a></div>
+            <div class="broker-box"><h3>ICMarkets</h3><p>Low latency, precision entries.</p><a href="https://www.icmarkets.com/?camp=64761" class="trade-btn">TRADE WITH MY SYSTEM</a></div>
+            <div class="broker-box"><h3>Binance</h3><p>Liquidity for crypto rotation.</p><a href="https://accounts.binance.com/register?ref=78598424" class="trade-btn">TRADE WITH MY SYSTEM</a></div>
         </div>
-        
-        <div class="broker-box">
-            <h3>ICMarkets</h3>
-            <p>Low latency, vital for precise entry and exit at scale.</p>
-            <a href="https://www.icmarkets.com/?camp=64761" class="trade-btn">TRADE WITH MY SYSTEM</a>
-        </div>
-        
-        <div class="broker-box">
-            <h3>Binance (Secondary)</h3>
-            <p>Liquidity for high-frequency crypto asset rotation.</p>
-            <a href="https://accounts.binance.com/register?ref=78598424" class="trade-btn">TRADE WITH MY SYSTEM</a>
-        </div>
-        
-        <div class="nav-grid">
-            <a href="index.html" class="btn">HOME</a>
-            <a href="blueprint.html" class="btn">BLUEPRINT</a>
-            <a href="infrastructure.html" class="btn active">INFRA</a>
-            <a href="journey.html" class="btn">JOURNEY</a>
-            <a href="track-record.html" class="btn">TRACK</a>
-        </div>
-        
-        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss. Past performance is not indicative of future results. All strategies are educational.</footer>
+        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss.</footer>
     </div>
 </body>
 </html>
