@@ -4,51 +4,47 @@
     <meta charset="UTF-8">
     <title>TraderProDXB | Blueprint</title>
     <style>
-        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; font-size: 1.3em; }
-        .card { border: 2px solid #CC0000; padding: 40px; max-width: 800px; margin: 40px auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
+        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; min-height: 100vh; }
+        .sidebar { width: 200px; background: #252525; padding: 20px; border-right: 2px solid #CC0000; position: fixed; height: 100vh; display: flex; flex-direction: column; gap: 10px; }
+        .sidebar h2 { color: #CC0000; font-size: 1.2em; margin-bottom: 20px; text-align: center; }
+        .btn { display: block; padding: 15px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center; font-size: 0.9em; }
+        .btn.active { background-color: #FFD700; color: #1A1A1A; }
+        .main-content { margin-left: 240px; padding: 40px; width: 100%; text-align: center; }
+        .card { border: 2px solid #CC0000; padding: 40px; max-width: 800px; margin: 0 auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
         h1 { color: #CC0000; letter-spacing: 2px; font-size: 2.2em; }
         .accent { color: #FFD700; }
         .blueprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 30px 0; text-align: left; }
-        .rule-box { padding: 20px; border-radius: 10px; border: 1px solid #444; }
-        .rule-box.filled { background-color: #1a1a1a; border-left: 4px solid #CC0000; }
-        .rule-box.empty { background-color: transparent; border: none; }
+        .rule-box { padding: 20px; border-radius: 10px; border: 1px solid #444; background-color: #1a1a1a; border-left: 4px solid #CC0000; }
         h2 { font-size: 0.9em; color: #FFD700; margin-top: 0; text-transform: uppercase; }
         p { font-size: 0.85em; margin-bottom: 0; color: #ccc; }
-        .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 30px; }
-        .btn { display: block; padding: 12px 5px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; font-size: 0.75em; }
-        .btn.active { background-color: #FFD700; color: #1A1A1A; }
-        footer { font-size: 0.6em; color: #888; margin-top: 30px; line-height: 1.4; }
+        footer { font-size: 0.6em; color: #888; margin-top: 40px; line-height: 1.4; max-width: 800px; margin-left: auto; margin-right: auto; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>THE <span class="accent">BLUEPRINT</span></h1>
-        <div class="blueprint-grid">
-            <div class="rule-box filled"><h2>1. 5 Win Max</h2><p>Cap the day at 5 winning trades.</p></div>
-            <div class="rule-box empty"></div>
-            <div class="rule-box empty"></div>
-            <div class="rule-box filled"><h2>2. 30 Min Buffer</h2><p>Walk away 30 min after a win.</p></div>
-            <div class="rule-box filled"><h2>3. Strict 18% SL</h2><p>Ultimate circuit breaker.</p></div>
-            <div class="rule-box empty"></div>
-            <div class="rule-box empty"></div>
-            <div class="rule-box filled"><h2>4. Body Check</h2><p>Fatigue = Stop trading.</p></div>
-            <div class="rule-box filled"><h2>5. 2 Loss & Out</h2><p>Stop after 2 losses.</p></div>
-            <div class="rule-box empty"></div>
-            <div class="rule-box empty"></div>
-            <div class="rule-box filled"><h2>6. 6% ROI Cap</h2><p>Target exactly 6%.</p></div>
-            <div class="rule-box filled"><h2>7. Slow Down</h2><p>Haste kills execution.</p></div>
-            <div class="rule-box empty"></div>
-            <div class="rule-box empty"></div>
-            <div class="rule-box filled"><h2>8. News Blackout</h2><p>Zero execution near impact.</p></div>
+    <div class="sidebar">
+        <h2>PRO<span class="accent">DXB</span></h2>
+        <a href="index.html" class="btn">HOME</a>
+        <a href="blueprint.html" class="btn active">BLUEPRINT</a>
+        <a href="infrastructure.html" class="btn">INFRA</a>
+        <a href="journey.html" class="btn">JOURNEY</a>
+        <a href="track-record.html" class="btn">TRACK</a>
+        <a href="reflections.html" class="btn">REFLECT</a>
+    </div>
+    <div class="main-content">
+        <div class="card">
+            <h1>THE <span class="accent">BLUEPRINT</span></h1>
+            <div class="blueprint-grid">
+                <div class="rule-box"><h2>1. 5 Win Max</h2><p>Cap day at 5 wins.</p></div>
+                <div class="rule-box"><h2>2. 30 Min Buffer</h2><p>Walk away after a win.</p></div>
+                <div class="rule-box"><h2>3. Strict 18% SL</h2><p>Circuit breaker.</p></div>
+                <div class="rule-box"><h2>4. Body Check</h2><p>Fatigue = Stop.</p></div>
+                <div class="rule-box"><h2>5. 2 Loss & Out</h2><p>Prevent revenge.</p></div>
+                <div class="rule-box"><h2>6. 6% ROI Cap</h2><p>Target exactly 6%.</p></div>
+                <div class="rule-box"><h2>7. Slow Down</h2><p>Haste kills.</p></div>
+                <div class="rule-box"><h2>8. News Blackout</h2><p>Zero execution.</p></div>
+            </div>
         </div>
-        <div class="nav-grid">
-            <a href="index.html" class="btn">HOME</a>
-            <a href="blueprint.html" class="btn active">BLUEPRINT</a>
-            <a href="infrastructure.html" class="btn">INFRA</a>
-            <a href="journey.html" class="btn">JOURNEY</a>
-            <a href="track-record.html" class="btn">TRACK</a>
-        </div>
-        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss. Past performance is not indicative of future results. All strategies are educational.</footer>
+        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss. Past performance is not indicative of future results.</footer>
     </div>
 </body>
 </html>
