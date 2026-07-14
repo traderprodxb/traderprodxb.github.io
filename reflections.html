@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <title>TraderProDXB | Reflections</title>
     <style>
-        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; min-height: 100vh; }
-        .sidebar { width: 200px; <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TraderProDXB | Reflections</title>
-    <style>
-        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; min-height: 100vh; }
-        .sidebar { width: 200px; background: #252525; padding: 20px; border-right: 2px solid #CC0000; position: fixed; height: 100vh; display: flex; flex-direction: column; gap: 10px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; display: flex; min-height: 100vh; }
+        
+        /* Sidebar container */
+        .sidebar { width: 220px; background: #252525; border-right: 2px solid #CC0000; padding: 20px; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 0; height: 100vh; }
+        .sidebar h2 { color: #CC0000; font-size: 1.68em; margin-bottom: 20px; text-align: center; }
+        
+        /* Navigation Buttons */
         .btn { display: block; padding: 15px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center; font-size: 0.9em; }
         .btn.active { background-color: #FFD700; color: #1A1A1A; }
-        .main-content { margin-left: 240px; padding: 40px; width: 100%; text-align: center; }
-        .card { border: 2px solid #CC0000; padding: 40px; max-width: 700px; margin: 0 auto; background: #252525; border-radius: 15px; }
-        h1 { color: #CC0000; font-size: 3.1em; }
-        .reflection-box { border-left: 6px solid #CC0000; padding: 30px; margin: 30px 0; background: #1a1a1a; text-align: left; }
-        p { font-size: 1.5em; }
+        
+        /* Main Content */
+        .main-content { flex-grow: 1; padding: 60px; display: flex; justify-content: center; }
+        .card { border: 2px solid #CC0000; padding: 60px; width: 100%; max-width: 900px; background: #252525; border-radius: 15px; }
+        h1 { color: #CC0000; font-size: 4.34em; margin-bottom: 40px; }
+        .reflection-box { border-left: 8px solid #CC0000; padding: 40px; background: #1a1a1a; }
+        p { font-size: 2.52em; line-height: 1.6; color: #E0E0E0; }
+        .accent { color: #FFD700; }
     </style>
 </head>
 <body>
@@ -39,39 +41,6 @@
                 <p>Machine-like logging. Data to be updated via system.</p>
             </div>
         </div>
-    </div>
-</body>
-</html>
-: #252525; padding: 20px; border-right: 2px solid #CC0000; position: fixed; height: 100vh; display: flex; flex-direction: column; gap: 10px; }
-        .sidebar h2 { color: #CC0000; font-size: 1.2em; margin-bottom: 20px; text-align: center; }
-        .btn { display: block; padding: 15px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center; font-size: 0.9em; }
-        .btn.active { background-color: #FFD700; color: #1A1A1A; }
-        .main-content { margin-left: 240px; padding: 40px; width: 100%; text-align: center; }
-        .card { border: 2px solid #CC0000; padding: 40px; max-width: 700px; margin: 0 auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
-        h1 { color: #CC0000; letter-spacing: 2px; font-size: 2.2em; }
-        .accent { color: #FFD700; }
-        .reflection-box { border-left: 4px solid #CC0000; padding: 20px; margin: 20px 0; background: #1a1a1a; text-align: left; }
-        footer { font-size: 0.6em; color: #888; margin-top: 40px; line-height: 1.4; }
-    </style>
-</head>
-<body>
-    <div class="sidebar">
-        <h2>PRO<span class="accent">DXB</span></h2>
-        <a href="index.html" class="btn">HOME</a>
-        <a href="blueprint.html" class="btn">BLUEPRINT</a>
-        <a href="infrastructure.html" class="btn">INFRA</a>
-        <a href="journey.html" class="btn">JOURNEY</a>
-        <a href="track-record.html" class="btn">TRACK</a>
-        <a href="reflections.html" class="btn active">REFLECT</a>
-    </div>
-    <div class="main-content">
-        <div class="card">
-            <h1>DAILY <span class="accent">REFLECTIONS</span></h1>
-            <div class="reflection-box">
-                <p>Machine-like logging. Data to be updated via email-to-issue system.</p>
-            </div>
-        </div>
-        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss.</footer>
     </div>
 </body>
 </html>
