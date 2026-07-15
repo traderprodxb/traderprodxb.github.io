@@ -1,31 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <style>
-    body { font-family: sans-serif; font-size: 1.2em; line-height: 1.6; padding: 40px; }
-    input, select { font-size: 1em; padding: 10px; margin: 10px 0; width: 100%; }
-    button { font-size: 1.2em; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Position Size Calculator</title>
+    <style>
+        body { font-family: sans-serif; font-size: 1.2em; line-height: 1.6; padding: 40px; margin: 0; }
+        nav { padding: 20px; background: #f4f4f4; border-bottom: 2px solid #ddd; margin-bottom: 20px; }
+        nav a { font-size: 1.2em; margin-right: 20px; text-decoration: none; color: #333; font-weight: bold; }
+        input, select { font-size: 1.1em; padding: 12px; margin: 10px 0; width: 100%; max-width: 400px; display: block; }
+        button { font-size: 1.2em; padding: 15px 30px; background: #000; color: #fff; border: none; cursor: pointer; }
+    </style>
 </head>
 <body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="positionsize.html">Position Size</a>
+        <a href="journal.html">Journal</a>
+    </nav>
+    <h1>Position Sizing Calculator</h1>
+    <input type="number" id="balance" placeholder="Capital Balance (USD)">
+    <select id="ticker">
+        <option value="USTech">USTech</option>
+        <option value="XAUUSD">XAUUSD</option>
+        <option value="WTI">WTI</option>
+        <option value="EURUSD">EURUSD</option>
+        <option value="USDJPY">USDJPY</option>
+        <option value="BTCUSD">BTCUSD</option>
+        <option value="ETHUSD">ETHUSD</option>
+        <option value="TSLA">TSLA</option>
+    </select>
+    <button onclick="calculate()">Calculate</button>
+    <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
 
-  <!-- Include Nav Bar from above here -->
-
-  <h1>Position Sizing Calculator</h1>
-  <input type="number" id="balance" placeholder="Capital Balance (USD)">
-  <select id="ticker">
-    <option value="USTech">USTech</option>
-    <option value="XAUUSD">XAUUSD</option>
-    <!-- Add other tickers -->
-  </select>
-  <button onclick="calculate()">Calculate Position</button>
-  
-  <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
-
-  <script>
-    function calculate() {
-      // Logic for size, TP, and SL will be inserted here
-    }
-  </script>
+    <script>
+        function calculate() {
+            // Logic integration pending your confirmation
+            document.getElementById('result').innerText = "Calculation result will appear here.";
+        }
+    </script>
 </body>
 </html>
