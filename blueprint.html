@@ -2,48 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TraderProDXB | Blueprint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TraderProDXB - Blueprint</title>
     <style>
-        body { background-color: #1A1A1A; color: #FFFFFF; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; min-height: 100vh; }
-        .sidebar { width: 200px; background: #252525; padding: 20px; border-right: 2px solid #CC0000; position: fixed; height: 100vh; display: flex; flex-direction: column; gap: 10px; }
-        .sidebar h2 { color: #CC0000; font-size: 1.2em; margin-bottom: 20px; text-align: center; }
-        .btn { display: block; padding: 15px; background-color: #CC0000; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; text-align: center; font-size: 0.9em; }
-        .btn.active { background-color: #FFD700; color: #1A1A1A; }
-        .main-content { margin-left: 240px; padding: 40px; width: 100%; text-align: center; }
-        .card { border: 2px solid #CC0000; padding: 40px; max-width: 800px; margin: 0 auto; background: #252525; border-radius: 15px; box-shadow: 0 0 20px rgba(204, 0, 0, 0.3); }
-        h1 { color: #CC0000; font-size: 3.1em; }
-        .blueprint-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; text-align: left; }
-        .rule-box { padding: 25px; border-radius: 10px; background-color: #1a1a1a; border-left: 6px solid #CC0000; }
-        h2 { font-size: 1.3em; color: #FFD700; margin: 0; }
-        p { font-size: 1.2em; margin: 10px 0 0 0; color: #ccc; }
-        footer { font-size: 0.9em; color: #888; margin-top: 40px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.3em; line-height: 1.6; padding: 0; margin: 0; color: #333; }
+        nav { background: #000; padding: 25px; display: flex; flex-wrap: wrap; gap: 20px; }
+        nav a { color: #fff; text-decoration: none; font-weight: bold; font-size: 1.1em; }
+        main { padding: 40px; max-width: 900px; margin: auto; }
+        h1 { font-size: 2em; border-bottom: 2px solid #000; padding-bottom: 10px; }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>PRO<span class="accent">DXB</span></h2>
-        <a href="index.html" class="btn">HOME</a>
-        <a href="blueprint.html" class="btn active">BLUEPRINT</a>
-        <a href="infrastructure.html" class="btn">INFRA</a>
-        <a href="journey.html" class="btn">JOURNEY</a>
-        <a href="track-record.html" class="btn">TRACK</a>
-        <a href="reflections.html" class="btn">REFLECT</a>
-    </div>
-    <div class="main-content">
-        <div class="card">
-            <h1>THE <span class="accent">BLUEPRINT</span></h1>
-            <div class="blueprint-grid">
-                <div class="rule-box"><h2>1. 5 Win Max</h2><p>Cap day at 5 wins.</p></div>
-                <div class="rule-box"><h2>2. 30 Min Buffer</h2><p>Walk away after a win.</p></div>
-                <div class="rule-box"><h2>3. Strict 18% SL</h2><p>Circuit breaker.</p></div>
-                <div class="rule-box"><h2>4. Body Check</h2><p>Fatigue = Stop.</p></div>
-                <div class="rule-box"><h2>5. 2 Loss & Out</h2><p>Prevent revenge.</p></div>
-                <div class="rule-box"><h2>6. 6% ROI Cap</h2><p>Target exactly 6%.</p></div>
-                <div class="rule-box"><h2>7. Slow Down</h2><p>Haste kills.</p></div>
-                <div class="rule-box"><h2>8. News Blackout</h2><p>Zero execution.</p></div>
-            </div>
-        </div>
-        <footer>Risk Disclaimer: Trading financial instruments involves significant risk of loss.</footer>
-    </div>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="blueprint.html">Blueprint</a>
+    <a href="infrastructure.html">Infrastructure</a>
+    <a href="journey.html">Journey</a>
+    <a href="track-record.html">Track Record</a>
+    <a href="reflections.html">Reflections</a>
+    <a href="positionsize.html">Position Size</a>
+    <a href="journal.html">Journal</a>
+</nav>
+<main>
+    <h1>Blueprint</h1>
+    <p>Strategic framework and stage-based growth rules.</p>
+</main>
 </body>
 </html>
