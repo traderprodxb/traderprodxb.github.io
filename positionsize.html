@@ -9,6 +9,7 @@
         nav a { font-size: 1.2em; margin-right: 20px; text-decoration: none; color: #333; font-weight: bold; }
         input, select { font-size: 1.1em; padding: 12px; margin: 10px 0; width: 100%; max-width: 400px; display: block; }
         button { font-size: 1.2em; padding: 15px 30px; background: #000; color: #fff; border: none; cursor: pointer; }
+        #result { margin-top: 20px; padding: 20px; background: #f9f9f9; border-left: 5px solid #000; }
     </style>
 </head>
 <body>
@@ -29,13 +30,35 @@
         <option value="ETHUSD">ETHUSD</option>
         <option value="TSLA">TSLA</option>
     </select>
+    <input type="number" id="entryPrice" placeholder="Entry Price">
     <button onclick="calculate()">Calculate</button>
-    <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+    <div id="result"></div>
 
     <script>
         function calculate() {
-            // Logic integration pending your confirmation
-            document.getElementById('result').innerText = "Calculation result will appear here.";
+            const bal = parseFloat(document.getElementById('balance').value);
+            const ticker = document.getElementById('ticker').value;
+            const entry = parseFloat(document.getElementById('entryPrice').value);
+            
+            // TP Logic
+            let tp = 0;
+            if (bal < 650) tp = 25;
+            else if (bal < 1000) tp = 35;
+            else if (bal < 1500) tp = 50;
+            else if (bal < 2500) tp = 100;
+            else tp = 200;
+
+            const prevTp = tp * 0.6; // Assuming previous stage logic
+            const distances = { "USTech": 100, "XAUUSD": 100, "WTI": 10, "EURUSD": 0.0017, "USDJPY": 5, "BTCUSD": 500, "ETHUSD": 25, "TSLA": 1 };
+            
+            const size = tp / distances[ticker];
+            
+            document.getElementById('result').innerHTML = `
+                <p>Target Profit: $${tp}</p>
+                <p>Required Size: ${size.toFixed(4)}</p>
+                <p>Win Exit: ${entry + distances[ticker]}</p>
+                <p>Loss Exit: ${entry - distances[ticker]}</p>
+            `;
         }
     </script>
 </body>
