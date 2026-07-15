@@ -32,7 +32,7 @@
     </select>
     <input type="number" id="entryPrice" placeholder="Entry Price">
     <button onclick="calculate()">Calculate</button>
-    <div id="result"></div>
+    <div id="result">Results will appear here.</div>
 
     <script>
         function calculate() {
@@ -40,25 +40,31 @@
             const ticker = document.getElementById('ticker').value;
             const entry = parseFloat(document.getElementById('entryPrice').value);
             
-            // TP Logic
-            let tp = 0;
-            if (bal < 650) tp = 25;
-            else if (bal < 1000) tp = 35;
-            else if (bal < 1500) tp = 50;
-            else if (bal < 2500) tp = 100;
-            else tp = 200;
+            if (isNaN(bal) || isNaN(entry)) {
+                alert("Please enter valid numbers for Balance and Entry Price.");
+                return;
+            }
 
-            const prevTp = tp * 0.6; // Assuming previous stage logic
-            const distances = { "USTech": 100, "XAUUSD": 100, "WTI": 10, "EURUSD": 0.0017, "USDJPY": 5, "BTCUSD": 500, "ETHUSD": 25, "TSLA": 1 };
+            // TP Logic
+            let tp = 25;
+            if (bal >= 650 && bal < 1000) tp = 35;
+            else if (bal >= 1000 && bal < 1500) tp = 50;
+            else if (bal >= 1500 && bal < 2500) tp = 100;
+            else if (bal >= 2500) tp = 200;
+
+            const distances = { 
+                "USTech": 100, "XAUUSD": 100, "WTI": 10, "EURUSD": 0.0017, 
+                "USDJPY": 0.5, "BTCUSD": 500, "ETHUSD": 25, "TSLA": 1 
+            };
             
-            const size = tp / distances[ticker];
+            const dist = distances[ticker];
+            const size = tp / dist;
             
-            document.getElementById('result').innerHTML = `
-                <p>Target Profit: $${tp}</p>
-                <p>Required Size: ${size.toFixed(4)}</p>
-                <p>Win Exit: ${entry + distances[ticker]}</p>
-                <p>Loss Exit: ${entry - distances[ticker]}</p>
-            `;
+            document.getElementById('result').innerHTML = 
+                "<p><strong>Target Profit (TP):</strong> $" + tp + "</p>" +
+                "<p><strong>Position Size:</strong> " + size.toFixed(4) + "</p>" +
+                "<p><strong>Win Exit Price:</strong> " + (entry + (dist/100)).toFixed(2) + "</p>" +
+                "<p><strong>Loss Exit Price (SL):</strong> " + (entry - (dist/100)).toFixed(2) + "</p>";
         }
     </script>
 </body>
