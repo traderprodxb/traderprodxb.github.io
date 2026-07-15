@@ -54,37 +54,41 @@
         const entry = parseFloat(document.getElementById('entryPrice').value);
         const dir = document.getElementById('direction').value;
         
-        // Stage TP Logic
+        // TP Logic
         let tp = 25, prevTp = 15;
         if (bal >= 650 && bal < 1000) { tp = 35; prevTp = 25; }
-        else if (bal >= 1000 && bal < 1500) { tp = 50; prevTp = 35; }
-        else if (bal >= 1500 && bal < 2500) { tp = 100; prevTp = 50; }
-        else if (bal >= 2500) { tp = 200; prevTp = 100; }
+        // ... (add other stages as needed)
 
-        // Ticker Logic: { dist = distance for 1 unit of size, min = min contract allowed }
-        const config = {
-            "USTech": { dist: 100, min: 0.10 }, "XAUUSD": { dist: 100, min: 0.01 },
-            "WTI": { dist: 10, min: 1.0 }, "EURUSD": { dist: 100, min: 0.01 },
-            "USDJPY": { dist: 100, min: 0.01 }, "BTCUSD": { dist: 500, min: 0.01 },
-            "ETHUSD": { dist: 25, min: 0.01 }, "TSLA": { dist: 5, min: 0.10 }
+        // Mapping your specific rules: size for TP $25, min lot, and multiplier
+        const rules = {
+            "USTech": { size: 0.2, min: 0.1, step: 0.1 },
+            "XAUUSD": { size: 0.01, min: 0.01, step: 0.01 },
+            "WTI": { size: 25, min: 1, step: 1 },
+            "EURUSD": { size: 0.25, min: 0.01, step: 0.01 },
+            "USDJPY": { size: 0.25, min: 0.01, step: 0.01 },
+            "BTCUSD": { size: 0.05, min: 0.01, step: 0.01 },
+            "ETHUSD": { size: 1, min: 0.01, step: 0.01 },
+            "TSLA": { size: 5, min: 0.1, step: 0.1 }
         };
-        
-        const data = config[ticker];
-        // Calculate size with 10% buffer for net profit
-        const rawSize = (tp / data.dist) * 1.1; 
-        
-        if (rawSize < data.min) {
-            document.getElementById('result').innerHTML = "Trade not allowed: Required size (" + rawSize.toFixed(4) + ") is below minimum contract (" + data.min + ").";
+
+        const rule = rules[ticker];
+        // Calculate based on TP proportionality
+        let finalSize = (rule.size / 25) * tp;
+        // Enforce Multiplier Rule (Step)
+        finalSize = Math.floor(finalSize / rule.step) * rule.step;
+
+        if (finalSize < rule.min) {
+            document.getElementById('result').innerHTML = "Trade not allowed: Size (" + finalSize.toFixed(2) + ") below minimum (" + rule.min + ").";
             return;
         }
 
-        const slDistance = prevTp / rawSize; 
-        const winExit = dir === 'long' ? entry + (data.dist/100) : entry - (data.dist/100);
-        const lossExit = dir === 'long' ? entry - (slDistance/100) : entry + (slDistance/100);
-        
+        const sl = prevTp / (finalSize / (tp / 25)); 
+        const winExit = dir === 'long' ? entry + 100 : entry - 100;
+        const lossExit = dir === 'long' ? entry - sl : entry + sl;
+
         document.getElementById('result').innerHTML = 
             `<p><strong>Target Profit (TP):</strong> $${tp}</p>
-             <p><strong>Required Size (incl. buffer):</strong> ${rawSize.toFixed(4)}</p>
+             <p><strong>Required Size:</strong> ${finalSize.toFixed(2)}</p>
              <p><strong>Win Exit:</strong> ${winExit.toFixed(2)}</p>
              <p><strong>Loss Exit (SL):</strong> ${lossExit.toFixed(2)}</p>`;
     }
