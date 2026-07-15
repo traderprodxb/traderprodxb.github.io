@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>TraderProDXB - Blueprint</title>
-<style>
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.2em; background: #000; color: #A5A9B4; padding: 0; margin: 0; }
-    nav { background: #000; border-bottom: 3px solid #FF2800; padding: 20px; text-align: center; }
-    nav a { color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; margin: 0 10px; font-size: 0.8em; letter-spacing: 2px; }
-    nav a:hover { color: #FF2800; }
-    main { padding: 40px; max-width: 900px; margin: auto; }
-    h1 { color: #FF2800; border-bottom: 2px solid #FF2800; padding-bottom: 10px; text-transform: uppercase; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; color: #fff; }
-    th, td { border: 1px solid #333; padding: 12px; text-align: center; }
-    th { background: #111; color: #FF2800; }
-    .off-day { color: #444; }
-</style></head>
-<body><nav><a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="journal.html">Journal</a></nav>
-<main><h1>'This': The 8 Rules</h1><ol><li>Target 12% ROI per trade.</li><li>Stop Loss strictly at 6% ROI (1.5% base move).</li><li>Leverage: Indices x20, Commodities x50, Currencies x100, Crypto x10.</li><li>Assets: USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</li><li>Systematic compounding: 5 trades per day.</li><li>Reinvest profit according to the TraderProDXB Compounding System.</li><li>Machine-like execution: Zero emotion, follow the math.</li><li>Circuit Breaker: 18% ultimate SL on total account equity.</li></ol>
-<h1>Compounding Calendar (Cap $500)</h1><table><tr><th>Week</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr><tr><td>29</td><td class="off-day">OFF</td><td>-</td><td>$560</td><td>$700</td><td class="off-day">OFF</td><td>$1K</td><td>$1.4K</td></tr><tr><td>30</td><td class="off-day">OFF</td><td>$2K</td><td>$2.8K</td><td>$4K</td><td class="off-day">OFF</td><td>$5.6K</td><td>$7K</td></tr><tr><td>31</td><td class="off-day">OFF</td><td>$10K</td><td>$14K</td><td>$20K</td><td class="off-day">OFF</td><td>$28K</td><td>$40K</td></tr><tr><td>32</td><td class="off-day">OFF</td><td>$56K</td><td>$70K</td><td>$100K</td><td class="off-day">OFF</td><td>$140K</td><td>$200K</td></tr><tr><td>33</td><td class="off-day">OFF</td><td>$280K</td><td>$400K</td><td>$560K</td><td class="off-day">OFF</td><td>$700K</td><td>$1M</td></tr><tr><td>34</td><td class="off-day">OFF</td><td>$1.4M</td><td>$2M</td><td>$2.8M</td><td class="off-day">OFF</td><td>$4M</td><td>Reset</td></tr></table></main></body></html>
+<head>
+    <meta charset="UTF-8">
+    <title>TraderProDXB - Blueprint</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.2em; background: #000; color: #A5A9B4; padding: 0; margin: 0; }
+        nav { background: #000; border-bottom: 3px solid #FF2800; padding: 20px; text-align: center; }
+        nav a { color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; margin: 0 10px; font-size: 0.8em; letter-spacing: 2px; }
+        nav a:hover { color: #FF2800; }
+        main { padding: 40px; max-width: 900px; margin: auto; }
+        h1 { color: #FF2800; border-bottom: 2px solid #FF2800; padding-bottom: 10px; text-transform: uppercase; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; color: #fff; }
+        th, td { border: 1px solid #333; padding: 12px; text-align: center; }
+        th { background: #111; color: #FF2800; }
+        .off-day { color: #444; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="journal.html">Journal</a>
+    </nav>
+    <main>
+        <h1>'This': The 8 Rules</h1>
+        <ol>
+            <li>Target 6% ROI per trade.</li>
+            <li>Stop Loss strictly at 6% ROI per trade.</li>
+            <li>Leverage: Indices x20, Commodities x40, Currencies x40, Major Crypto x6.</li>
+            <li>Assets: USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</li>
+            <li>Systematic compounding: 5 Win trades per day.</li>
+            <li>Reinvest all profit according to the TraderProDXB Compounding System.</li>
+            <li>Machine-like execution: Zero emotion, follow the math.</li>
+            <li>Circuit Breaker: 18% ultimate SL on total account equity per trade max.</li>
+        </ol>
+
+        <h1>Compounding Calendar (Cap $500)</h1>
+        <table>
+            <tr><th>Week</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+            <tr><td>29</td><td class="off-day">OFF</td><td>-</td><td>$560</td><td>$700</td><td class="off-day">OFF</td><td>$1K</td><td>$1.4K</td></tr>
+            <tr><td>30</td><td class="off-day">OFF</td><td>$2K</td><td>$2.8K</td><td>$4K</td><td class="off-day">OFF</td><td>$5.6K</td><td>$7K</td></tr>
+            <tr><td>31</td><td class="off-day">OFF</td><td>$10K</td><td>$14K</td><td>$20K</td><td class="off-day">OFF</td><td>$28K</td><td>$40K</td></tr>
+            <tr><td>32</td><td class="off-day">OFF</td><td>$56K</td><td>$70K</td><td>$100K</td><td class="off-day">OFF</td><td>$140K</td><td>$200K</td></tr>
+            <tr><td>33</td><td class="off-day">OFF</td><td>$280K</td><td>$400K</td><td>$560K</td><td class="off-day">OFF</td><td>$700K</td><td>$1M</td></tr>
+            <tr><td>34</td><td class="off-day">OFF</td><td>$1.4M</td><td>$2M</td><td>$2.8M</td><td class="off-day">OFF</td><td>$4M</td><td>Reset</td></tr>
+        </table>
+    </main>
+</body>
+</html>
