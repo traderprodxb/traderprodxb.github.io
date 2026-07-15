@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; font-size: 1.2em; line-height: 1.6; padding: 40px; }
+    input, select { font-size: 1em; padding: 10px; margin: 10px 0; width: 100%; }
+    button { font-size: 1.2em; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- Include Nav Bar from above here -->
+
+  <h1>Position Sizing Calculator</h1>
+  <input type="number" id="balance" placeholder="Capital Balance (USD)">
+  <select id="ticker">
+    <option value="USTech">USTech</option>
+    <option value="XAUUSD">XAUUSD</option>
+    <!-- Add other tickers -->
+  </select>
+  <button onclick="calculate()">Calculate Position</button>
+  
+  <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+
+  <script>
+    function calculate() {
+      // Logic for size, TP, and SL will be inserted here
+    }
+  </script>
+</body>
+</html>
