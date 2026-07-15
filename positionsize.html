@@ -31,6 +31,10 @@
         <option value="TSLA">TSLA</option>
     </select>
     <input type="number" id="entryPrice" placeholder="Entry Price">
+    <select id="direction">
+        <option value="long">Long</option>
+        <option value="short">Short</option>
+    </select>
     <button onclick="calculate()">Calculate</button>
     <div id="result">Results will appear here.</div>
 
@@ -39,32 +43,34 @@
             const bal = parseFloat(document.getElementById('balance').value);
             const ticker = document.getElementById('ticker').value;
             const entry = parseFloat(document.getElementById('entryPrice').value);
+            const dir = document.getElementById('direction').value;
             
             if (isNaN(bal) || isNaN(entry)) {
-                alert("Please enter valid numbers for Balance and Entry Price.");
+                alert("Please enter valid numbers.");
                 return;
             }
 
-            // TP Logic
-            let tp = 25;
-            if (bal >= 650 && bal < 1000) tp = 35;
-            else if (bal >= 1000 && bal < 1500) tp = 50;
-            else if (bal >= 1500 && bal < 2500) tp = 100;
-            else if (bal >= 2500) tp = 200;
+            // Stage TP Logic
+            let tp = 25, prevTp = 15;
+            if (bal >= 650 && bal < 1000) { tp = 35; prevTp = 25; }
+            else if (bal >= 1000 && bal < 1500) { tp = 50; prevTp = 35; }
+            else if (bal >= 1500 && bal < 2500) { tp = 100; prevTp = 50; }
+            else if (bal >= 2500) { tp = 200; prevTp = 100; }
 
-            const distances = { 
-                "USTech": 100, "XAUUSD": 100, "WTI": 10, "EURUSD": 0.0017, 
-                "USDJPY": 0.5, "BTCUSD": 500, "ETHUSD": 25, "TSLA": 1 
-            };
-            
-            const dist = distances[ticker];
+            const pointVals = { "USTech": 1, "XAUUSD": 1, "WTI": 1, "EURUSD": 10000, "USDJPY": 100, "BTCUSD": 1, "ETHUSD": 1, "TSLA": 1 };
+            const dist = 100; // Fixed distance for calculation
             const size = tp / dist;
+            
+            const slDistance = prevTp / size; 
+            
+            const winExit = dir === 'long' ? entry + dist : entry - dist;
+            const lossExit = dir === 'long' ? entry - slDistance : entry + slDistance;
             
             document.getElementById('result').innerHTML = 
                 "<p><strong>Target Profit (TP):</strong> $" + tp + "</p>" +
-                "<p><strong>Position Size:</strong> " + size.toFixed(4) + "</p>" +
-                "<p><strong>Win Exit Price:</strong> " + (entry + (dist/100)).toFixed(2) + "</p>" +
-                "<p><strong>Loss Exit Price (SL):</strong> " + (entry - (dist/100)).toFixed(2) + "</p>";
+                "<p><strong>Required Size:</strong> " + size.toFixed(4) + "</p>" +
+                "<p><strong>Win Exit:</strong> " + winExit.toFixed(2) + "</p>" +
+                "<p><strong>Loss Exit (SL):</strong> " + lossExit.toFixed(2) + "</p>";
         }
     </script>
 </body>
