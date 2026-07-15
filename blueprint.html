@@ -9,16 +9,32 @@
         .nav-top, .nav-bottom { display: flex; justify-content: center; gap: 40px; }
         nav a { color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9em; }
         nav a:hover { color: #FF2800; }
-        main { padding: 60px; max-width: 900px; margin: auto; }
-        h1 { color: #FF2800; border-bottom: 2px solid #FF2800; padding-bottom: 15px; text-transform: uppercase; }
+        main { padding: 60px; max-width: 950px; margin: auto; }
+        h1 { color: #FF2800; border-bottom: 2px solid #FF2800; padding-bottom: 15px; text-transform: uppercase; margin-top: 40px; }
+        h1:first-child { margin-top: 0; }
         ol { padding-left: 30px; }
         li { margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; color: #fff; font-size: 0.9em; }
+        th, td { border: 1px solid #FF2800; padding: 15px; text-align: center; }
+        th { background: #FF2800; color: #000; text-transform: uppercase; }
+        .off-day { background: #111; color: #555; text-decoration: line-through; }
+        .discipline-row { background: #000; color: #A5A9B4; font-style: italic; letter-spacing: 5px; text-transform: uppercase; border-top: 3px solid #FF2800; }
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-top"><a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a></div>
-        <div class="nav-bottom"><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="journal.html">Journal</a></div>
+        <div class="nav-top">
+            <a href="index.html">Home</a>
+            <a href="blueprint.html">Blueprint</a>
+            <a href="infrastructure.html">Infrastructure</a>
+            <a href="journey.html">Journey</a>
+        </div>
+        <div class="nav-bottom">
+            <a href="track-record.html">Track Record</a>
+            <a href="reflections.html">Reflections</a>
+            <a href="positionsize.html">Position Size</a>
+            <a href="journal.html">Journal</a>
+        </div>
     </nav>
     <main>
         <h1>'This': The 8 Rules</h1>
@@ -28,10 +44,38 @@
             <li>Leverage: Indices x20, Commodities x50, Currencies x100, Crypto x10.</li>
             <li>Assets: USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</li>
             <li>Systematic compounding: 5 trades per day.</li>
-            <li>Reinvest profit according to Akbar Compounding Sequence (ACS).</li>
+            <li>Reinvest profit according to TraderProDXB Compounding System.</li>
             <li>Machine-like execution: Zero emotion, follow the math.</li>
             <li>Circuit Breaker: 18% ultimate SL on total account equity.</li>
         </ol>
+
+        <h1>Compounding Calendar (Cap $500)</h1>
+        <table>
+            <tr>
+                <th>Week</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th>
+            </tr>
+            <tr>
+                <td>29</td><td class="off-day">OFF</td><td>-</td><td>$560</td><td>$700</td><td class="off-day">OFF</td><td>$1K</td><td>$1.4K</td>
+            </tr>
+            <tr>
+                <td>30</td><td class="off-day">OFF</td><td>$2K</td><td>$2.8K</td><td>$4K</td><td class="off-day">OFF</td><td>$5.6K</td><td>$7K</td>
+            </tr>
+            <tr>
+                <td>31</td><td class="off-day">OFF</td><td>$10K</td><td>$14K</td><td>$20K</td><td class="off-day">OFF</td><td>$28K</td><td>$40K</td>
+            </tr>
+            <tr>
+                <td>32</td><td class="off-day">OFF</td><td>$56K</td><td>$70K</td><td>$100K</td><td class="off-day">OFF</td><td>$140K</td><td>$200K</td>
+            </tr>
+            <tr>
+                <td>33</td><td class="off-day">OFF</td><td>$280K</td><td>$400K</td><td>$560K</td><td class="off-day">OFF</td><td>$700K</td><td>$1M</td>
+            </tr>
+            <tr>
+                <td>34</td><td class="off-day">OFF</td><td>$1.4M</td><td>$2M</td><td>$2.8M</td><td class="off-day">OFF</td><td>$4M</td><td>Reset</td>
+            </tr>
+            <tr>
+                <td colspan="8" class="discipline-row">Discipline &nbsp;|&nbsp; Discipline &nbsp;|&nbsp; Discipline</td>
+            </tr>
+        </table>
     </main>
 </body>
 </html>
