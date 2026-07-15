@@ -54,41 +54,25 @@
         const entry = parseFloat(document.getElementById('entryPrice').value);
         const dir = document.getElementById('direction').value;
         
-        // TP Logic
-        let tp = 25, prevTp = 15;
-        if (bal >= 650 && bal < 1000) { tp = 35; prevTp = 25; }
-        // ... (add other stages as needed)
+        let tp = 25, prevTp = 15; // Current Stage TP and Previous Stage (for SL)
 
-        // Mapping your specific rules: size for TP $25, min lot, and multiplier
+        // Mapping: size = contract size, dist = target move for $25
         const rules = {
-            "USTech": { size: 0.2, min: 0.1, step: 0.1 },
-            "XAUUSD": { size: 0.01, min: 0.01, step: 0.01 },
-            "WTI": { size: 25, min: 1, step: 1 },
-            "EURUSD": { size: 0.25, min: 0.01, step: 0.01 },
-            "USDJPY": { size: 0.25, min: 0.01, step: 0.01 },
-            "BTCUSD": { size: 0.05, min: 0.01, step: 0.01 },
-            "ETHUSD": { size: 1, min: 0.01, step: 0.01 },
-            "TSLA": { size: 5, min: 0.1, step: 0.1 }
+            "USTech": { size: 0.20, dist: 125 }, "XAUUSD": { size: 0.01, dist: 2500 },
+            "WTI": { size: 25.0, dist: 1.0 }, "EURUSD": { size: 0.25, dist: 0.01 },
+            "USDJPY": { size: 0.25, dist: 1.0 }, "BTCUSD": { size: 0.05, dist: 500 },
+            "ETHUSD": { size: 1.0, dist: 25 }, "TSLA": { size: 5.0, dist: 5 }
         };
 
         const rule = rules[ticker];
-        // Calculate based on TP proportionality
-        let finalSize = (rule.size / 25) * tp;
-        // Enforce Multiplier Rule (Step)
-        finalSize = Math.floor(finalSize / rule.step) * rule.step;
-
-        if (finalSize < rule.min) {
-            document.getElementById('result').innerHTML = "Trade not allowed: Size (" + finalSize.toFixed(2) + ") below minimum (" + rule.min + ").";
-            return;
-        }
-
-        const sl = prevTp / (finalSize / (tp / 25)); 
-        const winExit = dir === 'long' ? entry + 100 : entry - 100;
-        const lossExit = dir === 'long' ? entry - sl : entry + sl;
+        const slDist = prevTp / rule.size; 
+        
+        const winExit = dir === 'long' ? entry + rule.dist : entry - rule.dist;
+        const lossExit = dir === 'long' ? entry - slDist : entry + slDist;
 
         document.getElementById('result').innerHTML = 
             `<p><strong>Target Profit (TP):</strong> $${tp}</p>
-             <p><strong>Required Size:</strong> ${finalSize.toFixed(2)}</p>
+             <p><strong>Required Size:</strong> ${rule.size}</p>
              <p><strong>Win Exit:</strong> ${winExit.toFixed(2)}</p>
              <p><strong>Loss Exit (SL):</strong> ${lossExit.toFixed(2)}</p>`;
     }
