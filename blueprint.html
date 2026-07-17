@@ -4,16 +4,51 @@
     <meta charset="UTF-8">
     <title>TraderProDXB - Blueprint</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.2em; background: #000; color: #A5A9B4; padding: 0; margin: 0; }
-        nav { background: #000; border-bottom: 3px solid #FF2800; padding: 20px; text-align: center; }
-        nav a { color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; margin: 0 10px; font-size: 0.8em; letter-spacing: 2px; }
-        nav a:hover { color: #FF2800; }
-        main { padding: 40px; max-width: 900px; margin: auto; }
-        h1 { color: #FF2800; border-bottom: 2px solid #FF2800; padding-bottom: 10px; text-transform: uppercase; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; color: #fff; }
-        th, td { border: 1px solid #333; padding: 12px; text-align: center; }
-        th { background: #111; color: #FF2800; }
-        .off-day { color: #444; }
+        body { 
+            font-family: 'Times New Roman', Times, serif; 
+            background-color: #f4efe4; 
+            color: #1a1a1a; 
+            line-height: 1.4; 
+            margin: 0; 
+            padding: 20px;
+        }
+        nav { 
+            border-top: 4px solid #1a1a1a; 
+            border-bottom: 2px solid #1a1a1a; 
+            padding: 10px 0; 
+            text-align: center; 
+            margin-bottom: 30px;
+        }
+        nav a { 
+            color: #1a1a1a; 
+            text-decoration: none; 
+            text-transform: uppercase; 
+            margin: 0 10px; 
+            font-size: 0.9em; 
+            font-weight: bold; 
+        }
+        nav a:hover { color: #8b0000; }
+        main { max-width: 800px; margin: auto; }
+        h1 { 
+            font-family: 'Georgia', serif; 
+            text-align: center; 
+            text-transform: uppercase; 
+            border-bottom: 2px solid #1a1a1a; 
+            padding-bottom: 10px; 
+            font-size: 2em; 
+        }
+        h2 { 
+            text-align: center; 
+            font-size: 1.3em; 
+            border-top: 1px solid #1a1a1a; 
+            border-bottom: 1px solid #1a1a1a; 
+            padding: 5px 0; 
+            margin-top: 30px;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #1a1a1a; padding: 8px; text-align: center; font-size: 0.9em; }
+        th { background: #e0dace; font-weight: bold; }
+        .off-day { color: #888; font-style: italic; }
     </style>
 </head>
 <body>
@@ -33,7 +68,7 @@
             <li>Circuit Breaker: 18% ultimate SL on total account equity per trade max.</li>
         </ol>
 
-        <h1>Compounding Calendar (Cap $500)</h1>
+        <h2>Compounding Calendar (Cap $500)</h2>
         <table>
             <tr><th>Week</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
             <tr><td>29</td><td class="off-day">OFF</td><td>-</td><td>$560</td><td>$700</td><td class="off-day">OFF</td><td>$1K</td><td>$1.4K</td></tr>
