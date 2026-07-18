@@ -18,15 +18,15 @@
         <h1>TraderProDXB Compounding System</h1>
         <input type="number" id="cap" placeholder="Capital Balance (USD)">
         <select id="ticker" onchange="clearAll()">
-            <option value="" disabled selected>Select Ticker Type</option>
-            <option value="forex,100">USDJPY (50x)</option>
-            <option value="forex,10000">EURUSD (50x)</option>
-            <option value="point,1">Gold (12x)</option>
-            <option value="point,1">XTI (12x)</option>
-            <option value="point,1">USTech (12x)</option>
-            <option value="point,1">BTCUSD (5x)</option>
-            <option value="point,1">EthUSD (5x)</option>
-            <option value="point,1">Tesla (5x)</option>
+            <option value="" disabled selected>Select Ticker</option>
+            <option value="forex,50,100">USDJPY (50x)</option>
+            <option value="forex,50,100000">EURUSD (50x)</option>
+            <option value="point,12,1">Gold (12x)</option>
+            <option value="point,12,1">XTI (12x)</option>
+            <option value="point,12,1">USTech (12x)</option>
+            <option value="point,5,1">BTCUSD (5x)</option>
+            <option value="point,5,1">EthUSD (5x)</option>
+            <option value="point,5,1">Tesla (5x)</option>
         </select>
         <select id="dir"><option value="buy">Buy</option><option value="sell">Sell</option></select>
         <input type="number" id="entry" placeholder="Entry Level">
@@ -42,25 +42,31 @@
             const entry = parseFloat(document.getElementById('entry').value);
             const raw = document.getElementById('ticker').value.split(',');
             const type = raw[0];
-            const multiplier = parseFloat(raw[1]);
+            const lev = parseFloat(raw[1]);
+            const divisor = parseFloat(raw[2]);
             const dir = document.getElementById('dir').value;
             
-            // Logic: 6% ROI with Leverage
-            // Assuming leverage is fixed per asset as previously defined
-            const lev = (type === 'forex') ? 50 : (raw[1] === 'Gold' ? 12 : 5); 
+            if (!cap || !entry || !lev) return alert("Complete all fields");
+
+            // Calculate distance for 6% ROI
             const rawDist = (0.06 * entry) / lev;
-            const dist = (type === 'forex') ? (rawDist * multiplier) : rawDist;
-            const size = Math.round(((cap * lev) / entry) * 100) / 100;
+            const displayDist = (type === 'forex' && divisor === 100) ? rawDist * 100 : rawDist;
+            
+            // Fixed sizing: (Balance * Leverage / Entry) / Divisor
+            const rawSize = ((cap * lev) / entry) / divisor;
+            const adjustedSize = Math.floor(rawSize * 100) / 100;
             
             const grossTP = cap * 0.06;
-            const fee = size * 8; 
+            const fee = adjustedSize * 8; 
             const netTP = grossTP - fee;
 
             document.getElementById('results').innerHTML = `
-                <div class="row"><span>Adjusted Size:</span> <strong>${size} Lots</strong></div>
-                <div class="row"><span>Distance:</span> <strong>${format(dist)} ${type === 'forex' ? 'Pips' : 'Points'}</strong></div>
+                <div class="row"><span>Adjusted Size:</span> <strong>${adjustedSize.toFixed(2)} Lots</strong></div>
+                <div class="row"><span>Distance:</span> <strong>${format(displayDist)} ${type === 'forex' ? 'Pips' : 'Points'}</strong></div>
                 <div class="row"><span>TP Level:</span> <strong>${format(dir === 'buy' ? entry + rawDist : entry - rawDist)}</strong></div>
                 <div class="row"><span>SL Level:</span> <strong>${format(dir === 'buy' ? entry - rawDist : entry + rawDist)}</strong></div>
+                <div class="row"><span>Gross Profit:</span> <strong>$${format(grossTP)}</strong></div>
+                <div class="row"><span>Execution Fee:</span> <strong>$${format(fee)}</strong></div>
                 <div class="row"><span>Net Win Balance:</span> <strong>$${format(cap + netTP)}</strong></div>
                 <div class="row"><span>Net Loss Balance:</span> <strong>$${format(cap - grossTP)}</strong></div>
             `;
