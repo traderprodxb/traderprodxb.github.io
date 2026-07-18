@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TraderProDXB - Journey</title>
     <style>
-        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.4; margin: 0; padding: 20px; position: relative; }
+        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 20px; position: relative; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/main/1783747826802.png'); background-repeat: no-repeat; background-position: center; background-size: 50%; opacity: 0.05; z-index: -1; }
         .logo-container { text-align: center; margin-bottom: 20px; }
         .logo-container img { max-width: 300px; height: auto; }
-        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 30px; }
-        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 10px; font-size: 0.9em; font-weight: bold; }
+        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 40px; }
+        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 10px; font-size: 0.9em; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: #8b0000; }
+        main { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.3); padding: 30px; border-radius: 5px; text-align: center; }
+        h1 { font-family: 'Georgia', serif; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.2em; margin-bottom: 20px; }
+        .acs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 30px; }
+        .acs-item { background: #e0dace; padding: 10px; border: 1px solid #1a1a1a; font-weight: bold; }
+        .btn { display: inline-block; background: #1a1a1a; color: #f4efe4; padding: 12px 25px; text-decoration: none; font-weight: bold; text-transform: uppercase; margin-top: 30px; }
+        .btn:hover { background: #8b0000; }
         @media (max-width: 600px) { .logo-container img { max-width: 200px; } nav a { display: block; margin: 10px 0; } }
     </style>
 </head>
@@ -19,9 +26,21 @@
     <nav>
         <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="faq.html">FAQ</a>
     </nav>
-    <main style="max-width: 800px; margin: auto; text-align: center;">
+    <main>
         <h1>The Journey: 4M USDT</h1>
-        <p>The path is absolute: $400 → $4M. Every trade is a measured iteration of this compounding mandate.</p>
+        <p>The path is absolute: <strong>$400 → $4M</strong>. Every trade is a measured, disciplined iteration of the TraderProDXB Compounding System.</p>
+        
+        <div class="acs-grid">
+            <div class="acs-item">$400</div><div class="acs-item">$650</div><div class="acs-item">$1,000</div>
+            <div class="acs-item">$1,500</div><div class="acs-item">$2,500</div><div class="acs-item">$4,000</div>
+            <div class="acs-item">$6,500</div><div class="acs-item">$10,000</div><div class="acs-item">$15,000</div>
+            <div class="acs-item">$25,000</div><div class="acs-item">$40,000</div><div class="acs-item">$65,000</div>
+            <div class="acs-item">$100,000</div><div class="acs-item">$150,000</div><div class="acs-item">$250,000</div>
+            <div class="acs-item">$400,000</div><div class="acs-item">$650,000</div><div class="acs-item">$1,000,000</div>
+            <div class="acs-item">$1,500,000</div><div class="acs-item">$2,500,000</div><div class="acs-item">$4,000,000</div>
+        </div>
+
+        <a href="https://wa.me/+447898676434" class="btn" target="_blank">Contact via WhatsApp</a>
     </main>
 </body>
 </html>
