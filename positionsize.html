@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TraderProDXB Matrix</title>
+    <title>Position Size | TraderProDXB</title>
     <style>
-        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; padding: 20px; }
+        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.4; margin: 0; padding: 20px; }
+        .logo-container { text-align: center; margin-bottom: 20px; }
+        .logo-container img { max-width: 150px; height: auto; }
+        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 10px 0; text-align: center; margin-bottom: 30px; }
+        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 8px; font-size: 0.85em; font-weight: bold; }
+        nav a:hover { color: #8b0000; }
         main { max-width: 600px; margin: auto; background: #fdfaf6; padding: 20px; border: 1px solid #1a1a1a; }
-        h1 { text-align: center; text-transform: uppercase; font-size: 1.4em; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; }
+        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; font-size: 1.8em; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { border: 1px solid #1a1a1a; padding: 10px; text-align: center; }
-        th { background: #e0dace; }
-        input, select { padding: 10px; width: 100%; margin-bottom: 10px; border: 1px solid #1a1a1a; background: #e0dace; box-sizing: border-box; }
-        .btn { background: #1a1a1a; color: #f4efe4; padding: 12px; width: 100%; border: none; cursor: pointer; font-weight: bold; }
-        #results { margin-top: 20px; border-top: 2px solid #1a1a1a; padding-top: 10px; }
-        .row { display: flex; justify-content: space-between; padding: 4px 0; }
+        th { background: #e0dace; font-weight: bold; }
+        input, select { padding: 12px; width: 100%; margin-bottom: 15px; border: 1px solid #1a1a1a; background: #e0dace; box-sizing: border-box; font-family: inherit; }
+        .btn { background: #1a1a1a; color: #f4efe4; padding: 12px; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; width: 100%; font-size: 1em; }
+        .btn:hover { background: #8b0000; }
+        #results { margin-top: 20px; border-top: 2px solid #1a1a1a; padding-top: 15px; font-size: 1.1em; }
+        .row { display: flex; justify-content: space-between; padding: 5px 0; }
     </style>
 </head>
 <body>
+    <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/main/1783747826802.png" alt="TraderProDXB Logo">
+    </div>
+    <nav>
+        <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="journal.html">Journal</a><a href="faq.html">FAQ</a>
+    </nav>
     <main>
         <h1>Compounding Matrix</h1>
         <table>
@@ -47,6 +59,8 @@
             const lev = parseFloat(settings[0]);
             const dist = parseFloat(settings[1]);
             
+            if (!cap || !entry) return;
+
             const size = Math.floor(((cap * lev) / entry) * 100) / 100;
             const grossTP = cap * 0.06;
             const netTP = grossTP - (size * 8);
