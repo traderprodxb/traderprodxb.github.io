@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TraderProDXB - Infrastructure</title>
     <style>
-        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.4; margin: 0; padding: 20px; position: relative; }
+        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 20px; position: relative; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/main/1783747826802.png'); background-repeat: no-repeat; background-position: center; background-size: 50%; opacity: 0.05; z-index: -1; }
         .logo-container { text-align: center; margin-bottom: 20px; }
         .logo-container img { max-width: 300px; height: auto; }
-        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 30px; }
-        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 10px; font-size: 0.9em; font-weight: bold; }
-        .btn { display: inline-block; background: #1a1a1a; color: #f4efe4; padding: 10px 20px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
+        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 40px; }
+        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 10px; font-size: 0.9em; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: #8b0000; }
+        main { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.3); padding: 30px; border-radius: 5px; }
+        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.2em; margin-bottom: 30px; }
+        .infra-section { margin-bottom: 40px; text-align: center; border-bottom: 1px solid #dcdcdc; padding-bottom: 30px; }
+        h2 { font-family: 'Georgia', serif; margin-bottom: 10px; }
+        .btn { display: inline-block; background: #1a1a1a; color: #f4efe4; padding: 12px 25px; text-decoration: none; font-weight: bold; text-transform: uppercase; margin-top: 15px; border-radius: 2px; }
+        .btn:hover { background: #8b0000; }
         @media (max-width: 600px) { .logo-container img { max-width: 200px; } nav a { display: block; margin: 10px 0; } }
     </style>
 </head>
@@ -20,12 +26,23 @@
     <nav>
         <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="faq.html">FAQ</a>
     </nav>
-    <main style="max-width: 800px; margin: auto; text-align: center;">
+    <main>
         <h1>Institutional Infrastructure</h1>
-        <div style="margin-bottom: 40px;">
+        
+        <div class="infra-section">
             <h2>BlackBull Markets</h2>
-            <p>The foundational infrastructure for precise, machine-like trading strategies.</p>
-            <a href="https://ctrader.blackbull.com/?u=uyghurcrypto" class="btn" target="_blank">Trade Now</a>
+            <p>Our primary permanent broker, providing low-latency execution and the institutional depth required for our precision strategies.</p>
+            <a href="https://ctrader.blackbull.com/?u=uyghurcrypto" class="btn" target="_blank">Access BlackBull</a>
+        </div>
+
+        <div class="infra-section">
+            <h2>IC Markets</h2>
+            <p>Utilized for ECN-based liquidity and ultra-low spreads, essential for algorithmic execution and maintaining our 6% ROI consistency.</p>
+        </div>
+
+        <div class="infra-section">
+            <h2>Binance</h2>
+            <p>The core ecosystem for digital asset allocation, managed under strict x6 leverage rules to maintain the systematic integrity of our portfolio.</p>
         </div>
     </main>
 </body>
