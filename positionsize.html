@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TraderProDXB Compounding System</title>
+    <title>TraderProDXB Matrix</title>
     <style>
         body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; padding: 20px; }
         main { max-width: 600px; margin: auto; background: #fdfaf6; padding: 20px; border: 1px solid #1a1a1a; }
-        h1 { text-align: center; text-transform: uppercase; font-size: 1.5em; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; }
+        h1 { text-align: center; text-transform: uppercase; font-size: 1.4em; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #1a1a1a; padding: 10px; text-align: center; }
+        th { background: #e0dace; }
         input, select { padding: 10px; width: 100%; margin-bottom: 10px; border: 1px solid #1a1a1a; background: #e0dace; box-sizing: border-box; }
         .btn { background: #1a1a1a; color: #f4efe4; padding: 12px; width: 100%; border: none; cursor: pointer; font-weight: bold; }
         #results { margin-top: 20px; border-top: 2px solid #1a1a1a; padding-top: 10px; }
@@ -15,60 +18,44 @@
 </head>
 <body>
     <main>
-        <h1>TraderProDXB Compounding System</h1>
+        <h1>Compounding Matrix</h1>
+        <table>
+            <tr><th>Ticker</th><th>Leverage</th><th>Rule (Pts/Pips)</th></tr>
+            <tr><td>USDJPY</td><td>x50</td><td>240</td></tr>
+            <tr><td>Gold</td><td>x12</td><td>125</td></tr>
+            <tr><td>USTech</td><td>x12</td><td>125</td></tr>
+            <tr><td>Tesla</td><td>x5</td><td>5</td></tr>
+        </table>
+        
         <input type="number" id="cap" placeholder="Capital Balance (USD)">
-        <select id="ticker" onchange="clearAll()">
-            <option value="" disabled selected>Select Ticker</option>
-            <option value="forex,50,100">USDJPY (50x)</option>
-            <option value="forex,50,100000">EURUSD (50x)</option>
-            <option value="point,12,1">Gold (12x)</option>
-            <option value="point,12,1">XTI (12x)</option>
-            <option value="point,12,1">USTech (12x)</option>
-            <option value="point,5,1">BTCUSD (5x)</option>
-            <option value="point,5,1">EthUSD (5x)</option>
-            <option value="point,5,1">Tesla (5x)</option>
+        <select id="ticker">
+            <option value="50,240">USDJPY (x50)</option>
+            <option value="12,125">Gold (x12)</option>
+            <option value="12,125">USTech (x12)</option>
+            <option value="5,5">Tesla (x5)</option>
         </select>
-        <select id="dir"><option value="buy">Buy</option><option value="sell">Sell</option></select>
-        <input type="number" id="entry" placeholder="Entry Level">
-        <button class="btn" onclick="calc()">CALCULATE POSITION</button>
+        <input type="number" id="entry" placeholder="Entry Price">
+        <button class="btn" onclick="calc()">CALCULATE</button>
         <div id="results"></div>
     </main>
 
     <script>
-        function clearAll() { document.getElementById('results').innerHTML = ''; }
-        function format(num) { return num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
         function calc() {
             const cap = parseFloat(document.getElementById('cap').value);
             const entry = parseFloat(document.getElementById('entry').value);
-            const raw = document.getElementById('ticker').value.split(',');
-            const type = raw[0];
-            const lev = parseFloat(raw[1]);
-            const divisor = parseFloat(raw[2]);
-            const dir = document.getElementById('dir').value;
+            const settings = document.getElementById('ticker').value.split(',');
+            const lev = parseFloat(settings[0]);
+            const dist = parseFloat(settings[1]);
             
-            if (!cap || !entry || !lev) return alert("Complete all fields");
-
-            // Calculate distance for 6% ROI
-            const rawDist = (0.06 * entry) / lev;
-            const displayDist = (type === 'forex' && divisor === 100) ? rawDist * 100 : rawDist;
-            
-            // Fixed sizing: (Balance * Leverage / Entry) / Divisor
-            const rawSize = ((cap * lev) / entry) / divisor;
-            const adjustedSize = Math.floor(rawSize * 100) / 100;
-            
+            const size = Math.floor(((cap * lev) / entry) * 100) / 100;
             const grossTP = cap * 0.06;
-            const fee = adjustedSize * 8; 
-            const netTP = grossTP - fee;
+            const netTP = grossTP - (size * 8);
 
             document.getElementById('results').innerHTML = `
-                <div class="row"><span>Adjusted Size:</span> <strong>${adjustedSize.toFixed(2)} Lots</strong></div>
-                <div class="row"><span>Distance:</span> <strong>${format(displayDist)} ${type === 'forex' ? 'Pips' : 'Points'}</strong></div>
-                <div class="row"><span>TP Level:</span> <strong>${format(dir === 'buy' ? entry + rawDist : entry - rawDist)}</strong></div>
-                <div class="row"><span>SL Level:</span> <strong>${format(dir === 'buy' ? entry - rawDist : entry + rawDist)}</strong></div>
-                <div class="row"><span>Gross Profit:</span> <strong>$${format(grossTP)}</strong></div>
-                <div class="row"><span>Execution Fee:</span> <strong>$${format(fee)}</strong></div>
-                <div class="row"><span>Net Win Balance:</span> <strong>$${format(cap + netTP)}</strong></div>
-                <div class="row"><span>Net Loss Balance:</span> <strong>$${format(cap - grossTP)}</strong></div>
+                <div class="row"><span>Size:</span> <strong>${size.toFixed(2)} Lots</strong></div>
+                <div class="row"><span>Distance:</span> <strong>${dist}</strong></div>
+                <div class="row"><span>Gross Profit:</span> <strong>$${grossTP.toFixed(2)}</strong></div>
+                <div class="row"><span>Net Win:</span> <strong>$${(cap + netTP).toFixed(2)}</strong></div>
             `;
         }
     </script>
