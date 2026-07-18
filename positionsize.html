@@ -33,14 +33,14 @@
         
         <select id="ticker">
             <option value="" disabled selected>Select Ticker</option>
-            <option value="12,0.1,125">USTech (12x) - Min 0.1 - Dist 125</option>
-            <option value="12,0.01,250">Gold (12x) - Min 0.01 - Dist 250</option>
-            <option value="12,0.01,100">XTI (12x) - Min 0.01 - Dist 100</option>
-            <option value="50,0.01,0.001">EurUSD (50x) - Min 0.01 - Dist 0.001</option>
-            <option value="50,0.01,0.0017">USDJPY (50x) - Min 0.01 - Dist 0.0017</option>
-            <option value="5,0.01,500">BTCUSD (5x) - Min 0.01 - Dist 500</option>
-            <option value="5,0.1,25">EthUSD (5x) - Min 0.1 - Dist 25</option>
-            <option value="5,1,5">Tesla (5x) - Min 1 - Dist 5</option>
+            <option value="12,0.1,125,1">USTech (12x)</option>
+            <option value="12,0.01,250,1">Gold (12x)</option>
+            <option value="12,0.01,1,1">XTI (12x)</option>
+            <option value="50,0.01,0.001,100000">EurUSD (50x)</option>
+            <option value="50,0.01,0.0017,100000">USDJPY (50x)</option>
+            <option value="5,0.01,500,1">BTCUSD (5x)</option>
+            <option value="5,0.1,25,1">EthUSD (5x)</option>
+            <option value="5,1,5,1">Tesla (5x)</option>
         </select>
 
         <input type="number" id="entry" placeholder="Entry Price">
@@ -62,14 +62,15 @@
                 const lev = parseFloat(data[0]);
                 const min = parseFloat(data[1]);
                 const dist = parseFloat(data[2]);
+                const divisor = parseFloat(data[3]);
                 
                 const fee = cap * 0.0005; 
                 const usable = cap - fee;
-                const rawSize = (usable * lev) / entry;
+                const rawSize = ((usable * lev) / entry) / divisor;
                 const adjustedSize = Math.round(rawSize / min) * min;
                 
                 document.getElementById('results').innerHTML = `
-                    <div class="result-row"><span>Adjusted Size:</span> <strong>${adjustedSize.toFixed(min === 1 ? 0 : 2)}</strong></div>
+                    <div class="result-row"><span>Adjusted Size:</span> <strong>${adjustedSize.toFixed(min >= 1 ? 0 : 2)}</strong></div>
                     <div class="result-row"><span>TP Level:</span> <strong>${(entry + dist).toLocaleString('en-US', {minimumFractionDigits: 2})}</strong></div>
                     <div class="result-row"><span>SL Level:</span> <strong>${(entry - dist).toLocaleString('en-US', {minimumFractionDigits: 2})}</strong></div>
                     <div class="result-row"><span>Projected win scenario balance:</span> <strong>$${formatCurrency(cap * 1.06)}</strong></div>
