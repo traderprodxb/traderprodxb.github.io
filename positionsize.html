@@ -15,7 +15,7 @@
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { border: 1px solid #1a1a1a; padding: 10px; text-align: center; }
         th { background: #e0dace; font-weight: bold; }
-        .rules { background: #e0dace; padding: 15px; border: 1px solid #1a1a1a; margin-bottom: 20px; }
+        .rules { background: #e0dace; padding: 15px; border: 1px solid #1a1a1a; margin-bottom: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -29,20 +29,20 @@
         <h1>Trading Guidelines</h1>
         <div class="rules">
             <ul>
-                <li>If target TP is lower than the minimum contract size, the trade is <strong>not allowed</strong>.</li>
-                <li>Trades must be in <strong>multiples</strong> of the minimum contract size; no fractional sizes.</li>
+                <li>If target TP is lower than the minimum allowed contract size, the trade is NOT allowed.</li>
+                <li>Trades must be in multiples of the minimum allowed size; no fractional sizes.</li>
             </ul>
         </div>
         <table>
-            <tr><th>Ticker</th><th>Leverage</th><th>Min. Size</th><th>Distance</th></tr>
-            <tr><td>USTech</td><td>x12</td><td>0.10</td><td>100 Pts</td></tr>
-            <tr><td>XAUUSD</td><td>x25</td><td>0.01</td><td>25 Pts</td></tr>
-            <tr><td>XTI</td><td>x10</td><td>0.01</td><td>10 Pips</td></tr>
-            <tr><td>EurUSD</td><td>x50</td><td>0.01</td><td>17 Pips</td></tr>
-            <tr><td>USDJPY</td><td>x50</td><td>0.01</td><td>500 Pts</td></tr>
-            <tr><td>BTCUSD</td><td>x5</td><td>0.10</td><td>25 Pts</td></tr>
-            <tr><td>EthUSD</td><td>x5</td><td>0.10</td><td>25 Pts</td></tr>
-            <tr><td>Tesla</td><td>x5</td><td>1</td><td>5 Pts</td></tr>
+            <tr><th>Ticker</th><th>Leverage</th><th>Per $1 TP Size</th><th>Min. Size</th><th>Distance</th></tr>
+            <tr><td>USTech</td><td>x12</td><td>0.01 Index</td><td>0.10</td><td>100 Points</td></tr>
+            <tr><td>XAUUSD</td><td>x25</td><td>0.00025 Lot</td><td>0.01</td><td>25 Points</td></tr>
+            <tr><td>XTI</td><td>x10</td><td>1 Barrel</td><td>0.01</td><td>10 Pips</td></tr>
+            <tr><td>EurUSD</td><td>x50</td><td>0.01 Lot</td><td>0.01</td><td>17 Pips</td></tr>
+            <tr><td>USDJPY</td><td>x50</td><td>0.01 Lot</td><td>0.01</td><td>500 Points</td></tr>
+            <tr><td>BTCUSD</td><td>x5</td><td>0.005 Coin</td><td>0.10</td><td>25 Points</td></tr>
+            <tr><td>EthUSD</td><td>x5</td><td>0.04 Coin</td><td>0.10</td><td>25 Points</td></tr>
+            <tr><td>Tesla</td><td>x5</td><td>0.20 Share</td><td>1</td><td>5 Points</td></tr>
         </table>
     </main>
 </body>
