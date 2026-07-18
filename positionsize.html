@@ -33,11 +33,11 @@
         
         <select id="ticker">
             <option value="" disabled selected>Select Ticker</option>
-            <optgroup label="Indices"><option value="12">USTech (12x)</option></optgroup>
-            <optgroup label="Commodities"><option value="12">Gold (12x)</option><option value="12">XTI (12x)</option></optgroup>
-            <optgroup label="Currencies"><option value="50">EurUSD (50x)</option><option value="50">USDJPY (50x)</option></optgroup>
-            <optgroup label="Crypto"><option value="5">BTCUSD (5x)</option><option value="5">EthUSD (5x)</option></optgroup>
-            <optgroup label="Stocks"><option value="5">Tesla (5x)</option></optgroup>
+            <optgroup label="Indices"><option value="12,0.10">USTech (12x)</option></optgroup>
+            <optgroup label="Commodities"><option value="12,0.01">Gold (12x)</option><option value="12,0.01">XTI (12x)</option></optgroup>
+            <optgroup label="Currencies"><option value="50,0.01">EurUSD (50x)</option><option value="50,0.01">USDJPY (50x)</option></optgroup>
+            <optgroup label="Crypto"><option value="5,0.01">BTCUSD (5x)</option><option value="5,0.10">EthUSD (5x)</option></optgroup>
+            <optgroup label="Stocks"><option value="5,1.0">Tesla (5x)</option></optgroup>
         </select>
 
         <input type="number" id="entry" placeholder="Entry Price">
@@ -49,16 +49,24 @@
             function calc() {
                 const cap = parseFloat(document.getElementById('cap').value);
                 const entry = parseFloat(document.getElementById('entry').value);
-                const lev = parseFloat(document.getElementById('ticker').value);
+                const data = document.getElementById('ticker').value.split(',');
+                const lev = parseFloat(data[0]);
+                const min = parseFloat(data[1]);
                 
-                if (!cap || !entry || !lev) { alert("Please complete all fields."); return; }
+                if (!cap || !entry || !data[0]) { alert("Please complete all fields."); return; }
 
+                // Standard Fee Application (0.05%)
                 const fee = cap * 0.0005; 
                 const usable = cap - fee;
-                const posSize = (usable * lev) / entry;
+                
+                // Calculate Raw Position Size
+                const rawSize = (usable * lev) / entry;
+                
+                // Snap to Nearest Minimum Size Increment
+                const adjustedSize = Math.round(rawSize / min) * min;
                 
                 document.getElementById('results').innerHTML = `
-                    <div class="result-row"><span>Position Size:</span> <strong>${posSize.toFixed(4)}</strong></div>
+                    <div class="result-row"><span>Adjusted Size:</span> <strong>${adjustedSize.toFixed(min === 1.0 ? 0 : 2)}</strong></div>
                     <div class="result-row"><span>TP Level (6%):</span> <strong>$${(entry * 1.06).toFixed(2)}</strong></div>
                     <div class="result-row"><span>SL Level (6%):</span> <strong>$${(entry * 0.94).toFixed(2)}</strong></div>
                     <div class="result-row"><span>Win Balance:</span> <strong>$${(cap * 1.06).toFixed(2)}</strong></div>
