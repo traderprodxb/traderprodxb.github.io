@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TraderProDXB - Blueprint</title>
     <style>
-        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.4; margin: 0; padding: 20px; position: relative; }
+        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 20px; position: relative; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/main/1783747826802.png'); background-repeat: no-repeat; background-position: center; background-size: 50%; opacity: 0.05; z-index: -1; }
         .logo-container { text-align: center; margin-bottom: 20px; }
         .logo-container img { max-width: 300px; height: auto; }
-        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 30px; }
-        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 10px; font-size: 0.9em; font-weight: bold; }
-        main { max-width: 800px; margin: auto; }
-        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; font-size: 2em; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #1a1a1a; padding: 8px; text-align: center; font-size: 0.9em; }
-        th { background: #e0dace; }
+        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 40px; }
+        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 10px; font-size: 0.9em; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: #8b0000; }
+        main { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.3); padding: 30px; border-radius: 5px; }
+        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.2em; margin-bottom: 30px; }
+        h2 { font-family: 'Georgia', serif; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 10px 0; margin-top: 40px; text-align: center; }
+        ol, ul { padding-left: 20px; }
+        li { margin-bottom: 12px; }
+        .daily-routine { font-size: 0.95em; }
         @media (max-width: 600px) { .logo-container img { max-width: 200px; } nav a { display: block; margin: 10px 0; } }
     </style>
 </head>
@@ -27,15 +29,32 @@
     <main>
         <h1>'This': The 8 Rules</h1>
         <ol>
-            <li>Target 6% ROI per trade.</li>
-            <li>Stop Loss strictly at 6% ROI per trade.</li>
-            <li>Leverage: Indices x20, Commodities x40, Currencies x40, Major Crypto x6.</li>
-            <li>Assets: USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</li>
-            <li>Systematic compounding: 5 Win trades per day.</li>
-            <li>Reinvest all profit according to the TraderProDXB Compounding System.</li>
-            <li>Machine-like execution: Zero emotion, follow the math.</li>
-            <li>Circuit Breaker: 18% ultimate SL on total account equity per trade max.</li>
+            <li><strong>Target:</strong> 6% ROI per trade.</li>
+            <li><strong>Risk Management:</strong> Strict 6% Stop Loss per trade.</li>
+            <li><strong>Leverage:</strong> Indices x20, Commodities x40, Currencies x40, Major Crypto x6.</li>
+            <li><strong>Asset Universe:</strong> USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</li>
+            <li><strong>Compounding Cadence:</strong> 5 winning trades per day.</li>
+            <li><strong>Reinvestment:</strong> Total profit reinvestment according to the ACS (Akbar Compounding Sequence).</li>
+            <li><strong>Execution:</strong> Machine-like adherence to math; zero emotional intervention.</li>
+            <li><strong>Circuit Breaker:</strong> 18% ultimate Stop Loss on total account equity per trade maximum.</li>
         </ol>
+
+        <h2>Ideal Dubai-Based Day Trader Routine</h2>
+        <div class="daily-routine">
+            <p><strong>03:15 AM – 03:30 AM:</strong> Wake up, light physical movement, and shower.</p>
+            <p><strong>03:30 AM – 04:00 AM:</strong> Pre-market analysis.</p>
+            <p><strong>04:00 AM – 06:30 AM:</strong> Tokyo session execution.</p>
+            <p><strong>06:30 AM – 07:30 AM:</strong> Breakfast.</p>
+            <p><strong>07:30 AM – 10:45 AM:</strong> Afternoon session trading.</p>
+            <p><strong>10:45 AM – 11:15 AM:</strong> Workspace declutter and journal logging.</p>
+            <p><strong>11:15 AM – 01:15 PM:</strong> Gym and recovery.</p>
+            <p><strong>01:15 PM – 03:30 PM:</strong> Zuhr prayer, meal prep, and market research.</p>
+            <p><strong>03:30 PM – 04:00 PM:</strong> Pre-market preparation.</p>
+            <p><strong>04:00 PM – 08:00 PM:</strong> London/New York overlap execution.</p>
+            <p><strong>08:00 PM – 08:30 PM:</strong> Final journal entry.</p>
+            <p><strong>08:30 PM – 09:15 PM:</strong> Short walk, Isha prayer, and wind down.</p>
+            <p><strong>09:15 PM – 03:15 AM:</strong> Rest and recharge.</p>
+        </div>
     </main>
 </body>
 </html>
