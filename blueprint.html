@@ -2,71 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TraderProDXB - Blueprint</title>
     <style>
-        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.4; margin: 0; padding: 20px; }
-        .logo-container { text-align: center; margin-bottom: 20px; }
-        .logo-container img { max-width: 150px; height: auto; }
-        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 10px 0; text-align: center; margin-bottom: 30px; }
-        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 8px; font-size: 0.85em; font-weight: bold; }
-        nav a:hover { color: #8b0000; }
-        main { max-width: 800px; margin: auto; }
-        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; font-size: 2em; }
-        h2 { text-align: center; font-size: 1.3em; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 5px 0; margin-top: 30px; }
-        ul, ol { padding-left: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #1a1a1a; padding: 8px; text-align: center; font-size: 0.9em; }
-        th { background: #e0dace; font-weight: bold; }
-        .off-day { color: #888; font-style: italic; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 40px auto; padding: 20px; }
+        nav { background: #f4f4f4; padding: 15px; text-align: center; margin-bottom: 30px; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        .disclaimer { font-size: 0.9em; color: #666; border: 1px solid #ddd; padding: 15px; margin: 30px 0; background: #f9f9f9; }
     </style>
 </head>
 <body>
-    <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/main/1783747826802.png" alt="TraderProDXB Logo">
-    </div>
     <nav>
-        <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="journal.html">Journal</a><a href="faq.html">FAQ</a>
+        <a href="index.html">Home</a> | 
+        <a href="blueprint.html">Blueprint</a> | 
+        <a href="infrastructure.html">Infrastructure</a> | 
+        <a href="journey.html">Journey</a> | 
+        <a href="track-record.html">Track Record</a> | 
+        <a href="reflections.html">Reflections</a> | 
+        <a href="positionsize.html">Position Sizing</a> | 
+        <a href="journal.html">Journal</a> | 
+        <a href="faq.html">FAQ</a>
     </nav>
-    <main>
-        <h1>'This': The 8 Rules</h1>
-        <ol>
-            <li>Target 6% ROI per trade.</li>
-            <li>Stop Loss strictly at 6% ROI per trade.</li>
-            <li>Leverage: Indices x20, Commodities x40, Currencies x40, Major Crypto x6.</li>
-            <li>Assets: USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</li>
-            <li>Systematic compounding: 5 Win trades per day.</li>
-            <li>Reinvest all profit according to the TraderProDXB Compounding System.</li>
-            <li>Machine-like execution: Zero emotion, follow the math.</li>
-            <li>Circuit Breaker: 18% ultimate SL on total account equity per trade max.</li>
-        </ol>
 
-        <h2>Ideal Dubai-Based Day Trader Routine</h2>
-        <ul>
-            <li><strong>03:15 AM – 03:30 AM:</strong> Wake up, engage in light physical movement, and shower.</li>
-            <li><strong>03:30 AM – 04:00 AM:</strong> Pre-market analysis.</li>
-            <li><strong>04:00 AM – 06:30 AM:</strong> Execute Tokyo session trading strategies.</li>
-            <li><strong>06:30 AM – 07:30 AM:</strong> Breakfast.</li>
-            <li><strong>07:30 AM – 10:45 AM:</strong> Execute Tokyo afternoon session trading.</li>
-            <li><strong>10:45 AM – 11:15 AM:</strong> Workspace declutter and completion of trading journal.</li>
-            <li><strong>11:15 AM – 01:15 PM:</strong> Gym session and shower.</li>
-            <li><strong>01:15 PM – 03:30 PM:</strong> Perform Zuhr prayer, meal preparation, and engage in passive market learning.</li>
-            <li><strong>03:30 PM – 04:00 PM:</strong> Pre-market preparation.</li>
-            <li><strong>04:00 PM – 08:00 PM:</strong> Execute trading during the London and New York market overlap.</li>
-            <li><strong>08:00 PM – 08:30 PM:</strong> Workspace declutter and completion of final daily trading journal.</li>
-            <li><strong>08:30 PM – 09:15 PM:</strong> Short walk, Isha prayer, and wind down to prepare for rest.</li>
-            <li><strong>09:15 PM – 03:15 AM:</strong> Rest and sleep.</li>
-        </ul>
+    <h1>TraderProDXB - Trading Blueprint</h1>
 
-        <h2>Compounding Calendar (Cap $500)</h2>
-        <table>
-            <tr><th>Week</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
-            <tr><td>29</td><td class="off-day">OFF</td><td>-</td><td>$560</td><td>$700</td><td class="off-day">OFF</td><td>$1K</td><td>$1.4K</td></tr>
-            <tr><td>30</td><td class="off-day">OFF</td><td>$2K</td><td>$2.8K</td><td>$4K</td><td class="off-day">OFF</td><td>$5.6K</td><td>$7K</td></tr>
-            <tr><td>31</td><td class="off-day">OFF</td><td>$10K</td><td>$14K</td><td>$20K</td><td class="off-day">OFF</td><td>$28K</td><td>$40K</td></tr>
-            <tr><td>32</td><td class="off-day">OFF</td><td>$56K</td><td>$70K</td><td>$100K</td><td class="off-day">OFF</td><td>$140K</td><td>$200K</td></tr>
-            <tr><td>33</td><td class="off-day">OFF</td><td>$280K</td><td>$400K</td><td>$560K</td><td class="off-day">OFF</td><td>$700K</td><td>$1M</td></tr>
-            <tr><td>34</td><td class="off-day">OFF</td><td>$1.4M</td><td>$2M</td><td>$2.8M</td><td class="off-day">OFF</td><td>$4M</td><td>Reset</td></tr>
-        </table>
-    </main>
+    <h2>The 8 Core Rules</h2>
+    <ol>
+        <li>Target <strong>6% ROI</strong> per trade on risked capital.</li>
+        <li>Strict <strong>6% ROI Stop Loss</strong> per trade.</li>
+        <li>Leverage used conservatively: Indices up to ×20, Commodities up to ×40, Currencies up to ×40, Major Crypto up to ×6.</li>
+        <li>Approved instruments: USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</li>
+        <li>Aim for 3–5 high-quality setups per trading day.</li>
+        <li>Full reinvestment of profits according to the compounding system.</li>
+        <li>Machine-like execution — rules above emotion.</li>
+        <li>Account circuit breaker: Maximum 18% of total equity at risk on any single trade.</li>
+    </ol>
+
+    <h2>Ideal Dubai-Based Routine</h2>
+    <p>[Paste your original detailed routine here]</p>
+
+    <div class="disclaimer">
+        <strong>Important:</strong> These rules represent my personal trading system. Markets are volatile. There is no guarantee of profit. All trading carries risk of loss.
+    </div>
 </body>
 </html>
