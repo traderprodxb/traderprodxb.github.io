@@ -15,11 +15,7 @@
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
         th, td { border: 1px solid #1a1a1a; padding: 10px; text-align: center; }
         th { background: #e0dace; font-weight: bold; }
-        input, select { padding: 12px; width: 100%; margin-bottom: 15px; border: 1px solid #1a1a1a; background: #e0dace; box-sizing: border-box; font-family: inherit; }
-        .btn { background: #1a1a1a; color: #f4efe4; padding: 12px; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; width: 100%; font-size: 1em; }
-        .btn:hover { background: #8b0000; }
-        #results { margin-top: 20px; border-top: 2px solid #1a1a1a; padding-top: 15px; font-size: 1.1em; }
-        .row { display: flex; justify-content: space-between; padding: 5px 0; }
+        .rules { background: #e0dace; padding: 15px; border: 1px solid #1a1a1a; margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -30,48 +26,24 @@
         <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="journal.html">Journal</a><a href="faq.html">FAQ</a>
     </nav>
     <main>
-        <h1>Compounding Matrix</h1>
+        <h1>Trading Guidelines</h1>
+        <div class="rules">
+            <ul>
+                <li>If target TP is lower than the minimum contract size, the trade is <strong>not allowed</strong>.</li>
+                <li>Trades must be in <strong>multiples</strong> of the minimum contract size; no fractional sizes.</li>
+            </ul>
+        </div>
         <table>
-            <tr><th>Ticker</th><th>Leverage</th><th>Rule (Pts/Pips)</th></tr>
-            <tr><td>USDJPY</td><td>x50</td><td>240</td></tr>
-            <tr><td>Gold</td><td>x12</td><td>125</td></tr>
-            <tr><td>USTech</td><td>x12</td><td>125</td></tr>
-            <tr><td>Tesla</td><td>x5</td><td>5</td></tr>
+            <tr><th>Ticker</th><th>Leverage</th><th>Min. Size</th><th>Distance</th></tr>
+            <tr><td>USTech</td><td>x12</td><td>0.10</td><td>100 Pts</td></tr>
+            <tr><td>XAUUSD</td><td>x25</td><td>0.01</td><td>25 Pts</td></tr>
+            <tr><td>XTI</td><td>x10</td><td>0.01</td><td>10 Pips</td></tr>
+            <tr><td>EurUSD</td><td>x50</td><td>0.01</td><td>17 Pips</td></tr>
+            <tr><td>USDJPY</td><td>x50</td><td>0.01</td><td>500 Pts</td></tr>
+            <tr><td>BTCUSD</td><td>x5</td><td>0.10</td><td>25 Pts</td></tr>
+            <tr><td>EthUSD</td><td>x5</td><td>0.10</td><td>25 Pts</td></tr>
+            <tr><td>Tesla</td><td>x5</td><td>1</td><td>5 Pts</td></tr>
         </table>
-        
-        <input type="number" id="cap" placeholder="Capital Balance (USD)">
-        <select id="ticker">
-            <option value="50,240">USDJPY (x50)</option>
-            <option value="12,125">Gold (x12)</option>
-            <option value="12,125">USTech (x12)</option>
-            <option value="5,5">Tesla (x5)</option>
-        </select>
-        <input type="number" id="entry" placeholder="Entry Price">
-        <button class="btn" onclick="calc()">CALCULATE</button>
-        <div id="results"></div>
     </main>
-
-    <script>
-        function calc() {
-            const cap = parseFloat(document.getElementById('cap').value);
-            const entry = parseFloat(document.getElementById('entry').value);
-            const settings = document.getElementById('ticker').value.split(',');
-            const lev = parseFloat(settings[0]);
-            const dist = parseFloat(settings[1]);
-            
-            if (!cap || !entry) return;
-
-            const size = Math.floor(((cap * lev) / entry) * 100) / 100;
-            const grossTP = cap * 0.06;
-            const netTP = grossTP - (size * 8);
-
-            document.getElementById('results').innerHTML = `
-                <div class="row"><span>Size:</span> <strong>${size.toFixed(2)} Lots</strong></div>
-                <div class="row"><span>Distance:</span> <strong>${dist}</strong></div>
-                <div class="row"><span>Gross Profit:</span> <strong>$${grossTP.toFixed(2)}</strong></div>
-                <div class="row"><span>Net Win:</span> <strong>$${(cap + netTP).toFixed(2)}</strong></div>
-            `;
-        }
-    </script>
 </body>
 </html>
