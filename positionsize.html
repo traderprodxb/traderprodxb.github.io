@@ -18,20 +18,17 @@
         <h1>TraderProDXB Compounding System</h1>
         <input type="number" id="cap" placeholder="Capital Balance (USD)">
         <select id="ticker" onchange="clearAll()">
-            <option value="" disabled selected>Select Ticker</option>
-            <option value="12">USTech (12x)</option>
-            <option value="12">Gold (12x)</option>
-            <option value="12">XTI (12x)</option>
-            <option value="50">EurUSD (50x)</option>
-            <option value="50">USDJPY (50x)</option>
-            <option value="5">BTCUSD (5x)</option>
-            <option value="5">EthUSD (5x)</option>
-            <option value="5">Tesla (5x)</option>
+            <option value="" disabled selected>Select Ticker Type</option>
+            <option value="forex,100">USDJPY (50x)</option>
+            <option value="forex,10000">EURUSD (50x)</option>
+            <option value="point,1">Gold (12x)</option>
+            <option value="point,1">XTI (12x)</option>
+            <option value="point,1">USTech (12x)</option>
+            <option value="point,1">BTCUSD (5x)</option>
+            <option value="point,1">EthUSD (5x)</option>
+            <option value="point,1">Tesla (5x)</option>
         </select>
-        <select id="dir">
-            <option value="buy">Buy</option>
-            <option value="sell">Sell</option>
-        </select>
+        <select id="dir"><option value="buy">Buy</option><option value="sell">Sell</option></select>
         <input type="number" id="entry" placeholder="Entry Level">
         <button class="btn" onclick="calc()">CALCULATE POSITION</button>
         <div id="results"></div>
@@ -43,23 +40,27 @@
         function calc() {
             const cap = parseFloat(document.getElementById('cap').value);
             const entry = parseFloat(document.getElementById('entry').value);
-            const lev = parseFloat(document.getElementById('ticker').value);
+            const raw = document.getElementById('ticker').value.split(',');
+            const type = raw[0];
+            const multiplier = parseFloat(raw[1]);
             const dir = document.getElementById('dir').value;
             
-            if (!cap || !entry || !lev) return alert("Complete all fields");
-
-            const dist = (0.06 * entry) / lev;
+            // Logic: 6% ROI with Leverage
+            // Assuming leverage is fixed per asset as previously defined
+            const lev = (type === 'forex') ? 50 : (raw[1] === 'Gold' ? 12 : 5); 
+            const rawDist = (0.06 * entry) / lev;
+            const dist = (type === 'forex') ? (rawDist * multiplier) : rawDist;
             const size = Math.round(((cap * lev) / entry) * 100) / 100;
+            
             const grossTP = cap * 0.06;
             const fee = size * 8; 
             const netTP = grossTP - fee;
 
             document.getElementById('results').innerHTML = `
                 <div class="row"><span>Adjusted Size:</span> <strong>${size} Lots</strong></div>
-                <div class="row"><span>TP Level:</span> <strong>${format(dir === 'buy' ? entry + dist : entry - dist)}</strong></div>
-                <div class="row"><span>SL Level:</span> <strong>${format(dir === 'buy' ? entry - dist : entry + dist)}</strong></div>
-                <div class="row"><span>Gross Profit:</span> <strong>$${format(grossTP)}</strong></div>
-                <div class="row"><span>Execution Fee:</span> <strong>$${format(fee)}</strong></div>
+                <div class="row"><span>Distance:</span> <strong>${format(dist)} ${type === 'forex' ? 'Pips' : 'Points'}</strong></div>
+                <div class="row"><span>TP Level:</span> <strong>${format(dir === 'buy' ? entry + rawDist : entry - rawDist)}</strong></div>
+                <div class="row"><span>SL Level:</span> <strong>${format(dir === 'buy' ? entry - rawDist : entry + rawDist)}</strong></div>
                 <div class="row"><span>Net Win Balance:</span> <strong>$${format(cap + netTP)}</strong></div>
                 <div class="row"><span>Net Loss Balance:</span> <strong>$${format(cap - grossTP)}</strong></div>
             `;
