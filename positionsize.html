@@ -31,7 +31,7 @@
         
         <input type="number" id="cap" placeholder="Capital Amount (USD)">
         
-        <select id="ticker">
+        <select id="ticker" onchange="clearAll()">
             <option value="" disabled selected>Select Ticker</option>
             <option value="12,125,1,1">USTech (12x)</option>
             <option value="12,250,1,1">Gold (12x)</option>
@@ -49,18 +49,24 @@
         <div id="results"></div>
 
         <script>
+            window.onload = () => { clearAll(); };
+            function clearAll() { 
+                document.getElementById('cap').value = ''; 
+                document.getElementById('entry').value = ''; 
+                document.getElementById('results').innerHTML = ''; 
+            }
             function formatCurrency(num) { return num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
             function calc() {
                 const cap = parseFloat(document.getElementById('cap').value);
                 const entry = parseFloat(document.getElementById('entry').value);
-                const data = document.getElementById('ticker').value.split(',');
+                const tickerData = document.getElementById('ticker').value.split(',');
                 
-                if (!cap || !entry || !data[0]) { alert("Please complete all fields."); return; }
+                if (!cap || !entry || !tickerData[0]) { alert("Please complete all fields."); return; }
 
-                const lev = parseFloat(data[0]);
-                const dist = parseFloat(data[1]);
-                const divisor = parseFloat(data[2]);
-                const isForex = parseInt(data[3]);
+                const lev = parseFloat(tickerData[0]);
+                const dist = parseFloat(tickerData[1]);
+                const divisor = parseFloat(tickerData[2]);
+                const isForex = parseInt(tickerData[3]);
                 
                 const usable = cap - (cap * 0.0005);
                 let rawSize = ((usable * lev) / entry) / (isForex ? 1 : divisor);
