@@ -2,28 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TraderProDXB - Infrastructure</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 40px auto; padding: 20px; }
-        nav { background: #f4f4f4; padding: 15px; text-align: center; margin-bottom: 30px; }
-        .broker { border: 1px solid #ddd; padding: 20px; margin: 20px 0; border-radius: 8px; }
-        .disclaimer { font-size: 0.9em; color: #666; border: 1px solid #ddd; padding: 15px; margin: 30px 0; background: #f9f9f9; }
+        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.4; margin: 0; padding: 20px; }
+        .logo-container { text-align: center; margin-bottom: 20px; }
+        .logo-container img { max-width: 150px; height: auto; }
+        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 10px 0; text-align: center; margin-bottom: 30px; }
+        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 8px; font-size: 0.85em; font-weight: bold; }
+        nav a:hover { color: #8b0000; }
+        main { max-width: 800px; margin: auto; }
+        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; font-size: 2em; }
+        h2 { font-family: 'Georgia', serif; font-size: 1.5em; margin-top: 40px; border-bottom: 1px solid #1a1a1a; text-align: center; }
+        .broker-section { margin-bottom: 40px; text-align: center; }
+        .btn { display: inline-block; background: #1a1a1a; color: #f4efe4; padding: 10px 20px; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8em; margin-top: 15px; }
+        .btn:hover { background: #8b0000; }
     </style>
 </head>
 <body>
+    <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/main/1783747826802.png" alt="TraderProDXB Logo">
+    </div>
     <nav>
-        <a href="index.html">Home</a> | 
-        <a href="blueprint.html">Blueprint</a> | 
-        <a href="infrastructure.html">Infrastructure</a> | 
-        <a href="journey.html">Journey</a> | 
-        <a href="track-record.html">Track Record</a> | 
-        <a href="reflections.html">Reflections</a> | 
-        <a href="positionsize.html">Position Sizing</a> | 
-        <a href="journal.html">Journal</a> | 
-        <a href="faq.html">FAQ</a>
+        <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="journal.html">Journal</a><a href="faq.html">FAQ</a>
     </nav>
+    <main>
+        <h1>Institutional Infrastructure</h1>
 
-    <h1>TraderProDXB - Trading Infrastructure</h1>
+        <div class="broker-section">
+            <h2>BlackBull Markets</h2>
+            <p>A premier institutional-grade broker providing high-speed execution and transparent access to indices, commodities, currencies, and cryptocurrencies, serving as the foundational infrastructure for precise, machine-like trading strategies.</p>
+            <a href="https://ctrader.blackbull.com/?u=uyghurcrypto" class="btn" target="_blank">Trade Now</a>
+        </div>
 
-    <h2>Selected Broker Partners</h2>
+        <div class="broker-section">
+            <h2>IC Markets</h2>
+            <p>A true Electronic Communications Network broker renowned for ultra-low spreads and deep institutional liquidity, ideal for algorithmic systems and data-driven execution across global markets.</p>
+            <a href="https://ct.icmarkets.com/?u=uyghurcrypto" class="btn" target="_blank">Trade Now</a>
+        </div>
+
+        <div class="broker-section">
+            <h2>Binance</h2>
+            <p>The leading cryptocurrency ecosystem offering massive liquidity and advanced futures capabilities, providing the necessary infrastructure for digital asset allocation while requiring strict adherence to risk management rules.</p>
+            <a href="https://www.binance.com/register?ref=QTZDOLYM" class="btn" target="_blank">Trade Now</a>
+        </div>
+    </main>
+</body>
+</html>
