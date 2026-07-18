@@ -49,6 +49,9 @@
         <div id="results"></div>
 
         <script>
+            function format(num) {
+                return num.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            }
             function calc() {
                 const cap = parseFloat(document.getElementById('cap').value);
                 const entry = parseFloat(document.getElementById('entry').value);
@@ -66,10 +69,10 @@
                 
                 document.getElementById('results').innerHTML = `
                     <div class="result-row"><span>Adjusted Size:</span> <strong>${adjustedSize.toFixed(min >= 0.1 ? 2 : 4)}</strong></div>
-                    <div class="result-row"><span>TP Level:</span> <strong>${(entry + dist).toFixed(2)}</strong></div>
-                    <div class="result-row"><span>SL Level:</span> <strong>${(entry - dist).toFixed(2)}</strong></div>
-                    <div class="result-row"><span>Win Balance:</span> <strong>$${(cap * 1.06).toFixed(2)}</strong></div>
-                    <div class="result-row"><span>Loss Balance:</span> <strong>$${(cap * 0.94).toFixed(2)}</strong></div>
+                    <div class="result-row"><span>TP Level:</span> <strong>${(entry + dist).toLocaleString('en-US', {minimumFractionDigits: 2})}</strong></div>
+                    <div class="result-row"><span>SL Level:</span> <strong>${(entry - dist).toLocaleString('en-US', {minimumFractionDigits: 2})}</strong></div>
+                    <div class="result-row"><span>Projected win scenario balance:</span> <strong>$${format(cap * 1.06)}</strong></div>
+                    <div class="result-row"><span>Projected loss scenario balance:</span> <strong>$${format(cap * 0.94)}</strong></div>
                 `;
             }
         </script>
