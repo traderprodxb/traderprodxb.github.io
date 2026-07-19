@@ -18,7 +18,7 @@
         .btn { background: #1a1a1a; color: #f4efe4; padding: 15px; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; width: 100%; transition: background 0.3s; }
         .btn:hover { background: #8b0000; }
         #results { margin-top: 25px; border-top: 2px solid #1a1a1a; padding-top: 20px; }
-        .result-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 1.1em; }
+        .result-row { padding: 5px 0; font-size: 1.1em; }
         @media (max-width: 600px) { .logo-container img { max-width: 200px; } nav a { display: block; margin: 10px 0; } }
     </style>
 </head>
@@ -29,40 +29,49 @@
     </nav>
     <main>
         <h1>Compounding Calculator</h1>
-        <input type="number" id="cap" placeholder="Current Balance (USD)">
-        <select id="ticker">
-            <option value="" disabled selected>Select Ticker</option>
-            <option value="20,125,1,0">USTech (x20)</option>
-            <option value="40,250,1,0">Gold (x40)</option>
-            <option value="40,1,1,0">XTIUSD (x40)</option>
-            <option value="40,0.0017,100000,1">EURUSD/USDJPY (x40)</option>
-            <option value="6,500,1,0">BTCUSD (x6)</option>
-            <option value="6,25,1,0">ETHUSD (x6)</option>
-            <option value="10,5,1,0">TSLA (x10)</option>
+        
+        <label>Account Balance:</label>
+        <select id="balanceSelect" onchange="calculate()">
+            <option value="400">400</option>
+            <option value="650">650</option>
+            <option value="1000">1,000</option>
+            <option value="1500">1,500</option>
+            <option value="2500">2,500</option>
         </select>
-        <input type="number" id="entry" placeholder="Entry Price">
-        <button class="btn" onclick="calc()">CALCULATE POSITION</button>
+
+        <label>Multiplier:</label>
+        <select id="multiplierSelect" onchange="calculate()">
+            <option value="1">1x</option>
+            <option value="10">10x</option>
+            <option value="100">100x</option>
+            <option value="1000">1,000x</option>
+            <option value="10000">10,000x</option>
+        </select>
 
         <div id="results"></div>
 
         <script>
-            function calc() {
-                const cap = parseFloat(document.getElementById('cap').value);
-                const entry = parseFloat(document.getElementById('entry').value);
-                const tickerData = document.getElementById('ticker').value.split(',');
-                if (!cap || !entry || !tickerData[0]) { alert("Please complete all fields."); return; }
-                const lev = parseFloat(tickerData[0]), dist = parseFloat(tickerData[1]), divisor = parseFloat(tickerData[2]), isForex = parseInt(tickerData[3]);
-                const usable = cap - (cap * 0.0005);
-                let rawSize = ((usable * lev) / entry) / (isForex ? divisor : 1);
-                let size = Math.round(rawSize / 0.01) * 0.01;
-                document.getElementById('results').innerHTML = `
-                    <div class="result-row"><span>Position Size:</span> <strong>${size.toFixed(2)}</strong></div>
-                    <div class="result-row"><span>TP (6% ROI):</span> <strong>${(entry + dist).toFixed(2)}</strong></div>
-                    <div class="result-row"><span>SL (6% ROI):</span> <strong>${(entry - dist).toFixed(2)}</strong></div>
-                    <div class="result-row"><span>Win Balance:</span> <strong>$${(cap * 1.06).toFixed(2)}</strong></div>
-                    <div class="result-row"><span>Loss Balance:</span> <strong>$${(cap * 0.94).toFixed(2)}</strong></div>
-                `;
+            function calculate() {
+                const baseBalance = parseFloat(document.getElementById('balanceSelect').value);
+                const multiplier = parseFloat(document.getElementById('multiplierSelect').value);
+                const totalBalance = baseBalance * multiplier;
+                const tp = (25 / 400) * totalBalance;
+
+                const tickers = [
+                    { name: 'USTech', base: 0.01, min: 0.10, unit: 'Lot' },
+                    { name: 'XAUUSD', base: 0.0004, min: 0.01, unit: 'Lot' },
+                    { name: 'WTI', base: 1, min: 1, unit: 'Barrel' }
+                ];
+
+                let html = `<strong>TP Target: $${tp.toLocaleString()}</strong><br><br>`;
+                tickers.forEach(t => {
+                    let size = (t.base * multiplier).toFixed(4);
+                    let status = size >= t.min ? 'Tradable' : 'Not Tradable';
+                    html += `<div class="result-row">${t.name}: <strong>${size} ${t.unit}</strong> (${status})</div>`;
+                });
+                document.getElementById('results').innerHTML = html;
             }
+            calculate();
         </script>
     </main>
 </body>
