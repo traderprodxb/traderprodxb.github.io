@@ -14,11 +14,10 @@
         nav a:hover { color: #8b0000; }
         main { max-width: 600px; margin: auto; background: rgba(255, 255, 255, 0.4); padding: 30px; border: 1px solid #1a1a1a; border-radius: 5px; }
         h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 1.8em; margin-bottom: 20px; }
-        input, select { padding: 12px; width: 100%; margin-bottom: 15px; border: 1px solid #1a1a1a; background: #f4efe4; box-sizing: border-box; font-family: inherit; }
-        .btn { background: #1a1a1a; color: #f4efe4; padding: 15px; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; width: 100%; transition: background 0.3s; }
-        .btn:hover { background: #8b0000; }
+        label { display: block; margin-top: 15px; margin-bottom: 5px; font-weight: bold; }
+        input, select { padding: 12px; width: 100%; margin-bottom: 10px; border: 1px solid #1a1a1a; background: #f4efe4; box-sizing: border-box; font-family: inherit; }
         #results { margin-top: 25px; border-top: 2px solid #1a1a1a; padding-top: 20px; }
-        .result-row { padding: 5px 0; font-size: 1.1em; }
+        .result-row { padding: 8px 0; font-size: 1.05em; border-bottom: 1px solid rgba(26,26,26,0.1); }
         @media (max-width: 600px) { .logo-container img { max-width: 200px; } nav a { display: block; margin: 10px 0; } }
     </style>
 </head>
@@ -30,45 +29,53 @@
     <main>
         <h1>Compounding Calculator</h1>
         
-        <label>Account Balance:</label>
-        <select id="balanceSelect" onchange="calculate()">
-            <option value="400">400</option>
-            <option value="650">650</option>
-            <option value="1000">1,000</option>
-            <option value="1500">1,500</option>
-            <option value="2500">2,500</option>
-        </select>
+        <label>Account Balance (USD):</label>
+        <input type="number" id="balanceInput" value="400" oninput="calculate()">
 
-        <label>Multiplier:</label>
-        <select id="multiplierSelect" onchange="calculate()">
-            <option value="1">1x</option>
-            <option value="10">10x</option>
-            <option value="100">100x</option>
-            <option value="1000">1,000x</option>
-            <option value="10000">10,000x</option>
-        </select>
+        <label>Current Entry Price (for TP/SL calculation):</label>
+        <input type="number" id="entryInput" placeholder="Enter market price (e.g. 18000)" step="any" oninput="calculate()">
 
         <div id="results"></div>
 
         <script>
             function calculate() {
-                const baseBalance = parseFloat(document.getElementById('balanceSelect').value);
-                const multiplier = parseFloat(document.getElementById('multiplierSelect').value);
-                const totalBalance = baseBalance * multiplier;
-                const tp = (25 / 400) * totalBalance;
+                const balance = parseFloat(document.getElementById('balanceInput').value) || 0;
+                const entry = parseFloat(document.getElementById('entryInput').value) || 0;
+                
+                // Target Profit in USD is strictly 6% ROI of the current balance
+                const targetProfitUSD = balance * 0.06;
 
-                const tickers = [
-                    { name: 'USTech', base: 0.01, min: 0.10, unit: 'Lot' },
-                    { name: 'XAUUSD', base: 0.0004, min: 0.01, unit: 'Lot' },
-                    { name: 'WTI', base: 1, min: 1, unit: 'Barrel' }
+                const assets = [
+                    { name: 'USTech', dist: 150, step: 0.1, unit: 'Lot' },
+                    { name: 'XAUUSD', dist: 15, step: 0.01, unit: 'Lot' },
+                    { name: 'WTI (XTIUSD)', dist: 1.5, step: 0.1, unit: 'Barrel' },
+                    { name: 'EURUSD', dist: 0.0030, step: 0.01, unit: 'Lot' },
+                    { name: 'USDJPY', dist: 0.50, step: 0.01, unit: 'Lot' },
+                    { name: 'BTCUSD', dist: 500, step: 0.1, unit: 'Coin' },
+                    { name: 'ETHUSD', dist: 25, step: 0.1, unit: 'Coin' },
+                    { name: 'Tesla', dist: 5, step: 0.1, unit: 'Share' }
                 ];
 
-                let html = `<strong>TP Target: $${tp.toLocaleString()}</strong><br><br>`;
-                tickers.forEach(t => {
-                    let size = (t.base * multiplier).toFixed(4);
-                    let status = size >= t.min ? 'Tradable' : 'Not Tradable';
-                    html += `<div class="result-row">${t.name}: <strong>${size} ${t.unit}</strong> (${status})</div>`;
+                let html = `<strong>Target Profit (6% ROI): $${targetProfitUSD.toFixed(2)}</strong><br><br>`;
+                
+                if (entry <= 0) {
+                    html += `<div style="color: #8b0000; font-style: italic;">Enter an entry price above to calculate precise TP, SL, and Dynamic Sizes.</div>`;
+                }
+
+                assets.forEach(a => {
+                    let rawSize = targetProfitUSD / a.dist;
+                    let size = Math.round(rawSize / a.step) * a.step;
+                    if (size < a.step) size = a.step;
+
+                    let tp = entry > 0 ? (entry + a.dist).toFixed(2) : '---';
+                    let sl = entry > 0 ? (entry - a.dist).toFixed(2) : '---';
+
+                    html += `<div class="result-row">
+                        <strong>${a.name}</strong>: ${size.toFixed(2)} ${a.unit}<br>
+                        <span style="font-size: 0.85em; color: #555;">TP: ${tp} | SL: ${sl}</span>
+                    </div>`;
                 });
+
                 document.getElementById('results').innerHTML = html;
             }
             calculate();
