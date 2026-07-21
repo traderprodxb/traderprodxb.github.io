@@ -18,6 +18,18 @@
         ol, ul { padding-left: 20px; }
         li { margin-bottom: 12px; }
         .daily-routine { font-size: 0.95em; }
+
+        /* Accordion and Table Styling for Growth Plan matching theme */
+        .stage-accordion { border: 1px solid #1a1a1a; margin-bottom: 12px; border-radius: 3px; overflow: hidden; background: rgba(255, 255, 255, 0.5); }
+        .stage-header { padding: 12px 18px; font-family: 'Georgia', serif; font-size: 1em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(26, 26, 26, 0.05); transition: background 0.3s; }
+        .stage-header:hover { background: rgba(139, 0, 0, 0.1); color: #8b0000; }
+        .stage-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 18px; background: rgba(255, 255, 255, 0.8); }
+        .stage-content.active { max-height: 1200px; padding: 18px; border-top: 1px solid #1a1a1a; }
+        
+        table.stage-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+        table.stage-table th, table.stage-table td { border: 1px solid #1a1a1a; padding: 8px 10px; text-align: left; }
+        table.stage-table th { background: rgba(26, 26, 26, 0.08); font-family: 'Georgia', serif; }
+
         @media (max-width: 600px) { .logo-container img { max-width: 200px; } nav a { display: block; margin: 10px 0; } }
     </style>
 </head>
@@ -34,10 +46,97 @@
             <li><strong>Leverage:</strong> Indices x20, Commodities x40, Currencies x40, Major Crypto x6.</li>
             <li><strong>Asset Universe:</strong> USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</li>
             <li><strong>Compounding Cadence:</strong> 5 winning trades per day.</li>
-            <li><strong>Reinvestment:</strong> Total profit reinvestment according to the ACS (Akbar Compounding Sequence).</li>
+            <li><strong>Reinvestment:</strong> Total profit reinvestment according to the ACS (TraderProDXB Compounding System).</li>
             <li><strong>Execution:</strong> Machine-like adherence to math; zero emotional intervention.</li>
             <li><strong>Circuit Breaker:</strong> 18% ultimate Stop Loss on total account equity per trade maximum.</li>
         </ol>
+
+        <h2>TraderProDXB Compounding System: Growth Plan</h2>
+        <p style="text-align: center; font-style: italic; margin-bottom: 25px; font-size: 0.9em;">Click any Major Stage below to examine its underlying Minor Stages and Micro Targets.</p>
+
+        <!-- Stage 1 -->
+        <div class="stage-accordion">
+            <div class="stage-header" onclick="toggleStage('stage1')">
+                <span>Major Stage 1: $400 Baseline</span>
+                <span>▼</span>
+            </div>
+            <div id="stage1" class="stage-content">
+                <p style="margin-top:0;">Governed by 7 Minor Stages scaling systematically to $4,000.</p>
+                <table class="stage-table">
+                    <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
+                    <tr><td>Minor Stage 1</td><td>$400 → $550</td><td>$30.00 per win</td></tr>
+                    <tr><td>Minor Stage 2</td><td>$550 → $800</td><td>$50.00 per win</td></tr>
+                    <tr><td>Minor Stage 3</td><td>$800 → $1,100</td><td>$60.00 per win</td></tr>
+                    <tr><td>Minor Stage 4</td><td>$1,100 → $1,500</td><td>$80.00 per win</td></tr>
+                    <tr><td>Minor Stage 5</td><td>$1,500 → $2,100</td><td>$120.00 per win</td></tr>
+                    <tr><td>Minor Stage 6</td><td>$2,100 → $2,900</td><td>$160.00 per win</td></tr>
+                    <tr><td>Minor Stage 7</td><td>$2,900 → $4,000</td><td>$220.00 per win</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="stage-accordion">
+            <div class="stage-header" onclick="toggleStage('stage2')">
+                <span>Major Stage 2: $4,000 Baseline</span>
+                <span>▼</span>
+            </div>
+            <div id="stage2" class="stage-content">
+                <p style="margin-top:0;">Scaling institutional progression from $4,000 to $40,000.</p>
+                <table class="stage-table">
+                    <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
+                    <tr><td>Minor Stage 1</td><td>$4,000 → $5,500</td><td>$300.00 per win</td></tr>
+                    <tr><td>Minor Stage 2</td><td>$5,500 → $8,000</td><td>$500.00 per win</td></tr>
+                    <tr><td>Minor Stage 3</td><td>$8,000 → $11,000</td><td>$600.00 per win</td></tr>
+                    <tr><td>Minor Stage 4</td><td>$11,000 → $15,000</td><td>$800.00 per win</td></tr>
+                    <tr><td>Minor Stage 5</td><td>$15,000 → $21,000</td><td>$1,200.00 per win</td></tr>
+                    <tr><td>Minor Stage 6</td><td>$21,000 → $29,000</td><td>$1,600.00 per win</td></tr>
+                    <tr><td>Minor Stage 7</td><td>$29,000 → $40,000</td><td>$2,200.00 per win</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="stage-accordion">
+            <div class="stage-header" onclick="toggleStage('stage3')">
+                <span>Major Stage 3: $40,000 Baseline</span>
+                <span>▼</span>
+            </div>
+            <div id="stage3" class="stage-content">
+                <p style="margin-top:0;">Scaling equity from $40,000 to $400,000.</p>
+                <table class="stage-table">
+                    <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
+                    <tr><td>Minor Stage 1</td><td>$40,000 → $55,000</td><td>$3,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 2</td><td>$55,000 → $80,000</td><td>$5,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 3</td><td>$80,000 → $110,000</td><td>$6,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 4</td><td>$110,000 → $150,000</td><td>$8,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 5</td><td>$150,000 → $210,000</td><td>$12,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 6</td><td>$210,000 → $290,000</td><td>$16,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 7</td><td>$290,000 → $400,000</td><td>$22,000.00 per win</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="stage-accordion">
+            <div class="stage-header" onclick="toggleStage('stage4')">
+                <span>Major Stage 4: $400,000 Baseline</span>
+                <span>▼</span>
+            </div>
+            <div id="stage4" class="stage-content">
+                <p style="margin-top:0;">The final institutional phase scaling from $400,000 to $4,000,000.</p>
+                <table class="stage-table">
+                    <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
+                    <tr><td>Minor Stage 1</td><td>$400,000 → $550,000</td><td>$30,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 2</td><td>$550,000 → $800,000</td><td>$50,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 3</td><td>$800,000 → $1,100,000</td><td>$60,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 4</td><td>$1,100,000 → $1,500,000</td><td>$80,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 5</td><td>$1,500,000 → $2,100,000</td><td>$120,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 6</td><td>$2,100,000 → $2,900,000</td><td>$160,000.00 per win</td></tr>
+                    <tr><td>Minor Stage 7</td><td>$2,900,000 → $4,000,000</td><td>$220,000.00 per win</td></tr>
+                </table>
+            </div>
+        </div>
 
         <h2>Ideal Dubai-Based Day Trader Routine</h2>
         <div class="daily-routine">
@@ -56,5 +155,16 @@
             <p><strong>09:15 PM – 03:15 AM:</strong> Rest and recharge.</p>
         </div>
     </main>
+
+    <script>
+        function toggleStage(stageId) {
+            const content = document.getElementById(stageId);
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+            } else {
+                content.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
