@@ -24,11 +24,13 @@
         .stage-header { padding: 12px 18px; font-family: 'Georgia', serif; font-size: 1em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(26, 26, 26, 0.05); transition: background 0.3s; }
         .stage-header:hover { background: rgba(139, 0, 0, 0.1); color: #8b0000; }
         .stage-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; padding: 0 18px; background: rgba(255, 255, 255, 0.8); }
-        .stage-content.active { max-height: 1200px; padding: 18px; border-top: 1px solid #1a1a1a; }
+        .stage-content.active { max-height: 1400px; padding: 18px; border-top: 1px solid #1a1a1a; }
         
         table.stage-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
         table.stage-table th, table.stage-table td { border: 1px solid #1a1a1a; padding: 8px 10px; text-align: left; }
         table.stage-table th { background: rgba(26, 26, 26, 0.08); font-family: 'Georgia', serif; }
+
+        .compounding-narrative { background: rgba(26, 26, 26, 0.03); border-left: 3px solid #1a1a1a; padding: 12px 15px; margin-bottom: 15px; font-size: 0.95em; }
 
         @media (max-width: 600px) { .logo-container img { max-width: 200px; } nav a { display: block; margin: 10px 0; } }
     </style>
@@ -54,6 +56,10 @@
         <h2>TraderProDXB Compounding System: Growth Plan</h2>
         <p style="text-align: center; font-style: italic; margin-bottom: 25px; font-size: 0.9em;">Click any Major Stage below to examine its underlying Minor Stages and Micro Targets.</p>
 
+        <div class="compounding-narrative">
+            <p style="margin:0;"><strong>The Core Logic:</strong> Every stage transition is achieved through structured execution. Each minor stage divides the required balance growth into 5 equal micro targets, fulfilled by executing <strong>5 daily win trades</strong>. Position sizing and target distance coordinates are dynamically synchronized using pre-set leverage rules and precise price distance movements (e.g., US Tech x15 with 100 points, XAUUSD x15 with 25 points, WTI x10, EURUSD/USDJPY x40, BTC/ETH x10, and Tesla x5) to guarantee consistent mechanical outcomes.</p>
+        </div>
+
         <!-- Stage 1 -->
         <div class="stage-accordion">
             <div class="stage-header" onclick="toggleStage('stage1')">
@@ -61,7 +67,7 @@
                 <span>▼</span>
             </div>
             <div id="stage1" class="stage-content">
-                <p style="margin-top:0;">Governed by 7 Minor Stages scaling systematically to $4,000.</p>
+                <p style="margin-top:10px;">Governed by 7 Minor Stages scaling systematically to $4,000 via daily 5-win micro increments.</p>
                 <table class="stage-table">
                     <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
                     <tr><td>Minor Stage 1</td><td>$400 → $550</td><td>$30.00 per win</td></tr>
@@ -82,7 +88,7 @@
                 <span>▼</span>
             </div>
             <div id="stage2" class="stage-content">
-                <p style="margin-top:0;">Scaling institutional progression from $4,000 to $40,000.</p>
+                <p style="margin-top:10px;">Scaling institutional progression from $4,000 to $40,000 using asset-specific leverage coordinates.</p>
                 <table class="stage-table">
                     <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
                     <tr><td>Minor Stage 1</td><td>$4,000 → $5,500</td><td>$300.00 per win</td></tr>
@@ -103,7 +109,7 @@
                 <span>▼</span>
             </div>
             <div id="stage3" class="stage-content">
-                <p style="margin-top:0;">Scaling equity from $40,000 to $400,000.</p>
+                <p style="margin-top:10px;">Scaling equity from $40,000 to $400,000 with disciplined micro-target execution.</p>
                 <table class="stage-table">
                     <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
                     <tr><td>Minor Stage 1</td><td>$40,000 → $55,000</td><td>$3,000.00 per win</td></tr>
@@ -124,7 +130,7 @@
                 <span>▼</span>
             </div>
             <div id="stage4" class="stage-content">
-                <p style="margin-top:0;">The final institutional phase scaling from $400,000 to $4,000,000.</p>
+                <p style="margin-top:10px;">The final institutional phase scaling from $400,000 to $4,000,000 objective.</p>
                 <table class="stage-table">
                     <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
                     <tr><td>Minor Stage 1</td><td>$400,000 → $550,000</td><td>$30,000.00 per win</td></tr>
