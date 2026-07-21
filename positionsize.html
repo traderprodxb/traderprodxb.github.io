@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TraderProDXB Position Sizing Calculator with Unified Leverage Rules.">
     <title>TraderProDXB - Position Sizing</title>
     <style>
         body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 20px; position: relative; }
@@ -45,18 +46,20 @@
                 // Target Profit in USD is strictly 6% ROI of the current balance
                 const targetProfitUSD = balance * 0.06;
 
+                // Unified Leverage & Distance Rules:
+                // USTech x25, XAUUSD x25, WTI x10, EURUSD x40, USDJPY x40, BTCUSD x10, ETHUSD x10, Tesla x5
                 const assets = [
-                    { name: 'USTech', dist: 150, step: 0.1, unit: 'Lot' },
-                    { name: 'XAUUSD', dist: 15, step: 0.01, unit: 'Lot' },
-                    { name: 'WTI (XTIUSD)', dist: 1.5, step: 0.1, unit: 'Barrel' },
-                    { name: 'EURUSD', dist: 0.0030, step: 0.01, unit: 'Lot' },
-                    { name: 'USDJPY', dist: 0.50, step: 0.01, unit: 'Lot' },
-                    { name: 'BTCUSD', dist: 500, step: 0.1, unit: 'Coin' },
-                    { name: 'ETHUSD', dist: 25, step: 0.1, unit: 'Coin' },
-                    { name: 'Tesla', dist: 5, step: 0.1, unit: 'Share' }
+                    { name: 'USTech (x25)', lev: 25, dist: 150, step: 0.1, unit: 'Lot' },
+                    { name: 'XAUUSD (x25)', lev: 25, dist: 15, step: 0.01, unit: 'Lot' },
+                    { name: 'WTI (XTIUSD) (x10)', lev: 10, dist: 1.5, step: 0.1, unit: 'Barrel' },
+                    { name: 'EURUSD (x40)', lev: 40, dist: 0.0030, step: 0.01, unit: 'Lot' },
+                    { name: 'USDJPY (x40)', lev: 40, dist: 0.50, step: 0.01, unit: 'Lot' },
+                    { name: 'BTCUSD (x10)', lev: 10, dist: 500, step: 0.1, unit: 'Coin' },
+                    { name: 'ETHUSD (x10)', lev: 10, dist: 25, step: 0.1, unit: 'Coin' },
+                    { name: 'Tesla (x5)', lev: 5, dist: 5, step: 0.1, unit: 'Share' }
                 ];
 
-                let html = `<strong>Target Profit (6% ROI): $${targetProfitUSD.toFixed(2)}</strong><br><br>`;
+                let html = `<strong>Target Profit (6% ROI): $${targetProfitUSD.toFixed(2)} | Stop Loss: 6%</strong><br><br>`;
                 
                 if (entry <= 0) {
                     html += `<div style="color: #8b0000; font-style: italic;">Enter an entry price above to calculate precise TP, SL, and Dynamic Sizes.</div>`;
