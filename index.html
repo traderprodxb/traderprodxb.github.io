@@ -16,8 +16,14 @@
         h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.5em; margin-bottom: 30px; }
         h2 { font-family: 'Georgia', serif; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 10px 0; margin-top: 40px; text-align: center; }
         .intro { font-style: italic; text-align: center; margin-bottom: 30px; font-size: 1.2em; }
-        .manifesto-list { padding-left: 20px; }
-        .manifesto-list li { margin-bottom: 15px; }
+        
+        /* Interactive Clickable Accordion Styling matching theme */
+        .accordion-box { border: 1px solid #1a1a1a; margin-bottom: 12px; border-radius: 3px; overflow: hidden; background: rgba(255, 255, 255, 0.5); }
+        .accordion-header { padding: 14px 18px; font-family: 'Georgia', serif; font-size: 1.05em; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(26, 26, 26, 0.05); transition: background 0.3s, color 0.3s; }
+        .accordion-header:hover { background: rgba(139, 0, 0, 0.1); color: #8b0000; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; padding: 0 18px; background: rgba(255, 255, 255, 0.8); font-size: 0.95em; }
+        .accordion-content.active { max-height: 800px; padding: 16px 18px; border-top: 1px solid #1a1a1a; }
+
         @media (max-width: 600px) { .logo-container img { max-width: 200px; } nav a { display: block; margin: 10px 0; } }
     </style>
 </head>
@@ -31,14 +37,120 @@
         <p class="intro">The systematic engine for $4M. Built for machine-like discipline. Every trade is a deliberate step toward institutional-grade wealth.</p>
         
         <h2>Official Manifesto</h2>
-        <p>The fundamental purpose of this platform is to provide absolute transparency regarding my personal trading activity. By sharing both live trade details as they occur and a comprehensive historical audit of my performance, I aim to achieve the following objectives:</p>
+        <p style="text-align: center; font-style: italic; margin-bottom: 25px; font-size: 0.9em;">Click any title below to reveal the core operational details.</p>
         
-        <ul class="manifesto-list">
-            <li><strong>Professional Accountability:</strong> This repository serves as my primary professional ledger—an unfiltered, objective record of my career.</li>
-            <li><strong>Radical Transparency:</strong> I provide raw performance data, ensuring aspiring traders can conduct a realistic evaluation of the profession, dispelling myths about "easy" wealth.</li>
-            <li><strong>Sustainable Infrastructure:</strong> Partner broker links provide essential support, creating a crucial buffer for market drawdowns.</li>
-            <li><strong>Community Reinvestment:</strong> In periods of sustained success, I leverage surplus capital to facilitate community-driven initiatives, providing startup capital to help others replicate this methodology.</li>
-        </ul>
+        <!-- Manifesto Item 1 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('item1')">
+                <span>Professional Accountability</span>
+                <span>▼</span>
+            </div>
+            <div id="item1" class="accordion-content">
+                <p style="margin:0;">This repository serves as my primary professional ledger—an unfiltered, objective record of my career, maintaining absolute standard adherence and rigorous discipline.</p>
+            </div>
+        </div>
+
+        <!-- Manifesto Item 2 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('item2')">
+                <span>Radical Transparency</span>
+                <span>▼</span>
+            </div>
+            <div id="item2" class="accordion-content">
+                <p style="margin:0;">I provide raw performance data, ensuring aspiring traders can conduct a realistic evaluation of the profession, completely dispelling myths about effortless wealth.</p>
+            </div>
+        </div>
+
+        <!-- Manifesto Item 3 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('item3')">
+                <span>Sustainable Infrastructure</span>
+                <span>▼</span>
+            </div>
+            <div id="item3" class="accordion-content">
+                <p style="margin:0;">Partner broker links provide essential operational support, creating a crucial buffer for systematic market management and structural resilience.</p>
+            </div>
+        </div>
+
+        <!-- Manifesto Item 4 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('item4')">
+                <span>Community Reinvestment</span>
+                <span>▼</span>
+            </div>
+            <div id="item4" class="accordion-content">
+                <p style="margin:0;">In periods of sustained success, I leverage surplus capital to facilitate community-driven initiatives, providing startup capital to help others replicate this exact methodology.</p>
+            </div>
+        </div>
+
+        <h2>The System Decoded</h2>
+        <p style="text-align: center; font-style: italic; margin-bottom: 25px; font-size: 0.9em;">Click below to explore the simple, slow-flowing architecture of the TraderProDXB Compounding System.</p>
+
+        <!-- Decoded Section 1 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('dec1')">
+                <span>1. Trading as a Science, Not a Casino</span>
+                <span>▼</span>
+            </div>
+            <div id="dec1" class="accordion-content">
+                <p style="margin-top:0;">When most people think of trading, they picture excitement, guesswork, and hoping for a lucky break. The TraderProDXB Compounding System throws that chaotic picture away. Here, you do not guess or gamble. You treat trading like an exact, predictable science, acting like a machine following a pre-set blueprint and letting mathematics handle the heavy lifting to remove stress and emotion.</p>
+            </div>
+        </div>
+
+        <!-- Decoded Section 2 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('dec2')">
+                <span>2. The Grand Vision: Major Stages</span>
+                <span>▼</span>
+            </div>
+            <div id="dec2" class="accordion-content">
+                <p style="margin-top:0;">The ultimate destination is to grow an account to a life-changing $4,000,000. Because jumping straight to four million is overwhelming, the system breaks this mountain down into Major Stages: starting at $400, moving to $4,000, scaling to $40,000, reaching $400,000, and finishing at $4,000,000.</p>
+            </div>
+        </div>
+
+        <!-- Decoded Section 3 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('dec3')">
+                <span>3. Stepping Stones: Minor Stages</span>
+                <span>▼</span>
+            </div>
+            <div id="dec3" class="accordion-content">
+                <p style="margin-top:0;">Even major milestones are broken down further into 7 smaller stepping stones called Minor Stages. For instance, bridging $400 to $4,000 progresses through clear checkpoints ($400 to $550, $550 to $800, $800 to $1,100, and so on), ensuring you only ever focus on conquering the single checkpoint right in front of you.</p>
+            </div>
+        </div>
+
+        <!-- Decoded Section 4 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('dec4')">
+                <span>4. Daily Rhythm: Micro Stages & 5 Wins</span>
+                <span>▼</span>
+            </div>
+            <div id="dec4" class="accordion-content">
+                <p style="margin-top:0;">To cross a minor stage, the required balance gap is divided into 5 equal parts. This matches your daily target of 5 winning trades per day, where each win captures a specific cash micro-target (such as making $30 per win during the $400-to-$550 phase). Once 5 wins are secured, your mission is complete.</p>
+            </div>
+        </div>
+
+        <!-- Decoded Section 5 -->
+        <div class="accordion-box">
+            <div class="accordion-header" onclick="toggleAccordion('dec5')">
+                <span>5. Mechanical Execution & Rules</span>
+                <span>▼</span>
+            </div>
+            <div id="dec5" class="accordion-content">
+                <p style="margin-top:0;">When opening a trade, position size is never guessed. You always target a clean 6% ROI protected by a strict 6% Stop Loss (allowing only a 1.5% base price move against you). Guided by precise asset leverage coordinates, every single trade behaves with absolute robotic consistency.</p>
+            </div>
+        </div>
     </main>
+
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+            } else {
+                content.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
