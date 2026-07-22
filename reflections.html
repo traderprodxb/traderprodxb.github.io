@@ -4,39 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="TraderProDXB Reflections - Unfiltered career records and journal entries.">
-    <title>Reflections - TraderProDXB</title>
+    <title>TraderProDXB - Reflections</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 20px; font-size: 18px; position: relative; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg'); background-repeat: no-repeat; background-position: center; background-size: 50%; opacity: 0.05; z-index: -1; }
-        .logo-container { text-align: center; margin-bottom: 20px; }
-        .logo-container img { max-width: 320px; height: auto; }
-        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 40px; }
-        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 12px; font-size: 1.05em; font-weight: bold; transition: color 0.3s; display: inline-block; padding: 5px 0; }
-        nav a:hover { color: #8b0000; }
-        main { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.4); padding: 35px; border-radius: 5px; }
-        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.4em; margin-bottom: 30px; }
-        .intro { font-style: italic; text-align: center; margin-bottom: 30px; font-size: 1.2em; }
-        .reflection-card { background: rgba(255, 255, 255, 0.6); border: 1px solid #1a1a1a; padding: 25px; margin-bottom: 20px; border-radius: 3px; font-size: 1.1em; }
-        .reflection-card h3 { font-family: 'Georgia', serif; margin-top: 0; font-size: 1.3em; }
-        @media (max-width: 600px) { body { font-size: 20px; padding: 10px; } main { padding: 20px; } .logo-container img { max-width: 240px; } nav a { display: block; margin: 8px 0; font-size: 1.2em; } h1 { font-size: 2em; } }
+        :root {
+            --bg-main: #0B0E14;
+            --bg-card: #151922;
+            --bg-card-hover: #1E2330;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-green: #00E676;
+            --accent-green-glow: rgba(0, 230, 118, 0.15);
+            --accent-red: #FF5252;
+            --text-primary: #F0F4F8;
+            --text-secondary: #8E9BAE;
+            --text-muted: #5A6578;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Navigation */
+        header {
+            background-color: rgba(11, 14, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid var(--accent-green);
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-green);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A0AEC0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Reflections Cards Stack */
+        .reflections-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .reflection-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .reflection-card:hover {
+            border-color: rgba(0, 230, 118, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .reflection-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.3px;
+        }
+
+        .reflection-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .reflection-card { padding: 1.25rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="logo-container"><img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo"></div>
-    <nav>
-        <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="faq.html">FAQ</a>
-    </nav>
-    <main>
-        <h1>Reflections</h1>
-        <p class="intro">An unfiltered, objective ledger of daily thoughts, market observations, and systemic evolution.</p>
-        
-        <!-- AUTOMATION_INJECTION_POINT -->
 
-        <div class="reflection-card">
-            <h3>Clock is Ticking</h3>
-            <p>It's 1:10 AM in Dubai and the world is deep in sleep. With a deterministic approach and back-to-back persistence through repeated failures, the outcome has come into being: the Email-to-Reflection automation. This system leverages Zapier to make documenting and sharing my trade reflections effortless—especially at or after trading sessions when emotions run deep and complexity is not tolerated. I wish this will in the long term benefit valued visitors and also serve as a documentary of my performance in narratives, while numerical and detailed performance metrics remain directly linked via the third-party service of Myfxbook on the Track Record page.</p>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
+                TraderProDXB
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="blueprint.html">Blueprint</a>
+                <a href="infrastructure.html">Infrastructure</a>
+                <a href="journey.html">Journey</a>
+                <a href="track-record.html">Track Record</a>
+                <a href="reflections.html" class="active">Reflections</a>
+                <a href="positionsize.html">Position Size</a>
+                <a href="faq.html">FAQ</a>
+            </nav>
         </div>
+    </header>
 
-    </main>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Reflections</h1>
+            <p>An unfiltered, objective ledger of daily thoughts, market observations, and systemic evolution.</p>
+        </section>
+
+        <!-- Reflections Entries -->
+        <div class="reflections-list">
+            <!-- AUTOMATION_INJECTION_POINT -->
+
+            <div class="reflection-card">
+                <h3>Clock is Ticking</h3>
+                <p>It's 1:10 AM in Dubai and the world is deep in sleep. With a deterministic approach and back-to-back persistence through repeated failures, the outcome has come into being: the Email-to-Reflection automation. This system leverages Zapier to make documenting and sharing my trade reflections effortless—especially at or after trading sessions when emotions run deep and complexity is not tolerated. I wish this will in the long term benefit valued visitors and also serve as a documentary of my performance in narratives, while numerical and detailed performance metrics remain directly linked via the third-party service of Myfxbook on the Track Record page.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
