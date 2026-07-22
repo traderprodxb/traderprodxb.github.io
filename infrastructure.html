@@ -28,14 +28,16 @@
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
         .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 1.25rem; }
         .brand-logo img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; border: 1px solid var(--accent-green); }
-        nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+        nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; }
         nav a:hover, nav a.active { color: var(--accent-green); background: rgba(255, 255, 255, 0.03); }
+        .login-btn { background: var(--accent-green); color: #000; font-weight: 600; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 6px; text-decoration: none; }
 
         .container { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; }
-        h1 { font-size: 2.2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
-        .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
-        .card h3 { color: var(--accent-green); font-family: var(--font-mono); margin-bottom: 0.5rem; }
+        h1 { font-size: 2.2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
+        .content-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; }
+        .content-card p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1rem; }
 
         footer { border-top: 1px solid var(--border-color); background: #080A0E; padding: 3rem 1.5rem 2rem 1.5rem; margin-top: 5rem; }
         .footer-inner { max-width: 1000px; margin: 0 auto; }
@@ -44,7 +46,7 @@
         .disclaimer-text { color: var(--text-muted); font-size: 0.75rem; line-height: 1.5; text-align: justify; }
         .footer-copy { text-align: center; color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); }
 
-        @media (max-width: 768px) { .nav-container { flex-direction: column; gap: 1rem; } }
+        @media (max-width: 768px) { .nav-container { flex-direction: column; gap: 1rem; } .nav-right { flex-direction: column; width: 100%; } }
     </style>
 </head>
 <body>
@@ -54,28 +56,27 @@
                 <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
                 TraderProDXB
             </a>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="blueprint.html">Blueprint</a>
-                <a href="infrastructure.html" class="active">Infrastructure</a>
-                <a href="journey.html">Journey</a>
-                <a href="track-record.html">Track Record</a>
-                <a href="reflections.html">Reflections</a>
-                <a href="positionsize.html">Position Size</a>
-                <a href="faq.html">FAQ</a>
-            </nav>
+            <div class="nav-right">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="blueprint.html">Blueprint</a>
+                    <a href="infrastructure.html" class="active">Infrastructure</a>
+                    <a href="journey.html">Journey</a>
+                    <a href="track-record.html">Track Record</a>
+                    <a href="reflections.html">Reflections</a>
+                    <a href="positionsize.html">Position Size</a>
+                    <a href="faq.html">FAQ</a>
+                </nav>
+                <a href="#login" class="login-btn">Login</a>
+            </div>
         </div>
     </header>
 
     <main class="container">
         <h1>Execution Infrastructure</h1>
-        <div class="card">
-            <h3>Permanent Broker Designation</h3>
-            <p>BlackBull serves as the core broker venue for institutional market connectivity, execution speed, and transparent order routing.</p>
-        </div>
-        <div class="card">
-            <h3>Platform Parameters</h3>
-            <p>Leverage configurations and asset parameters are rigorously aligned with IG and institutional execution standards across FX, Commodities, Indices, and Digital Assets.</p>
+        <div class="content-card">
+            <p>BlackBull is specified as the permanent broker venue for executing system operations with direct market access, high liquidity, and ultra-low latency.</p>
+            <p>Brokerage leverage configurations align strictly with IG guidelines to keep margin requirements predictable and standard across all traded asset classes.</p>
         </div>
     </main>
 
