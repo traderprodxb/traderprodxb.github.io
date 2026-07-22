@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Institutional Trading System - Systematic 6% ROI Compounding to $4M.">
-    <title>TraderProDXB - Institutional Trading</title>
-    <!-- Google Fonts for Modern Typography -->
+    <meta name="description" content="TraderProDXB - Institutional Trading Framework & Compounding System.">
+    <title>TraderProDXB - Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,7 +12,6 @@
         :root {
             --bg-main: #0B0E14;
             --bg-card: #151922;
-            --bg-card-hover: #1E2330;
             --border-color: rgba(255, 255, 255, 0.08);
             --accent-green: #00E676;
             --accent-green-glow: rgba(0, 230, 118, 0.15);
@@ -24,230 +22,39 @@
             --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-main); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.6; }
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
+        header { background-color: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+        .brand-logo img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; border: 1px solid var(--accent-green); }
+        nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s ease; }
+        nav a:hover, nav a.active { color: var(--accent-green); background: rgba(255, 255, 255, 0.03); }
 
-        /* Navigation Header */
-        header {
-            background-color: rgba(11, 14, 20, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        .container { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; text-align: center; }
+        .hero h1 { font-size: 3rem; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 1rem; background: linear-gradient(180deg, #FFFFFF 0%, #A0AEC0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-secondary); font-size: 1.15rem; max-width: 700px; margin: 0 auto 2rem auto; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem; text-align: left; }
+        .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; transition: border-color 0.2s; }
+        .card:hover { border-color: rgba(0, 230, 118, 0.3); }
+        .card h3 { color: var(--accent-green); font-size: 1.1rem; margin-bottom: 0.5rem; font-family: var(--font-mono); }
+        .card p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-        }
+        /* Unified Institutional Footer */
+        footer { border-top: 1px solid var(--border-color); background: #080A0E; padding: 3rem 1.5rem 2rem 1.5rem; margin-top: 5rem; }
+        .footer-inner { max-width: 1000px; margin: 0 auto; }
+        .disclaimer-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 2rem; }
+        .disclaimer-title { color: var(--accent-green); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .disclaimer-text { color: var(--text-muted); font-size: 0.75rem; line-height: 1.5; text-align: justify; }
+        .footer-copy { text-align: center; color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); }
 
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.5px;
-        }
-
-        .brand-logo img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid var(--accent-green);
-        }
-
-        nav {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--accent-green);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        /* Layout Container */
-        .container {
-            max-width: 850px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 2.5rem 1rem 2rem 1rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 2.5rem;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 1rem;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A0AEC0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
-
-        .intro {
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-            line-height: 1.7;
-            max-width: 720px;
-            margin: 0 auto 1.5rem auto;
-        }
-
-        .badge-bar {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--accent-green);
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        /* Section Titles */
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-top: 3rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            letter-spacing: -0.5px;
-        }
-
-        .section-desc {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Modern Accordion */
-        .accordion-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            transition: border-color 0.2s ease;
-        }
-
-        .accordion-box:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .accordion-header {
-            padding: 1.1rem 1.25rem;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .accordion-header:hover {
-            background-color: var(--bg-card-hover);
-            color: var(--accent-green);
-        }
-
-        .accordion-icon {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            transition: transform 0.3s ease;
-        }
-
-        .accordion-box.active .accordion-icon {
-            transform: rotate(180deg);
-            color: var(--accent-green);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), padding 0.35s ease;
-            padding: 0 1.25rem;
-            background: rgba(0, 0, 0, 0.15);
-            color: var(--text-secondary);
-            font-size: 0.98rem;
-            line-height: 1.65;
-        }
-
-        .accordion-box.active .accordion-content {
-            max-height: 500px;
-            padding: 1.1rem 1.25rem;
-            border-top: 1px solid var(--border-color);
-            transition: max-height 0.35s ease-in-out, padding 0.35s ease;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2em; }
-            .nav-container { flex-direction: column; gap: 1rem; }
-            .container { padding: 0 1rem; }
-        }
+        @media (max-width: 768px) { .nav-container { flex-direction: column; gap: 1rem; } .hero h1 { font-size: 2.2rem; } }
     </style>
 </head>
 <body>
-
-    <!-- Header & Navigation -->
     <header>
         <div class="nav-container">
             <a href="index.html" class="brand-logo">
@@ -268,124 +75,39 @@
     </header>
 
     <main class="container">
-        <!-- Hero Section -->
         <section class="hero">
             <h1>TraderProDXB</h1>
-            <p class="intro">The systematic engine for $4,000,000. Built for machine-like discipline. Every trade is a deliberate step toward institutional-grade wealth with a strict 6% ROI target and 6% stop loss.</p>
-            <div class="badge-bar">
-                <span class="badge">Permanent Broker: BlackBull</span>
-                <span class="badge">Strategy: 6% ROI / 6% SL</span>
-                <span class="badge">Goal: $4,000,000</span>
-            </div>
+            <p>Institutional Market Execution & Systematic Compounding Architecture. Engineering precision, rules-based risk control, and disciplined capital growth.</p>
         </section>
-        
-        <h2>Official Manifesto</h2>
-        <p class="section-desc">Click any title below to reveal core operational details.</p>
-        
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>Professional Accountability</span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content">
-                <p>This repository serves as my primary professional ledger—an unfiltered, objective record of my career, maintaining absolute standard adherence and rigorous discipline.</p>
-            </div>
-        </div>
 
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>Radical Transparency</span>
-                <span class="accordion-icon">▼</span>
+        <div class="grid">
+            <div class="card">
+                <h3>01. System Blueprint</h3>
+                <p>Fixed 6% ROI compounding progression and strict risk boundaries engineered for consistency.</p>
             </div>
-            <div class="accordion-content">
-                <p>I provide raw performance data, ensuring aspiring traders can conduct a realistic evaluation of the profession, completely dispelling myths about effortless wealth.</p>
+            <div class="card">
+                <h3>02. Infrastructure</h3>
+                <p>Broker routing with BlackBull as permanent broker alongside optimized IG execution parameters.</p>
             </div>
-        </div>
-
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>Sustainable Infrastructure</span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content">
-                <p>Partner broker links provide essential operational support, creating a crucial buffer for systematic market management and structural resilience.</p>
-            </div>
-        </div>
-
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>Community Reinvestment</span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content">
-                <p>In periods of sustained success, I leverage surplus capital to facilitate community-driven initiatives, providing startup capital to help others replicate this exact methodology.</p>
-            </div>
-        </div>
-
-        <h2>The System Decoded</h2>
-        <p class="section-desc">Click below to explore the simple, slow-flowing architecture of the TraderProDXB Compounding System.</p>
-
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>1. Trading as a Science, Not a Casino</span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content">
-                <p>The TraderProDXB Compounding System replaces chaos with exact, predictable science. You act like a machine following a pre-set blueprint targeting 6% ROI per trade, letting math handle the heavy lifting.</p>
-            </div>
-        </div>
-
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>2. The Grand Vision: Major Stages</span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content">
-                <p>The destination is $4,000,000, broken into Major Stages: $400 → $4,000 → $40,000 → $400,000 → $4,000,000.</p>
-            </div>
-        </div>
-
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>3. Stepping Stones: Minor Stages</span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content">
-                <p>Major milestones are divided into 7 Minor Stages to ensure you only ever focus on conquering the single checkpoint right in front of you.</p>
-            </div>
-        </div>
-
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>4. Daily Rhythm: Micro Stages & 5 Wins</span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content">
-                <p>Each minor stage is conquered via 5 daily win trades targeting a 6% ROI cash micro-target per win.</p>
-            </div>
-        </div>
-
-        <div class="accordion-box">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <span>5. Mechanical Execution & Rules</span>
-                <span class="accordion-icon">▼</span>
-            </div>
-            <div class="accordion-content">
-                <p>Position size utilizes unified asset leverage (USTech x25, XAUUSD x25, WTI x10, EURUSD/USDJPY x40, BTC/ETH x10, Tesla x5) targeting 6% ROI with a 6% stop loss.</p>
+            <div class="card">
+                <h3>03. Position Sizing</h3>
+                <p>Unified leverage targets across USTech, Gold, WTI, Forex, Crypto, and Stocks.</p>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
+        <div class="footer-inner">
+            <div class="disclaimer-box">
+                <div class="disclaimer-title">Financial Risk & General Disclaimer</div>
+                <div class="disclaimer-text">
+                    Trading leveraged derivatives, Leveraged Foreign Exchange (Forex), Contracts for Difference (CFDs), Commodities, Cryptocurrencies, and Equities carries a high level of risk to your capital and may not be suitable for all investors. Leveraged products can result in losses that exceed your initial deposit. Before engaging in financial trading, you should fully understand the risks involved, take into consideration your investment objectives, level of experience, and risk appetite, and seek independent financial advice if necessary. The content, calculations, models, and position sizing guidelines published on TraderProDXB are provided strictly for educational, informational, and personal analytical purposes only and do not constitute financial, investment, legal, or tax advice, nor a solicitation or offer to buy or sell any financial instrument. Past performance and systematic model simulations are not indicative of future results. TraderProDXB is an independent informational platform and is not affiliated with, endorsed by, or acting as an agent for any brokerage firm or financial entity mentioned herein.
+                </div>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 TraderProDXB. Machine-Like Discipline. All Rights Reserved.
+            </div>
+        </div>
     </footer>
-
-    <script>
-        function toggleAccordion(header) {
-            const box = header.parentElement;
-            box.classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
