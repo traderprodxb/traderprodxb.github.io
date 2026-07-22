@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TraderProDXB | Institutional Systematic Engine</title>
+    <title>TraderProDXB | Sample Framework Page</title>
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,7 +107,7 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 3.5rem 1rem;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 3rem;
         }
@@ -147,6 +147,48 @@
             font-weight: 500;
         }
 
+        /* Brand Narrative Feature */
+        .brand-narrative {
+            position: relative;
+            background: radial-gradient(circle at top right, var(--accent-green-glow), transparent 60%), var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .brand-narrative::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-green);
+        }
+
+        .brand-narrative h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .brand-narrative p {
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            font-size: 0.98rem;
+        }
+
+        .brand-quote {
+            font-family: var(--font-mono);
+            color: var(--accent-green);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
         /* Section Titles */
         .section-header {
             margin-bottom: 1.5rem;
@@ -163,7 +205,7 @@
             font-size: 0.9rem;
         }
 
-        /* Interactive Calculator Tool */
+        /* Interactive Calculator Sample */
         .calc-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -306,7 +348,7 @@
             font-size: 0.95rem;
         }
 
-        /* Major Stages Tracker Cards */
+        /* Dummy Content Cards */
         .stages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -320,7 +362,6 @@
             padding: 1.25rem;
             border-radius: 8px;
             text-align: center;
-            position: relative;
         }
 
         .stage-card.target {
@@ -342,49 +383,33 @@
             color: var(--text-primary);
         }
 
-        /* Broker Box */
-        .broker-box {
-            background: linear-gradient(135deg, rgba(21,25,34,1) 0%, rgba(15,20,30,1) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
+        /* Disclaimer Section */
+        .disclaimer-card {
+            background: rgba(255, 82, 82, 0.03);
+            border: 1px solid rgba(FF, 52, 52, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
             margin-bottom: 3rem;
         }
 
-        .broker-info h3 {
-            font-size: 1.2rem;
+        .disclaimer-card h4 {
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 0.5rem;
         }
 
-        .broker-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .btn {
-            background: var(--accent-green);
-            color: #000;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: opacity 0.2s;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
+        .disclaimer-card p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
         }
 
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 2rem 0;
+            padding: 2.5rem 0;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -422,230 +447,153 @@
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
-            <h1>TraderProDXB Compounding System</h1>
-            <p>The systematic engine for $4,000,000. Built for machine-like discipline. Every trade is a deliberate step toward institutional-grade wealth with strict execution targets.</p>
+            <h1>Sample System Interface</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
             <div class="badge-bar">
-                <span class="badge">Broker: BlackBull</span>
-                <span class="badge">Target ROI: 6%</span>
-                <span class="badge">Stop Loss: 6%</span>
-                <span class="badge">Destination: $4,000,000</span>
+                <span class="badge">Framework: Standard</span>
+                <span class="badge">Metric: Variable</span>
+                <span class="badge">Status: Operational</span>
             </div>
         </section>
 
-        <!-- Dynamic Stages Visualizer -->
+        <!-- Brand Narrative Feature -->
+        <section class="brand-narrative">
+            <h2>Artistic Philosophy</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Integer convallis, tellus id cursus pulvinar, ex urna interdum nisi, non dapibus massa enim ac turpis. In human endeavor, true perfection is achieved not when there is nothing more to add, but when execution reaches absolute consistency.</p>
+            <div class="brand-quote">
+                &copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.
+            </div>
+        </section>
+
+        <!-- Dynamic Stages Visualizer (Dummy Cards) -->
         <section>
             <div class="section-header">
-                <h2>Major Milestones</h2>
-                <p>The macro trajectory divided into institutional checkpoints.</p>
+                <h2>Framework Checkpoints</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
             </div>
             <div class="stages-grid">
                 <div class="stage-card">
-                    <div class="stage-title">Stage 1</div>
-                    <div class="stage-value">$400</div>
+                    <div class="stage-title">Phase A</div>
+                    <div class="stage-value">01.00</div>
                 </div>
                 <div class="stage-card">
-                    <div class="stage-title">Stage 2</div>
-                    <div class="stage-value">$4,000</div>
+                    <div class="stage-title">Phase B</div>
+                    <div class="stage-value">02.00</div>
                 </div>
                 <div class="stage-card">
-                    <div class="stage-title">Stage 3</div>
-                    <div class="stage-value">$40,000</div>
+                    <div class="stage-title">Phase C</div>
+                    <div class="stage-value">03.00</div>
                 </div>
                 <div class="stage-card">
-                    <div class="stage-title">Stage 4</div>
-                    <div class="stage-value">$400,000</div>
+                    <div class="stage-title">Phase D</div>
+                    <div class="stage-value">04.00</div>
                 </div>
                 <div class="stage-card target">
-                    <div class="stage-title">Ultimate Target</div>
-                    <div class="stage-value">$4,000,000</div>
+                    <div class="stage-title">Terminal Phase</div>
+                    <div class="stage-value">05.00</div>
                 </div>
             </div>
         </section>
 
-        <!-- System Calculator Tool -->
+        <!-- Interactive Calculator Tool Placeholder -->
         <section>
             <div class="section-header">
-                <h2>Execution Engine Calculator</h2>
-                <p>Calculate target profit and risk parameters dynamically for your account balance.</p>
+                <h2>Analytical Framework Engine</h2>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
             </div>
             <div class="calc-card">
                 <div class="calc-grid">
                     <div class="input-group">
-                        <label for="accBalance">Account Balance (USD)</label>
-                        <input type="number" id="accBalance" value="200" min="10" step="10">
+                        <label for="sampleInput1">Primary Variable</label>
+                        <input type="number" id="sampleInput1" value="100" min="1" step="1">
                     </div>
                     <div class="input-group">
-                        <label for="assetSelect">Asset Class</label>
-                        <select id="assetSelect">
-                            <option value="25">Indices (USTech x25)</option>
-                            <option value="25">Gold (XAUUSD x25)</option>
-                            <option value="10">Crude Oil (WTI x10)</option>
-                            <option value="40">Currencies (EURUSD/USDJPY x40)</option>
-                            <option value="10">Crypto (BTC/ETH x10)</option>
-                            <option value="5">Stocks (Tesla x5)</option>
+                        <label for="sampleSelect">System Class</label>
+                        <select id="sampleSelect">
+                            <option value="1">Option Alpha</option>
+                            <option value="2">Option Beta</option>
+                            <option value="3">Option Gamma</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label for="roiTarget">Target ROI (%)</label>
-                        <input type="number" id="roiTarget" value="6" readonly>
+                        <label for="sampleInput2">Fixed Coefficient</label>
+                        <input type="text" id="sampleInput2" value="1.00" readonly>
                     </div>
                 </div>
 
                 <div class="calc-results">
                     <div class="result-box">
-                        <span class="res-label">Take Profit Value (+6%)</span>
-                        <span class="res-value" id="tpVal">+$12.00</span>
+                        <span class="res-label">Output Metric A</span>
+                        <span class="res-value">+10.00</span>
                     </div>
                     <div class="result-box">
-                        <span class="res-label">Stop Loss Value (-6%)</span>
-                        <span class="res-value loss" id="slVal">-$12.00</span>
+                        <span class="res-label">Output Metric B</span>
+                        <span class="res-value loss">-10.00</span>
                     </div>
                     <div class="result-box">
-                        <span class="res-label">Required Base Move</span>
-                        <span class="res-value" id="baseMove">0.24%</span>
+                        <span class="res-label">Ratio Value</span>
+                        <span class="res-value">1.00%</span>
                     </div>
                     <div class="result-box">
-                        <span class="res-label">Target End Balance</span>
-                        <span class="res-value" id="targetBal">$212.00</span>
+                        <span class="res-label">Final Output</span>
+                        <span class="res-value">110.00</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Interactive Manifesto -->
+        <!-- Interactive Accordions -->
         <section>
             <div class="section-header">
-                <h2>Official Manifesto</h2>
-                <p>Select any category below to review core operational details.</p>
+                <h2>Documentation Modules</h2>
+                <p>Click on any module below to expand structured information.</p>
             </div>
             <div class="accordion-group">
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3>Professional Accountability</h3>
+                        <h3>Module 01: Strategic Principles</h3>
                         <span class="icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
-                            This repository serves as my primary professional ledger—an unfiltered, objective record of my trading career, maintaining absolute standard adherence and rigorous mechanical discipline.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3>Radical Transparency</h3>
+                        <h3>Module 02: Operational Structure</h3>
                         <span class="icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
-                            I provide raw performance data, ensuring aspiring traders can conduct a realistic evaluation of the profession, completely dispelling myths about effortless wealth.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3>Sustainable Infrastructure</h3>
+                        <h3>Module 03: Risk Assessment Parameters</h3>
                         <span class="icon">▼</span>
                     </div>
                     <div class="accordion-content">
                         <div class="accordion-body">
-                            Partner broker links provide essential operational support, creating a crucial buffer for systematic market management and structural resilience.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Community Reinvestment</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            In periods of sustained success, I leverage surplus capital to facilitate community-driven initiatives, providing startup capital to help others replicate this exact methodology.
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- The System Decoded -->
-        <section>
-            <div class="section-header">
-                <h2>The System Decoded</h2>
-                <p>Explore the architecture of the TraderProDXB Compounding System.</p>
-            </div>
-            <div class="accordion-group">
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>1. Trading as a Science, Not a Casino</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            The TraderProDXB Compounding System replaces chaos with exact, predictable science. You act like a machine following a pre-set blueprint targeting 6% ROI per trade, letting math handle the heavy lifting.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>2. The Grand Vision: Major Stages</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            The destination is $4,000,000, broken into Major Stages: $400 → $4,000 → $40,000 → $400,000 → $4,000,000.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>3. Stepping Stones: Minor Stages</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            Major milestones are divided into Minor Stages to ensure you only ever focus on conquering the single checkpoint right in front of you.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>4. Daily Rhythm & Micro Execution</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            Each stage is conquered via calculated, disciplined trades targeting exact cash micro-targets while maintaining strict risk limits.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>5. Mechanical Execution & Broker Rules</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            Position sizing utilizes unified asset leverage rules (USTech x25, XAUUSD x25, WTI x10, EURUSD/USDJPY x40, BTC/ETH x10, Tesla x5) targeting 6% ROI with a 6% stop loss. Permanent broker execution is executed through BlackBull.
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Industry Standard Financial Disclaimer -->
+        <section class="disclaimer-card">
+            <h4>Financial & Risk Disclaimer</h4>
+            <p>
+                Trading foreign exchange, commodities, indices, and financial instruments carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade, you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial investment; therefore, do not invest money that you cannot afford to lose. All contents, metrics, models, and analytics provided on this platform are for educational and information purposes only and do not constitute financial advice.
+            </p>
         </section>
-
-        <!-- Broker Partner Integration Box -->
-        <div class="broker-box">
-            <div class="broker-info">
-                <h3>Primary Execution Partner</h3>
-                <p>BlackBull Markets serves as the official permanent broker infrastructure for TraderProDXB.</p>
-            </div>
-            <a href="infrastructure.html" class="btn">View Infrastructure</a>
-        </div>
     </div>
 
     <!-- Footer -->
@@ -662,36 +610,6 @@
                 item.classList.toggle('active');
             });
         });
-
-        // Dynamic System Calculator
-        const accBalanceInput = document.getElementById('accBalance');
-        const assetSelect = document.getElementById('assetSelect');
-        const tpVal = document.getElementById('tpVal');
-        const slVal = document.getElementById('slVal');
-        const baseMove = document.getElementById('baseMove');
-        const targetBal = document.getElementById('targetBal');
-
-        function calculateSystem() {
-            const balance = parseFloat(accBalanceInput.value) || 0;
-            const leverage = parseFloat(assetSelect.value) || 1;
-            const roiPercent = 0.06; // 6% Target
-
-            const tpAmount = balance * roiPercent;
-            const slAmount = balance * roiPercent;
-            const requiredMovePercent = (roiPercent / leverage) * 100;
-            const finalBalance = balance + tpAmount;
-
-            tpVal.textContent = '+$' + tpAmount.toFixed(2);
-            slVal.textContent = '-$' + slAmount.toFixed(2);
-            baseMove.textContent = requiredMovePercent.toFixed(2) + '%';
-            targetBal.textContent = '$' + finalBalance.toFixed(2);
-        }
-
-        accBalanceInput.addEventListener('input', calculateSystem);
-        assetSelect.addEventListener('change', calculateSystem);
-
-        // Initial Calculation Run
-        calculateSystem();
     </script>
 </body>
 </html>
