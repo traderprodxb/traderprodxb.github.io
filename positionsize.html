@@ -5,136 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="TraderProDXB Position Sizing Rules and Unified Leverage Parameters.">
     <title>TraderProDXB - Position Size</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-main: #0B0E14;
-            --bg-card: #151922;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --accent-green: #00E676;
-            --accent-green-glow: rgba(0, 230, 118, 0.15);
-            --accent-red: #FF5252;
-            --text-primary: #F0F4F8;
-            --text-secondary: #8E9BAE;
-            --text-muted: #5A6578;
-            --font-sans: 'Inter', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-main); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.6; }
-
-        header { background-color: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
-        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
-        .brand-logo img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; border: 1px solid var(--accent-green); }
-        .nav-right { display: flex; align-items: center; gap: 1rem; }
-        nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; }
-        nav a:hover, nav a.active { color: var(--accent-green); background: rgba(255, 255, 255, 0.03); }
-        .login-btn { background: var(--accent-green); color: #000; font-weight: 600; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 6px; text-decoration: none; }
-
-        .container { max-width: 800px; margin: 3rem auto; padding: 0 1.5rem; }
+        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 20px; font-size: 18px; position: relative; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg'); background-repeat: no-repeat; background-position: center; background-size: 50%; opacity: 0.05; z-index: -1; }
         .logo-container { text-align: center; margin-bottom: 20px; }
-        .logo-container img { max-width: 320px; height: auto; border-radius: 12px; border: 1px solid var(--border-color); }
-
-        h1 { font-family: var(--font-sans); text-align: center; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; font-size: 2.2em; margin-bottom: 25px; letter-spacing: -1px; }
-        .intro { font-style: italic; text-align: center; margin-bottom: 30px; font-size: 1.1em; color: var(--text-secondary); }
-
-        .rule-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px 25px; margin-bottom: 15px; border-radius: 8px; font-size: 1.05em; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s ease; }
-        .rule-card:hover { border-color: rgba(0, 230, 118, 0.3); }
-        .rule-card strong { font-size: 1.2em; color: var(--accent-green); font-family: var(--font-mono); }
-        .rule-details { text-align: right; font-family: var(--font-mono); color: var(--text-primary); }
-
-        footer { border-top: 1px solid var(--border-color); background: #080A0E; padding: 3rem 1.5rem 2rem 1.5rem; margin-top: 5rem; }
-        .footer-inner { max-width: 1000px; margin: 0 auto; }
-        .disclaimer-box { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 2rem; }
-        .disclaimer-title { color: var(--accent-green); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.5rem; }
-        .disclaimer-text { color: var(--text-muted); font-size: 0.75rem; line-height: 1.5; text-align: justify; }
-        .footer-copy { text-align: center; color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); }
-
-        @media (max-width: 600px) { body { font-size: 16px; } .nav-container { flex-direction: column; gap: 1rem; } .nav-right { flex-direction: column; width: 100%; } .logo-container img { max-width: 240px; } h1 { font-size: 1.8em; } .rule-card { flex-direction: column; align-items: flex-start; } .rule-details { text-align: left; margin-top: 8px; } }
+        .logo-container img { max-width: 320px; height: auto; }
+        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 40px; }
+        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 12px; font-size: 1.05em; font-weight: bold; transition: color 0.3s; display: inline-block; padding: 5px 0; }
+        nav a:hover { color: #8b0000; }
+        main { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.4); padding: 35px; border-radius: 5px; }
+        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.4em; margin-bottom: 25px; }
+        .intro { font-style: italic; text-align: center; margin-bottom: 30px; font-size: 1.2em; }
+        .rule-card { background: rgba(255, 255, 255, 0.6); border: 1px solid #1a1a1a; padding: 20px 25px; margin-bottom: 15px; border-radius: 3px; font-size: 1.1em; display: flex; justify-content: space-between; align-items: center; }
+        .rule-card strong { font-family: 'Georgia', serif; font-size: 1.2em; color: #8b0000; }
+        .rule-details { text-align: right; }
+        @media (max-width: 600px) { body { font-size: 20px; padding: 10px; } main { padding: 20px; } .logo-container img { max-width: 240px; } nav a { display: block; margin: 8px 0; font-size: 1.2em; } h1 { font-size: 2em; } .rule-card { flex-direction: column; align-items: flex-start; } .rule-details { text-align: left; margin-top: 8px; } }
     </style>
 </head>
 <body>
-    <header>
-        <div class="nav-container">
-            <a href="index.html" class="brand-logo">
-                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-                TraderProDXB
-            </a>
-            <div class="nav-right">
-                <nav>
-                    <a href="index.html">Home</a>
-                    <a href="blueprint.html">Blueprint</a>
-                    <a href="infrastructure.html">Infrastructure</a>
-                    <a href="journey.html">Journey</a>
-                    <a href="track-record.html">Track Record</a>
-                    <a href="reflections.html">Reflections</a>
-                    <a href="positionsize.html" class="active">Position Size</a>
-                    <a href="faq.html">FAQ</a>
-                </nav>
-                <a href="#login" class="login-btn">Login</a>
-            </div>
-        </div>
-    </header>
-
-    <main class="container">
-        <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-        </div>
-
+    <div class="logo-container"><img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo"></div>
+    <nav>
+        <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="faq.html">FAQ</a>
+    </nav>
+    <main>
         <h1>Position Sizing Rules</h1>
         <p class="intro">The systematic architecture defining leverage and target distance parameters for each ticker to consistently secure a 6% ROI target.</p>
         
         <div class="rule-card">
             <div><strong>USTech</strong></div>
-            <div class="rule-details">Leverage: x25 | Target Distance: $125 / Index</div>
+            <div class="rule-details">Leverage: x25 | Target Distance: 150 points</div>
         </div>
         <div class="rule-card">
             <div><strong>XAUUSD</strong></div>
-            <div class="rule-details">Leverage: x25 | Target Distance: $25 / 0.01 Lot</div>
+            <div class="rule-details">Leverage: x25 | Target Distance: 15 points</div>
         </div>
         <div class="rule-card">
             <div><strong>WTI (XTIUSD)</strong></div>
-            <div class="rule-details">Leverage: x10 | Target Distance: $1 / Barrel</div>
+            <div class="rule-details">Leverage: x10 | Target Distance: 1.5 barrels</div>
         </div>
         <div class="rule-card">
             <div><strong>EURUSD</strong></div>
-            <div class="rule-details">Leverage: x40 | Target Distance: 10 Pips</div>
+            <div class="rule-details">Leverage: x40 | Target Distance: 0.0030 lots</div>
         </div>
         <div class="rule-card">
             <div><strong>USDJPY</strong></div>
-            <div class="rule-details">Leverage: x40 | Target Distance: 17 Pips</div>
+            <div class="rule-details">Leverage: x40 | Target Distance: 0.50 lots</div>
         </div>
         <div class="rule-card">
             <div><strong>BTCUSD</strong></div>
-            <div class="rule-details">Leverage: x10 | Target Distance: $500 / Coin</div>
+            <div class="rule-details">Leverage: x10 | Target Distance: 500 coins</div>
         </div>
         <div class="rule-card">
             <div><strong>ETHUSD</strong></div>
-            <div class="rule-details">Leverage: x10 | Target Distance: $25 / Coin</div>
+            <div class="rule-details">Leverage: x10 | Target Distance: 25 coins</div>
         </div>
         <div class="rule-card">
             <div><strong>Tesla</strong></div>
-            <div class="rule-details">Leverage: x5 | Target Distance: $5 / Share</div>
+            <div class="rule-details">Leverage: x5 | Target Distance: 5 shares</div>
         </div>
     </main>
-
-    <footer>
-        <div class="footer-inner">
-            <div class="disclaimer-box">
-                <div class="disclaimer-title">Financial Risk & General Disclaimer</div>
-                <div class="disclaimer-text">
-                    Trading leveraged derivatives, Leveraged Foreign Exchange (Forex), Contracts for Difference (CFDs), Commodities, Cryptocurrencies, and Equities carries a high level of risk to your capital and may not be suitable for all investors. Leveraged products can result in losses that exceed your initial deposit. Before engaging in financial trading, you should fully understand the risks involved, take into consideration your investment objectives, level of experience, and risk appetite, and seek independent financial advice if necessary. The content, calculations, models, and position sizing guidelines published on TraderProDXB are provided strictly for educational, informational, and personal analytical purposes only and do not constitute financial, investment, legal, or tax advice, nor a solicitation or offer to buy or sell any financial instrument. Past performance and systematic model simulations are not indicative of future results. TraderProDXB is an independent informational platform and is not affiliated with, endorsed by, or acting as an agent for any brokerage firm or financial entity mentioned herein.
-                </div>
-            </div>
-            <div class="footer-copy">
-                &copy; 2026 TraderProDXB. Machine-Like Discipline. All Rights Reserved.
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
