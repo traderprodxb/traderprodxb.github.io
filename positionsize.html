@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Position Sizing Calculator with Unified Leverage Rules.">
+    <meta name="description" content="TraderProDXB Position Sizing Rules and Unified Leverage Parameters.">
     <title>TraderProDXB - Position Size</title>
     <style>
         body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 20px; font-size: 18px; position: relative; }
@@ -13,13 +13,13 @@
         nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 40px; }
         nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 12px; font-size: 1.05em; font-weight: bold; transition: color 0.3s; display: inline-block; padding: 5px 0; }
         nav a:hover { color: #8b0000; }
-        main { max-width: 650px; margin: auto; background: rgba(255, 255, 255, 0.5); padding: 35px; border: 1px solid #1a1a1a; border-radius: 5px; }
-        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.2em; margin-bottom: 25px; }
-        label { display: block; margin-top: 20px; margin-bottom: 8px; font-weight: bold; font-size: 1.1em; }
-        input, select { padding: 14px; width: 100%; margin-bottom: 12px; border: 1px solid #1a1a1a; background: #f4efe4; box-sizing: border-box; font-family: inherit; font-size: 1.1em; }
-        #results { margin-top: 30px; border-top: 2px solid #1a1a1a; padding-top: 25px; font-size: 1.1em; }
-        .result-row { padding: 12px 0; font-size: 1.15em; border-bottom: 1px solid rgba(26,26,26,0.1); }
-        @media (max-width: 600px) { body { font-size: 20px; padding: 10px; } main { padding: 20px; } .logo-container img { max-width: 240px; } nav a { display: block; margin: 8px 0; font-size: 1.2em; } h1 { font-size: 1.8em; } }
+        main { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.4); padding: 35px; border-radius: 5px; }
+        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.4em; margin-bottom: 25px; }
+        .intro { font-style: italic; text-align: center; margin-bottom: 30px; font-size: 1.2em; }
+        .rule-card { background: rgba(255, 255, 255, 0.6); border: 1px solid #1a1a1a; padding: 20px 25px; margin-bottom: 15px; border-radius: 3px; font-size: 1.1em; display: flex; justify-content: space-between; align-items: center; }
+        .rule-card strong { font-family: 'Georgia', serif; font-size: 1.2em; color: #8b0000; }
+        .rule-details { text-align: right; }
+        @media (max-width: 600px) { body { font-size: 20px; padding: 10px; } main { padding: 20px; } .logo-container img { max-width: 240px; } nav a { display: block; margin: 8px 0; font-size: 1.2em; } h1 { font-size: 2em; } .rule-card { flex-direction: column; align-items: flex-start; } .rule-details { text-align: left; margin-top: 8px; } }
     </style>
 </head>
 <body>
@@ -28,59 +28,41 @@
         <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="faq.html">FAQ</a>
     </nav>
     <main>
-        <h1>Compounding Calculator</h1>
+        <h1>Position Sizing Rules</h1>
+        <p class="intro">The systematic architecture defining leverage and target distance parameters for each ticker to consistently secure a 6% ROI target.</p>
         
-        <label>Account Balance ($):</label>
-        <input type="number" id="balanceInput" value="400" oninput="calculate()">
-
-        <label>Current Entry Price (for TP/SL calculation):</label>
-        <input type="number" id="entryInput" placeholder="Enter market price (e.g. 18000)" step="any" oninput="calculate()">
-
-        <div id="results"></div>
-
-        <script>
-            function calculate() {
-                const balance = parseFloat(document.getElementById('balanceInput').value) || 0;
-                const entry = parseFloat(document.getElementById('entryInput').value) || 0;
-                
-                // Target Profit in $ is strictly 6% ROI of the current balance
-                const targetProfitUSD = balance * 0.06;
-
-                const assets = [
-                    { name: 'USTech (x25)', lev: 25, dist: 150, step: 0.1, unit: 'Lot' },
-                    { name: 'XAUUSD (x25)', lev: 25, dist: 15, step: 0.01, unit: 'Lot' },
-                    { name: 'WTI (XTIUSD) (x10)', lev: 10, dist: 1.5, step: 0.1, unit: 'Barrel' },
-                    { name: 'EURUSD (x40)', lev: 40, dist: 0.0030, step: 0.01, unit: 'Lot' },
-                    { name: 'USDJPY (x40)', lev: 40, dist: 0.50, step: 0.01, unit: 'Lot' },
-                    { name: 'BTCUSD (x10)', lev: 10, dist: 500, step: 0.1, unit: 'Coin' },
-                    { name: 'ETHUSD (x10)', lev: 10, dist: 25, step: 0.1, unit: 'Coin' },
-                    { name: 'Tesla (x5)', lev: 5, dist: 5, step: 0.1, unit: 'Share' }
-                ];
-
-                let html = `<strong>Target Profit (6% ROI): $${targetProfitUSD.toFixed(2)} | Stop Loss: 6%</strong><br><br>`;
-                
-                if (entry <= 0) {
-                    html += `<div style="color: #8b0000; font-style: italic;">Enter an entry price above to calculate precise TP, SL, and Dynamic Sizes.</div>`;
-                }
-
-                assets.forEach(a => {
-                    let rawSize = targetProfitUSD / a.dist;
-                    let size = Math.round(rawSize / a.step) * a.step;
-                    if (size < a.step) size = a.step;
-
-                    let tp = entry > 0 ? (entry + a.dist).toFixed(2) : '---';
-                    let sl = entry > 0 ? (entry - a.dist).toFixed(2) : '---';
-
-                    html += `<div class="result-row">
-                        <strong>${a.name}</strong>: ${size.toFixed(2)} ${a.unit}<br>
-                        <span style="font-size: 0.9em; color: #555;">TP: ${tp} | SL: ${sl}</span>
-                    </div>`;
-                });
-
-                document.getElementById('results').innerHTML = html;
-            }
-            calculate();
-        </script>
+        <div class="rule-card">
+            <div><strong>USTech</strong></div>
+            <div class="rule-details">Leverage: x25 | Target Distance: 150 points</div>
+        </div>
+        <div class="rule-card">
+            <div><strong>XAUUSD</strong></div>
+            <div class="rule-details">Leverage: x25 | Target Distance: 15 points</div>
+        </div>
+        <div class="rule-card">
+            <div><strong>WTI (XTIUSD)</strong></div>
+            <div class="rule-details">Leverage: x10 | Target Distance: 1.5 barrels</div>
+        </div>
+        <div class="rule-card">
+            <div><strong>EURUSD</strong></div>
+            <div class="rule-details">Leverage: x40 | Target Distance: 0.0030 lots</div>
+        </div>
+        <div class="rule-card">
+            <div><strong>USDJPY</strong></div>
+            <div class="rule-details">Leverage: x40 | Target Distance: 0.50 lots</div>
+        </div>
+        <div class="rule-card">
+            <div><strong>BTCUSD</strong></div>
+            <div class="rule-details">Leverage: x10 | Target Distance: 500 coins</div>
+        </div>
+        <div class="rule-card">
+            <div><strong>ETHUSD</strong></div>
+            <div class="rule-details">Leverage: x10 | Target Distance: 25 coins</div>
+        </div>
+        <div class="rule-card">
+            <div><strong>Tesla</strong></div>
+            <div class="rule-details">Leverage: x5 | Target Distance: 5 shares</div>
+        </div>
     </main>
 </body>
 </html>
