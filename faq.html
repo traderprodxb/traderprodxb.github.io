@@ -3,76 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB FAQ - Frequently Asked Questions about the Compounding System.">
+    <meta name="description" content="TraderProDXB FAQ - Frequently Asked Questions.">
     <title>TraderProDXB - FAQ</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-main: #0B0E14; --bg-card: #151922; --border-color: rgba(255, 255, 255, 0.08);
-            --accent-green: #00E676; --text-primary: #F0F4F8; --text-secondary: #8E9BAE; --text-muted: #5A6578;
-            --font-sans: 'Inter', sans-serif; --font-mono: 'JetBrains Mono', monospace;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-main); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.6; padding-bottom: 60px; }
-        header { background-color: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
-        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 1.25rem; }
-        .brand-logo img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; border: 1px solid var(--accent-green); }
-        nav { display: flex; gap: 1rem; flex-wrap: wrap; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s ease; }
-        nav a:hover, nav a.active { color: var(--accent-green); background: rgba(255, 255, 255, 0.03); }
-        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
-        .hero { text-align: center; padding: 3rem 1rem; border-bottom: 1px solid var(--border-color); margin-bottom: 3rem; }
-        .hero h1 { font-size: 2.75rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(180deg, #FFFFFF 0%, #A0AEC0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: var(--text-secondary); max-width: 680px; margin: 0 auto; font-size: 1.1rem; }
-        .content-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
-        .content-card h2 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-primary); }
-        .content-card p { color: var(--text-secondary); font-size: 1rem; }
-        footer { border-top: 1px solid var(--border-color); padding: 2rem 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
-        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .nav-container { flex-direction: column; gap: 1rem; } }
+        body { font-family: 'Times New Roman', Times, serif; background-color: #f4efe4; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 20px; font-size: 18px; position: relative; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg'); background-repeat: no-repeat; background-position: center; background-size: 50%; opacity: 0.05; z-index: -1; }
+        .logo-container { text-align: center; margin-bottom: 20px; }
+        .logo-container img { max-width: 320px; height: auto; }
+        nav { border-top: 4px solid #1a1a1a; border-bottom: 2px solid #1a1a1a; padding: 15px 0; text-align: center; margin-bottom: 40px; }
+        nav a { color: #1a1a1a; text-decoration: none; text-transform: uppercase; margin: 0 12px; font-size: 1.05em; font-weight: bold; transition: color 0.3s; display: inline-block; padding: 5px 0; }
+        nav a:hover { color: #8b0000; }
+        main { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.4); padding: 35px; border-radius: 5px; }
+        h1 { font-family: 'Georgia', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 15px; font-size: 2.4em; margin-bottom: 30px; }
+        .faq-item { margin-bottom: 30px; border-bottom: 1px solid #dcdcdc; padding-bottom: 20px; }
+        .faq-item h3 { margin-bottom: 10px; font-size: 1.3em; color: #8b0000; }
+        .faq-item p { margin: 0; font-size: 1.1em; }
+        @media (max-width: 600px) { body { font-size: 20px; padding: 10px; } main { padding: 20px; } .logo-container img { max-width: 240px; } nav a { display: block; margin: 8px 0; font-size: 1.2em; } h1 { font-size: 2em; } }
     </style>
 </head>
 <body>
-    <header>
-        <div class="nav-container">
-            <a href="index.html" class="brand-logo">
-                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-                TraderProDXB
-            </a>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="blueprint.html">Blueprint</a>
-                <a href="infrastructure.html">Infrastructure</a>
-                <a href="journey.html">Journey</a>
-                <a href="track-record.html">Track Record</a>
-                <a href="reflections.html">Reflections</a>
-                <a href="positionsize.html">Position Size</a>
-                <a href="faq.html" class="active">FAQ</a>
-            </nav>
+    <div class="logo-container"><img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo"></div>
+    <nav>
+        <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="faq.html">FAQ</a>
+    </nav>
+    <main>
+        <h1>Frequently Asked Questions</h1>
+        
+        <div class="faq-item">
+            <h3>What is the ultimate TraderProDXB goal?</h3>
+            <p>To reach $4,000,000 through disciplined compounding and systematic, machine-like trading.</p>
         </div>
-    </header>
-
-    <div class="container">
-        <section class="hero">
-            <h1>Frequently Asked Questions</h1>
-            <p>Answers regarding the TraderProDXB Compounding System and institutional rules.</p>
-        </section>
-
-        <div class="content-card">
-            <h2>What is the target ROI per trade?</h2>
-            <p>Every single trade targets a strict 6% ROI, backed by a matching 6% Stop Loss to maintain strict risk symmetry.</p>
+        <div class="faq-item">
+            <h3>What is the core compounding strategy?</h3>
+            <p>Targeting a strict 6% ROI per trade across 5 trades daily, with all profits reinvested to fuel exponential growth via the compounding sequence.</p>
         </div>
-
-        <div class="content-card">
-            <h2>Which broker is used for execution?</h2>
-            <p>BlackBull Markets serves as the official permanent broker infrastructure for all systematic trades.</p>
+        <div class="faq-item">
+            <h3>How do you achieve 6% ROI?</h3>
+            <p>By utilizing unified leverage rules (USTech x25, XAUUSD x25, WTI x10, EURUSD/USDJPY x40, BTC/ETH x10, Tesla x5), we target precise price movements that yield our target ROI.</p>
         </div>
-    </div>
-
-    <footer>
-        <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
-    </footer>
+        <div class="faq-item">
+            <h3>What is the risk management rule?</h3>
+            <p>A strict 6% Stop Loss (SL) is enforced on every trade, limiting base price movement against the position to 1.5%.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Why BlackBull Markets?</h3>
+            <p>BlackBull serves as the permanent, institutional-grade broker providing execution speeds and liquidity required for our systematic approach.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Is this speculative gambling?</h3>
+            <p>No. It is a rigorous, math-based process. We operate as a machine, following a pre-set plan regardless of market sentiment or hype.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How do you manage potential drawdowns?</h3>
+            <p>Through the 18% circuit breaker rule and strict adherence to the compounding schedule, ensuring we never overexpose the equity.</p>
+        </div>
+    </main>
 </body>
 </html>
