@@ -17,6 +17,7 @@
             --border-color: rgba(255, 255, 255, 0.08);
             --accent-green: #00E676;
             --accent-green-glow: rgba(0, 230, 118, 0.15);
+            --accent-red: #FF5252;
             --text-primary: #F0F4F8;
             --text-secondary: #8E9BAE;
             --text-muted: #5A6578;
@@ -248,6 +249,29 @@
             box-shadow: 0 4px 14px rgba(0, 230, 118, 0.2);
         }
 
+        /* Financial Disclaimer */
+        .disclaimer-card {
+            background: rgba(255, 82, 82, 0.03);
+            border: 1px solid rgba(255, 82, 82, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .disclaimer-card h4 {
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer-card p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
@@ -378,6 +402,14 @@
                 </a>
             </div>
         </div>
+
+        <!-- Financial Disclaimer -->
+        <section class="disclaimer-card">
+            <h4>Financial & Risk Disclaimer</h4>
+            <p>
+                Trading foreign exchange, commodities, indices, and financial instruments carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade, you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial investment; therefore, do not invest money that you cannot afford to lose. All contents, metrics, models, and analytics provided on this platform are for educational and information purposes only and do not constitute financial advice.
+            </p>
+        </section>
     </div>
 
     <!-- Footer -->
