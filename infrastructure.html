@@ -132,7 +132,7 @@
         .infra-grid {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 2.5rem;
             margin-bottom: 3rem;
         }
 
@@ -140,7 +140,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
             transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
             position: relative;
@@ -156,17 +156,25 @@
             transform: translateY(-2px);
         }
 
-        .broker-logo-wrap {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
-            margin-bottom: 1.25rem;
+        .broker-logo-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 120px;
-            height: 120px;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            width: 160px;
+            height: 160px;
+            transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+        }
+
+        .broker-logo-link:hover {
+            border-color: var(--accent-green);
+            background: var(--accent-green-glow);
+            transform: scale(1.03);
         }
 
         .broker-logo {
@@ -211,6 +219,29 @@
             box-shadow: 0 6px 20px rgba(0, 230, 118, 0.3);
         }
 
+        /* Disclaimer Section */
+        .disclaimer-card {
+            background: rgba(255, 82, 82, 0.03);
+            border: 1px solid rgba(255, 82, 82, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .disclaimer-card h4 {
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer-card p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
@@ -224,6 +255,7 @@
             .page-header h1 { font-size: 2rem; }
             .nav-container { flex-direction: column; gap: 1rem; }
             .infra-card { padding: 1.5rem; }
+            .broker-logo-link { width: 130px; height: 130px; }
         }
     </style>
 </head>
@@ -259,32 +291,40 @@
         <!-- Broker Infrastructure Cards -->
         <div class="infra-grid">
             <div class="infra-card">
-                <div class="broker-logo-wrap">
+                <a href="https://ctrader.blackbull.com/?u=uyghurcrypto" class="broker-logo-link" target="_blank">
                     <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/30ca05eb60bafb4b89a54b1ce459955b9bf0733e/BlackBull_BlackBull-Vertical-white-logo-design-1536x1343.png" alt="BlackBull Markets Logo" class="broker-logo">
-                </div>
+                </a>
                 <h2>BlackBull Markets</h2>
                 <p>Our permanent institutional broker, providing low-latency ECN execution, deep multi-asset liquidity, and robust multi-platform stability essential for maintaining clean execution standards across all systematic strategies.</p>
                 <a href="https://ctrader.blackbull.com/?u=uyghurcrypto" class="btn" target="_blank">Access BlackBull</a>
             </div>
 
             <div class="infra-card">
-                <div class="broker-logo-wrap">
+                <a href="https://ct.icmarkets.com/?u=uyghurcrypto" class="broker-logo-link" target="_blank">
                     <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/1b567e08aec31182fbe9e3f1eb132fdddbe18954/images.jpeg" alt="IC Markets Logo" class="broker-logo">
-                </div>
+                </a>
                 <h2>IC Markets</h2>
                 <p>A globally recognized ECN broker known for ultra-low raw spreads, high-frequency matching engines, and deep institutional liquidity feeds optimized for systematic trading frameworks and quantitative execution models.</p>
                 <a href="https://ct.icmarkets.com/?u=uyghurcrypto" class="btn" target="_blank">Access IC Markets</a>
             </div>
 
             <div class="infra-card">
-                <div class="broker-logo-wrap">
+                <a href="https://www.binance.com/register?ref=QTZDOLYM" class="broker-logo-link" target="_blank">
                     <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/30ca05eb60bafb4b89a54b1ce459955b9bf0733e/1778579370-binance-logo.jpg" alt="Binance Logo" class="broker-logo">
-                </div>
+                </a>
                 <h2>Binance</h2>
                 <p>The core digital asset ecosystem utilized for high-liquidity cryptocurrency spot and derivatives allocation, operating under rigid, rule-bound position sizing to protect the portfolio's structural compounding goals.</p>
                 <a href="https://www.binance.com/register?ref=QTZDOLYM" class="btn" target="_blank">Access Binance</a>
             </div>
         </div>
+
+        <!-- Financial Disclaimer -->
+        <section class="disclaimer-card">
+            <h4>Financial & Risk Disclaimer</h4>
+            <p>
+                Trading foreign exchange, commodities, indices, and financial instruments carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade, you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial investment; therefore, do not invest money that you cannot afford to lose. All contents, metrics, models, and analytics provided on this platform are for educational and information purposes only and do not constitute financial advice.
+            </p>
+        </section>
     </div>
 
     <!-- Footer -->
