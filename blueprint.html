@@ -309,6 +309,29 @@
             font-size: 0.95rem;
         }
 
+        /* Disclaimer Section */
+        .disclaimer-card {
+            background: rgba(255, 82, 82, 0.03);
+            border: 1px solid rgba(255, 82, 82, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .disclaimer-card h4 {
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer-card p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
@@ -369,7 +392,7 @@
             </div>
             <div class="rule-card">
                 <span class="rule-number">03</span>
-                <div class="rule-content"><strong>Leverage:</strong> USTech x25, XAUUSD x25, WTI x10, EURUSD x40, USDJPY x40, BTCUSD x10, ETHUSD x10, Tesla x5.</div>
+                <div class="rule-content"><strong>Leverage:</strong> USTech x20, XAUUSD x20, WTI x10, EURUSD x40, USDJPY x40, BTCUSD x10, ETHUSD x10, Tesla x5.</div>
             </div>
             <div class="rule-card">
                 <span class="rule-number">04</span>
@@ -497,19 +520,20 @@
         <h2 class="section-title">Ideal Dubai-Based Day Trader Routine</h2>
         <div class="daily-routine">
             <div class="routine-item"><span class="routine-time">03:15 AM – 03:30 AM</span><span class="routine-desc">Wake up, light physical movement, and shower.</span></div>
-            <div class="routine-item"><span class="routine-time">03:30 AM – 04:00 AM</span><span class="routine-desc">Pre-market analysis.</span></div>
-            <div class="routine-item"><span class="routine-time">04:00 AM – 06:30 AM</span><span class="routine-desc">Tokyo session execution.</span></div>
-            <div class="routine-item"><span class="routine-time">06:30 AM – 07:30 AM</span><span class="routine-desc">Breakfast.</span></div>
-            <div class="routine-item"><span class="routine-time">07:30 AM – 10:45 AM</span><span class="routine-desc">Afternoon session trading.</span></div>
-            <div class="routine-item"><span class="routine-time">10:45 AM – 11:15 AM</span><span class="routine-desc">Workspace declutter and journal logging.</span></div>
-            <div class="routine-item"><span class="routine-time">11:15 AM – 01:15 PM</span><span class="routine-desc">Gym and recovery.</span></div>
-            <div class="routine-item"><span class="routine-time">01:15 PM – 03:30 PM</span><span class="routine-desc">Zuhr prayer, meal prep, and market research.</span></div>
-            <div class="routine-item"><span class="routine-time">03:30 PM – 04:00 PM</span><span class="routine-desc">Pre-market preparation.</span></div>
-            <div class="routine-item"><span class="routine-time">04:00 PM – 08:00 PM</span><span class="routine-desc">London/New York overlap execution.</span></div>
-            <div class="routine-item"><span class="routine-time">08:00 PM – 08:30 PM</span><span class="routine-desc">Final journal entry.</span></div>
-            <div class="routine-item"><span class="routine-time">08:30 PM – 09:15 PM</span><span class="routine-desc">Short walk, Isha prayer, and wind down.</span></div>
-            <div class="routine-item"><span class="routine-time">09:15 PM – 03:15 AM</span><span class="routine-desc">Rest and recharge.</span></div>
+            <div class="routine-item"><span class="routine-time">03:30 AM – 04:00 AM</span><span class="routine-desc">Pre-market analysis and structural planning.</span></div>
+            <div class="routine-item"><span class="routine-time">04:00 AM – 06:30 AM</span><span class="routine-desc">Early trading session execution.</span></div>
+            <div class="routine-item"><span class="routine-time">06:30 AM – 07:30 AM</span><span class="routine-desc">Breakfast and mental rest.</span></div>
+            <div class="routine-item"><span class="routine-time">07:30 AM – 10:45 AM</span><span class="routine-desc">Mid-morning session execution and systematic reviews.</span></div>
+            <div class="routine-item"><span class="routine-time">10:45 AM Onwards</span><span class="routine-desc">Review metrics, disconnect, physical fitness, and life winding.</span></div>
         </div>
+
+        <!-- Financial Disclaimer -->
+        <section class="disclaimer-card">
+            <h4>Financial & Risk Disclaimer</h4>
+            <p>
+                Trading foreign exchange, commodities, indices, and financial instruments carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade, you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial investment; therefore, do not invest money that you cannot afford to lose. All contents, metrics, models, and analytics provided on this platform are for educational and information purposes only and do not constitute financial advice.
+            </p>
+        </section>
     </div>
 
     <!-- Footer -->
@@ -517,11 +541,12 @@
         <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
     </footer>
 
-    <!-- Interactive Scripts -->
+    <!-- Interactive Script -->
     <script>
-        function toggleStage(stageId) {
-            const accordion = document.getElementById(stageId).parentElement;
-            accordion.classList.toggle('active');
+        function toggleStage(id) {
+            const element = document.getElementById(id);
+            const parent = element.parentElement;
+            parent.classList.toggle('active');
         }
     </script>
 </body>
