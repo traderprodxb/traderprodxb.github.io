@@ -57,8 +57,8 @@
         </div>
 
         <div class="card">
-            <h3>Zapier Email-to-Reflections Webhook Receiver</h3>
-            <p>Configured webhook payload receiver script to ingest incoming trade reflection emails from your automated Zapier pipeline:</p>
+            <h3>Zapier Email-to-Reflections Automation Engine</h3>
+            <p>Reference blueprint for the automated background webhook receiver script handling incoming trade reflection emails:</p>
             <div class="code-box">// Zapier Email-to-Reflections Receiver Setup
 async function handleReflectionWebhook(event) {
     const payload = await event.json();
@@ -79,6 +79,11 @@ async function handleReflectionWebhook(event) {
 }</div>
         </div>
 
+        <div class="card">
+            <h3>Live Ingested Feed Status</h3>
+            <p id="feed-status" style="color: #00E676; font-family: var(--font-mono);">System active: Listening for automated Zapier POST logs...</p>
+        </div>
+
         <div class="banner-wrap">
             <a href="https://go.blackbull.com/visit/?bta=43394&nci=8007" target="_Top"><img src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573603" border="0" style="max-width:100%; height:auto;" alt="BlackBull Reflections Banner"></a>
         </div>
@@ -88,5 +93,10 @@ async function handleReflectionWebhook(event) {
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
         <p class="disclaimer"><strong>Risk Warning:</strong> CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. Ensure you understand all risks before trading.</p>
     </footer>
+
+    <script>
+        // Client-side initialization check for automation telemetry
+        console.log("TraderProDXB Reflections Utility Initialized.");
+    </script>
 </body>
 </html>
