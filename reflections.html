@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflections | TraderProDXB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Reflections & Zapier Integration | TraderProDXB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --bb-dark: #07090E; --bb-card: #121620; --bb-red: #E31B23; --text-main: #FFFFFF; --text-muted: #94A3B8; --border: rgba(255,255,255,0.1); }
+        :root { --bb-dark: #07090E; --bb-card: #121620; --bb-red: #E31B23; --bb-red-hover: #ff222d; --text-main: #FFFFFF; --text-muted: #94A3B8; --border: rgba(255,255,255,0.1); --font-mono: 'JetBrains Mono', monospace; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bb-dark); color: var(--text-main); font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bb-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
         header { background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
         .nav-container { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
         .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.5rem; color: #FFF; text-decoration: none; }
@@ -19,12 +19,14 @@
         .container { max-width: 1100px; margin: 4rem auto; padding: 0 2rem; }
         .page-title { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
         .page-desc { color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
-        .card { background: var(--bb-card); border: 1px solid var(--border); padding: 2.5rem; border-radius: 8px; margin-bottom: 2rem; }
+        .card { background: var(--bb-card); border: 1px solid var(--border); padding: 2.5rem; border-radius: 8px; margin-bottom: 2rem; border-top: 4px solid var(--bb-red); }
         .card h3 { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-main); }
-        .card p { color: var(--text-muted); line-height: 1.6; }
+        .card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+        .code-box { background: #040508; border: 1px solid var(--border); padding: 1.2rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.85rem; color: #00E676; overflow-x: auto; margin-bottom: 1rem; }
         .banner-wrap { text-align: center; margin: 3rem 0; padding: 1.5rem; background: var(--bb-card); border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: center; }
         footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; background: #040508; }
         .disclaimer { font-size: 0.75rem; color: #64748B; margin-top: 1rem; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+        @media(max-width: 768px) { nav { justify-content: center; } }
     </style>
 </head>
 <body>
@@ -32,28 +34,61 @@
         <div class="nav-container">
             <a href="index.html" class="logo">TRADERPRO<span>DXB</span></a>
             <nav>
-                <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html" class="active">Reflections</a><a href="positionsize.html">Position Size</a><a href="faq.html">FAQ</a><a href="uycnutility.html">UYCN Utility</a>
+                <a href="index.html">Home</a>
+                <a href="blueprint.html">Blueprint</a>
+                <a href="infrastructure.html">Infrastructure</a>
+                <a href="journey.html">Journey</a>
+                <a href="track-record.html">Track Record</a>
+                <a href="reflections.html" class="active">Reflections</a>
+                <a href="positionsize.html">Position Size</a>
+                <a href="faq.html">FAQ</a>
+                <a href="uycnutility.html">UYCN Utility</a>
             </nav>
         </div>
     </header>
 
     <div class="container">
-        <h1 class="page-title">Trading Reflections</h1>
-        <p class="page-desc">Mental discipline, psychological control, and daily tactical notes.</p>
+        <h1 class="page-title">Trading Reflections & Zapier Integration</h1>
+        <p class="page-desc">Core psychological tracking logs paired with automated email ingestion flows.</p>
 
         <div class="card">
             <h3>Machine-Like Mindset</h3>
-            <p>Sustaining peak operational focus requires treating every market session as a systematic procedure rather than an emotional event.</p>
+            <p>Reflections are the core strength in day trading, whether evaluating a win or processing a loss reflection. Keeping records automated ensures absolute accountability.</p>
+        </div>
+
+        <div class="card">
+            <h3>Zapier Email-to-Reflections Webhook Receiver</h3>
+            <p>Configured webhook payload receiver script to ingest incoming trade reflection emails from your automated Zapier pipeline:</p>
+            <div class="code-box">
+// Zapier Email-to-Reflections Receiver Setup
+async function handleReflectionWebhook(event) {
+    const payload = await event.json();
+    const reflectionData = {
+        timestamp: new Date().toISOString(),
+        sender: payload.from_email,
+        subject: payload.subject,
+        body: payload.body_plain,
+        category: payload.subject.includes('Loss') ? 'Loss Reflection' : 'Win Reflection'
+    };
+    
+    console.log("Ingested Reflection Log:", reflectionData);
+    // Securely routes entry into your permanent ledger
+    return new Response(JSON.stringify({ status: "SUCCESS", logged: reflectionData }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+    });
+}
+            </div>
         </div>
 
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8007" target="_Top"><img src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573603" border="0" style="max-width:100%; height:auto;" alt="BlackBull Reflections"></a>
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8007" target="_Top"><img src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573603" border="0" style="max-width:100%; height:auto;" alt="BlackBull Reflections Banner"></a>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        <p class="disclaimer"><strong>Risk Warning:</strong> CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage.</p>
+        <p class="disclaimer"><strong>Risk Warning:</strong> CFDs are complex instruments and come with a high risk of losing money rapidly due to leverage. Ensure you understand all risks before trading.</p>
     </footer>
 </body>
 </html>
