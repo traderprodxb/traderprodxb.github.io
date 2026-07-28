@@ -3,45 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TraderProDXB - FAQ</title>
-    <link rel="stylesheet" href="style.css">
+    <title>FAQs - TraderProDXB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0B0E14; --bg-card: #151922; --border-color: rgba(255, 255, 255, 0.08);
+            --accent-green: #00E676; --text-primary: #F0F4F8; --text-secondary: #8E9BAE; --text-muted: #5A6578;
+            --font-sans: 'Inter', sans-serif; --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-main); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.6; padding-bottom: 60px; }
+        header { background-color: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 1.25rem; }
+        .brand-logo img { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--accent-green); object-fit: cover; }
+        nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s; }
+        nav a:hover, nav a.active { color: var(--accent-green); background: rgba(255, 255, 255, 0.03); }
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
+        .page-header { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; }
+        .page-header h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .page-header p { color: var(--text-secondary); }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+        .faq-item h3 { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .faq-item p { color: var(--text-secondary); font-size: 0.95rem; }
+        footer { border-top: 1px solid var(--border-color); padding: 2.5rem 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo">TraderProDXB</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="blueprint.html">Blueprint</a>
-            <a href="infrastructure.html">Infrastructure</a>
-            <a href="journey.html">Journey</a>
-            <a href="track-record.html">Track Record</a>
-            <a href="reflections.html">Reflections</a>
-            <a href="positionsize.html">Position Size</a>
-            <a href="FAQs.html" class="active">FAQ</a>
-        </nav>
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="Logo">
+                TraderProDXB
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="blueprint.html">Blueprint</a>
+                <a href="infrastructure.html">Infrastructure</a>
+                <a href="journey.html">Journey</a>
+                <a href="track-record.html">Track Record</a>
+                <a href="reflections.html">Reflections</a>
+                <a href="positionsize.html">Position Size</a>
+                <a href="faqs.html" class="active">FAQs</a>
+            </nav>
+        </div>
     </header>
-
-    <div class="partner-ribbon" style="text-align: center; padding: 10px 0; background: #0b0e14;">
-        <a href="https://go.blackbull.com/visit/?bta=43394&nci=8019" target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573582" width="320" height="50" alt="BlackBull Partner"></a>
+    <div class="container">
+        <div class="page-header">
+            <h1>Frequently Asked Questions</h1>
+            <p>Clear answers regarding system operations and mechanical parameters.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What is the core target for each trade?</h3>
+            <p>Every trade targets a strict 6% ROI with a 6% stop loss (1.5% base move).</p>
+        </div>
+        <div class="faq-item">
+            <h3>Which broker is utilized?</h3>
+            <p>BlackBull Markets serves as the permanent institutional broker.</p>
+        </div>
     </div>
-
-    <main class="container">
-        <h1>Frequently Asked Questions</h1>
-        <p class="subtitle">Clear answers regarding system structure, broker choice, and execution methodology.</p>
-
-        <div class="content-card">
-            <h2>Is TraderProDXB a signal service?</h2>
-            <p>No. It is an unfiltered personal archive documenting a systematic compounding framework for educational and tracking purposes.</p>
-        </div>
-
-        <div class="content-card">
-            <h2>Which broker is used for live execution?</h2>
-            <p>BlackBull is the permanent broker supporting institutional execution, reliable API connectivity, and verified performance reporting.</p>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
-    </footer>
+    <footer><p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p></footer>
 </body>
 </html>
