@@ -3,47 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TraderProDXB - Reflections</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Reflections - TraderProDXB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0B0E14; --bg-card: #151922; --border-color: rgba(255, 255, 255, 0.08);
+            --accent-green: #00E676; --text-primary: #F0F4F8; --text-secondary: #8E9BAE; --text-muted: #5A6578;
+            --font-sans: 'Inter', sans-serif; --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-main); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.6; padding-bottom: 60px; }
+        header { background-color: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 1.25rem; }
+        .brand-logo img { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--accent-green); object-fit: cover; }
+        nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s; }
+        nav a:hover, nav a.active { color: var(--accent-green); background: rgba(255, 255, 255, 0.03); }
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
+        .page-header { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; }
+        .page-header h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .page-header p { color: var(--text-secondary); }
+        .reflection-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; }
+        .reflection-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--accent-green); font-family: var(--font-mono); }
+        .reflection-card p { color: var(--text-secondary); font-size: 0.95rem; }
+        footer { border-top: 1px solid var(--border-color); padding: 2.5rem 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo">TraderProDXB</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="blueprint.html">Blueprint</a>
-            <a href="infrastructure.html">Infrastructure</a>
-            <a href="journey.html">Journey</a>
-            <a href="track-record.html">Track Record</a>
-            <a href="reflections.html" class="active">Reflections</a>
-            <a href="positionsize.html">Position Size</a>
-            <a href="FAQs.html">FAQ</a>
-        </nav>
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="Logo">
+                TraderProDXB
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="blueprint.html">Blueprint</a>
+                <a href="infrastructure.html">Infrastructure</a>
+                <a href="journey.html">Journey</a>
+                <a href="track-record.html">Track Record</a>
+                <a href="reflections.html" class="active">Reflections</a>
+                <a href="positionsize.html">Position Size</a>
+                <a href="faqs.html">FAQs</a>
+            </nav>
+        </div>
     </header>
-
-    <div class="partner-ribbon" style="text-align: center; padding: 10px 0; background: #0b0e14;">
-        <a href="https://go.blackbull.com/visit/?bta=43394&nci=8019" target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573582" width="320" height="50" alt="BlackBull Partner"></a>
+    <div class="container">
+        <div class="page-header">
+            <h1>Psychological Reflections</h1>
+            <p>Notes on mental fortitude, emotional control, and maintaining a machine-like mindset.</p>
+        </div>
+        <div class="reflection-card">
+            <h3>Discipline Over Emotion</h3>
+            <p>The market tests human resilience constantly. True consistency emerges only when decisions are divorced from emotional reactions and bound entirely to pre-engineered mathematical limits.</p>
+        </div>
     </div>
-
-    <main class="container">
-        <h1>Reflections & Psychological Notes</h1>
-        <p class="subtitle">Documenting the mental state, physiological responses, and psychological endurance of mechanical day trading.</p>
-
-        <section class="reflection-entry">
-            <h2>Mon Jul 27, 2026 | Win and Loss Streaks</h2>
-            <p><strong>TraderProDXB:</strong> Is it normal to feel an intense rush of relief or ease in the brain when a losing streak reverses, and physical tension or head contractions during losses?</p>
-            <p><strong>Gemini AI:</strong> Yes, this is completely normal in day trading. When you experience a losing streak, your nervous system triggers a localized threat response, releasing cortisol and adrenaline which often manifests physically as tension, scalp tightening, or head contractions. The brain interprets consecutive losses as a survival threat to resources.</p>
-            <p>Conversely, when a losing streak breaks and a win occurs, there is an immediate surge of dopamine and a massive parasympathetic nervous system discharge—the "rush of relief" or mental decompression. Awareness of these physiological cycles is the key to maintaining machine-like discipline and preventing emotional overrides.</p>
-        </section>
-
-        <section class="reflection-entry">
-            <h2>Systemic Stability Over Emotional Urges</h2>
-            <p>The transition from erratic manual trading to a deterministic compounding system requires constant vigilance against the urge to seek home runs. True professional consistency stems from treating every position with identical mathematical weight, strictly adhering to the 6% ROI target and 6% Stop Loss parameters.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
-    </footer>
+    <footer><p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p></footer>
 </body>
 </html>
