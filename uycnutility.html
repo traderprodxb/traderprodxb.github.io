@@ -112,7 +112,7 @@
             margin-top: 4px;
         }
 
-        /* Navigation Scroll Wrapper & Dynamic Cues (Top-Right Alignment) */
+        /* Original Scrollable Pill Navigation Track */
         .nav-wrapper {
             position: relative;
             display: flex;
@@ -127,7 +127,6 @@
             border-radius: 40px;
         }
 
-        /* Gradient Mask Indicators for Hidden Scrollable Content */
         .nav-wrapper::before,
         .nav-wrapper::after {
             content: '';
@@ -155,7 +154,6 @@
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
         .nav-wrapper.can-scroll-right::after { opacity: 1; }
 
-        /* Directional Arrow Controls */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -193,7 +191,6 @@
             visibility: visible;
         }
 
-        /* Nav Track */
         nav {
             display: flex;
             align-items: center;
@@ -451,17 +448,12 @@
         }
 
         .accordion-header {
-            width: 100%;
             padding: 1.25rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             user-select: none;
-            background: none;
-            border: none;
-            color: inherit;
-            text-align: left;
         }
 
         .accordion-header h3 {
@@ -607,7 +599,7 @@
                 </div>
             </a>
             
-            <!-- Top-Right Scrollable Pill Navigation -->
+            <!-- Original Scrollable Pill Navigation Header -->
             <div class="nav-wrapper" id="navWrapper">
                 <button class="nav-arrow left" id="scrollLeft" aria-label="Scroll Left">&#10094;</button>
                 <nav id="navContainer">
@@ -672,7 +664,7 @@
             <a href="https://pump.fun/coin/7QWSgibL7zwxYPgNWFGkVwjaRXoDRb7smvNhjwNKUM9J" target="_blank" rel="noopener" class="cta-btn">View on Pump.fun</a>
         </section>
 
-        <!-- Official Manifesto Accordion Section -->
+        <!-- Official Manifesto Section -->
         <section>
             <div class="section-header">
                 <h2>Ecosystem Architecture & Use Cases</h2>
@@ -680,11 +672,11 @@
             </div>
             <div class="accordion-group">
                 <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false" aria-controls="acc-body-1">
+                    <div class="accordion-header">
                         <h3>1. Token of Appreciation</h3>
                         <span class="icon">▼</span>
-                    </button>
-                    <div class="accordion-content" id="acc-body-1">
+                    </div>
+                    <div class="accordion-content">
                         <div class="accordion-body">
                             Support the continuous development, documentation, and maintenance of the TraderProDXB platform and its public infrastructure tools.
                         </div>
@@ -692,11 +684,11 @@
                 </div>
 
                 <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false" aria-controls="acc-body-2">
+                    <div class="accordion-header">
                         <h3>2. Ecosystem Access & Modules</h3>
                         <span class="icon">▼</span>
-                    </button>
-                    <div class="accordion-content" id="acc-body-2">
+                    </div>
+                    <div class="accordion-content">
                         <div class="accordion-body">
                             Unlock future community features, specialized trading logs, and interactive modules as the TraderProDXB ecosystem expands.
                         </div>
@@ -704,11 +696,11 @@
                 </div>
 
                 <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false" aria-controls="acc-body-3">
+                    <div class="accordion-header">
                         <h3>3. Community Milestone Tracking</h3>
                         <span class="icon">▼</span>
-                    </button>
-                    <div class="accordion-content" id="acc-body-3">
+                    </div>
+                    <div class="accordion-content">
                         <div class="accordion-body">
                             Act as a decentralized reflection of community participation alongside our core compounding goals toward $4,000,000.
                         </div>
@@ -744,7 +736,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             /* -------------------------------------------------------------
-             * 1. Navigation Scroll Logic
+             * 1. Navigation Scroll Cue Logic
              * ----------------------------------------------------------- */
             const navWrapper = document.getElementById("navWrapper");
             const navContainer = document.getElementById("navContainer");
@@ -756,8 +748,10 @@
                 const canScrollLeft = navContainer.scrollLeft > 5;
                 const canScrollRight = navContainer.scrollLeft < (navContainer.scrollWidth - navContainer.clientWidth - 5);
 
-                navWrapper.classList.toggle("can-scroll-left", canScrollLeft);
-                navWrapper.classList.toggle("can-scroll-right", canScrollRight);
+                if (navWrapper) {
+                    navWrapper.classList.toggle("can-scroll-left", canScrollLeft);
+                    navWrapper.classList.toggle("can-scroll-right", canScrollRight);
+                }
             }
 
             if (navContainer && scrollLeftBtn && scrollRightBtn) {
@@ -784,17 +778,14 @@
                     const accordionItem = header.parentElement;
                     const isActive = accordionItem.classList.contains("active");
 
-                    // Close all active items
+                    // Close active accordions
                     document.querySelectorAll(".accordion-item").forEach(item => {
                         item.classList.remove("active");
-                        const btn = item.querySelector(".accordion-header");
-                        if (btn) btn.setAttribute("aria-expanded", "false");
                     });
 
-                    // Toggle clicked item
+                    // Open clicked item if closed
                     if (!isActive) {
                         accordionItem.classList.add("active");
-                        header.setAttribute("aria-expanded", "true");
                     }
                 });
             });
@@ -894,7 +885,7 @@
                 }
             }
 
-            // Initial fetch and 30s loop
+            // Initial fetch and 30s polling
             fetchUYCNMetrics();
             setInterval(fetchUYCNMetrics, UYCN_CONFIG.refreshIntervalMs);
         });
