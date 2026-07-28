@@ -98,6 +98,21 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
+        /* Partner Header Banner Ribbon ($320x50) */
+        .partner-ribbon {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.5rem 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .partner-ribbon img {
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+        }
+
         /* Layout Container */
         .container {
             max-width: 1100px;
@@ -373,6 +388,11 @@
         </div>
     </header>
 
+    <!-- Partner Banner Ribbon ($320x50) -->
+    <div class="partner-ribbon">
+        <a href="https://go.blackbull.com/visit/?bta=43394&nci=8019" target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573582" width="320" height="50" alt="BlackBull Partner Banner"></a>
+    </div>
+
     <div class="container">
         <!-- Page Header -->
         <div class="page-header">
@@ -520,11 +540,6 @@
         <h2 class="section-title">Ideal Dubai-Based Day Trader Routine</h2>
         <div class="daily-routine">
             <div class="routine-item"><span class="routine-time">03:15 AM – 03:30 AM</span><span class="routine-desc">Wake up, light physical movement, and shower.</span></div>
-            <div class="routine-item"><span class="routine-time">03:30 AM – 04:00 AM</span><span class="routine-desc">Pre-market analysis and structural planning.</span></div>
-            <div class="routine-item"><span class="routine-time">04:00 AM – 06:30 AM</span><span class="routine-desc">Early trading session execution.</span></div>
-            <div class="routine-item"><span class="routine-time">06:30 AM – 07:30 AM</span><span class="routine-desc">Breakfast and mental rest.</span></div>
-            <div class="routine-item"><span class="routine-time">07:30 AM – 10:45 AM</span><span class="routine-desc">Mid-morning session execution and systematic reviews.</span></div>
-            <div class="routine-item"><span class="routine-time">10:45 AM Onwards</span><span class="routine-desc">Review metrics, disconnect, physical fitness, and life winding.</span></div>
         </div>
 
         <!-- Financial Disclaimer -->
@@ -541,12 +556,12 @@
         <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
     </footer>
 
-    <!-- Interactive Script -->
+    <!-- Interactive Scripts -->
     <script>
-        function toggleStage(id) {
-            const element = document.getElementById(id);
-            const parent = element.parentElement;
-            parent.classList.toggle('active');
+        function toggleStage(stageId) {
+            const element = document.getElementById(stageId);
+            const accordion = element.parentElement;
+            accordion.classList.toggle('active');
         }
     </script>
 </body>
