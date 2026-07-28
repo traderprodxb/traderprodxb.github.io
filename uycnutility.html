@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bb-dark: #07090E;
@@ -291,6 +292,45 @@
             font-weight: 600;
         }
 
+        /* Live DexScreener Metrics Bar */
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .metric-card:hover {
+            border-color: rgba(227, 27, 35, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .metric-label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .metric-value {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
         /* Brand Narrative Feature Box */
         .brand-narrative {
             position: relative;
@@ -316,16 +356,44 @@
             line-height: 1.6;
         }
 
-        .token-ca-box {
+        /* Interactive Contract Address Box */
+        .token-ca-wrapper {
             background: var(--bb-dark);
             border: 1px solid var(--border);
-            padding: 1.2rem;
+            padding: 1rem 1.2rem;
             border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .token-ca-text {
             font-family: var(--font-mono);
             font-size: 0.85rem;
             color: var(--bb-red);
             word-break: break-all;
-            margin-bottom: 1.5rem;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: var(--bb-red);
+            border-color: var(--bb-red);
+            color: #FFF;
         }
 
         .cta-btn {
@@ -383,12 +451,17 @@
         }
 
         .accordion-header {
+            width: 100%;
             padding: 1.25rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             user-select: none;
+            background: none;
+            border: none;
+            color: inherit;
+            text-align: left;
         }
 
         .accordion-header h3 {
@@ -450,6 +523,13 @@
             justify-content: center;
             overflow-x: auto;
             padding: 0.5rem;
+        }
+
+        .banner-wrap img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid var(--border);
         }
 
         /* Disclaimer Section */
@@ -559,17 +639,40 @@
             </div>
         </section>
 
+        <!-- Live DexScreener Metrics Bar -->
+        <div class="metrics-bar">
+            <div class="metric-card">
+                <span class="metric-label">Token Price</span>
+                <span class="metric-value" id="uycn-price">Loading...</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Market Cap</span>
+                <span class="metric-value" id="uycn-mcap">Loading...</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">24h Volume</span>
+                <span class="metric-value" id="uycn-volume">Loading...</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">24h Change</span>
+                <span class="metric-value" id="uycn-change">--</span>
+            </div>
+        </div>
+
         <!-- Brand Narrative Section -->
         <section class="brand-narrative">
             <h2>The Vision Behind UYCN</h2>
             <p>TraderProDXB is built on machine-like discipline, absolute transparency, and a systemic compounding journey. UYCN was created not as a speculative gimmick, but as a digital token of appreciation representing shared alignment for visitors who find genuine value in our transparent records and institutional framework.</p>
-            <div class="token-ca-box">
-                CA: 7QWSgibL7zwxYPgNWFGkVwjaRXoDRb7smvNhjwNKUM9J
+            
+            <div class="token-ca-wrapper">
+                <span class="token-ca-text" id="caText">CA: 7QWSgibL7zwxYPgNWFGkVwjaRXoDRb7smvNhjwNKUM9J</span>
+                <button class="copy-btn" id="copyCaBtn">Copy CA</button>
             </div>
-            <a href="https://pump.fun/coin/7QWSgibL7zwxYPgNWFGkVwjaRXoDRb7smvNhjwNKUM9J" target="_blank" class="cta-btn">View on Pump.fun</a>
+            
+            <a href="https://pump.fun/coin/7QWSgibL7zwxYPgNWFGkVwjaRXoDRb7smvNhjwNKUM9J" target="_blank" rel="noopener" class="cta-btn">View on Pump.fun</a>
         </section>
 
-        <!-- Official Manifesto Section -->
+        <!-- Official Manifesto Accordion Section -->
         <section>
             <div class="section-header">
                 <h2>Ecosystem Architecture & Use Cases</h2>
@@ -577,11 +680,11 @@
             </div>
             <div class="accordion-group">
                 <div class="accordion-item">
-                    <div class="accordion-header">
+                    <button class="accordion-header" aria-expanded="false" aria-controls="acc-body-1">
                         <h3>1. Token of Appreciation</h3>
                         <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
+                    </button>
+                    <div class="accordion-content" id="acc-body-1">
                         <div class="accordion-body">
                             Support the continuous development, documentation, and maintenance of the TraderProDXB platform and its public infrastructure tools.
                         </div>
@@ -589,11 +692,11 @@
                 </div>
 
                 <div class="accordion-item">
-                    <div class="accordion-header">
+                    <button class="accordion-header" aria-expanded="false" aria-controls="acc-body-2">
                         <h3>2. Ecosystem Access & Modules</h3>
                         <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
+                    </button>
+                    <div class="accordion-content" id="acc-body-2">
                         <div class="accordion-body">
                             Unlock future community features, specialized trading logs, and interactive modules as the TraderProDXB ecosystem expands.
                         </div>
@@ -601,11 +704,11 @@
                 </div>
 
                 <div class="accordion-item">
-                    <div class="accordion-header">
+                    <button class="accordion-header" aria-expanded="false" aria-controls="acc-body-3">
                         <h3>3. Community Milestone Tracking</h3>
                         <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
+                    </button>
+                    <div class="accordion-content" id="acc-body-3">
                         <div class="accordion-body">
                             Act as a decentralized reflection of community participation alongside our core compounding goals toward $4,000,000.
                         </div>
@@ -618,101 +721,182 @@
         <section class="banner-section">
             <h3>Trade with Our Approved Institutional Partner</h3>
             <div class="banner-wrap">
-                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8010" target="_Top">
-                    <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573601" width="1080" height="1920" style="max-width:100%; height:auto;" alt="BlackBull Partner Banner">
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8010" target="_blank" rel="noopener">
+                    <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573601" alt="BlackBull Markets Partner Banner" width="1080" height="108">
                 </a>
             </div>
         </section>
 
-        <!-- Financial Disclaimer -->
+        <!-- Risk Disclaimer -->
         <section class="disclaimer-card">
-            <h4>Token & Risk Disclaimer</h4>
-            <p>
-                Digital assets and meme tokens carry a high level of volatility and speculative risk. UYCN is introduced strictly as a native token of appreciation and ecosystem utility for visitors exploring TraderProDXB. It does not constitute an investment contract, security, or financial advice. Engage with UYCN purely out of value alignment and ensure proper risk management in all your activities. Trading leveraged products with BlackBull Markets also involves high risk to your capital.
-            </p>
+            <h4>Risk Disclaimer</h4>
+            <p>Trading foreign exchange and cryptocurrencies carries a high level of risk and may not be suitable for all investors. UYCN is a community token designed for ecosystem engagement and digital appreciation. Past performance is not indicative of future results.</p>
         </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        <p style="font-size: 0.75rem; color: #64748B; margin-top: 1rem; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;"><strong>Risk Warning:</strong> Trading derivatives and leveraged products carries a high level of risk to your capital. You should only trade with money you can afford to lose.</p>
-        <p class="courtesy">Special courtesy to Gemini AI for design and codes.</p>
+        <p>&copy; TraderProDXB. All Rights Reserved.</p>
+        <p class="courtesy">Systemic Trading & Capital Growth Architecture</p>
     </footer>
 
-    <!-- Interactive Scripts -->
+    <!-- Interactive Client JavaScript -->
     <script>
-        // Accordion Interactions
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                item.classList.toggle('active');
-            });
-        });
+        document.addEventListener("DOMContentLoaded", () => {
+            /* -------------------------------------------------------------
+             * 1. Navigation Scroll Logic
+             * ----------------------------------------------------------- */
+            const navWrapper = document.getElementById("navWrapper");
+            const navContainer = document.getElementById("navContainer");
+            const scrollLeftBtn = document.getElementById("scrollLeft");
+            const scrollRightBtn = document.getElementById("scrollRight");
 
-        // Navigation Scroll & Active-Centering System
-        const nav = document.getElementById('navContainer');
-        const navWrapper = document.getElementById('navWrapper');
-        const btnLeft = document.getElementById('scrollLeft');
-        const btnRight = document.getElementById('scrollRight');
+            function checkNavScroll() {
+                if (!navContainer) return;
+                const canScrollLeft = navContainer.scrollLeft > 5;
+                const canScrollRight = navContainer.scrollLeft < (navContainer.scrollWidth - navContainer.clientWidth - 5);
 
-        function updateNavState() {
-            if (!nav) return;
-            const scrollLeft = nav.scrollLeft;
-            const maxScroll = nav.scrollWidth - nav.clientWidth;
-
-            if (nav.scrollWidth > nav.clientWidth) {
-                if (scrollLeft > 5) {
-                    navWrapper.classList.add('can-scroll-left');
-                } else {
-                    navWrapper.classList.remove('can-scroll-left');
-                }
-
-                if (scrollLeft < maxScroll - 5) {
-                    navWrapper.classList.add('can-scroll-right');
-                } else {
-                    navWrapper.classList.remove('can-scroll-right');
-                }
-            } else {
-                navWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
+                navWrapper.classList.toggle("can-scroll-left", canScrollLeft);
+                navWrapper.classList.toggle("can-scroll-right", canScrollRight);
             }
-        }
 
-        // Smoothly center active button inside scrollable track
-        function centerActiveButton() {
-            const activeBtn = nav.querySelector('a.active');
-            if (activeBtn) {
-                const navWidth = nav.clientWidth;
-                const activeLeft = activeBtn.offsetLeft;
-                const activeWidth = activeBtn.clientWidth;
+            if (navContainer && scrollLeftBtn && scrollRightBtn) {
+                scrollLeftBtn.addEventListener("click", () => {
+                    navContainer.scrollBy({ left: -200, behavior: "smooth" });
+                });
 
-                const targetScroll = activeLeft - (navWidth / 2) + (activeWidth / 2);
-                
-                nav.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
+                scrollRightBtn.addEventListener("click", () => {
+                    navContainer.scrollBy({ left: 200, behavior: "smooth" });
+                });
+
+                navContainer.addEventListener("scroll", checkNavScroll);
+                window.addEventListener("resize", checkNavScroll);
+                checkNavScroll();
+            }
+
+            /* -------------------------------------------------------------
+             * 2. Accordion Interactivity
+             * ----------------------------------------------------------- */
+            const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener("click", () => {
+                    const accordionItem = header.parentElement;
+                    const isActive = accordionItem.classList.contains("active");
+
+                    // Close all active items
+                    document.querySelectorAll(".accordion-item").forEach(item => {
+                        item.classList.remove("active");
+                        const btn = item.querySelector(".accordion-header");
+                        if (btn) btn.setAttribute("aria-expanded", "false");
+                    });
+
+                    // Toggle clicked item
+                    if (!isActive) {
+                        accordionItem.classList.add("active");
+                        header.setAttribute("aria-expanded", "true");
+                    }
+                });
+            });
+
+            /* -------------------------------------------------------------
+             * 3. Contract Address Copy Button
+             * ----------------------------------------------------------- */
+            const copyBtn = document.getElementById("copyCaBtn");
+            const rawCA = "7QWSgibL7zwxYPgNWFGkVwjaRXoDRb7smvNhjwNKUM9J";
+
+            if (copyBtn) {
+                copyBtn.addEventListener("click", () => {
+                    navigator.clipboard.writeText(rawCA).then(() => {
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = "Copied!";
+                        copyBtn.style.background = "#22c55e";
+                        copyBtn.style.borderColor = "#22c55e";
+
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.background = "";
+                            copyBtn.style.borderColor = "";
+                        }, 2000);
+                    }).catch(err => {
+                        console.error("Copy failed:", err);
+                    });
                 });
             }
-            setTimeout(updateNavState, 300);
-        }
 
-        // Arrow click handlers
-        btnLeft.addEventListener('click', () => {
-            nav.scrollBy({ left: -200, behavior: 'smooth' });
-        });
+            /* -------------------------------------------------------------
+             * 4. DexScreener Live API Integration
+             * ----------------------------------------------------------- */
+            const UYCN_CONFIG = {
+                endpoint: "https://api.dexscreener.com/latest/dex/tokens/7QWSgibL7zwxYPgNWFGkVwjaRXoDRb7smvNhjwNKUM9J",
+                refreshIntervalMs: 30000
+            };
 
-        btnRight.addEventListener('click', () => {
-            nav.scrollBy({ left: 200, behavior: 'smooth' });
-        });
+            function formatUSD(value) {
+                if (value === undefined || value === null) return "$0.00";
+                const num = Number(value);
+                if (num < 0.0001) return "$" + num.toFixed(8);
+                if (num < 1) return "$" + num.toFixed(4);
+                
+                return new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                    maximumFractionDigits: 2
+                }).format(num);
+            }
 
-        nav.addEventListener('scroll', updateNavState);
-        window.addEventListener('resize', () => {
-            centerActiveButton();
-            updateNavState();
-        });
+            function formatCompactUSD(value) {
+                if (!value) return "$0";
+                return new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                    notation: "compact",
+                    compactDisplay: "short",
+                    maximumFractionDigits: 2
+                }).format(value);
+            }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            centerActiveButton();
+            function updateElementText(elementId, textValue) {
+                const elem = document.getElementById(elementId);
+                if (elem) elem.textContent = textValue;
+            }
+
+            async function fetchUYCNMetrics() {
+                try {
+                    const response = await fetch(UYCN_CONFIG.endpoint);
+                    if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+                    const data = await response.json();
+                    if (!data.pairs || data.pairs.length === 0) {
+                        console.warn("UYCN: No active DEX pairs returned.");
+                        return;
+                    }
+
+                    const primaryPair = data.pairs[0];
+                    const priceUsd = primaryPair.priceUsd;
+                    const mcap = primaryPair.marketCap || primaryPair.fdv;
+                    const volume24h = primaryPair.volume?.h24;
+                    const priceChange24h = primaryPair.priceChange?.h24;
+
+                    updateElementText("uycn-price", formatUSD(priceUsd));
+                    updateElementText("uycn-mcap", formatCompactUSD(mcap));
+                    updateElementText("uycn-volume", formatCompactUSD(volume24h));
+
+                    const changeElem = document.getElementById("uycn-change");
+                    if (changeElem && priceChange24h !== undefined) {
+                        const isPositive = priceChange24h >= 0;
+                        changeElem.textContent = `${isPositive ? "+" : ""}${priceChange24h.toFixed(2)}%`;
+                        changeElem.style.color = isPositive ? "#22c55e" : "#E31B23";
+                    }
+
+                } catch (error) {
+                    console.error("Failed to fetch live UYCN metrics:", error);
+                }
+            }
+
+            // Initial fetch and 30s loop
+            fetchUYCNMetrics();
+            setInterval(fetchUYCNMetrics, UYCN_CONFIG.refreshIntervalMs);
         });
     </script>
 </body>
