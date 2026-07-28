@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Blueprint - The 8 Rules and Compounding Growth Plan.">
+    <meta name="description" content="TraderProDXB Blueprint - Compounding Sequence and System Rules.">
     <title>TraderProDXB - Blueprint</title>
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,221 +115,66 @@
 
         /* Layout Container */
         .container {
-            max-width: 1100px;
+            max-width: 900px;
             margin: 2rem auto;
             padding: 0 1.5rem;
         }
 
-        /* Hero / Header Section */
-        .page-header {
+        /* Hero Section */
+        .hero {
             text-align: center;
-            padding: 2.5rem 1rem;
+            padding: 3rem 1rem;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 3rem;
         }
 
-        .page-header h1 {
-            font-size: 2.5rem;
+        .hero h1 {
+            font-size: 2.75rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
             background: linear-gradient(180deg, #FFFFFF 0%, #A0AEC0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .page-header p {
+        .hero p {
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Content Card */
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
             color: var(--text-secondary);
             font-size: 1rem;
-        }
-
-        /* Section Titles */
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        /* Section 1: The 8 Rules Grid / Cards */
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .rule-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .rule-number {
-            font-family: var(--font-mono);
-            color: var(--accent-green);
-            font-weight: 700;
-            font-size: 1.1rem;
-            background: rgba(0, 230, 118, 0.1);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-        }
-
-        .rule-content {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .rule-content strong {
-            color: var(--text-primary);
-        }
-
-        /* Compounding Banner */
-        .compounding-narrative {
-            position: relative;
-            background: radial-gradient(circle at top right, var(--accent-green-glow), transparent 60%), var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-green);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
-            font-size: 0.98rem;
-        }
-
-        .compounding-narrative strong {
-            color: var(--accent-green);
-        }
-
-        /* Stage Accordions */
-        .stage-accordion {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            line-height: 1.7;
             margin-bottom: 1rem;
-            overflow: hidden;
-            transition: border-color 0.2s;
         }
 
-        .stage-accordion:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .stage-header {
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .stage-header .icon {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-        }
-
-        .stage-accordion.active .stage-header .icon {
-            transform: rotate(180deg);
-            color: var(--accent-green);
-        }
-
-        .stage-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .stage-accordion.active .stage-content {
-            max-height: 1400px;
-            border-top: 1px solid var(--border-color);
-            padding: 1.25rem 1.5rem;
-        }
-
-        /* Tables Styling */
-        table.stage-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            text-align: left;
-        }
-
-        table.stage-table th {
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-primary);
-            font-weight: 600;
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        table.stage-table td {
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            color: var(--text-secondary);
-        }
-
-        table.stage-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        table.stage-table td:nth-child(3) {
-            font-family: var(--font-mono);
-            color: var(--accent-green);
-        }
-
-        /* Routine Section */
-        .daily-routine {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 3rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-
-        .routine-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .routine-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .routine-time {
-            font-family: var(--font-mono);
-            color: var(--accent-green);
-            font-size: 0.88rem;
-            font-weight: 600;
-            min-width: 170px;
-        }
-
-        .routine-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Disclaimer Section */
+        /* Financial Disclaimer */
         .disclaimer-card {
             background: rgba(255, 82, 82, 0.03);
             border: 1px solid rgba(255, 82, 82, 0.15);
             border-radius: 8px;
             padding: 1.5rem;
+            margin-top: 3rem;
             margin-bottom: 3rem;
         }
 
@@ -350,19 +195,15 @@
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 2.5rem 0;
+            padding: 2rem 0;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
         }
 
         @media (max-width: 768px) {
-            .page-header h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2rem; }
             .nav-container { flex-direction: column; gap: 1rem; }
-            .routine-item { flex-direction: column; gap: 0.25rem; }
-            .routine-time { min-width: auto; }
-            table.stage-table { font-size: 0.8rem; }
-            table.stage-table th, table.stage-table td { padding: 0.5rem; }
         }
     </style>
 </head>
@@ -383,7 +224,7 @@
                 <a href="track-record.html">Track Record</a>
                 <a href="reflections.html">Reflections</a>
                 <a href="positionsize.html">Position Size</a>
-                <a href="faqs.html">FAQs</a>
+                <a href="FAQs.html">FAQ</a>
             </nav>
         </div>
     </header>
@@ -394,152 +235,17 @@
     </div>
 
     <div class="container">
-        <!-- Page Header -->
-        <div class="page-header">
-            <h1>The 8 Rules</h1>
-            <p>Systematic Growth Strategy</p>
-        </div>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>The Blueprint</h1>
+            <p>The core structural rules and sequential compounding targets of the TraderProDXB system.</p>
+        </section>
 
-        <!-- 8 Rules Section -->
-        <div class="rules-grid">
-            <div class="rule-card">
-                <span class="rule-number">01</span>
-                <div class="rule-content"><strong>Target:</strong> Strict 6% ROI per win trade.</div>
-            </div>
-            <div class="rule-card">
-                <span class="rule-number">02</span>
-                <div class="rule-content"><strong>Risk Management:</strong> Strict 6% Stop Loss per a loosing trade.</div>
-            </div>
-            <div class="rule-card">
-                <span class="rule-number">03</span>
-                <div class="rule-content"><strong>Leverage:</strong> USTech x20, XAUUSD x20, WTI x10, EURUSD x40, USDJPY x40, BTCUSD x10, ETHUSD x10, Tesla x5.</div>
-            </div>
-            <div class="rule-card">
-                <span class="rule-number">04</span>
-                <div class="rule-content"><strong>Asset Universe:</strong> USTech, XAUUSD, XTIUSD, EURUSD, USDJPY, BTCUSD, ETHUSD, TSLA.</div>
-            </div>
-            <div class="rule-card">
-                <span class="rule-number">05</span>
-                <div class="rule-content"><strong>Compounding Cadence:</strong> Maximum of 5 winning trades per day.</div>
-            </div>
-            <div class="rule-card">
-                <span class="rule-number">06</span>
-                <div class="rule-content"><strong>Reinvestment:</strong> Total profit reinvestment according to the TraderProDXB Compounding System.</div>
-            </div>
-            <div class="rule-card">
-                <span class="rule-number">07</span>
-                <div class="rule-content"><strong>Execution:</strong> Machine-like adherence to math; zero emotional intervention.</div>
-            </div>
-            <div class="rule-card">
-                <span class="rule-number">08</span>
-                <div class="rule-content"><strong>Circuit Breaker:</strong> 18% ultimate Stop Loss on total account equity per trade day maximum.</div>
-            </div>
-        </div>
-
-        <!-- Compounding System Header -->
-        <h2 class="section-title">TraderProDXB Compounding System: Growth Plan</h2>
-
-        <div class="compounding-narrative">
-            <p><strong>The Core Logic:</strong> Every stage transition is achieved through structured execution. Each minor stage divides balance growth into 5 equal micro targets, fulfilled by executing <strong>5 daily win trades</strong> targeting a 6% ROI.</p>
-        </div>
-
-        <!-- Stage Accordions -->
-        <div class="stage-accordion">
-            <div class="stage-header" onclick="toggleStage('stage1')">
-                <span>Major Stage 1: $400 Baseline</span>
-                <span class="icon">▼</span>
-            </div>
-            <div id="stage1" class="stage-content">
-                <table class="stage-table">
-                    <thead>
-                        <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Minor Stage 1</td><td>$400 → $550</td><td>$30.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 2</td><td>$550 → $800</td><td>$50.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 3</td><td>$800 → $1,100</td><td>$60.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 4</td><td>$1,100 → $1,500</td><td>$80.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 5</td><td>$1,500 → $2,100</td><td>$120.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 6</td><td>$2,100 → $2,900</td><td>$160.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 7</td><td>$2,900 → $4,000</td><td>$220.00 per win (6% ROI)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="stage-accordion">
-            <div class="stage-header" onclick="toggleStage('stage2')">
-                <span>Major Stage 2: $4,000 Baseline</span>
-                <span class="icon">▼</span>
-            </div>
-            <div id="stage2" class="stage-content">
-                <table class="stage-table">
-                    <thead>
-                        <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Minor Stage 1</td><td>$4,000 → $5,500</td><td>$300.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 2</td><td>$5,500 → $8,000</td><td>$500.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 3</td><td>$8,000 → $11,000</td><td>$600.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 4</td><td>$11,000 → $15,000</td><td>$800.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 5</td><td>$15,000 → $21,000</td><td>$1,200.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 6</td><td>$21,000 → $29,000</td><td>$1,600.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 7</td><td>$29,000 → $40,000</td><td>$2,200.00 per win (6% ROI)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="stage-accordion">
-            <div class="stage-header" onclick="toggleStage('stage3')">
-                <span>Major Stage 3: $40,000 Baseline</span>
-                <span class="icon">▼</span>
-            </div>
-            <div id="stage3" class="stage-content">
-                <table class="stage-table">
-                    <thead>
-                        <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Minor Stage 1</td><td>$40,000 → $55,000</td><td>$3,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 2</td><td>$55,000 → $80,000</td><td>$5,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 3</td><td>$80,000 → $110,000</td><td>$6,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 4</td><td>$110,000 → $150,000</td><td>$8,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 5</td><td>$150,000 → $210,000</td><td>$12,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 6</td><td>$210,000 → $290,000</td><td>$16,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 7</td><td>$290,000 → $400,000</td><td>$22,000.00 per win (6% ROI)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="stage-accordion">
-            <div class="stage-header" onclick="toggleStage('stage4')">
-                <span>Major Stage 4: $400,000 Baseline</span>
-                <span class="icon">▼</span>
-            </div>
-            <div id="stage4" class="stage-content">
-                <table class="stage-table">
-                    <thead>
-                        <tr><th>Minor Stage Progression</th><th>Balance Growth Path</th><th>Per-Trade Target Increment (5 Wins)</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Minor Stage 1</td><td>$400,000 → $550,000</td><td>$30,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 2</td><td>$550,000 → $800,000</td><td>$50,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 3</td><td>$800,000 → $1,100,000</td><td>$60,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 4</td><td>$1,100,000 → $1,500,000</td><td>$80,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 5</td><td>$1,500,000 → $2,100,000</td><td>$120,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 6</td><td>$2,100,000 → $2,900,000</td><td>$160,000.00 per win (6% ROI)</td></tr>
-                        <tr><td>Minor Stage 7</td><td>$2,900,000 → $4,000,000</td><td>$220,000.00 per win (6% ROI)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Daily Routine Section -->
-        <h2 class="section-title">Ideal Dubai-Based Day Trader Routine</h2>
-        <div class="daily-routine">
-            <div class="routine-item"><span class="routine-time">03:15 AM – 03:30 AM</span><span class="routine-desc">Wake up, light physical movement, and shower.</span></div>
+        <!-- Content Section -->
+        <div class="content-card">
+            <h3>TraderProDXB Compounding Sequence (ACS)</h3>
+            <p>Based on achieving structured daily execution targets. Progression milestones: $40 -> $65 -> $100 -> $150 -> $250 -> $400 -> $650 -> $1,000 -> $1,500 -> $2,500 -> $4,000 -> $6,500 -> $10,000 -> $15,000 -> $25,000 -> $40,000 -> $65,000 -> $100,000 -> $150,000 -> $250,000 -> $400,000 -> $650,000 -> $1,000,000 -> $1,500,000 -> $2,500,000 -> $4,000,000.</p>
+            <p>Every trade strictly targets a 6% ROI with a corresponding 6% Stop Loss (1.5% base price move equivalent) to ensure machine-like account consistency.</p>
         </div>
 
         <!-- Financial Disclaimer -->
@@ -555,14 +261,5 @@
     <footer>
         <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
     </footer>
-
-    <!-- Interactive Scripts -->
-    <script>
-        function toggleStage(stageId) {
-            const element = document.getElementById(stageId);
-            const accordion = element.parentElement;
-            accordion.classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
