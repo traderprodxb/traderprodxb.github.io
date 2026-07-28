@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Institutional Trading System - Systematic 6% ROI Compounding to $4M.">
-    <title>TraderProDXB - Institutional Trading System</title>
+    <meta name="description" content="TraderProDXB - Systematic Day Trading Blueprint and Compounding System.">
+    <title>TraderProDXB - Home</title>
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,21 +115,21 @@
 
         /* Layout Container */
         .container {
-            max-width: 1100px;
-            margin: 2rem auto;
+            max-width: 1000px;
+            margin: 3rem auto;
             padding: 0 1.5rem;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 3.5rem 1rem;
+            padding: 4rem 1rem;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 3rem;
         }
 
         .hero h1 {
-            font-size: 2.75rem;
+            font-size: 3rem;
             font-weight: 700;
             letter-spacing: -1px;
             margin-bottom: 1rem;
@@ -140,193 +140,59 @@
 
         .hero p {
             color: var(--text-secondary);
-            max-width: 680px;
-            margin: 0 auto 1.5rem auto;
-            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.15rem;
         }
 
-        .badge-bar {
+        .cta-group {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
-        .badge {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--accent-green);
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        /* Brand Narrative Feature Box */
-        .brand-narrative {
-            position: relative;
-            background: radial-gradient(circle at top right, var(--accent-green-glow), transparent 60%), var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            overflow: hidden;
-        }
-
-        .brand-narrative::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
+        .btn-primary {
             background: var(--accent-green);
-        }
-
-        .brand-narrative h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .brand-narrative p {
-            color: var(--text-secondary);
-            margin-bottom: 1.25rem;
-            font-size: 0.98rem;
-        }
-
-        .brand-quote {
-            font-family: var(--font-mono);
-            color: var(--accent-green);
+            color: #0B0E14;
+            padding: 0.8rem 1.75rem;
+            text-decoration: none;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        /* Section Titles */
-        .section-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Accordions */
-        .accordion-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 3rem;
-        }
-
-        .accordion-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: border-color 0.2s;
-        }
-
-        .accordion-item:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .accordion-header {
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .accordion-header h3 {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .accordion-header .icon {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-        }
-
-        .accordion-item.active .icon {
-            transform: rotate(180deg);
-            color: var(--accent-green);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
-            background: rgba(0, 0, 0, 0.15);
-        }
-
-        .accordion-item.active .accordion-content {
-            max-height: 1000px;
-            transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
-        }
-
-        .accordion-body {
-            padding: 1.25rem 1.5rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
             font-size: 0.95rem;
-        }
-
-        /* Partner Promo Section ($300x250 Banner Integration) */
-        .partner-promo-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .partner-promo-section h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .partner-promo-section p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .banner-container {
-            display: inline-block;
-            padding: 10px;
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
             border-radius: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px var(--accent-green-glow);
         }
 
-        .banner-container img {
-            display: block;
-            max-width: 100%;
-            height: auto;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: #00C865;
         }
 
-        /* Disclaimer Section */
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(0, 230, 118, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Financial Disclaimer */
         .disclaimer-card {
             background: rgba(255, 82, 82, 0.03);
             border: 1px solid rgba(255, 82, 82, 0.15);
             border-radius: 8px;
             padding: 1.5rem;
+            margin-top: 4rem;
             margin-bottom: 3rem;
         }
 
@@ -347,14 +213,14 @@
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 2.5rem 0;
+            padding: 2rem 0;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.25rem; }
             .nav-container { flex-direction: column; gap: 1rem; }
         }
     </style>
@@ -376,7 +242,7 @@
                 <a href="track-record.html">Track Record</a>
                 <a href="reflections.html">Reflections</a>
                 <a href="positionsize.html">Position Size</a>
-                <a href="faqs.html">FAQs</a>
+                <a href="FAQs.html">FAQ</a>
             </nav>
         </div>
     </header>
@@ -390,156 +256,10 @@
         <!-- Hero Section -->
         <section class="hero">
             <h1>TraderProDXB Compounding System</h1>
-            <p>The systematic engine for $4,000,000. Built for machine-like discipline. Every trade is a deliberate step toward institutional-grade wealth with a strict 6% ROI target and 6% stop loss.</p>
-            <div class="badge-bar">
-                <span class="badge">Broker: BlackBull</span>
-                <span class="badge">Target ROI: 6%</span>
-                <span class="badge">Stop Loss: 6%</span>
-                <span class="badge">Destination: $4,000,000</span>
-            </div>
-        </section>
-
-        <!-- Brand Narrative Feature Box -->
-        <section class="brand-narrative">
-            <h2>Institutional Operational Philosophy</h2>
-            <p>Execution is built on unyielding, systematic discipline and structured mechanical rules. Eliminating market noise and discretionary emotion, each action is conducted as an exact step toward long-term compounding excellence.</p>
-            <div class="brand-quote">
-                &copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.
-            </div>
-        </section>
-
-        <!-- Official Manifesto Section -->
-        <section>
-            <div class="section-header">
-                <h2>Official Manifesto</h2>
-                <p>Select any category below to review core operational details.</p>
-            </div>
-            <div class="accordion-group">
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Professional Accountability</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            This repository serves as my primary professional ledger—an unfiltered, objective record of my career, maintaining absolute standard adherence and rigorous discipline.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Radical Transparency</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            I provide raw performance data, ensuring aspiring traders can conduct a realistic evaluation of the profession, completely dispelling myths about effortless wealth.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Sustainable Infrastructure</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            Partner broker links provide essential operational support, creating a crucial buffer for systematic market management and structural resilience.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Community Reinvestment</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            In periods of sustained success, I leverage surplus capital to facilitate community-driven initiatives, providing startup capital to help others replicate this exact methodology.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- The System Decoded Section -->
-        <section>
-            <div class="section-header">
-                <h2>The System Decoded</h2>
-                <p>Click below to explore the systematic architecture of the TraderProDXB Compounding System.</p>
-            </div>
-            <div class="accordion-group">
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>1. Trading as a Science, Not a Casino</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            The TraderProDXB Compounding System replaces chaos with exact, predictable science. You act like a machine following a pre-set blueprint targeting 6% ROI per trade, letting math handle the heavy lifting.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>2. The Grand Vision: Major Stages</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            The destination is $4,000,000, broken into Major Stages: $400 → $4,000 → $40,000 → $400,000 → $4,000,000.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>3. Stepping Stones: Minor Stages</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            Major milestones are divided into 7 Minor Stages to ensure you only ever focus on conquering the single checkpoint right in front of you.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>4. Daily Rhythm: Micro Stages & 5 Wins</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            Each minor stage is conquered via 5 daily win trades targeting a 6% ROI cash micro-target per win.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>5. Mechanical Execution & Rules</h3>
-                        <span class="icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            Position size utilizes unified asset leverage (USTech x25, XAUUSD x25, WTI x10, EURUSD/USDJPY x40, BTC/ETH x10, Tesla x5) targeting 6% ROI with a 6% stop loss.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Partner Competition Feature ($300x250 Banner Integration) -->
-        <section class="partner-promo-section">
-            <h3>BlackBull $10K Demo Trading Competition</h3>
-            <p>Test your systematic execution and compete for your share of the prize pool.</p>
-            <div class="banner-container">
-                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8018" target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573581" width="300" height="250" alt="BlackBull Competition Banner"></a>
+            <p>A deterministic, rule-based approach to day trading. Operating with mathematical precision, strict risk limits, and machine-like discipline under BlackBull broker infrastructure.</p>
+            <div class="cta-group">
+                <a href="blueprint.html" class="btn-primary">Explore Blueprint</a>
+                <a href="track-record.html" class="btn-secondary">View Track Record</a>
             </div>
         </section>
 
@@ -556,15 +276,5 @@
     <footer>
         <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
     </footer>
-
-    <!-- Interactive Scripts -->
-    <script>
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                item.classList.toggle('active');
-            });
-        });
-    </script>
 </body>
 </html>
