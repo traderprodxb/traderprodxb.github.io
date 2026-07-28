@@ -1,76 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Journey - TraderProDXB</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TraderProDXB - Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-main: #0B0E14; --bg-card: #151922; --border-color: rgba(255, 255, 255, 0.08);
-            --accent-green: #00E676; --text-primary: #F0F4F8; --text-secondary: #8E9BAE; --text-muted: #5A6578;
-            --font-sans: 'Inter', sans-serif; --font-mono: 'JetBrains Mono', monospace;
-        }
+        :root { --bg-main: #0B0E14; --bg-card: #151922; --border-color: rgba(255, 255, 255, 0.08); --accent-green: #00E676; --text-primary: #F0F4F8; --text-secondary: #8E9BAE; --text-muted: #5A6578; --font-sans: 'Inter', sans-serif; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-main); color: var(--text-primary); font-family: var(--font-sans); line-height: 1.6; padding-bottom: 60px; }
         header { background-color: rgba(11, 14, 20, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; }
         .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 1.25rem; }
-        .brand-logo img { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--accent-green); object-fit: cover; }
-        nav { display: flex; gap: 1rem; flex-wrap: wrap; }
-        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s; }
+        .brand-logo img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; border: 1px solid var(--accent-green); }
+        nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 0.4rem 0.6rem; border-radius: 6px; transition: all 0.2s ease; }
         nav a:hover, nav a.active { color: var(--accent-green); background: rgba(255, 255, 255, 0.03); }
         .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
-        .page-header { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; }
-        .page-header h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .page-header p { color: var(--text-secondary); }
-        .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
-        .timeline-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.75rem; position: relative; }
-        .timeline-item h3 { font-size: 1.2rem; color: var(--accent-green); margin-bottom: 0.5rem; font-family: var(--font-mono); }
-        .timeline-item p { color: var(--text-secondary); font-size: 0.95rem; }
+        .hero { text-align: center; padding: 3rem 1rem; border-bottom: 1px solid var(--border-color); margin-bottom: 3rem; }
+        .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .hero p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+        .content-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+        .content-card h2 { color: var(--accent-green); margin-bottom: 1rem; font-size: 1.25rem; }
+        .content-card p { color: var(--text-secondary); margin-bottom: 1rem; }
+        .disclaimer-card { background: rgba(255, 82, 82, 0.03); border: 1px solid rgba(255, 82, 82, 0.15); border-radius: 8px; padding: 1.5rem; margin-top: 3rem; }
+        .disclaimer-card h4 { color: #FF5252; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .disclaimer-card p { color: var(--text-muted); font-size: 0.8rem; }
         footer { border-top: 1px solid var(--border-color); padding: 2.5rem 0; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <a href="index.html" class="brand-logo">
-                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="Logo">
-                TraderProDXB
-            </a>
+            <a href="index.html" class="brand-logo"><img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="Logo">TraderProDXB</a>
             <nav>
-                <a href="index.html">Home</a>
-                <a href="blueprint.html">Blueprint</a>
-                <a href="infrastructure.html">Infrastructure</a>
-                <a href="journey.html" class="active">Journey</a>
-                <a href="track-record.html">Track Record</a>
-                <a href="reflections.html">Reflections</a>
-                <a href="positionsize.html">Position Size</a>
-                <a href="faqs.html">FAQs</a>
+                <a href="index.html">Home</a><a href="blueprint.html">Blueprint</a><a href="infrastructure.html">Infrastructure</a><a href="journey.html" class="active">Journey</a><a href="track-record.html">Track Record</a><a href="reflections.html">Reflections</a><a href="positionsize.html">Position Size</a><a href="faq.html">FAQ</a><a href="uycnutility.html">UYCN Utility</a>
             </nav>
         </div>
     </header>
     <div class="container">
-        <div class="page-header">
-            <h1>System Journey & Evolution</h1>
-            <p>Milestones and progress logs tracking the path toward the target capital objective.</p>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>Phase 1: Foundation & Calibration</h3>
-                <p>Establishing risk parameters, standardizing leverage models across assets, and building machine-like rule adherence.</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Phase 2: Systematic Scaling</h3>
-                <p>Executing daily 5-win compounding sessions across major pairs, indices, and commodities via BlackBull infrastructure.</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Phase 3: Ultimate Destination ($4,000,000)</h3>
-                <p>Finalizing advanced compound tranches to achieve complete financial autonomy.</p>
-            </div>
-        </div>
+        <section class="hero"><h1>The $4,000,000 Journey</h1><p>Tracking the progression stages toward institutional capital milestones.</p></section>
+        <section class="content-card"><h2>Compounding Sequence</h2><p>Advancing systematically through structured checkpoints from initial balance to $4,000,000 via disciplined 6% ROI compounding wins.</p></section>
+        <section class="disclaimer-card"><h4>Financial Disclaimer</h4><p>Educational and informational purposes only. Trading involves risk.</p></section>
     </div>
     <footer><p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p></footer>
 </body>
