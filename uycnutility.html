@@ -8,20 +8,19 @@
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #0B0E14;
-            --bg-card: #151922;
-            --bg-card-hover: #1E2330;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --accent-green: #00E676;
-            --accent-green-glow: rgba(0, 230, 118, 0.15);
-            --accent-red: #FF5252;
-            --text-primary: #F0F4F8;
-            --text-secondary: #8E9BAE;
-            --text-muted: #5A6578;
+            --bb-dark: #07090E;
+            --bb-card: #121620;
+            --bb-card-hover: #1A202C;
+            --bb-red: #E31B23;
+            --bb-red-hover: #ff222d;
+            --border: rgba(255, 255, 255, 0.1);
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
             --font-sans: 'Inter', sans-serif;
+            --font-heading: 'Montserrat', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
@@ -32,102 +31,110 @@
         }
 
         body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
+            background-color: var(--bb-dark);
+            color: var(--text-main);
             font-family: var(--font-sans);
             line-height: 1.6;
+            overflow-x: hidden;
             padding-bottom: 60px;
         }
 
         /* Navigation */
         header {
-            background-color: rgba(11, 14, 20, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(7, 9, 14, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 2rem;
         }
 
         .brand-logo {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #FFF;
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.5px;
+            gap: 10px;
+        }
+
+        .brand-logo span {
+            color: var(--bb-red);
         }
 
         .brand-logo img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
             object-fit: cover;
-            border: 1px solid var(--accent-green);
+            border: 1px solid var(--bb-red);
         }
 
         nav {
             display: flex;
             gap: 1rem;
+            align-items: center;
             flex-wrap: wrap;
         }
 
         nav a {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0.3rem 0.6rem;
+            transition: color 0.2s;
         }
 
         nav a:hover, nav a.active {
-            color: var(--accent-green);
-            background: rgba(255, 255, 255, 0.03);
+            color: var(--bb-red);
         }
 
         /* Layout Container */
         .container {
             max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
+            margin: 4rem auto;
+            padding: 0 2rem;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 3.5rem 1rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 1rem 3rem 1rem;
+            background: radial-gradient(circle at 50% 20%, rgba(227, 27, 35, 0.15) 0%, transparent 60%);
+            border-bottom: 1px solid var(--border);
             margin-bottom: 3rem;
         }
 
         .hero h1 {
-            font-size: 2.75rem;
-            font-weight: 700;
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 900;
             letter-spacing: -1px;
-            margin-bottom: 1rem;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A0AEC0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--bb-red);
         }
 
         .hero p {
-            color: var(--text-secondary);
-            max-width: 680px;
-            margin: 0 auto 1.5rem auto;
-            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.15rem;
         }
 
         .badge-bar {
@@ -138,56 +145,68 @@
         }
 
         .badge {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--accent-green);
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            color: var(--bb-red);
             font-family: var(--font-mono);
             font-size: 0.8rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 20px;
-            font-weight: 500;
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-weight: 600;
         }
 
         /* Brand Narrative Feature Box */
         .brand-narrative {
             position: relative;
-            background: radial-gradient(circle at top right, var(--accent-green-glow), transparent 60%), var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             padding: 2.5rem;
             margin-bottom: 3rem;
-            overflow: hidden;
-        }
-
-        .brand-narrative::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--accent-green);
+            border-top: 4px solid var(--bb-red);
         }
 
         .brand-narrative h2 {
+            font-family: var(--font-heading);
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--text-primary);
+            color: var(--text-main);
         }
 
         .brand-narrative p {
-            color: var(--text-secondary);
-            margin-bottom: 1.25rem;
-            font-size: 0.98rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
-        .brand-quote {
+        .token-ca-box {
+            background: var(--bb-dark);
+            border: 1px solid var(--border);
+            padding: 1.2rem;
+            border-radius: 6px;
             font-family: var(--font-mono);
-            color: var(--accent-green);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--bb-red);
+            word-break: break-all;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--bb-red);
+            color: #FFF;
+            font-weight: 700;
+            text-decoration: none;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--bb-red-hover);
         }
 
         /* Section Titles */
@@ -196,34 +215,35 @@
         }
 
         .section-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-main);
         }
 
         .section-header p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         /* Accordions */
         .accordion-group {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
             margin-bottom: 3rem;
         }
 
         .accordion-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: var(--bb-card);
+            border: 1px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
             transition: border-color 0.2s;
         }
 
         .accordion-item:hover {
-            border-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .accordion-header {
@@ -236,8 +256,9 @@
         }
 
         .accordion-header h3 {
-            font-size: 1rem;
-            font-weight: 600;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
         }
 
         .accordion-header .icon {
@@ -248,14 +269,14 @@
 
         .accordion-item.active .icon {
             transform: rotate(180deg);
-            color: var(--accent-green);
+            color: var(--bb-red);
         }
 
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .accordion-item.active .accordion-content {
@@ -265,50 +286,48 @@
 
         .accordion-body {
             padding: 1.25rem 1.5rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        .token-ca-box {
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 6px;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            word-break: break-all;
-            margin-top: 0.75rem;
+        /* BlackBull Affiliate Banner Showcase Section */
+        .banner-section {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .cta-btn {
-            display: inline-block;
-            background: var(--accent-green);
-            color: var(--bg-main);
-            font-weight: 600;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            transition: opacity 0.2s ease;
+        .banner-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
         }
 
-        .cta-btn:hover {
-            opacity: 0.9;
+        .banner-wrap {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 0.5rem;
         }
 
         /* Disclaimer Section */
         .disclaimer-card {
-            background: rgba(255, 82, 82, 0.03);
-            border: 1px solid rgba(255, 82, 82, 0.15);
+            background: rgba(227, 27, 35, 0.05);
+            border: 1px solid rgba(227, 27, 35, 0.2);
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 3rem;
         }
 
         .disclaimer-card h4 {
-            color: var(--accent-red);
+            color: var(--bb-red);
+            font-family: var(--font-heading);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -318,21 +337,22 @@
         .disclaimer-card p {
             color: var(--text-muted);
             font-size: 0.8rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Footer */
         footer {
-            border-top: 1px solid var(--border-color);
-            padding: 2.5rem 0;
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            background: #040508;
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .nav-container { flex-direction: column; gap: 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            nav { justify-content: center; }
         }
     </style>
 </head>
@@ -343,7 +363,7 @@
         <div class="nav-container">
             <a href="index.html" class="brand-logo">
                 <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-                TraderProDXB
+                TRADERPRO<span>DXB</span>
             </a>
             <nav>
                 <a href="index.html">Home</a>
@@ -362,7 +382,7 @@
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
-            <h1>UYCN Utility</h1>
+            <h1>UYCN <span>Utility</span></h1>
             <p>The native token of appreciation and ecosystem value integrated directly into the TraderProDXB environment. Built for alignment, community engagement, and digital solidarity.</p>
             <div class="badge-bar">
                 <span class="badge">Asset: Uyghur Coin</span>
@@ -427,18 +447,29 @@
             </div>
         </section>
 
+        <!-- Official BlackBull Affiliate Banner Showcase -->
+        <section class="banner-section">
+            <h3>Trade with Our Approved Institutional Partner</h3>
+            <div class="banner-wrap">
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8010" target="_Top">
+                    <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573601" width="1080" height="1920" style="max-width:100%; height:auto;" alt="BlackBull Partner Banner">
+                </a>
+            </div>
+        </section>
+
         <!-- Financial Disclaimer -->
         <section class="disclaimer-card">
             <h4>Token & Risk Disclaimer</h4>
             <p>
-                Digital assets and meme tokens carry a high level of volatility and speculative risk. UYCN is introduced strictly as a native token of appreciation and ecosystem utility for visitors exploring TraderProDXB. It does not constitute an investment contract, security, or financial advice. Engage with UYCN purely out of value alignment and ensure proper risk management in all your activities.
+                Digital assets and meme tokens carry a high level of volatility and speculative risk. UYCN is introduced strictly as a native token of appreciation and ecosystem utility for visitors exploring TraderProDXB. It does not constitute an investment contract, security, or financial advice. Engage with UYCN purely out of value alignment and ensure proper risk management in all your activities. Trading leveraged products with BlackBull Markets also involves high risk to your capital.
             </p>
         </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
+        <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
+        <p style="font-size: 0.75rem; color: #64748B; margin-top: 1rem; max-width: 900px; margin-left: auto; margin-right: auto; line-height: 1.5;"><strong>Risk Warning:</strong> Trading derivatives and leveraged products carries a high level of risk to your capital. You should only trade with money you can afford to lose.</p>
     </footer>
 
     <!-- Interactive Scripts -->
