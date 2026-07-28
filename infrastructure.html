@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Infrastructure - Institutional Broker Execution.">
+    <meta name="description" content="TraderProDXB Infrastructure - Broker Execution and Setup.">
     <title>TraderProDXB - Infrastructure</title>
     <!-- Google Fonts for Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -120,126 +120,61 @@
             padding: 0 1.5rem;
         }
 
-        /* Hero / Page Header */
-        .page-header {
+        /* Hero Section */
+        .hero {
             text-align: center;
-            padding: 2.5rem 1rem;
+            padding: 3rem 1rem;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 3rem;
         }
 
-        .page-header h1 {
-            font-size: 2.5rem;
+        .hero h1 {
+            font-size: 2.75rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
             background: linear-gradient(180deg, #FFFFFF 0%, #A0AEC0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .page-header p {
+        .hero p {
             color: var(--text-secondary);
-            font-size: 1rem;
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.1rem;
         }
 
-        /* Infrastructure Section Cards */
-        .infra-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .infra-card {
+        /* Content Card */
+        .content-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .infra-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: var(--bg-card-hover);
-            transform: translateY(-2px);
-        }
-
-        .broker-logo-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.25rem;
-            margin-bottom: 1.5rem;
-            width: 160px;
-            height: 160px;
-            transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-        }
-
-        .broker-logo-link:hover {
-            border-color: var(--accent-green);
-            background: var(--accent-green-glow);
-            transform: scale(1.03);
-        }
-
-        .broker-logo {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .infra-card h2 {
-            font-size: 1.4rem;
+        .content-card h3 {
+            font-size: 1.3rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
-        .infra-card p {
+        .content-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            max-width: 680px;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--accent-green);
-            color: #05070A;
-            padding: 0.75rem 1.75rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(0, 230, 118, 0.2);
-        }
-
-        .btn:hover {
-            background: #00c853;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(0, 230, 118, 0.3);
-        }
-
-        /* Disclaimer Section */
+        /* Financial Disclaimer */
         .disclaimer-card {
             background: rgba(255, 82, 82, 0.03);
             border: 1px solid rgba(255, 82, 82, 0.15);
             border-radius: 8px;
             padding: 1.5rem;
+            margin-top: 3rem;
             margin-bottom: 3rem;
         }
 
@@ -260,17 +195,15 @@
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 2.5rem 0;
+            padding: 2rem 0;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
         }
 
         @media (max-width: 768px) {
-            .page-header h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2rem; }
             .nav-container { flex-direction: column; gap: 1rem; }
-            .infra-card { padding: 1.5rem; }
-            .broker-logo-link { width: 130px; height: 130px; }
         }
     </style>
 </head>
@@ -291,7 +224,7 @@
                 <a href="track-record.html">Track Record</a>
                 <a href="reflections.html">Reflections</a>
                 <a href="positionsize.html">Position Size</a>
-                <a href="faqs.html">FAQs</a>
+                <a href="FAQs.html">FAQ</a>
             </nav>
         </div>
     </header>
@@ -302,40 +235,16 @@
     </div>
 
     <div class="container">
-        <!-- Page Header -->
-        <div class="page-header">
-            <h1>Institutional Infrastructure</h1>
-            <p>Low-Latency Execution & Deep Multi-Asset Liquidity Partners</p>
-        </div>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Infrastructure</h1>
+            <p>The permanent broker ecosystem and technical execution environment.</p>
+        </section>
 
-        <!-- Broker Infrastructure Cards -->
-        <div class="infra-grid">
-            <div class="infra-card">
-                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8019" class="broker-logo-link" target="_blank">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/30ca05eb60bafb4b89a54b1ce459955b9bf0733e/BlackBull_BlackBull-Vertical-white-logo-design-1536x1343.png" alt="BlackBull Markets Logo" class="broker-logo">
-                </a>
-                <h2>BlackBull Markets</h2>
-                <p>Our permanent institutional broker, providing low-latency ECN execution, deep multi-asset liquidity, and robust multi-platform stability essential for maintaining clean execution standards across all systematic strategies.</p>
-                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8019" class="btn" target="_blank">Access BlackBull</a>
-            </div>
-
-            <div class="infra-card">
-                <a href="https://ct.icmarkets.com/?u=uyghurcrypto" class="broker-logo-link" target="_blank">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/1b567e08aec31182fbe9e3f1eb132fdddbe18954/images.jpeg" alt="IC Markets Logo" class="broker-logo">
-                </a>
-                <h2>IC Markets</h2>
-                <p>A globally recognized ECN broker known for ultra-low raw spreads, high-frequency matching engines, and deep institutional liquidity feeds optimized for systematic trading frameworks and quantitative execution models.</p>
-                <a href="https://ct.icmarkets.com/?u=uyghurcrypto" class="btn" target="_blank">Access IC Markets</a>
-            </div>
-
-            <div class="infra-card">
-                <a href="https://www.binance.com/register?ref=QTZDOLYM" class="broker-logo-link" target="_blank">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/30ca05eb60bafb4b89a54b1ce459955b9bf0733e/1778579370-binance-logo.jpg" alt="Binance Logo" class="broker-logo">
-                </a>
-                <h2>Binance</h2>
-                <p>The core digital asset ecosystem utilized for high-liquidity cryptocurrency spot and derivatives allocation, operating under rigid, rule-bound position sizing to protect the portfolio's structural compounding goals.</p>
-                <a href="https://www.binance.com/register?ref=QTZDOLYM" class="btn" target="_blank">Access Binance</a>
-            </div>
+        <!-- Content Section -->
+        <div class="content-card">
+            <h3>BlackBull Broker Integration</h3>
+            <p>BlackBull serves as the permanent institutional broker for TraderProDXB. Offering high-speed API execution, deep liquidity, and verified reporting integration, it provides the stable foundation necessary for machine-like systematic trading.</p>
         </div>
 
         <!-- Financial Disclaimer -->
@@ -351,6 +260,5 @@
     <footer>
         <p>&copy; TraderProDXB. Machine-Like Discipline. All Rights Reserved.</p>
     </footer>
-
 </body>
 </html>
