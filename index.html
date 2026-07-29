@@ -110,7 +110,7 @@
             margin-top: 4px;
         }
 
-        /* Navigation Scroll Wrapper & Dynamic Cues (Top-Right Alignment) */
+        /* Navigation Scroll Wrapper & Dynamic Cues */
         .nav-wrapper {
             position: relative;
             display: flex;
@@ -125,7 +125,6 @@
             border-radius: 40px;
         }
 
-        /* Gradient Mask Indicators for Hidden Scrollable Content */
         .nav-wrapper::before,
         .nav-wrapper::after {
             content: '';
@@ -153,7 +152,6 @@
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
         .nav-wrapper.can-scroll-right::after { opacity: 1; }
 
-        /* Directional Arrow Controls */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -191,7 +189,6 @@
             visibility: visible;
         }
 
-        /* Nav Track */
         nav {
             display: flex;
             align-items: center;
@@ -262,6 +259,8 @@
             font-size: 1.15rem;
             max-width: 750px;
             margin: 0 auto 2.5rem auto;
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
         }
 
         .cta-btn {
@@ -282,14 +281,86 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 2rem;
         }
 
+        /* System Overview Content Box */
+        .system-overview {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: left;
+        }
+
+        .system-overview p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .system-overview p.intro-text {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .system-overview p.outro-text {
+            font-style: italic;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        /* Formatted Rules List */
+        .system-rules {
+            list-style: none;
+            margin: 2rem 0;
+            background: rgba(7, 9, 14, 0.5);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .system-rules li {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .system-rules li:last-child {
+            margin-bottom: 0;
+        }
+
+        .system-rules li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--bb-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(227, 27, 35, 0.5);
+        }
+
+        .highlight {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Banner Wrap */
         .banner-wrap {
             text-align: center;
-            margin: 3rem 0;
+            margin: 2rem 0;
             padding: 2rem;
             background: var(--bb-card);
             border: 1px solid var(--border);
@@ -341,6 +412,8 @@
                 max-width: 100%;
             }
             .hero h1 { font-size: 2.2rem; }
+            .system-overview { padding: 1.5rem; }
+            .system-rules { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -376,16 +449,34 @@
     </header>
 
     <section class="hero">
-        <h1>Institutional Discipline. <span>Systematic Growth.</span></h1>
-        <p>Execute precise market strategies engineered to scale systematically toward your capital milestones through institutional-grade execution.</p>
+        <h1>Mechanical <span>Day-Trading System</span></h1>
+        <p>This page exists only to answer the question: what is actually being done here?</p>
         <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_Top" class="cta-btn">Open Live Account with BlackBull</a>
     </section>
 
-    <div class="container">
-        <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" Target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573600" width="1200" height="630" style="max-width:100%; height:auto;" alt="BlackBull Partner"></a>
+    <main class="container">
+        
+        <!-- Core System Overview Panel -->
+        <div class="system-overview">
+            <p class="intro-text">This is a mechanical day-trading system built around one permanent baseline ($400) and four successive 10× stages.</p>
+            
+            <ul class="system-rules">
+                <li>Risk and reward are locked near <span class="highlight">6%</span> of current equity.</li>
+                <li>Only <span class="highlight">one position</span> is allowed at a time.</li>
+                <li><span class="highlight">Five</span> winning micro-steps complete one mini-stage.</li>
+                <li><span class="highlight">Seven</span> mini-stages complete one major stage.</li>
+            </ul>
+
+            <p>Position size is derived from fixed dollar-distance targets so every instrument produces the same equity percentage. High-volatility conditions force size reduction or abstinence. Mondays and Fridays are excluded; weekends are used for crypto.</p>
+            
+            <p class="outro-text">Detailed mechanics live on the dedicated pages.</p>
         </div>
-    </div>
+
+        <!-- BlackBull Banner Element -->
+        <div class="banner-wrap">
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573600" width="1200" height="630" style="max-width:100%; height:auto;" alt="BlackBull Partner"></a>
+        </div>
+    </main>
 
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
