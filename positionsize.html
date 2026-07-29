@@ -276,6 +276,101 @@
             color: var(--text-main);
         }
 
+        /* Integrated Calculator Module Styles */
+        .calc-module {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-top: 4px solid #38bdf8;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 2.5rem 0;
+            color: #f9fafb;
+        }
+
+        .calc-module h2 {
+            margin-top: 0;
+            color: #38bdf8;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+            margin-bottom: 20px;
+        }
+
+        .calc-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .calc-input-group input,
+        .calc-input-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: #0f172a;
+            color: #fff;
+            font-size: 1rem;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .calc-input-group input:focus,
+        .calc-input-group select:focus {
+            border-color: #38bdf8;
+        }
+
+        .calc-results-box {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 18px;
+            border: 1px solid var(--border);
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .calc-row span {
+            color: var(--text-muted);
+        }
+
+        .calc-row strong {
+            font-family: var(--font-mono);
+        }
+
+        .calc-hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 14px 0;
+        }
+
+        .calc-warning {
+            margin-top: 12px;
+            display: none;
+            background: rgba(227, 27, 35, 0.15);
+            border: 1px solid var(--bb-red);
+            color: #fca5a5;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
         .alert-card {
             background: rgba(227, 27, 35, 0.05);
             border: 1px solid rgba(227, 27, 35, 0.3);
@@ -478,6 +573,7 @@
                 max-width: 100%;
             }
             .page-title { font-size: 2rem; }
+            .calc-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -520,6 +616,51 @@
         <div class="card">
             <p>Every instrument carries a fixed dollar-distance target. Contract size is calculated so that distance equals approximately <strong>6% of current equity</strong>. Size must always be a whole multiple of the instrument minimum.</p>
         </div>
+
+        <!-- Systemic Position Size Calculator Module -->
+        <section class="calc-module">
+            <h2>Systemic Position Size Calculator</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Calculates contract size so that fixed price distance equals strictly 6% of account equity.</p>
+
+            <div class="calc-grid">
+                <div class="calc-input-group">
+                    <label for="calcEquity">Account Equity ($)</label>
+                    <input type="number" id="calcEquity" value="400" min="1" step="10">
+                </div>
+                <div class="calc-input-group">
+                    <label for="calcInstrument">Select Instrument</label>
+                    <select id="calcInstrument">
+                        <option value="USTech">USTech (&times;20)</option>
+                        <option value="XAUUSD">XAUUSD / Gold (&times;20)</option>
+                        <option value="WTI">WTI Crude Oil</option>
+                        <option value="EURUSD">EURUSD</option>
+                        <option value="USDJPY">USDJPY</option>
+                        <option value="BTCUSD">BTCUSD (&times;10)</option>
+                        <option value="ETHUSD">ETHUSD (&times;10)</option>
+                        <option value="Tesla">Tesla (&times;5)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="calc-results-box">
+                <div class="calc-row">
+                    <span>6% Equity Target Risk:</span>
+                    <strong id="targetRiskVal" style="color: #38bdf8;">$24.00</strong>
+                </div>
+                <div class="calc-row">
+                    <span>Dollar Distance Target:</span>
+                    <strong id="dollarDistVal" style="color: #e2e8f0;">$125 per index</strong>
+                </div>
+                <hr class="calc-hr">
+                <div class="calc-row" style="margin-bottom: 0;">
+                    <span style="font-size: 1.05rem; font-weight: 700; color: var(--text-main);">Recommended Size:</span>
+                    <strong id="recommendedSizeVal" style="font-size: 1.4rem; color: #4ade80;">0.19 Lot</strong>
+                </div>
+                <div id="statusWarning" class="calc-warning">
+                    &#9888;&#65039; <strong>Trade Skipped (Hard Rule):</strong> Calculated size is below broker minimum requirement. Equity is too low for safe execution.
+                </div>
+            </div>
+        </section>
 
         <!-- Hard Rule Box -->
         <div class="alert-card">
@@ -643,8 +784,9 @@
         <p class="courtesy">Special courtesy to Gemini AI for design and codes.</p>
     </footer>
 
-    <!-- Interactive Navigation Scripts -->
+    <!-- Interactive Navigation Scripts & Position Calculator Logic -->
     <script>
+        // Navigation Bar Logic
         const nav = document.getElementById('navContainer');
         const navWrapper = document.getElementById('navWrapper');
         const btnLeft = document.getElementById('scrollLeft');
@@ -703,8 +845,60 @@
             updateNavState();
         });
 
+        // Position Calculator Script Logic
+        const INSTRUMENTS = {
+            USTech:   { name: "USTech",   dist: 125, min: 0.10, step: 0.01, unit: "Index Points", lotLabel: "Lot" },
+            XAUUSD:   { name: "XAUUSD",   dist: 25,  min: 0.01, step: 0.01, unit: "per 0.01 lot ($25/0.01)", lotLabel: "Lot" },
+            WTI:      { name: "WTI",      dist: 1.0, min: 0.01, step: 0.01, unit: "per Barrel", lotLabel: "Lot" },
+            EURUSD:   { name: "EURUSD",   dist: 1.0, min: 0.01, step: 0.01, unit: "per 0.01 lot", lotLabel: "Lot" },
+            USDJPY:   { name: "USDJPY",   dist: 1.0, min: 0.01, step: 0.01, unit: "per 0.01 lot", lotLabel: "Lot" },
+            BTCUSD:   { name: "BTCUSD",   dist: 500, min: 0.01, step: 0.01, unit: "per Bitcoin", lotLabel: "Lot" },
+            ETHUSD:   { name: "ETHUSD",   dist: 25,  min: 0.10, step: 0.01, unit: "per Ethereum", lotLabel: "Lot" },
+            Tesla:    { name: "Tesla",    dist: 5.0, min: 1.00, step: 1.00, unit: "per Share", lotLabel: "Share(s)" }
+        };
+
+        function updateCalculator() {
+            const equity = parseFloat(document.getElementById("calcEquity").value) || 0;
+            const instKey = document.getElementById("calcInstrument").value;
+            const inst = INSTRUMENTS[instKey];
+
+            const targetRisk = equity * 0.06;
+            let size = 0;
+
+            if (instKey === "XAUUSD") {
+                size = targetRisk / 2500;
+            } else if (instKey === "EURUSD" || instKey === "USDJPY") {
+                size = targetRisk / 100;
+            } else {
+                size = targetRisk / inst.dist;
+            }
+
+            const decimals = inst.step < 1 ? 2 : 0;
+            const formattedSize = Math.floor(size / inst.step) * inst.step;
+
+            document.getElementById("targetRiskVal").innerText = `$${targetRisk.toFixed(2)}`;
+            document.getElementById("dollarDistVal").innerText = `$${inst.dist} ${inst.unit}`;
+
+            const warningEl = document.getElementById("statusWarning");
+            const sizeEl = document.getElementById("recommendedSizeVal");
+
+            if (formattedSize < inst.min) {
+                sizeEl.innerText = "0.00";
+                sizeEl.style.color = "#f87171";
+                warningEl.style.display = "block";
+            } else {
+                sizeEl.innerText = `${formattedSize.toFixed(decimals)} ${inst.lotLabel}`;
+                sizeEl.style.color = "#4ade80";
+                warningEl.style.display = "none";
+            }
+        }
+
+        document.getElementById("calcEquity").addEventListener("input", updateCalculator);
+        document.getElementById("calcInstrument").addEventListener("change", updateCalculator);
+
         document.addEventListener('DOMContentLoaded', () => {
             centerActiveButton();
+            updateCalculator();
         });
     </script>
 </body>
