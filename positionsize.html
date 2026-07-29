@@ -625,7 +625,7 @@
             <div class="calc-grid">
                 <div class="calc-input-group">
                     <label for="calcEquity">Account Equity ($)</label>
-                    <input type="number" id="calcEquity" value="400" min="1" step="10">
+                    <input type="number" id="calcEquity" value="4000" min="1" step="10">
                 </div>
                 <div class="calc-input-group">
                     <label for="calcInstrument">Select Instrument</label>
@@ -645,7 +645,7 @@
             <div class="calc-results-box">
                 <div class="calc-row">
                     <span>6% Equity Target Risk:</span>
-                    <strong id="targetRiskVal" style="color: #38bdf8;">$24.00</strong>
+                    <strong id="targetRiskVal" style="color: #38bdf8;">$240.00</strong>
                 </div>
                 <div class="calc-row">
                     <span>Dollar Distance Target:</span>
@@ -654,7 +654,7 @@
                 <hr class="calc-hr">
                 <div class="calc-row" style="margin-bottom: 0;">
                     <span style="font-size: 1.05rem; font-weight: 700; color: var(--text-main);">Recommended Size:</span>
-                    <strong id="recommendedSizeVal" style="font-size: 1.4rem; color: #4ade80;">0.19 Lot</strong>
+                    <strong id="recommendedSizeVal" style="font-size: 1.4rem; color: #4ade80;">1.90 Lot</strong>
                 </div>
                 <div id="statusWarning" class="calc-warning">
                     &#9888;&#65039; <strong>Trade Skipped (Hard Rule):</strong> Calculated size is below broker minimum requirement. Equity is too low for safe execution.
@@ -687,7 +687,7 @@
                         <td class="instrument-name">USTech</td>
                         <td class="mono-text">&times;20</td>
                         <td class="mono-text">$125 per index</td>
-                        <td class="mono-text">0.1</td>
+                        <td class="mono-text">0.10</td>
                     </tr>
                     <tr>
                         <td><span class="priority-badge">#2</span></td>
@@ -847,13 +847,13 @@
 
         // Position Calculator Script Logic
         const INSTRUMENTS = {
-            USTech:   { name: "USTech",   dist: 125, min: 0.10, step: 0.01, unit: "Index Points", lotLabel: "Lot" },
+            USTech:   { name: "USTech",   dist: 125, min: 0.10, step: 0.10, unit: "Index Points", lotLabel: "Lot" },
             XAUUSD:   { name: "XAUUSD",   dist: 25,  min: 0.01, step: 0.01, unit: "per 0.01 lot ($25/0.01)", lotLabel: "Lot" },
             WTI:      { name: "WTI",      dist: 1.0, min: 0.01, step: 0.01, unit: "per Barrel ($100/Lot)", lotLabel: "Lot" },
             EURUSD:   { name: "EURUSD",   dist: 1.0, min: 0.01, step: 0.01, unit: "per 0.01 lot", lotLabel: "Lot" },
             USDJPY:   { name: "USDJPY",   dist: 1.0, min: 0.01, step: 0.01, unit: "per 0.01 lot", lotLabel: "Lot" },
             BTCUSD:   { name: "BTCUSD",   dist: 500, min: 0.01, step: 0.01, unit: "per Bitcoin", lotLabel: "Lot" },
-            ETHUSD:   { name: "ETHUSD",   dist: 25,  min: 0.10, step: 0.01, unit: "per Ethereum", lotLabel: "Lot" },
+            ETHUSD:   { name: "ETHUSD",   dist: 25,  min: 0.10, step: 0.10, unit: "per Ethereum", lotLabel: "Lot" },
             Tesla:    { name: "Tesla",    dist: 5.0, min: 1.00, step: 1.00, unit: "per Share", lotLabel: "Share(s)" }
         };
 
@@ -868,7 +868,6 @@
             if (instKey === "XAUUSD") {
                 size = targetRisk / 2500;
             } else if (instKey === "WTI") {
-                // 1 Lot = 100 Barrels. A $1 price movement per barrel equals $100 per 1.00 Lot ($1 per 0.01 Lot).
                 size = targetRisk / 100;
             } else if (instKey === "EURUSD" || instKey === "USDJPY") {
                 size = targetRisk / 100;
@@ -876,8 +875,9 @@
                 size = targetRisk / inst.dist;
             }
 
-            const decimals = inst.step < 1 ? 2 : 0;
-            const formattedSize = Math.floor(size / inst.step) * inst.step;
+            // Precision fix for JS floating point division
+            const formattedSize = Math.floor((size + 0.000001) / inst.step) * inst.step;
+            const decimals = inst.step >= 1 ? 0 : 2;
 
             document.getElementById("targetRiskVal").innerText = `$${targetRisk.toFixed(2)}`;
             document.getElementById("dollarDistVal").innerText = `$${inst.dist} ${inst.unit}`;
