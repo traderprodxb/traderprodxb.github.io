@@ -38,7 +38,6 @@
             padding-bottom: 60px;
         }
 
-        /* Navigation Header */
         header {
             background: rgba(7, 9, 14, 0.95);
             backdrop-filter: blur(16px);
@@ -58,7 +57,6 @@
             gap: 2rem;
         }
 
-        /* Brand Logo Area */
         .brand-logo {
             display: flex;
             align-items: center;
@@ -110,7 +108,6 @@
             margin-top: 4px;
         }
 
-        /* Navigation Scroll Wrapper */
         .nav-wrapper {
             position: relative;
             display: flex;
@@ -152,7 +149,6 @@
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
         .nav-wrapper.can-scroll-right::after { opacity: 1; }
 
-        /* Navigation Controls */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -235,14 +231,12 @@
             box-shadow: 0 0 12px rgba(227, 27, 35, 0.4);
         }
 
-        /* Layout Container */
         .container {
             max-width: 1100px;
             margin: 3.5rem auto;
             padding: 0 2rem;
         }
 
-        /* Styling for Cards Ingested by Zapier */
         .reflection-card {
             background: var(--bb-card);
             border: 1px solid var(--border);
@@ -283,7 +277,6 @@
             justify-content: center;
         }
 
-        /* Footer */
         footer {
             border-top: 1px solid var(--border);
             padding: 3rem 2rem;
@@ -358,17 +351,14 @@
     </header>
 
     <div class="container">
-        <!-- Section Header -->
         <section id="reflections-hub" style="max-width: 800px; margin: 0 auto; font-family: var(--font-sans);">
             <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 8px;">Automated Reflection Log Ingestion</h2>
             <p id="ingestStatus" style="color: #38bdf8; font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 24px;">Status: System active and listening for Zapier email logs...</p>
             
-            <!-- Target injection anchor used by Zapier Step 3 -->
             <!-- AUTOMATION_INJECTION_POINT -->
 
         </section>
 
-        <!-- BlackBull Partner Banner -->
         <div class="banner-wrap">
             <a href="https://go.blackbull.com/visit/?bta=43394&nci=8007" target="_Top">
                 <img src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573603" border="0" style="max-width:100%; height:auto;" alt="BlackBull Reflections Banner">
@@ -382,7 +372,6 @@
         <p class="courtesy">Special courtesy to Gemini AI for design and codes.</p>
     </footer>
 
-    <!-- Interactive Navigation Script -->
     <script>
         const nav = document.getElementById('navContainer');
         const navWrapper = document.getElementById('navWrapper');
@@ -395,17 +384,11 @@
             const maxScroll = nav.scrollWidth - nav.clientWidth;
 
             if (nav.scrollWidth > nav.clientWidth) {
-                if (scrollLeft > 5) {
-                    navWrapper.classList.add('can-scroll-left');
-                } else {
-                    navWrapper.classList.remove('can-scroll-left');
-                }
+                if (scrollLeft > 5) navWrapper.classList.add('can-scroll-left');
+                else navWrapper.classList.remove('can-scroll-left');
 
-                if (scrollLeft < maxScroll - 5) {
-                    navWrapper.classList.add('can-scroll-right');
-                } else {
-                    navWrapper.classList.remove('can-scroll-right');
-                }
+                if (scrollLeft < maxScroll - 5) navWrapper.classList.add('can-scroll-right');
+                else navWrapper.classList.remove('can-scroll-right');
             } else {
                 navWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
             }
@@ -417,34 +400,17 @@
                 const navWidth = nav.clientWidth;
                 const activeLeft = activeBtn.offsetLeft;
                 const activeWidth = activeBtn.clientWidth;
-
                 const targetScroll = activeLeft - (navWidth / 2) + (activeWidth / 2);
-                
-                nav.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
+                nav.scrollTo({ left: targetScroll, behavior: 'smooth' });
             }
             setTimeout(updateNavState, 300);
         }
 
-        btnLeft.addEventListener('click', () => {
-            nav.scrollBy({ left: -200, behavior: 'smooth' });
-        });
-
-        btnRight.addEventListener('click', () => {
-            nav.scrollBy({ left: 200, behavior: 'smooth' });
-        });
-
+        btnLeft.addEventListener('click', () => nav.scrollBy({ left: -200, behavior: 'smooth' }));
+        btnRight.addEventListener('click', () => nav.scrollBy({ left: 200, behavior: 'smooth' }));
         nav.addEventListener('scroll', updateNavState);
-        window.addEventListener('resize', () => {
-            centerActiveButton();
-            updateNavState();
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            centerActiveButton();
-        });
+        window.addEventListener('resize', () => { centerActiveButton(); updateNavState(); });
+        document.addEventListener('DOMContentLoaded', () => centerActiveButton());
     </script>
 </body>
 </html>
