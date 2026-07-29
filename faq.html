@@ -110,7 +110,7 @@
             margin-top: 4px;
         }
 
-        /* Navigation Scroll Wrapper & Dynamic Cues (Top-Right Alignment) */
+        /* Navigation Scroll Wrapper & Dynamic Cues */
         .nav-wrapper {
             position: relative;
             display: flex;
@@ -125,7 +125,6 @@
             border-radius: 40px;
         }
 
-        /* Gradient Mask Indicators for Hidden Scrollable Content */
         .nav-wrapper::before,
         .nav-wrapper::after {
             content: '';
@@ -153,7 +152,6 @@
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
         .nav-wrapper.can-scroll-right::after { opacity: 1; }
 
-        /* Directional Arrow Controls */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -191,7 +189,6 @@
             visibility: visible;
         }
 
-        /* Nav Track */
         nav {
             display: flex;
             align-items: center;
@@ -248,7 +245,7 @@
             font-family: var(--font-heading);
             font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .page-desc {
@@ -257,30 +254,56 @@
             font-size: 1.1rem;
         }
 
+        /* FAQ Card System */
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
         .card {
             background: var(--bb-card);
             border: 1px solid var(--border);
-            padding: 2.5rem;
+            padding: 2rem 2.5rem;
             border-radius: 8px;
-            margin-bottom: 2rem;
-            border-top: 4px solid var(--bb-red);
+            border-left: 4px solid var(--bb-red);
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .card:hover {
+            background: var(--bb-card-hover);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         .card h3 {
             font-family: var(--font-heading);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
             color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card h3::before {
+            content: 'Q.';
+            font-family: var(--font-mono);
+            color: var(--bb-red);
+            font-size: 1rem;
+            font-weight: 700;
         }
 
         .card p {
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 0.98rem;
         }
 
         .banner-wrap {
             text-align: center;
-            margin: 3rem 0;
+            margin: 4rem 0 2rem 0;
             padding: 1.5rem;
             background: var(--bb-card);
             border: 1px solid var(--border);
@@ -332,6 +355,7 @@
                 max-width: 100%;
             }
             .page-title { font-size: 2rem; }
+            .card { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -370,13 +394,65 @@
         <h1 class="page-title">Frequently Asked Questions</h1>
         <p class="page-desc">Clear institutional answers regarding the TraderProDXB system and BlackBull integration.</p>
 
-        <div class="card">
-            <h3>How do system rules protect capital?</h3>
-            <p>Every trade is backed by strict mathematical constraints, ensuring risk exposure remains controlled across all market conditions.</p>
+        <div class="faq-grid">
+            <div class="card">
+                <h3>How do the system rules protect capital?</h3>
+                <p>Every trade is constrained by a hard 6% equity Stop-Loss and a matching 6% equity Take-Profit measured on account equity at the moment of entry. Position size is calculated so that the planned price distance produces exactly this 6% move. Only one trade is open at any time. There is no averaging, no martingale, no scaling in, and no discretionary override after the order is live.</p>
+            </div>
+
+            <div class="card">
+                <h3>What is the exact risk/reward model?</h3>
+                <p>Risk and reward are identical (1:1). A winning trade targets +6% of current equity. A losing trade is limited to –6% of current equity. The system never alters these percentages regardless of account size, instrument, or stage.</p>
+            </div>
+
+            <div class="card">
+                <h3>How does position sizing actually work?</h3>
+                <p>Position size combines a fixed dollar-distance target per instrument with the maximum leverage allowed on that instrument. The required number of units is calculated so that a price move equal to the stated distance equals ±6% of current equity. Size must be a whole multiple of the instrument’s minimum contract.</p>
+            </div>
+
+            <div class="card">
+                <h3>Why these eight instruments only?</h3>
+                <p>They provide sufficient liquidity, relatively predictable session behaviour, and leverage levels that allow the fixed dollar-distance model to function cleanly.</p>
+            </div>
+
+            <div class="card">
+                <h3>What is the full compounding path to $4,000,000?</h3>
+                <p>Four sequential Major Stages of 10×: $400 &rarr; $4,000 &rarr; $40,000 &rarr; $400,000 &rarr; $4,000,000. Each Major Stage contains seven Mini Stages. Each Mini Stage is divided into five Micro Targets. An ideal day completes one Mini Stage with five winning Micro Targets.</p>
+            </div>
+
+            <div class="card">
+                <h3>What happens after a losing trade?</h3>
+                <p>The same Micro Target is re-attempted from the new (lower) equity. The 6% rule is never changed.</p>
+            </div>
+
+            <div class="card">
+                <h3>Is this a signal service, course, or managed-account offering?</h3>
+                <p>No. This is a public accountability ledger of one trader’s live capital. No signals are distributed, no courses are sold, and no accounts are managed for others.</p>
+            </div>
+
+            <div class="card">
+                <h3>How is the track record verified?</h3>
+                <p>The live account is linked to Myfxbook via BlackBull’s read-only investor API. Results cannot be edited or selectively reported.</p>
+            </div>
+
+            <div class="card">
+                <h3>Which broker is used and why?</h3>
+                <p>All capital is traded through BlackBull Markets under an institutional ECN/STP environment that supports precise execution of the calculated position sizes.</p>
+            </div>
+
+            <div class="card">
+                <h3>Why are Mondays and Fridays excluded?</h3>
+                <p>Mondays are typically too turbulent with unexpected trends. Fridays carry elevated end-of-week risk of unwanted positions. Weekends are traded on crypto for geopolitical reversal setups that appear before traditional markets open.</p>
+            </div>
+
+            <div class="card">
+                <h3>What is UYCN?</h3>
+                <p>UYCN is a Solana community token of appreciation. It has no claim on trading capital or profits. Once consistent profitability is reached, a portion of monthly net profits is intended to support community or charitable purposes.</p>
+            </div>
         </div>
 
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8016" Target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573598" width="160" height="600" style="max-width:100%; height:auto;" alt="BlackBull FAQ Partner"></a>
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8016" target="_top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573598" width="160" height="600" style="max-width:100%; height:auto;" alt="BlackBull FAQ Partner"></a>
         </div>
     </div>
 
