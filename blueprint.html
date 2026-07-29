@@ -254,34 +254,30 @@
         .page-desc {
             color: var(--text-muted);
             margin-bottom: 3rem;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            line-height: 1.7;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+        .system-overview {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--bb-red);
+            border-radius: 8px;
+            padding: 2.5rem;
             margin-bottom: 3rem;
         }
 
-        .card {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 8px;
-            border-top: 4px solid var(--bb-red);
+        .system-overview p {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
         }
 
-        .card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .card p {
+        .system-overview p:last-child {
+            margin-bottom: 0;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-style: italic;
         }
 
         .banner-wrap {
@@ -372,17 +368,12 @@
 
     <div class="container">
         <h1 class="page-title">System Blueprint</h1>
-        <p class="page-desc">Precision rules engineered to eliminate emotional bias and enforce structural trading consistency.</p>
-
-        <div class="grid">
-            <div class="card">
-                <h3>The Core Risk Rule</h3>
-                <p>Every deployment targets an absolute, controlled parameter set. Risk and reward parameters are structured systematically before entry.</p>
-            </div>
-            <div class="card">
-                <h3>Mechanical Execution</h3>
-                <p>Decisions are driven entirely by quantitative alignment rather than market noise, ensuring long-term compounding viability.</p>
-            </div>
+        
+        <div class="system-overview">
+            <p>This is a mechanical day-trading system built around one permanent baseline ($400) and four successive 10× stages.</p>
+            <p>Risk and reward are locked near 6% of current equity. Only one position is allowed at a time. Five winning micro-steps complete one mini-stage, and seven mini-stages complete one major stage.</p>
+            <p>Position size is derived from fixed dollar-distance targets so every instrument produces the same equity percentage. High-volatility conditions force size reduction or abstinence. Mondays and Fridays are excluded; weekends are used for crypto.</p>
+            <p>Detailed mechanics live on the dedicated pages. This page exists only to answer the question: what is actually being done here?</p>
         </div>
 
         <div class="banner-wrap">
