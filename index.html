@@ -256,11 +256,10 @@
 
         .hero p {
             color: var(--text-muted);
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             max-width: 750px;
             margin: 0 auto 2.5rem auto;
-            font-family: var(--font-mono);
-            letter-spacing: 0.5px;
+            font-weight: 500;
         }
 
         .cta-btn {
@@ -281,80 +280,68 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* System Overview Content Box */
-        .system-overview {
+        /* Core Narrative Content Panel */
+        .manifesto-card {
             background: var(--bb-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 3rem;
+            padding: 3.5rem 3rem;
             margin-bottom: 3rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: left;
+            text-align: center;
         }
 
-        .system-overview p {
+        .manifesto-card p {
             color: var(--text-muted);
-            font-size: 1.15rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
             line-height: 1.8;
+            margin-bottom: 1.5rem;
         }
 
-        .system-overview p.intro-text {
-            font-size: 1.25rem;
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        .system-overview p.outro-text {
-            font-style: italic;
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
-            margin-bottom: 0;
-            font-size: 1rem;
-        }
-
-        /* Formatted Rules List */
-        .system-rules {
-            list-style: none;
-            margin: 2rem 0;
-            background: rgba(7, 9, 14, 0.5);
-            border-radius: 8px;
-            padding: 2rem;
-            border: 1px solid var(--border);
-        }
-
-        .system-rules li {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            margin-bottom: 1.2rem;
-            padding-left: 2rem;
-            position: relative;
-        }
-
-        .system-rules li:last-child {
-            margin-bottom: 0;
-        }
-
-        .system-rules li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 8px;
-            height: 8px;
-            background: var(--bb-red);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(227, 27, 35, 0.5);
-        }
-
-        .highlight {
+        .manifesto-card p.highlight-path {
             color: var(--text-main);
             font-weight: 600;
+        }
+
+        .manifesto-card p.record-statement {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            margin: 2rem 0;
+        }
+
+        .manifesto-card p.negation {
+            font-family: var(--font-mono);
+            color: var(--bb-red);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .manifesto-card p.core-values {
+            color: var(--text-main);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .manifesto-card p.conclusion {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+            margin-top: 2rem;
         }
 
         /* Banner Wrap */
@@ -412,8 +399,7 @@
                 max-width: 100%;
             }
             .hero h1 { font-size: 2.2rem; }
-            .system-overview { padding: 1.5rem; }
-            .system-rules { padding: 1.5rem; }
+            .manifesto-card { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -449,27 +435,24 @@
     </header>
 
     <section class="hero">
-        <h1>Mechanical <span>Day-Trading System</span></h1>
-        <p>This page exists only to answer the question: what is actually being done here?</p>
+        <h1>Permanent <span>Tension</span></h1>
+        <p>Day trading lives in permanent tension.</p>
         <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_Top" class="cta-btn">Open Live Account with BlackBull</a>
     </section>
 
     <main class="container">
         
-        <!-- Core System Overview Panel -->
-        <div class="system-overview">
-            <p class="intro-text">This is a mechanical day-trading system built around one permanent baseline ($400) and four successive 10× stages.</p>
+        <!-- Core Narrative Content Panel -->
+        <div class="manifesto-card">
+            <p class="highlight-path">One path leads to quiet compounding and long-term capital.</p>
+            <p>The other leads to blown accounts and public failure.</p>
             
-            <ul class="system-rules">
-                <li>Risk and reward are locked near <span class="highlight">6%</span> of current equity.</li>
-                <li>Only <span class="highlight">one position</span> is allowed at a time.</li>
-                <li><span class="highlight">Five</span> winning micro-steps complete one mini-stage.</li>
-                <li><span class="highlight">Seven</span> mini-stages complete one major stage.</li>
-            </ul>
-
-            <p>Position size is derived from fixed dollar-distance targets so every instrument produces the same equity percentage. High-volatility conditions force size reduction or abstinence. Mondays and Fridays are excluded; weekends are used for crypto.</p>
+            <p class="record-statement">This site is the live public record of one trader who chose the first path after living both.</p>
             
-            <p class="outro-text">Detailed mechanics live on the dedicated pages.</p>
+            <p class="negation">No signals. No courses. No managed money.</p>
+            <p class="core-values">Only rules, execution, and external accountability.</p>
+            
+            <p class="conclusion">Enter the system.</p>
         </div>
 
         <!-- BlackBull Banner Element -->
