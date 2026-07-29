@@ -110,7 +110,7 @@
             margin-top: 4px;
         }
 
-        /* Navigation Scroll Wrapper & Dynamic Cues (Top-Right Alignment) */
+        /* Navigation Scroll Wrapper & Dynamic Cues */
         .nav-wrapper {
             position: relative;
             display: flex;
@@ -125,7 +125,6 @@
             border-radius: 40px;
         }
 
-        /* Gradient Mask Indicators for Hidden Scrollable Content */
         .nav-wrapper::before,
         .nav-wrapper::after {
             content: '';
@@ -153,7 +152,6 @@
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
         .nav-wrapper.can-scroll-right::after { opacity: 1; }
 
-        /* Directional Arrow Controls */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -191,7 +189,6 @@
             visibility: visible;
         }
 
-        /* Nav Track */
         nav {
             display: flex;
             align-items: center;
@@ -248,34 +245,183 @@
             font-family: var(--font-heading);
             font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        .page-desc {
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
+        .page-subtitle {
+            font-family: var(--font-sans);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 2rem;
         }
 
+        /* Core Rule Card & Alert Box */
         .card {
             background: var(--bb-card);
             border: 1px solid var(--border);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 8px;
             margin-bottom: 2rem;
             border-top: 4px solid var(--bb-red);
         }
 
-        .card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .card p strong {
             color: var(--text-main);
         }
 
-        .card p {
+        .alert-card {
+            background: rgba(227, 27, 35, 0.05);
+            border: 1px solid rgba(227, 27, 35, 0.3);
+            border-left: 4px solid var(--bb-red);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .alert-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--bb-red);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-card p {
             color: var(--text-muted);
-            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Data Table Styles */
+        .table-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .table-container {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 2.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--bb-card-hover);
+        }
+
+        .priority-badge {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--bb-red);
+            background: rgba(227, 27, 35, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .instrument-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .mono-text {
+            font-family: var(--font-mono);
+            color: var(--text-main);
+        }
+
+        /* Precautions List Grid */
+        .precautions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .precaution-item {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s ease;
+        }
+
+        .precaution-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .precaution-icon {
+            color: var(--bb-red);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .precaution-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Note Section */
+        .note-card {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .note-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
         }
 
         .banner-wrap {
@@ -367,19 +513,130 @@
     </header>
 
     <div class="container">
-        <h1 class="page-title">Position Sizing Rules</h1>
-        <p class="page-desc">Precision risk allocation models mapped across approved asset classes.</p>
+        <h1 class="page-title">Position Size</h1>
+        <p class="page-subtitle">Position sizing is the core discipline of the system.</p>
 
+        <!-- Dynamic Overview Card -->
         <div class="card">
-            <h3>Leverage & Exposure Controls</h3>
-            <p>Calculated sizing rules designed to protect core capital while capturing targeted compounding returns efficiently.</p>
+            <p>Every instrument carries a fixed dollar-distance target. Contract size is calculated so that distance equals approximately <strong>6% of current equity</strong>. Size must always be a whole multiple of the instrument minimum.</p>
         </div>
 
+        <!-- Hard Rule Box -->
+        <div class="alert-card">
+            <h4>&#9888;&#65039; Hard Rule</h4>
+            <p>If the planned 6% dollar amount is smaller than the instrument’s minimum distance, the trade is skipped. This prevents oversizing.</p>
+        </div>
+
+        <!-- Instrument Parameters Table -->
+        <h2 class="table-title">Instrument Parameters</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Instrument</th>
+                        <th>Leverage</th>
+                        <th>Dollar Distance</th>
+                        <th>Minimum Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="priority-badge">#1</span></td>
+                        <td class="instrument-name">USTech</td>
+                        <td class="mono-text">&times;20</td>
+                        <td class="mono-text">$125 per index</td>
+                        <td class="mono-text">0.1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge">#2</span></td>
+                        <td class="instrument-name">XAUUSD</td>
+                        <td class="mono-text">&times;20</td>
+                        <td class="mono-text">$25 per 0.01 lot</td>
+                        <td class="mono-text">0.01</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge">#3</span></td>
+                        <td class="instrument-name">WTI</td>
+                        <td class="mono-text">&mdash;</td>
+                        <td class="mono-text">$1 per barrel</td>
+                        <td class="mono-text">0.01 lot (1 barrel)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge">#4</span></td>
+                        <td class="instrument-name">EURUSD</td>
+                        <td class="mono-text">&mdash;</td>
+                        <td class="mono-text">$1 per 0.01 lot</td>
+                        <td class="mono-text">0.01</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge">#5</span></td>
+                        <td class="instrument-name">USDJPY</td>
+                        <td class="mono-text">&mdash;</td>
+                        <td class="mono-text">$1 per 0.01 lot</td>
+                        <td class="mono-text">0.01</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge">#6</span></td>
+                        <td class="instrument-name">BTCUSD</td>
+                        <td class="mono-text">&times;10</td>
+                        <td class="mono-text">$500 per Bitcoin</td>
+                        <td class="mono-text">0.01</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge">#7</span></td>
+                        <td class="instrument-name">ETHUSD</td>
+                        <td class="mono-text">&times;10</td>
+                        <td class="mono-text">$25 per Ethereum</td>
+                        <td class="mono-text">0.10</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge">#8</span></td>
+                        <td class="instrument-name">Tesla</td>
+                        <td class="mono-text">&times;5</td>
+                        <td class="mono-text">$5 per share</td>
+                        <td class="mono-text">1 share</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Precautions Section -->
+        <h2 class="table-title">Precautions (Size Reduction or Pause)</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">On the following conditions, position size is cut in half or trading is paused:</p>
+        
+        <div class="precautions-grid">
+            <div class="precaution-item">
+                <span class="precaution-icon">&#x26A0;</span>
+                <span class="precaution-text">High ATR / elevated volatility days</span>
+            </div>
+            <div class="precaution-item">
+                <span class="precaution-icon">&#x1F4C8;</span>
+                <span class="precaution-text">Major economic data releases</span>
+            </div>
+            <div class="precaution-item">
+                <span class="precaution-icon">&#x1F3DB;</span>
+                <span class="precaution-text">FOMC decisions</span>
+            </div>
+            <div class="precaution-item">
+                <span class="precaution-icon">&#x1F30D;</span>
+                <span class="precaution-text">Geopolitical or black-swan events</span>
+            </div>
+        </div>
+
+        <!-- Calibrated Target Note -->
+        <div class="note-card">
+            <h4>Note on fixed dollar distances and changing prices</h4>
+            <p>The dollar-distance targets were calibrated at earlier average price levels. Because the targets remain fixed in dollars, a large change in the underlying price can cause the same dollar distance to represent a slightly different percentage move. This may result in a modestly higher or lower contract size than what would be considered perfectly optimal under current conditions. The system keeps the distances fixed for consistency and simplicity. The 6% equity target remains the guide; actual results simply move in a narrow band around it. Manual size reduction remains available whenever the effective percentage feels excessive.</p>
+        </div>
+
+        <!-- Unchanged BlackBull Banner Section -->
         <div class="banner-wrap">
             <a href="https://go.blackbull.com/visit/?bta=43394&nci=8009" Target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573602" width="1080" height="1080" style="max-width:100%; height:auto;" alt="BlackBull Position Sizing"></a>
         </div>
     </div>
 
+    <!-- Unchanged Footer -->
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
         <p class="disclaimer"><strong>Risk Warning:</strong> Ensure you understand the mechanics of leverage before executing market positions.</p>
