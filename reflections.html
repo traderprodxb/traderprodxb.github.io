@@ -58,7 +58,7 @@
             gap: 2rem;
         }
 
-        /* Modern Top-Left Brand Logo & Title Area */
+        /* Brand Logo & Title Area */
         .brand-logo {
             display: flex;
             align-items: center;
@@ -110,7 +110,7 @@
             margin-top: 4px;
         }
 
-        /* Navigation Scroll Wrapper & Dynamic Cues (Top-Right Alignment) */
+        /* Navigation Wrapper */
         .nav-wrapper {
             position: relative;
             display: flex;
@@ -125,7 +125,6 @@
             border-radius: 40px;
         }
 
-        /* Gradient Mask Indicators for Hidden Scrollable Content */
         .nav-wrapper::before,
         .nav-wrapper::after {
             content: '';
@@ -153,7 +152,7 @@
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
         .nav-wrapper.can-scroll-right::after { opacity: 1; }
 
-        /* Directional Arrow Controls */
+        /* Navigation Controls */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -191,7 +190,6 @@
             visibility: visible;
         }
 
-        /* Nav Track */
         nav {
             display: flex;
             align-items: center;
@@ -242,54 +240,6 @@
             max-width: 1100px;
             margin: 3.5rem auto;
             padding: 0 2rem;
-        }
-
-        .page-title {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .page-desc {
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .card {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-top: 4px solid var(--bb-red);
-        }
-
-        .card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text-main);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .code-box {
-            background: #040508;
-            border: 1px solid var(--border);
-            padding: 1.2rem;
-            border-radius: 6px;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: #00E676;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-            white-space: pre-wrap;
         }
 
         .banner-wrap {
@@ -345,14 +295,12 @@
                 width: 100%;
                 max-width: 100%;
             }
-            .page-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <!-- Top-Left Branding Element -->
             <a href="index.html" class="brand-logo">
                 <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
                 <div class="brand-text">
@@ -361,7 +309,6 @@
                 </div>
             </a>
 
-            <!-- Top-Right Scrollable Pill Navigation -->
             <div class="nav-wrapper" id="navWrapper">
                 <button class="nav-arrow left" id="scrollLeft" aria-label="Scroll Left">&#10094;</button>
                 <nav id="navContainer">
@@ -381,42 +328,18 @@
     </header>
 
     <div class="container">
-        <h1 class="page-title">Trading Reflections & Zapier Integration</h1>
-        <p class="page-desc">Core psychological tracking logs paired with automated email ingestion flows.</p>
+        <!-- Injected Ingestion Hub Section -->
+        <section id="reflections-hub" style="max-width: 800px; margin: 30px auto; font-family: sans-serif;">
+          <h2>Automated Reflection Log Ingestion</h2>
+          <p id="ingestStatus" style="color: #38bdf8;">Status: Listening for incoming trade reflections...</p>
 
-        <div class="card">
-            <h3>Machine-Like Mindset</h3>
-            <p>Reflections are the core strength in day trading, whether evaluating a win or processing a loss reflection. Keeping records automated ensures absolute accountability.</p>
-        </div>
+          <!-- Display container for ingested reflections -->
+          <div id="reflectionFeed" style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
+            <!-- Active logs stream here dynamically -->
+          </div>
+        </section>
 
-        <div class="card">
-            <h3>Zapier Email-to-Reflections Automation Engine</h3>
-            <p>Reference blueprint for the automated background webhook receiver script handling incoming trade reflection emails:</p>
-            <div class="code-box">// Zapier Email-to-Reflections Receiver Setup
-async function handleReflectionWebhook(event) {
-    const payload = await event.json();
-    const reflectionData = {
-        timestamp: new Date().toISOString(),
-        sender: payload.from_email,
-        subject: payload.subject,
-        body: payload.body_plain,
-        category: payload.subject.includes('Loss') ? 'Loss Reflection' : 'Win Reflection'
-    };
-    
-    console.log("Ingested Reflection Log:", reflectionData);
-    // Securely routes entry into your permanent ledger
-    return new Response(JSON.stringify({ status: "SUCCESS", logged: reflectionData }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-    });
-}</div>
-        </div>
-
-        <div class="card">
-            <h3>Live Ingested Feed Status</h3>
-            <p id="feed-status" style="color: #00E676; font-family: var(--font-mono);">System active: Listening for automated Zapier POST logs...</p>
-        </div>
-
+        <!-- BlackBull Banner -->
         <div class="banner-wrap">
             <a href="https://go.blackbull.com/visit/?bta=43394&nci=8007" target="_Top"><img src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573603" border="0" style="max-width:100%; height:auto;" alt="BlackBull Reflections Banner"></a>
         </div>
@@ -428,7 +351,7 @@ async function handleReflectionWebhook(event) {
         <p class="courtesy">Special courtesy to Gemini AI for design and codes.</p>
     </footer>
 
-    <!-- Interactive Navigation Scripts -->
+    <!-- Interactive Navigation & Receiver Scripts -->
     <script>
         const nav = document.getElementById('navContainer');
         const navWrapper = document.getElementById('navWrapper');
@@ -492,8 +415,34 @@ async function handleReflectionWebhook(event) {
             centerActiveButton();
         });
 
-        // Client-side initialization check for automation telemetry
-        console.log("TraderProDXB Reflections Utility Initialized.");
+        // Dynamic receiver parser for Zapier / Email Webhooks
+        async function processIncomingReflection(payload) {
+            const feed = document.getElementById("reflectionFeed");
+            const status = document.getElementById("ingestStatus");
+
+            const entryCard = document.createElement("div");
+            const isLoss = payload.subject && payload.subject.toLowerCase().includes("loss");
+
+            entryCard.style.cssText = `
+              background: ${isLoss ? "#2a1215" : "#0f291e"};
+              border: 1px solid ${isLoss ? "#7f1d1d" : "#065f46"};
+              border-radius: 8px;
+              padding: 16px;
+              color: #f3f4f6;
+            `;
+
+            entryCard.innerHTML = `
+              <div style="display:flex; justify-content:space-between; font-size: 0.85rem; color:#9ca3af; margin-bottom:8px;">
+                <strong style="color: ${isLoss ? "#f87171" : "#34d399"}">${isLoss ? "LOSS REFLECTION" : "WIN REFLECTION"}</strong>
+                <span>${new Date(payload.timestamp || Date.now()).toLocaleString()}</span>
+              </div>
+              <p style="margin: 4px 0;"><strong>Sender:</strong> ${payload.from_email || payload.sender || "System Log"}</p>
+              <p style="margin: 8px 0 0 0; line-height: 1.5;">${payload.body_plain || payload.body}</p>
+            `;
+
+            feed.prepend(entryCard);
+            status.innerText = "Status: New reflection log successfully ingested.";
+        }
     </script>
 </body>
 </html>
