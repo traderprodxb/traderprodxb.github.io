@@ -700,7 +700,7 @@
                         <td><span class="priority-badge">#3</span></td>
                         <td class="instrument-name">WTI</td>
                         <td class="mono-text">&times;10</td>
-                        <td class="mono-text">$1 per barrel</td>
+                        <td class="mono-text">$100 per lot ($1/barrel)</td>
                         <td class="mono-text">0.01 lot (1 barrel)</td>
                     </tr>
                     <tr>
@@ -849,7 +849,7 @@
         const INSTRUMENTS = {
             USTech:   { name: "USTech",   dist: 125, min: 0.10, step: 0.01, unit: "Index Points", lotLabel: "Lot" },
             XAUUSD:   { name: "XAUUSD",   dist: 25,  min: 0.01, step: 0.01, unit: "per 0.01 lot ($25/0.01)", lotLabel: "Lot" },
-            WTI:      { name: "WTI",      dist: 1.0, min: 0.01, step: 0.01, unit: "per Barrel", lotLabel: "Lot" },
+            WTI:      { name: "WTI",      dist: 1.0, min: 0.01, step: 0.01, unit: "per Barrel ($100/Lot)", lotLabel: "Lot" },
             EURUSD:   { name: "EURUSD",   dist: 1.0, min: 0.01, step: 0.01, unit: "per 0.01 lot", lotLabel: "Lot" },
             USDJPY:   { name: "USDJPY",   dist: 1.0, min: 0.01, step: 0.01, unit: "per 0.01 lot", lotLabel: "Lot" },
             BTCUSD:   { name: "BTCUSD",   dist: 500, min: 0.01, step: 0.01, unit: "per Bitcoin", lotLabel: "Lot" },
@@ -867,6 +867,9 @@
 
             if (instKey === "XAUUSD") {
                 size = targetRisk / 2500;
+            } else if (instKey === "WTI") {
+                // 1 Lot = 100 Barrels. A $1 price movement per barrel equals $100 per 1.00 Lot ($1 per 0.01 Lot).
+                size = targetRisk / 100;
             } else if (instKey === "EURUSD" || instKey === "USDJPY") {
                 size = targetRisk / 100;
             } else {
