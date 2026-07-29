@@ -110,7 +110,7 @@
             margin-top: 4px;
         }
 
-        /* Navigation Scroll Wrapper & Dynamic Cues (Top-Right Alignment) */
+        /* Navigation Scroll Wrapper & Dynamic Cues */
         .nav-wrapper {
             position: relative;
             display: flex;
@@ -125,7 +125,6 @@
             border-radius: 40px;
         }
 
-        /* Gradient Mask Indicators for Hidden Scrollable Content */
         .nav-wrapper::before,
         .nav-wrapper::after {
             content: '';
@@ -153,7 +152,6 @@
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
         .nav-wrapper.can-scroll-right::after { opacity: 1; }
 
-        /* Directional Arrow Controls */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -191,7 +189,6 @@
             visibility: visible;
         }
 
-        /* Nav Track */
         nav {
             display: flex;
             align-items: center;
@@ -242,51 +239,55 @@
             max-width: 1100px;
             margin: 3.5rem auto;
             padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .page-title {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .page-desc {
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .card {
+        /* Widget Container Styling */
+        .widget-card {
             background: var(--bb-card);
             border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
             border-top: 4px solid var(--bb-red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text-main);
+        .widget-card:hover {
+            transform: translateY(-2px);
+            border-top-color: var(--bb-red-hover);
         }
 
-        .card p {
-            color: var(--text-muted);
-            line-height: 1.6;
+        .widget-card a {
+            display: inline-block;
+            line-height: 0;
+        }
+
+        .widget-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
         }
 
         .banner-wrap {
             text-align: center;
-            margin: 3rem 0;
+            margin: 1rem 0 3rem 0;
             padding: 1.5rem;
             background: var(--bb-card);
             border: 1px solid var(--border);
             border-radius: 8px;
             display: flex;
             justify-content: center;
+            width: 100%;
+            max-width: 800px;
         }
 
         /* Footer */
@@ -331,7 +332,9 @@
                 width: 100%;
                 max-width: 100%;
             }
-            .page-title { font-size: 2rem; }
+            .widget-card {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
@@ -367,16 +370,18 @@
     </header>
 
     <div class="container">
-        <h1 class="page-title">Verified Track Record</h1>
-        <p class="page-desc">Transparent execution ledger demonstrating strict procedural adherence.</p>
-
-        <div class="card">
-            <h3>Objective Performance Log</h3>
-            <p>Every trade execution is documented against benchmark rules to ensure absolute system compliance and transparency.</p>
+        <!-- MyFxBook Widget Card -->
+        <div class="widget-card">
+            <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener">
+                <img alt="MyFxBook Performance Widget" src="https://widget.myfxbook.com/widget/widget.png?accountOid=12106666&type=6" />
+            </a>
         </div>
 
+        <!-- BlackBull Affiliate Banner -->
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8019" Target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573582" width="320" height="50" style="max-width:100%; height:auto;" alt="BlackBull Track Record"></a>
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8019" target="_top">
+                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573582" width="320" height="50" style="max-width:100%; height:auto;" alt="BlackBull Track Record">
+            </a>
         </div>
     </div>
 
