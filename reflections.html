@@ -237,6 +237,7 @@
             padding: 0 2rem;
         }
 
+        /* Styling for Cards Ingested by Zapier */
         .reflection-card {
             background: var(--bb-card);
             border: 1px solid var(--border);
@@ -383,7 +384,7 @@
 
             if (nav.scrollWidth > nav.clientWidth) {
                 if (scrollLeft > 5) navWrapper.classList.add('can-scroll-left');
-                else navWrapper.classList.remove('can-scroll-left');
+                else navWrapper.classList.remove('can-scroll-remove');
 
                 if (scrollLeft < maxScroll - 5) navWrapper.classList.add('can-scroll-right');
                 else navWrapper.classList.remove('can-scroll-right');
