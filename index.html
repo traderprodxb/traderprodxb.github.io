@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bb-dark: #07090E;
-            --bb-card: #121620;
-            --bb-card-hover: #1A202C;
+            --bb-dark: #000000;
+            --bb-card: #0A0A0A;
+            --bb-card-hover: #141414;
             --bb-red: #E31B23;
-            --bb-red-hover: #ff222d;
-            --border: rgba(255, 255, 255, 0.1);
+            --bb-red-hover: #FF222D;
+            --border: #222222;
             --text-main: #FFFFFF;
-            --text-muted: #94A3B8;
+            --text-muted: #A0A0A0;
             --font-sans: 'Inter', sans-serif;
             --font-heading: 'Montserrat', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
@@ -40,7 +40,7 @@
 
         /* Navigation Header */
         header {
-            background: rgba(7, 9, 14, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             position: sticky;
@@ -58,7 +58,7 @@
             gap: 2rem;
         }
 
-        /* Modern Top-Left Brand Logo & Title Area */
+        /* Top-Left Brand Logo & Title Area */
         .brand-logo {
             display: flex;
             align-items: center;
@@ -73,13 +73,13 @@
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid var(--bb-red);
-            box-shadow: 0 0 20px rgba(227, 27, 35, 0.3);
+            box-shadow: 0 0 20px rgba(227, 27, 35, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .brand-logo:hover img {
             transform: scale(1.04);
-            box-shadow: 0 0 28px rgba(227, 27, 35, 0.5);
+            box-shadow: 0 0 28px rgba(227, 27, 35, 0.7);
         }
 
         .brand-text {
@@ -119,7 +119,7 @@
             flex-grow: 1;
             max-width: 850px;
             justify-content: flex-end;
-            background: rgba(18, 22, 32, 0.6);
+            background: var(--bb-card);
             border: 1px solid var(--border);
             padding: 6px 8px;
             border-radius: 40px;
@@ -141,12 +141,12 @@
 
         .nav-wrapper::before {
             left: 0;
-            background: linear-gradient(to right, rgba(18, 22, 32, 0.95), transparent);
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.95), transparent);
         }
 
         .nav-wrapper::after {
             right: 0;
-            background: linear-gradient(to left, rgba(18, 22, 32, 0.95), transparent);
+            background: linear-gradient(to left, rgba(10, 10, 10, 0.95), transparent);
         }
 
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
@@ -156,7 +156,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(7, 9, 14, 0.9);
+            background: var(--bb-dark);
             border: 1px solid var(--border);
             color: var(--text-main);
             width: 28px;
@@ -171,13 +171,12 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.25s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
 
         .nav-arrow:hover {
             background: var(--bb-red);
             border-color: var(--bb-red);
-            color: #FFF;
+            color: #FFFFFF;
         }
 
         .nav-arrow.left { left: 8px; }
@@ -231,12 +230,12 @@
             font-weight: 700;
             border-color: var(--bb-red);
             background: var(--bb-red);
-            box-shadow: 0 0 12px rgba(227, 27, 35, 0.4);
+            box-shadow: 0 0 12px rgba(227, 27, 35, 0.5);
         }
 
         /* Hero Section */
         .hero {
-            padding: 6rem 2rem 4rem 2rem;
+            padding: 5rem 2rem 3rem 2rem;
             text-align: center;
             background: radial-gradient(circle at 50% 20%, rgba(227, 27, 35, 0.15) 0%, transparent 60%);
         }
@@ -246,8 +245,9 @@
             font-size: 3.5rem;
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             letter-spacing: -1px;
+            text-transform: uppercase;
         }
 
         .hero h1 span {
@@ -264,7 +264,7 @@
 
         .cta-btn {
             background: var(--bb-red);
-            color: #FFF;
+            color: #FFFFFF;
             padding: 0.9rem 2.2rem;
             border-radius: 4px;
             font-weight: 700;
@@ -280,68 +280,133 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* Core Narrative Content Panel */
-        .manifesto-card {
+        /* Sections Layout */
+        .content-card {
             background: var(--bb-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 3.5rem 3rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .card-header {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--bb-red);
+        }
+
+        .manifesto-text p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
             text-align: center;
         }
 
-        .manifesto-card p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .manifesto-card p.highlight-path {
+        .manifesto-text p.highlight-path {
             color: var(--text-main);
             font-weight: 600;
         }
 
-        .manifesto-card p.record-statement {
-            font-size: 1.25rem;
+        .manifesto-text p.record-statement {
+            font-size: 1.2rem;
             color: var(--text-main);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
-            margin: 2rem 0;
+            padding: 1.2rem 0;
+            margin: 1.5rem 0;
         }
 
-        .manifesto-card p.negation {
+        .manifesto-text p.negation {
             font-family: var(--font-mono);
             color: var(--bb-red);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 700;
         }
 
-        .manifesto-card p.core-values {
+        .manifesto-text p.core-values {
             color: var(--text-main);
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            letter-spacing: -0.3px;
         }
 
-        .manifesto-card p.conclusion {
+        .manifesto-text p.conclusion {
             font-family: var(--font-heading);
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: var(--text-main);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-top: 1.5rem;
             margin-bottom: 0;
-            margin-top: 2rem;
+        }
+
+        .blueprint-details p {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .system-rules {
+            list-style: none;
+            margin: 1.5rem 0 2rem 0;
+            background: var(--bb-dark);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .system-rules li {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .system-rules li:last-child {
+            margin-bottom: 0;
+        }
+
+        .system-rules li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--bb-red);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(227, 27, 35, 0.8);
+        }
+
+        .highlight {
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        .footer-note {
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0 !important;
+            font-size: 0.95rem !important;
         }
 
         /* Banner Wrap */
@@ -363,12 +428,12 @@
             text-align: center;
             color: var(--text-muted);
             font-size: 0.8rem;
-            background: #040508;
+            background: #000000;
         }
 
         .disclaimer {
             font-size: 0.75rem;
-            color: #64748B;
+            color: #777777;
             margin-top: 1rem;
             max-width: 900px;
             margin-left: auto;
@@ -399,7 +464,8 @@
                 max-width: 100%;
             }
             .hero h1 { font-size: 2.2rem; }
-            .manifesto-card { padding: 2rem 1.5rem; }
+            .content-card { padding: 2rem 1.5rem; }
+            .system-rules { padding: 1.25rem 1rem; }
         }
     </style>
 </head>
@@ -419,8 +485,7 @@
             <div class="nav-wrapper" id="navWrapper">
                 <button class="nav-arrow left" id="scrollLeft" aria-label="Scroll Left">&#10094;</button>
                 <nav id="navContainer">
-                    <a href="index.html" class="active">Home</a>
-                    <a href="blueprint.html">Blueprint</a>
+                    <a href="index.html" class="active">Home & Blueprint</a>
                     <a href="infrastructure.html">Infrastructure</a>
                     <a href="journey.html">Journey</a>
                     <a href="track-record.html">Track Record</a>
@@ -442,8 +507,9 @@
 
     <main class="container">
         
-        <!-- Core Narrative Content Panel -->
-        <div class="manifesto-card">
+        <!-- Section 1: Home Manifesto -->
+        <div class="content-card manifesto-text">
+            <h2 class="card-header" style="text-align: center;">The Commitment</h2>
             <p class="highlight-path">One path leads to quiet compounding and long-term capital.</p>
             <p>The other leads to blown accounts and public failure.</p>
             
@@ -455,9 +521,28 @@
             <p class="conclusion">Enter the system.</p>
         </div>
 
-        <!-- BlackBull Banner Element -->
+        <!-- Section 2: Merged System Blueprint -->
+        <div class="content-card blueprint-details">
+            <h2 class="card-header">System Blueprint</h2>
+            <p>This is a mechanical day-trading system built around one permanent baseline ($400) and four successive 10× stages.</p>
+            
+            <ul class="system-rules">
+                <li>Risk and reward are locked near <span class="highlight">6%</span> of current equity.</li>
+                <li>Only <span class="highlight">one position</span> is allowed at a time.</li>
+                <li><span class="highlight">Five winning micro-steps</span> complete one mini-stage.</li>
+                <li><span class="highlight">Seven mini-stages</span> complete one major stage.</li>
+            </ul>
+
+            <p>Position size is derived from fixed dollar-distance targets so every instrument produces the same equity percentage. High-volatility conditions force size reduction or abstinence. Mondays and Fridays are excluded; weekends are used for crypto.</p>
+            
+            <p class="footer-note">Detailed mechanics live on the dedicated pages. This page exists only to answer the question: what is actually being done here?</p>
+        </div>
+
+        <!-- BlackBull Partner Banner -->
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573600" width="1200" height="630" style="max-width:100%; height:auto;" alt="BlackBull Partner"></a>
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_Top">
+                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573600" width="1200" height="630" style="max-width:100%; height:auto;" alt="BlackBull Partner">
+            </a>
         </div>
     </main>
 
