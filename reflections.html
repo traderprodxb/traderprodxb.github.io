@@ -1,110 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Reflections - TraderProDXB</title>
-    <style>
-        :root {
-            --bg-color: #0b0e14;
-            --card-bg: #151921;
-            --accent-color: #3b82f6;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: #262c36;
-        }
+const fileContent = inputData.fileContent || "";
+const rawSubject = inputData.subject || "Reflection Update";
+const rawBody = inputData.body || "";
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+// Clean up subject & body content
+const subject = rawSubject.replace(/^(Fwd:|Re:)\s*/i, "").trim();
+const body = rawBody.trim();
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 20px;
-        }
+// Format HTML Reflection Card
+const newCardHtml = `
+        <div class="reflection-card">
+            <h3>${subject}</h3>
+            <p>${body}</p>
+        </div>`;
 
-        header {
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            color: var(--text-main);
-            margin-bottom: 8px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .reflection-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        }
-
-        .reflection-card h3 {
-            color: var(--accent-color);
-            margin-bottom: 12px;
-            font-size: 1.25rem;
-        }
-
-        .reflection-card p {
-            color: var(--text-main);
-            white-space: pre-wrap;
-            font-size: 0.95rem;
-        }
-
-        footer {
-            max-width: 800px;
-            margin: 40px auto 0 auto;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>Trading Reflections</h1>
-        <p>Live execution insights & journal logs</p>
-    </header>
-
-    <main>
-        <!-- AUTOMATION_INJECTION_POINT -->
+// Target tag MUST be strictly this comment line only
+const targetTag = "<!-- AUTOMATION_INJECTION_POINT -->
 
         <div class="reflection-card">
-            <h3>Initial Reflection Entry</h3>
-            <p>System log initialization completed. New trade reflections will automatically append here via inbound automation.</p>
-        </div>
-    </main>
+            <h3>undefined</h3>
+            <p>undefined</p>
+        </div>";
 
-    <footer>
-        <p>&copy; TraderProDXB. All rights reserved.</p>
-    </footer>
+let updatedHtml = "";
+if (fileContent.includes(targetTag)) {
+    updatedHtml = fileContent.replace(targetTag, `${targetTag}\n${newCardHtml}`);
+} else {
+    // Safety fallback if comment is missing
+    updatedHtml = fileContent.replace("<main>", `<main>\n${newCardHtml}`);
+}
 
-</body>
-</html>
+output = { updatedContent: updatedHtml };
