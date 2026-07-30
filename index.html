@@ -431,21 +431,29 @@
             background: #000000;
         }
 
-        .disclaimer {
+        .disclaimer-box {
             font-size: 0.75rem;
-            color: #777777;
-            margin-top: 1rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
+            color: #888888;
+            margin: 1.5rem auto 0 auto;
+            max-width: 950px;
+            line-height: 1.6;
+            text-align: justify;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 6px;
         }
 
-        footer .courtesy {
-            color: var(--bb-red);
-            font-weight: 600;
-            margin-top: 0.8rem;
-            font-size: 0.85rem;
+        .disclaimer-box p {
+            margin-bottom: 0.8rem;
+        }
+
+        .disclaimer-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .disclaimer-box strong {
+            color: var(--text-muted);
         }
 
         @media (max-width: 900px) {
@@ -466,6 +474,7 @@
             .hero h1 { font-size: 2.2rem; }
             .content-card { padding: 2rem 1.5rem; }
             .system-rules { padding: 1.25rem 1rem; }
+            .disclaimer-box { text-align: left; }
         }
     </style>
 </head>
@@ -489,7 +498,6 @@
                     <a href="infrastructure.html">Infrastructure</a>
                     <a href="journey.html">Journey</a>
                     <a href="track-record.html">Track Record</a>
-                    <a href="reflections.html">Reflections</a>
                     <a href="positionsize.html">Position Size</a>
                     <a href="faq.html">FAQ</a>
                 </nav>
@@ -547,8 +555,14 @@
 
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        <p class="disclaimer"><strong>Risk Warning:</strong> Trading derivatives and leveraged products carries a high level of risk to your capital. You should only trade with money you can afford to lose. Ensure you fully understand the risks involved and seek independent advice if necessary.</p>
-        <p class="courtesy">Special courtesy to Gemini AI for design and codes.</p>
+        
+        <div class="disclaimer-box">
+            <p><strong>High-Risk Investment Warning:</strong> Trading Foreign Exchange (Forex), Contracts for Difference (CFDs), digital assets, and other leveraged financial derivatives involves a high level of risk and may not be suitable for all investors. Leverage can work against you as well as for you, potentially leading to the substantial loss of your invested capital. You should never invest money that you cannot afford to lose. Before deciding to trade, ensure you fully understand the risks involved, take into account your investment objectives, level of experience, and risk appetite, and seek independent financial advice if necessary.</p>
+
+            <p><strong>No Financial Advice or Solicitation:</strong> The content provided on TraderProDXB is strictly for informational, educational, and personal journal tracking purposes only. Nothing contained on this site constitutes investment, legal, tax, or financial advice, nor is it a recommendation, endorsement, or solicitation to buy or sell any security, currency, derivative, or financial product. TraderProDXB does not operate as a financial broker, dealer, investment advisor, or asset manager.</p>
+
+            <p><strong>Performance Disclaimer:</strong> Any historical trade logs, system calculations, or performance metrics displayed represent individual execution logs and are not indicative of future results. No representation or guarantee is made that any trading system, strategy, or account will or is likely to achieve profits or losses similar to those discussed on this website.</p>
+        </div>
     </footer>
 
     <!-- Interactive Navigation Scripts -->
