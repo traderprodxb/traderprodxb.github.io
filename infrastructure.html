@@ -318,18 +318,13 @@
         .disclaimer {
             font-size: 0.75rem;
             color: #64748B;
-            margin-top: 1rem;
-            max-width: 900px;
+            margin-top: 1.5rem;
+            max-width: 950px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.5;
-        }
-
-        footer .courtesy {
-            color: var(--bb-red);
-            font-weight: 600;
-            margin-top: 0.8rem;
-            font-size: 0.85rem;
+            line-height: 1.6;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         @media (max-width: 900px) {
@@ -348,6 +343,7 @@
                 max-width: 100%;
             }
             .page-title { font-size: 2rem; }
+            .disclaimer { text-align: left; }
         }
     </style>
 </head>
@@ -371,7 +367,6 @@
                     <a href="infrastructure.html" class="active">Infrastructure</a>
                     <a href="journey.html">Journey</a>
                     <a href="track-record.html">Track Record</a>
-                    <a href="reflections.html">Reflections</a>
                     <a href="positionsize.html">Position Size</a>
                     <a href="faq.html">FAQ</a>
                 </nav>
@@ -407,8 +402,9 @@
 
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        <p class="disclaimer"><strong>Risk Warning:</strong> Trading CFDs on margin carries high risk. Losses can exceed deposits.</p>
-        <p class="courtesy">Special courtesy to Gemini AI for design and codes.</p>
+        <p class="disclaimer">
+            <strong>Financial & Risk Disclosure:</strong> Trading foreign exchange (Forex), contracts for difference (CFDs), and other leveraged financial derivatives carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you, and losses can exceed your initial deposits. Before deciding to trade CFDs or any other financial instrument, you should carefully consider your investment objectives, level of experience, and risk appetite. Content provided on TraderProDXB is for educational and informational purposes only and does not constitute financial, investment, or trading advice. Past performance is not indicative of future results.
+        </p>
     </footer>
 
     <!-- Interactive Navigation Scripts -->
