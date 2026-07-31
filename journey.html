@@ -249,6 +249,8 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
         }
 
         .page-desc {
@@ -260,22 +262,103 @@
         .card {
             background: var(--bb-card);
             border: 1px solid var(--border);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 8px;
             margin-bottom: 2rem;
             border-top: 4px solid var(--bb-red);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
         .card h3 {
             font-family: var(--font-heading);
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
             color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .card p {
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 1.02rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Stages Grid System */
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0 2rem 0;
+        }
+
+        .stage-box {
+            background: rgba(7, 9, 14, 0.6);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--bb-red);
+        }
+
+        .stage-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--bb-red);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .stage-value {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-top: 4px;
+        }
+
+        .stage-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        .cta-action-box {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        .cta-action-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 650px;
+        }
+
+        .cta-btn {
+            background: var(--bb-red);
+            color: #FFFFFF;
+            padding: 0.85rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.2s;
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            background: var(--bb-red-hover);
+            transform: translateY(-2px);
         }
 
         /* Social Channels Grid */
@@ -384,6 +467,9 @@
                 max-width: 100%;
             }
             .page-title { font-size: 2rem; }
+            .card { padding: 1.8rem 1.25rem; }
+            .cta-action-box { flex-direction: column; text-align: center; }
+            .disclaimer { text-align: left; }
         }
     </style>
 </head>
@@ -422,13 +508,45 @@
         <!-- Compounding Progression Section -->
         <div class="card">
             <h3>Compounding Progression Model</h3>
-            <p>Moving methodically across defined capital thresholds through controlled execution and systematic risk management.</p>
+            <p>
+                The scaling roadmap is structured across four sequential 10× Major Stages, transforming a baseline $400 live balance into a $4,000,000 target. Progress is governed by strict mathematical milestones: each Major Stage contains seven Mini Stages, and each Mini Stage requires five successful Micro Targets executed with zero discretionary intervention.
+            </p>
+
+            <div class="stages-grid">
+                <div class="stage-box">
+                    <div class="stage-label">Stage 1 Baseline</div>
+                    <div class="stage-value">$400 &rarr; $4,000</div>
+                    <div class="stage-desc">7 Mini-Stages | 35 Micro Targets. Establishing systematic execution discipline.</div>
+                </div>
+                <div class="stage-box">
+                    <div class="stage-label">Stage 2 Expansion</div>
+                    <div class="stage-value">$4,000 &rarr; $40,000</div>
+                    <div class="stage-desc">7 Mini-Stages | 35 Micro Targets. Scaling lot sizes dynamically via institutional ECN liquidity.</div>
+                </div>
+                <div class="stage-box">
+                    <div class="stage-label">Stage 3 Institutional</div>
+                    <div class="stage-value">$40,000 &rarr; $400,000</div>
+                    <div class="stage-desc">7 Mini-Stages | 35 Micro Targets. High-capital lot routing with zero slippage tolerance.</div>
+                </div>
+                <div class="stage-box">
+                    <div class="stage-label">Stage 4 Final Horizon</div>
+                    <div class="stage-value">$400,000 &rarr; $4,000,000</div>
+                    <div class="stage-desc">7 Mini-Stages | 35 Micro Targets. Systemic target completion and compounding closure.</div>
+                </div>
+            </div>
+
+            <div class="cta-action-box">
+                <div class="cta-action-text">
+                    Executing continuous 6.0% risk parameters across all four stages requires direct market routing and high fill quality.
+                </div>
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8018" target="_top" class="cta-btn">Initialize ECN Environment</a>
+            </div>
         </div>
 
         <!-- Social Media Hub CTAs -->
         <div class="card">
             <h3>Official Ecosystem & Social Channels</h3>
-            <p>Connect across verified platforms for market insights, live streams, and community updates.</p>
+            <p>Connect across verified platforms for market insights, live streams, and public accountability updates.</p>
             
             <div class="social-grid">
                 <!-- X / Twitter -->
@@ -471,7 +589,9 @@
 
         <!-- BlackBull Partner Ad Banner -->
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8018" target="_top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573581" width="300" height="250" style="max-width:100%; height:auto;" alt="BlackBull Journey Partner"></a>
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8018" target="_top">
+                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573581" width="300" height="250" style="max-width:100%; height:auto;" alt="BlackBull Journey Partner">
+            </a>
         </div>
     </div>
 
@@ -490,7 +610,7 @@
         const btnRight = document.getElementById('scrollRight');
 
         function updateNavState() {
-            if (!nav) return;
+            if (!nav || !navWrapper) return;
             const scrollLeft = nav.scrollLeft;
             const maxScroll = nav.scrollWidth - nav.clientWidth;
 
@@ -512,6 +632,7 @@
         }
 
         function centerActiveButton() {
+            if (!nav) return;
             const activeBtn = nav.querySelector('a.active');
             if (activeBtn) {
                 const navWidth = nav.clientWidth;
@@ -528,23 +649,25 @@
             setTimeout(updateNavState, 300);
         }
 
-        btnLeft.addEventListener('click', () => {
-            nav.scrollBy({ left: -200, behavior: 'smooth' });
-        });
+        if (btnLeft && btnRight && nav) {
+            btnLeft.addEventListener('click', () => {
+                nav.scrollBy({ left: -200, behavior: 'smooth' });
+            });
 
-        btnRight.addEventListener('click', () => {
-            nav.scrollBy({ left: 200, behavior: 'smooth' });
-        });
+            btnRight.addEventListener('click', () => {
+                nav.scrollBy({ left: 200, behavior: 'smooth' });
+            });
 
-        nav.addEventListener('scroll', updateNavState);
-        window.addEventListener('resize', () => {
-            centerActiveButton();
-            updateNavState();
-        });
+            nav.addEventListener('scroll', updateNavState);
+            window.addEventListener('resize', () => {
+                centerActiveButton();
+                updateNavState();
+            });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            centerActiveButton();
-        });
+            document.addEventListener('DOMContentLoaded', () => {
+                centerActiveButton();
+            });
+        }
     </script>
 </body>
 </html>
