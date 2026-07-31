@@ -58,7 +58,7 @@
             gap: 2rem;
         }
 
-        /* Modern Top-Left Brand Logo & Title Area */
+        /* Top-Left Brand Logo & Title Area */
         .brand-logo {
             display: flex;
             align-items: center;
@@ -244,6 +244,27 @@
             align-items: center;
         }
 
+        .page-header {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
         /* Widget Container Styling */
         .widget-card {
             background: var(--bb-card);
@@ -253,6 +274,7 @@
             margin-bottom: 2.5rem;
             border-top: 4px solid var(--bb-red);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
@@ -266,15 +288,44 @@
             border-top-color: var(--bb-red-hover);
         }
 
-        .widget-card a {
-            display: inline-block;
-            line-height: 0;
+        .widget-link-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            width: 100%;
         }
 
         .widget-card img {
             max-width: 100%;
             height: auto;
             border-radius: 6px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-statement {
+            background: var(--bb-red);
+            color: #FFFFFF;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 15px rgba(227, 27, 35, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-statement:hover {
+            background: var(--bb-red-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 0 22px rgba(227, 27, 35, 0.5);
         }
 
         .banner-wrap {
@@ -327,8 +378,9 @@
                 max-width: 100%;
             }
             .widget-card {
-                padding: 1rem;
+                padding: 1.25rem;
             }
+            .page-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -361,11 +413,21 @@
     </header>
 
     <div class="container">
-        <!-- MyFxBook Widget Card -->
+        <div class="page-header">
+            <h1 class="page-title">Track Record</h1>
+            <p class="page-subtitle">Verified performance statement and live ledger metrics.</p>
+        </div>
+
+        <!-- MyFxBook Widget Container -->
         <div class="widget-card">
-            <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener">
-                <img alt="MyFxBook Performance Widget" src="https://widget.myfxbook.com/widget/widget.png?accountOid=12106666&type=6" />
-            </a>
+            <div class="widget-link-wrapper">
+                <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener noreferrer">
+                    <img id="myfxbookWidget" alt="MyFxBook Performance Widget" src="https://widget.myfxbook.com/widget/widget.png?accountOid=12106666&type=6" />
+                </a>
+                <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener noreferrer" class="btn-statement">
+                    <span>View Official MyFxBook Statement (PDF)</span> &#8599;
+                </a>
+            </div>
         </div>
 
         <!-- BlackBull Affiliate Banner -->
