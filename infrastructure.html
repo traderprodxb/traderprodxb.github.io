@@ -249,6 +249,8 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
         }
 
         .broker-highlight {
@@ -268,21 +270,35 @@
             border-radius: 8px;
             margin-bottom: 2rem;
             border-top: 4px solid var(--bb-red);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .card p.intro-text {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.2rem;
         }
 
         .spec-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .spec-list li {
             position: relative;
             padding-left: 1.8rem;
             color: var(--text-main);
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .spec-list li strong {
+            color: #FFFFFF;
         }
 
         .spec-list li::before {
@@ -291,7 +307,34 @@
             left: 0;
             color: var(--bb-red);
             font-size: 0.8rem;
-            top: 2px;
+            top: 3px;
+        }
+
+        .cta-action-box {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta-btn {
+            background: var(--bb-red);
+            color: #FFFFFF;
+            padding: 1rem 2.2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(227, 27, 35, 0.35);
+        }
+
+        .cta-btn:hover {
+            background: var(--bb-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(227, 27, 35, 0.55);
         }
 
         .banner-wrap {
@@ -343,6 +386,7 @@
                 max-width: 100%;
             }
             .page-title { font-size: 2rem; }
+            .card { padding: 1.8rem 1.25rem; }
             .disclaimer { text-align: left; }
         }
     </style>
@@ -376,27 +420,33 @@
     </header>
 
     <div class="container">
-        <h1 class="page-title">Broker Infrastructure</h1>
-        <div class="broker-highlight">Execution Broker: BlackBull Markets</div>
+        <h1 class="page-title">Execution Infrastructure</h1>
+        <div class="broker-highlight">Institutional Partner: BlackBull Markets</div>
 
         <div class="card">
+            <p class="intro-text">
+                Mechanical trading models cannot execute on generic retail setups. The strict 6.0% fixed dollar-distance risk model depends entirely on institutional execution standards, precise lot scaling, and zero dealing-desk interference. BlackBull Markets was integrated as the sole execution broker because it satisfies every core mathematical prerequisite of this strategy.
+            </p>
+
             <ul class="spec-list">
-                <li>Multi-asset broker with ECN/STP routing</li>
-                <li>No dealing-desk intervention</li>
-                <li>Competitive spreads and transparent pricing</li>
-                <li>Sufficient leverage for the system’s instruments</li>
-                <li>Full MetaTrader 5 support</li>
-                <li>Reliable fill quality for precise stops and targets</li>
-                <li>Segregated funds and negative-balance protection</li>
-                <li>Public independent ratings available</li>
-                <li>Supports the exact contract sizes required by the model</li>
-                <li>Affiliate relationship exists; commissions do not alter rules</li>
-                <li>Chosen solely because it allows the calculated sizes and risk parameters to be executed cleanly.</li>
+                <li><strong>Pure ECN/STP Liquidity Routing:</strong> Direct market access with zero dealing-desk intervention to prevent artificial spread expansion during entry.</li>
+                <li><strong>Micro-Lot Contract Precision:</strong> Supports exact fractional lot sizing required to calculate 6% equity parameters down to the penny.</li>
+                <li><strong>Institutional Fill Quality:</strong> Sub-millisecond order processing ensuring precise stop-loss and take-profit execution without slippage.</li>
+                <li><strong>Tier-1 Asset Coverage:</strong> Full MetaTrader 5 contract support across all 8 mandatory instruments (Indices, Metals, Energy, FX, Crypto).</li>
+                <li><strong>Capital Protection Safeguards:</strong> Fully segregated tier-1 banking funds paired with negative-balance protection protocols.</li>
+                <li><strong>Institutional Leverage Capabilities:</strong> Provides necessary margin efficiency to execute baseline $400 position parameters safely.</li>
+                <li><strong>Affiliate Transparency:</strong> An official partnership exists; execution commissions directly support this public ledger without altering trading rules.</li>
             </ul>
+
+            <div class="cta-action-box">
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_Top" class="cta-btn">Initialize ECN Execution Environment (BlackBull)</a>
+            </div>
         </div>
 
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" Target="_Top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573597" width="970" height="250" style="max-width:100%; height:auto;" alt="BlackBull Infrastructure"></a>
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_Top">
+                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573597" width="970" height="250" style="max-width:100%; height:auto;" alt="BlackBull Infrastructure">
+            </a>
         </div>
     </div>
 
@@ -415,7 +465,7 @@
         const btnRight = document.getElementById('scrollRight');
 
         function updateNavState() {
-            if (!nav) return;
+            if (!nav || !navWrapper) return;
             const scrollLeft = nav.scrollLeft;
             const maxScroll = nav.scrollWidth - nav.clientWidth;
 
@@ -437,6 +487,7 @@
         }
 
         function centerActiveButton() {
+            if (!nav) return;
             const activeBtn = nav.querySelector('a.active');
             if (activeBtn) {
                 const navWidth = nav.clientWidth;
@@ -453,23 +504,25 @@
             setTimeout(updateNavState, 300);
         }
 
-        btnLeft.addEventListener('click', () => {
-            nav.scrollBy({ left: -200, behavior: 'smooth' });
-        });
+        if (btnLeft && btnRight && nav) {
+            btnLeft.addEventListener('click', () => {
+                nav.scrollBy({ left: -200, behavior: 'smooth' });
+            });
 
-        btnRight.addEventListener('click', () => {
-            nav.scrollBy({ left: 200, behavior: 'smooth' });
-        });
+            btnRight.addEventListener('click', () => {
+                nav.scrollBy({ left: 200, behavior: 'smooth' });
+            });
 
-        nav.addEventListener('scroll', updateNavState);
-        window.addEventListener('resize', () => {
-            centerActiveButton();
-            updateNavState();
-        });
+            nav.addEventListener('scroll', updateNavState);
+            window.addEventListener('resize', () => {
+                centerActiveButton();
+                updateNavState();
+            });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            centerActiveButton();
-        });
+            document.addEventListener('DOMContentLoaded', () => {
+                centerActiveButton();
+            });
+        }
     </script>
 </body>
 </html>
