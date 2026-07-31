@@ -246,6 +246,8 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
         }
 
         .page-desc {
@@ -301,15 +303,65 @@
             font-size: 0.98rem;
         }
 
+        .card-cta-inline {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border);
+        }
+
+        .inline-btn {
+            display: inline-block;
+            background: var(--bb-red);
+            color: #FFFFFF;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.6rem 1.4rem;
+            border-radius: 4px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .inline-btn:hover {
+            background: var(--bb-red-hover);
+            transform: translateY(-1px);
+        }
+
         .banner-wrap {
             text-align: center;
             margin: 4rem 0 2rem 0;
-            padding: 1.5rem;
+            padding: 2rem;
             background: var(--bb-card);
             border: 1px solid var(--border);
             border-radius: 8px;
             display: flex;
+            align-items: center;
             justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .banner-text-box {
+            max-width: 450px;
+            text-align: left;
+        }
+
+        .banner-text-box h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .banner-text-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
         }
 
         /* Footer */
@@ -350,6 +402,8 @@
             }
             .page-title { font-size: 2rem; }
             .card { padding: 1.5rem; }
+            .banner-wrap { flex-direction: column; text-align: center; }
+            .banner-text-box { text-align: center; }
             .disclaimer { text-align: left; }
         }
     </style>
@@ -384,62 +438,72 @@
 
     <div class="container">
         <h1 class="page-title">Frequently Asked Questions</h1>
-        <p class="page-desc">Clear institutional answers regarding the TraderProDXB system and BlackBull integration.</p>
+        <p class="page-desc">Systemic parameters, execution mechanics, and BlackBull infrastructure documentation.</p>
 
         <div class="faq-grid">
             <div class="card">
                 <h3>How do the system rules protect capital?</h3>
-                <p>Every trade is constrained by a hard 6% equity Stop-Loss and a matching 6% equity Take-Profit measured on account equity at the moment of entry. Position size is calculated so that the planned price distance produces exactly this 6% move. Only one trade is open at any time. There is no averaging, no martingale, no scaling in, and no discretionary override after the order is live.</p>
+                <p>Every trade is strictly constrained by a hard 6.0% equity Stop-Loss and a matching 6.0% equity Take-Profit, calculated precisely from live account equity at the moment of execution. Position size is algorithmically matched to instrument volatility so that price target completion equals exactly ±6.0%. Only one trade is open at any time. Non-negotiable system protocols prohibit averaging, martingale adjustments, position scaling, or discretionary overrides after order placement.</p>
             </div>
 
             <div class="card">
                 <h3>What is the exact risk/reward model?</h3>
-                <p>Risk and reward are identical (1:1). A winning trade targets +6% of current equity. A losing trade is limited to –6% of current equity. The system never alters these percentages regardless of account size, instrument, or stage.</p>
+                <p>The mathematical model operates on a strict 1:1 risk-to-reward ratio. A successful trade yields +6.0% equity growth, while an invalidation caps loss at exactly –6.0%. This baseline ratio remains static across all equity stages, trading instruments, and account sizes without exception.</p>
             </div>
 
             <div class="card">
                 <h3>How does position sizing actually work?</h3>
-                <p>Position size combines a fixed dollar-distance target per instrument with the maximum leverage allowed on that instrument. The required number of units is calculated so that a price move equal to the stated distance equals ±6% of current equity. Size must be a whole multiple of the instrument’s minimum contract.</p>
+                <p>Position sizing integrates fixed dollar-distance targets per instrument with maximum available leverage parameters. Required unit volume is dynamically derived so that hitting the target distance produces an exact 6% equity movement. Executed lot sizes are strictly constrained to valid exchange multiples (e.g., USTech minimum size and increments are strictly 0.10 lots).</p>
             </div>
 
             <div class="card">
-                <h3>Why these eight instruments only?</h3>
-                <p>They provide sufficient liquidity, relatively predictable session behaviour, and leverage levels that allow the fixed dollar-distance model to function cleanly.</p>
+                <h3>Why are trading operations restricted to eight instruments?</h3>
+                <p>Execution is strictly bounded to USTech, XAUUSD, WTI Crude Oil, EURUSD, USDJPY, BTCUSD, ETHUSD, and Tesla. These assets provide superior institutional liquidity, tight spreads, predictable volatility profiles, and broker contract specs required to cleanly run the 6.0% risk distance model.</p>
             </div>
 
             <div class="card">
                 <h3>What is the full compounding path to $4,000,000?</h3>
-                <p>Four sequential Major Stages of 10×: $400 &rarr; $4,000 &rarr; $40,000 &rarr; $400,000 &rarr; $4,000,000. Each Major Stage contains seven Mini Stages. Each Mini Stage is divided into five Micro Targets. An ideal day completes one Mini Stage with five winning Micro Targets.</p>
+                <p>Capital scaling progresses across four sequential 10× Major Stages: $400 &rarr; $4,000 &rarr; $40,000 &rarr; $400,000 &rarr; $4,000,000. Each Major Stage requires completing seven Mini Stages. Each Mini Stage is systematically broken into five Micro Targets. Executing five consecutive winning setups achieves one Mini Stage milestone.</p>
             </div>
 
             <div class="card">
                 <h3>What happens after a losing trade?</h3>
-                <p>The same Micro Target is re-attempted from the new (lower) equity. The 6% rule is never changed.</p>
+                <p>If an invalidation occurs, the active Micro Target is re-attempted using recalibrated position sizes based on the updated (lower) equity balance. The 6.0% risk cap is never increased to compensate for drawdown.</p>
             </div>
 
             <div class="card">
                 <h3>Is this a signal service, course, or managed-account offering?</h3>
-                <p>No. This is a public accountability ledger of one trader’s live capital. No signals are distributed, no courses are sold, and no accounts are managed for others.</p>
+                <p>No. TraderProDXB is purely a public accountability ledger documenting proprietary capital scaling. No trading signals are distributed, no commercial courses are offered, and third-party capital management is strictly prohibited.</p>
             </div>
 
             <div class="card">
                 <h3>How is the track record verified?</h3>
-                <p>The live account is linked to Myfxbook via BlackBull’s read-only investor API. Results cannot be edited or selectively reported.</p>
+                <p>Execution performance is tracked through read-only API integration linking BlackBull Markets live trading accounts directly to Myfxbook. All trade logs, equity curves, and drawdowns are verified independently and updated automatically.</p>
             </div>
 
             <div class="card">
-                <h3>Which broker is used and why?</h3>
-                <p>All capital is traded through BlackBull Markets under an institutional ECN/STP environment that supports precise execution of the calculated position sizes.</p>
+                <h3>Which execution broker is utilized and why?</h3>
+                <p>All trades are executed through <strong>BlackBull Markets</strong> under an institutional ECN/STP environment. Direct market access, fast fill speeds, micro-lot contract precision, and zero dealing-desk intervention are essential technical requirements for the position calculator model to run without execution slippage.</p>
+                <div class="card-cta-inline">
+                    <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_top" class="inline-btn">Initialize BlackBull Account</a>
+                </div>
             </div>
 
             <div class="card">
-                <h3>Why are Mondays and Fridays excluded?</h3>
-                <p>Mondays are typically too turbulent with unexpected trends. Fridays carry elevated end-of-week risk of unwanted positions. Weekends are traded on crypto for geopolitical reversal setups that appear before traditional markets open.</p>
+                <h3>Why are Mondays and Fridays excluded from standard trading?</h3>
+                <p>Mondays frequently exhibit erratic weekend gap-fill behavior, while Fridays carry structural end-of-week liquidity contraction and gap risk. Standard market operations run Tuesday through Thursday. Weekend trading is restricted to crypto setups (BTCUSD / ETHUSD) targeting early geopolitical reversals before traditional markets open.</p>
             </div>
         </div>
 
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8016" target="_top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573598" width="160" height="600" style="max-width:100%; height:auto;" alt="BlackBull FAQ Partner"></a>
+            <div class="banner-text-box">
+                <h4>Institutional Execution Partner</h4>
+                <p>Replicate institutional execution conditions with raw ECN spreads, sub-millisecond fill speeds, and MetaTrader 5 integration powered by BlackBull Markets.</p>
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_top" class="inline-btn">Open ECN Account</a>
+            </div>
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8016" target="_top">
+                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573598" width="160" height="600" style="max-width:100%; height:auto;" alt="BlackBull FAQ Partner">
+            </a>
         </div>
     </div>
 
@@ -458,7 +522,7 @@
         const btnRight = document.getElementById('scrollRight');
 
         function updateNavState() {
-            if (!nav) return;
+            if (!nav || !navWrapper) return;
             const scrollLeft = nav.scrollLeft;
             const maxScroll = nav.scrollWidth - nav.clientWidth;
 
@@ -480,6 +544,7 @@
         }
 
         function centerActiveButton() {
+            if (!nav) return;
             const activeBtn = nav.querySelector('a.active');
             if (activeBtn) {
                 const navWidth = nav.clientWidth;
@@ -496,23 +561,25 @@
             setTimeout(updateNavState, 300);
         }
 
-        btnLeft.addEventListener('click', () => {
-            nav.scrollBy({ left: -200, behavior: 'smooth' });
-        });
+        if (btnLeft && btnRight && nav) {
+            btnLeft.addEventListener('click', () => {
+                nav.scrollBy({ left: -200, behavior: 'smooth' });
+            });
 
-        btnRight.addEventListener('click', () => {
-            nav.scrollBy({ left: 200, behavior: 'smooth' });
-        });
+            btnRight.addEventListener('click', () => {
+                nav.scrollBy({ left: 200, behavior: 'smooth' });
+            });
 
-        nav.addEventListener('scroll', updateNavState);
-        window.addEventListener('resize', () => {
-            centerActiveButton();
-            updateNavState();
-        });
+            nav.addEventListener('scroll', updateNavState);
+            window.addEventListener('resize', () => {
+                centerActiveButton();
+                updateNavState();
+            });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            centerActiveButton();
-        });
+            document.addEventListener('DOMContentLoaded', () => {
+                centerActiveButton();
+            });
+        }
     </script>
 </body>
 </html>
