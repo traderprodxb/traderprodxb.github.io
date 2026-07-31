@@ -257,7 +257,7 @@
         .hero p {
             color: var(--text-muted);
             font-size: 1.25rem;
-            max-width: 750px;
+            max-width: 800px;
             margin: 0 auto 2.5rem auto;
             font-weight: 500;
         }
@@ -265,18 +265,21 @@
         .cta-btn {
             background: var(--bb-red);
             color: #FFFFFF;
-            padding: 0.9rem 2.2rem;
+            padding: 1rem 2.4rem;
             border-radius: 4px;
             font-weight: 700;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
             display: inline-block;
+            box-shadow: 0 4px 20px rgba(227, 27, 35, 0.35);
         }
 
         .cta-btn:hover {
             background: var(--bb-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(227, 27, 35, 0.55);
         }
 
         .container {
@@ -508,41 +511,41 @@
 
     <section class="hero">
         <h1>Systematic <span>Freedom</span></h1>
-        <p>Financial independence is earned through structured discipline and continuous learning.</p>
-        <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_Top" class="cta-btn">Open Live Account with BlackBull</a>
+        <p>Financial independence is engineered through non-negotiable risk constraints and precise execution infrastructure.</p>
+        <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_Top" class="cta-btn">Access ECN Execution Environment (BlackBull)</a>
     </section>
 
     <main class="container">
         
         <!-- Section 1: Home Manifesto -->
         <div class="content-card manifesto-text">
-            <h2 class="card-header" style="text-align: center;">The Commitment</h2>
-            <p class="highlight-path">One path leads to quiet compounding and long-term capital.</p>
-            <p>The other leads to blown accounts and public failure.</p>
+            <h2 class="card-header" style="text-align: center;">The Non-Negotiable Commitment</h2>
+            <p class="highlight-path">One path demands mechanical discipline, hard risk caps, and systematic capital compounding.</p>
+            <p>The other leads to emotional trade management, blown accounts, and public failure.</p>
             
-            <p class="record-statement">This site is the live public record of one trader who chose the first path after living both.</p>
+            <p class="record-statement">This site serves as the live public operational anchor for one trader bound to the first path—built to externalize rules and enforce unyielding self-accountability.</p>
             
-            <p class="negation">No signals. No courses. No managed money.</p>
-            <p class="core-values">Only rules, execution, and external accountability.</p>
+            <p class="negation">No signals. No courses. No managed funds.</p>
+            <p class="core-values">Strictly execution math, hard risk constraints, and read-only verification.</p>
             
-            <p class="conclusion">Enter the system.</p>
+            <p class="conclusion">Execute the system.</p>
         </div>
 
         <!-- Section 2: Core System Overview -->
         <div class="content-card blueprint-details">
-            <h2 class="card-header">System Mechanics</h2>
-            <p>This is a mechanical day-trading system built around one permanent baseline ($400) and four successive 10× stages.</p>
+            <h2 class="card-header">Mathematical Execution Protocols</h2>
+            <p>This is a non-discretionary mechanical trading model engineered around a permanent $400 baseline and four sequential 10× compounding targets.</p>
             
             <ul class="system-rules">
-                <li>Risk and reward are locked near <span class="highlight">6%</span> of current equity.</li>
-                <li>Only <span class="highlight">one position</span> is allowed at a time.</li>
-                <li><span class="highlight">Five winning micro-steps</span> complete one mini-stage.</li>
-                <li><span class="highlight">Seven mini-stages</span> complete one major stage.</li>
+                <li>Risk and reward are locked to a strict <span class="highlight">1:1 ratio at exactly 6.0%</span> of current account equity.</li>
+                <li>Execution is restricted to <span class="highlight">exactly one active position</span> at any time—zero averaging or stacking.</li>
+                <li><span class="highlight">Five winning micro-steps</span> complete one mini-stage; <span class="highlight">seven mini-stages</span> achieve one major stage.</li>
+                <li>Position sizing is strictly calculated via <span class="highlight">fixed dollar-distance targets</span> to maintain absolute risk parity across all assets.</li>
             </ul>
 
-            <p>Position size is derived from fixed dollar-distance targets so every instrument produces the same equity percentage. High-volatility conditions force size reduction or abstinence. Mondays and Fridays are excluded; weekends are used for crypto.</p>
+            <p>Execution requires pure ECN order routing to process precise micro-lot calculations without spread expansion or execution slippage. High-volatility market states mandate immediate size reduction or complete trade abstinence. Monday and Friday trading is hard-blocked; weekends are exclusively reserved for crypto setups.</p>
             
-            <p class="footer-note">Detailed calculations and infrastructure live on their dedicated pages. Home serves to state the core rules and execution parameters.</p>
+            <p class="footer-note">Detailed mathematical models and operational broker setup live on their dedicated pages. Home serves to declare the binding execution parameters.</p>
         </div>
 
         <!-- BlackBull Partner Banner -->
@@ -573,61 +576,38 @@
         const btnRight = document.getElementById('scrollRight');
 
         function updateNavState() {
-            if (!nav) return;
+            if (!nav || !navWrapper) return;
             const scrollLeft = nav.scrollLeft;
             const maxScroll = nav.scrollWidth - nav.clientWidth;
-
-            if (nav.scrollWidth > nav.clientWidth) {
-                if (scrollLeft > 5) {
-                    navWrapper.classList.add('can-scroll-left');
-                } else {
-                    navWrapper.classList.remove('can-scroll-left');
-                }
-
-                if (scrollLeft < maxScroll - 5) {
-                    navWrapper.classList.add('can-scroll-right');
-                } else {
-                    navWrapper.classList.remove('can-scroll-right');
-                }
+            
+            if (scrollLeft > 5) {
+                navWrapper.classList.add('can-scroll-left');
             } else {
-                navWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
+                navWrapper.classList.remove('can-scroll-left');
+            }
+
+            if (scrollLeft < maxScroll - 5) {
+                navWrapper.classList.add('can-scroll-right');
+            } else {
+                navWrapper.classList.remove('can-scroll-right');
             }
         }
 
-        function centerActiveButton() {
-            const activeBtn = nav.querySelector('a.active');
-            if (activeBtn) {
-                const navWidth = nav.clientWidth;
-                const activeLeft = activeBtn.offsetLeft;
-                const activeWidth = activeBtn.clientWidth;
+        if (nav && btnLeft && btnRight) {
+            btnLeft.addEventListener('click', () => {
+                nav.scrollBy({ left: -180, behavior: 'smooth' });
+            });
 
-                const targetScroll = activeLeft - (navWidth / 2) + (activeWidth / 2);
-                
-                nav.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            }
-            setTimeout(updateNavState, 300);
+            btnRight.addEventListener('click', () => {
+                nav.scrollBy({ left: 180, behavior: 'smooth' });
+            });
+
+            nav.addEventListener('scroll', updateNavState);
+            window.addEventListener('resize', updateNavState);
+            
+            // Initial check after DOM load
+            setTimeout(updateNavState, 100);
         }
-
-        btnLeft.addEventListener('click', () => {
-            nav.scrollBy({ left: -200, behavior: 'smooth' });
-        });
-
-        btnRight.addEventListener('click', () => {
-            nav.scrollBy({ left: 200, behavior: 'smooth' });
-        });
-
-        nav.addEventListener('scroll', updateNavState);
-        window.addEventListener('resize', () => {
-            centerActiveButton();
-            updateNavState();
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            centerActiveButton();
-        });
     </script>
 </body>
 </html>
