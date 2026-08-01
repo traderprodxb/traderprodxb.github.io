@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Compounding Roadmap to $4,000,000.">
+    <meta name="description" content="TraderProDXB Journey - Systematic account scaling through compounding discipline to $4,000,000.">
     <title>Journey | TraderProDXB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +12,12 @@
         :root {
             --bb-dark: #07090E;
             --bb-card: #121620;
+            --bb-card-hover: #1A202C;
             --bb-red: #E31B23;
+            --bb-red-hover: #ff222d;
+            --bb-gold: #D4AF37;
             --bb-green: #22c55e;
-            --border: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
             --text-main: #FFFFFF;
             --text-muted: #94A3B8;
             --font-sans: 'Inter', sans-serif;
@@ -23,71 +26,140 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; padding-bottom: 60px; }
+        body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; padding-bottom: 60px; }
 
+        /* Navigation Header (25/75 Luxury Split) */
         header { background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 1.75rem; gap: 1.5rem; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; gap: 2rem; }
 
-        .brand-logo { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
-        .brand-logo img { width: 75px; height: 75px; border-radius: 12px; object-fit: cover; border: 2px solid var(--bb-red); }
-        .brand-title { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; }
-        .brand-title span { color: var(--bb-red); }
-        .brand-subtitle { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
+        /* 25% Left Brand Area */
+        .brand-logo-wrap { flex: 0 0 25%; display: flex; flex-direction: column; align-items: flex-start; }
+        .brand-logo { display: inline-block; text-decoration: none; }
+        .brand-logo img { width: 95px; height: 95px; border-radius: 14px; object-fit: cover; border: 2px solid var(--bb-red); box-shadow: 0 0 20px rgba(227, 27, 35, 0.35); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .brand-logo:hover img { transform: scale(1.03); box-shadow: 0 0 28px rgba(227, 27, 35, 0.55); }
+        .brand-reserved-space { height: 10px; width: 100%; }
 
-        .nav-compact-wrap { display: flex; align-items: center; gap: 0.4rem; background: rgba(18, 22, 32, 0.65); border: 1px solid var(--border); padding: 5px 8px; border-radius: 30px; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; padding: 0.45rem 0.85rem; border-radius: 20px; }
-        nav a.active { color: #FFF; background: var(--bb-red); }
-        nav a.nav-broker-btn { background: var(--bb-green); color: #000; font-weight: 800; }
+        /* 75% Right Navigation & CTA Area */
+        .nav-right-wrap { flex: 0 0 75%; display: flex; justify-content: flex-end; align-items: center; gap: 1.25rem; }
+        .nav-compact-wrap { display: flex; align-items: center; gap: 0.35rem; background: rgba(18, 22, 32, 0.65); border: 1px solid var(--border); padding: 6px 12px; border-radius: 40px; }
+        nav { display: flex; align-items: center; gap: 0.25rem; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+        nav::-webkit-scrollbar { display: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; padding: 0.5rem 0.9rem; border-radius: 20px; transition: all 0.2s ease; white-space: nowrap; }
+        nav a:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
+        nav a.active { color: #FFF; background: var(--bb-red); font-weight: 700; box-shadow: 0 0 14px rgba(227, 27, 35, 0.4); }
 
-        #live-ticker-container { width: 100%; background-color: #04060A; border-bottom: 1px solid var(--border); padding: 7px 0; overflow: hidden; }
+        /* High-Converting Broker CTA Pill */
+        .cta-broker-pill {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #000 !important;
+            font-weight: 800 !important;
+            font-size: 0.8rem !important;
+            text-transform: uppercase;
+            padding: 0.65rem 1.35rem !important;
+            border-radius: 30px !important;
+            text-decoration: none;
+            box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+            transition: all 0.25s ease !important;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cta-broker-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
+            filter: brightness(1.1);
+        }
+
+        /* Continuous Loop Marquee Ticker Tape */
+        #live-ticker-container { width: 100%; background-color: #04060A; border-bottom: 1px solid var(--border); padding: 7px 0; overflow: hidden; position: relative; }
         .ticker-marquee { display: flex; width: max-content; animation: ticker-scroll 32s linear infinite; }
         .ticker-marquee:hover { animation-play-state: paused; }
         @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .ticker-group { display: flex; align-items: center; gap: 12px; padding-right: 12px; }
         .ticker-item { font-family: var(--font-mono); font-size: 0.75rem; background: var(--bb-card); padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border); display: flex; gap: 8px; white-space: nowrap; }
-        .closed-badge { font-size: 0.6rem; background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 1px 4px; border-radius: 3px; }
+        .closed-badge { font-size: 0.6rem; background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 1px 5px; border-radius: 3px; font-weight: 600; }
         .pos-up { color: var(--bb-green) !important; }
         .neg-down { color: var(--bb-red) !important; }
 
+        /* Container & Layout */
         .container { max-width: 1100px; margin: 3.5rem auto; padding: 0 2rem; }
-        .page-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; }
-        .page-subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .page-header { margin-bottom: 2.5rem; }
+        .page-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
+        .page-desc { color: var(--text-muted); font-size: 1.1rem; }
 
-        .roadmap-card { background: var(--bb-card); border: 1px solid var(--border); padding: 2rem; border-radius: 12px; margin-bottom: 1.5rem; }
-        .roadmap-card h3 { font-family: var(--font-heading); color: var(--bb-red); margin-bottom: 0.5rem; }
+        /* Cards & Section Styling */
+        .card { background: var(--bb-card); border: 1px solid var(--border); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border-top: 3px solid var(--bb-red); }
+        .card h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--text-main); font-weight: 700; }
+        .card p { color: var(--text-muted); line-height: 1.6; font-size: 0.98rem; }
 
-        footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; background: #040508; margin-top: 3rem; }
+        /* Journey Stages Table */
+        .stage-table-wrap { overflow-x: auto; margin-top: 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
+        .stage-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.88rem; text-align: left; }
+        .stage-table th { background: #0c0f17; color: var(--text-main); font-family: var(--font-heading); padding: 12px 16px; font-size: 0.8rem; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+        .stage-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: #cbd5e1; }
+        .stage-table tr:last-child td { border-bottom: none; }
+        .stage-table tr:hover { background: rgba(255,255,255,0.02); }
+        .stage-badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; font-family: var(--font-sans); }
+        .badge-micro { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .badge-mini { background: rgba(212, 175, 55, 0.15); color: var(--bb-gold); border: 1px solid rgba(212, 175, 55, 0.3); }
+        .badge-major { background: rgba(34, 197, 94, 0.15); color: var(--bb-green); border: 1px solid rgba(34, 197, 94, 0.3); }
+
+        /* Social Channels Grid */
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+        .social-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: all 0.3s ease; }
+        .social-card:hover { background: var(--bb-card-hover); border-color: var(--bb-red); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        .social-icon { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); }
+        .social-info { display: flex; flex-direction: column; overflow: hidden; }
+        .social-name { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+        .social-cta { font-size: 0.75rem; color: var(--bb-red); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+        /* Banner Wrapper */
+        .banner-wrap { text-align: center; margin: 3rem 0; padding: 1.5rem; background: var(--bb-card); border: 1px solid var(--border); border-radius: 12px; display: flex; justify-content: center; }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.82rem; background: #040508; margin-top: 4rem; }
+        .disclaimer { font-size: 0.75rem; color: #64748B; margin-top: 1.5rem; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.6; text-align: justify; }
 
         @media (max-width: 900px) {
-            .nav-container { flex-direction: column; gap: 1rem; }
-            .nav-compact-wrap nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; text-align: center; }
+            .nav-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .brand-logo-wrap { width: 100%; flex: 0 0 100%; }
+            .nav-right-wrap { width: 100%; flex: 0 0 100%; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+            .nav-compact-wrap { width: 100%; overflow-x: auto; }
+            .page-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <a href="index.html" class="brand-logo">
-                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-                <div class="brand-text">
-                    <span class="brand-title">TraderPro<span>DXB</span></span>
-                    <span class="brand-subtitle">Systemic Trading Hub</span>
+            <!-- 25% Left Brand Area -->
+            <div class="brand-logo-wrap">
+                <a href="index.html" class="brand-logo">
+                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
+                </a>
+                <div class="brand-reserved-space"></div>
+            </div>
+
+            <!-- 75% Right Navigation & Isolated Broker CTA -->
+            <div class="nav-right-wrap">
+                <div class="nav-compact-wrap">
+                    <nav>
+                        <a href="index.html">Home</a>
+                        <a href="infrastructure.html">Infrastructure</a>
+                        <a href="journey.html" class="active">Journey</a>
+                        <a href="track-record.html">Track Record</a>
+                        <a href="positionsize.html">Position Size</a>
+                        <a href="faq.html">FAQ</a>
+                    </nav>
                 </div>
-            </a>
-            <div class="nav-compact-wrap">
-                <nav>
-                    <a href="index.html">Home</a>
-                    <a href="infrastructure.html">Infrastructure</a>
-                    <a href="journey.html" class="active">Journey</a>
-                    <a href="track-record.html">Track Record</a>
-                    <a href="positionsize.html">Position Size</a>
-                    <a href="faq.html">FAQ</a>
-                    <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_Top" class="nav-broker-btn">Trade on BlackBull</a>
-                </nav>
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_top" class="cta-broker-pill">Trade on BlackBull</a>
             </div>
         </div>
     </header>
 
+    <!-- Infinite Continuous Marquee Ticker -->
     <div id="live-ticker-container">
         <div class="ticker-marquee">
             <div class="ticker-group" id="tickerGroup1">
@@ -105,28 +177,133 @@
     </div>
 
     <div class="container">
-        <h1 class="page-title">The Compounding Roadmap</h1>
-        <p class="page-subtitle">A multi-stage execution framework targeting $4,000,000 in account equity.</p>
-
-        <div class="roadmap-card">
-            <h3>Micro Stage</h3>
-            <p>Initial capitalization tiers focused on procedural discipline, tight risk limits, and strict leverage execution.</p>
+        <div class="page-header">
+            <h1 class="page-title">The $4,000,000 Journey</h1>
+            <p class="page-desc">Systematic account scaling through compounding discipline.</p>
         </div>
-        <div class="roadmap-card">
-            <h3>Mini &amp; Major Stages</h3>
-            <p>Systemic compounding scaling across approved asset classes up to final target execution.</p>
+
+        <!-- Compounding Progression Section -->
+        <div class="card">
+            <h3>Compounding Progression Model</h3>
+            <p>Moving methodically across defined capital thresholds through controlled execution, mechanical 6% risk allocation, and strict leverage rules.</p>
+            
+            <div class="stage-table-wrap">
+                <table class="stage-table">
+                    <thead>
+                        <tr>
+                            <th>Tier Classification</th>
+                            <th>Start Capital</th>
+                            <th>Target Milestone</th>
+                            <th>Compounding Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="stage-badge badge-micro">Micro Stage</span></td>
+                            <td>$550</td>
+                            <td>$800</td>
+                            <td>Initial Mechanics & Execution Accuracy</td>
+                        </tr>
+                        <tr>
+                            <td><span class="stage-badge badge-micro">Micro Stage</span></td>
+                            <td>$800</td>
+                            <td>$1,100</td>
+                            <td>Consistency & Risk Constraint Validation</td>
+                        </tr>
+                        <tr>
+                            <td><span class="stage-badge badge-mini">Mini Stage</span></td>
+                            <td>$1,100</td>
+                            <td>$1,500</td>
+                            <td>Scaling Contract Sizes Smoothly</td>
+                        </tr>
+                        <tr>
+                            <td><span class="stage-badge badge-mini">Mini Stage</span></td>
+                            <td>$1,500</td>
+                            <td>$2,100</td>
+                            <td>Multi-asset Execution Discipline</td>
+                        </tr>
+                        <tr>
+                            <td><span class="stage-badge badge-major">Major Stage</span></td>
+                            <td>$2,100</td>
+                            <td>$2,900</td>
+                            <td>Equity Growth Momentum</td>
+                        </tr>
+                        <tr>
+                            <td><span class="stage-badge badge-major">Major Stage</span></td>
+                            <td>$2,900</td>
+                            <td>$4,000,000</td>
+                            <td>Full Sequential Compounding Acceleration</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Social Media Hub CTAs -->
+        <div class="card">
+            <h3>Official Ecosystem & Social Channels</h3>
+            <p>Connect across verified platforms for market insights, live streams, and community updates.</p>
+            
+            <div class="social-grid">
+                <!-- X / Twitter -->
+                <a href="https://x.com/traderprodxb" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/main/64cebdd90aef8ef8c749e848_X-EverythingApp-Logo-Twitter.jpg" alt="X Logo" class="social-icon">
+                    <div class="social-info">
+                        <span class="social-name">X / Twitter</span>
+                        <span class="social-cta">Follow Real-Time Intel &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/traderprodxb?igsh=MWExM29yZmVsNXhoMQ==" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/2d37bf3412ea674bffd812d518c4fa125de7f435/modern-badge-logo-instagram-icon_578229-124.jpg" alt="Instagram Logo" class="social-icon">
+                    <div class="social-info">
+                        <span class="social-name">Instagram</span>
+                        <span class="social-cta">View Visual Insights &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Binance Square -->
+                <a href="https://app.binance.com/uni-qr/cpro/uyghurtrader?l=en&r=YG4FC39K&uc=app_square_share_link&us=copylink" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/2d37bf3412ea674bffd812d518c4fa125de7f435/4f74b69ed53c1d3c0f3d6d30f54155bb.png" alt="Binance Logo" class="social-icon">
+                    <div class="social-info">
+                        <span class="social-name">Binance Square</span>
+                        <span class="social-cta">Join Feed & Insights &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://youtube.com/@traderprodxb?si=ud6egotGu5SSWEu2" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/2d37bf3412ea674bffd812d518c4fa125de7f435/external-logo-core-1.png%3Dn-w1860-h1047-fcrop64%3D1%2C00000000ffffffff-rw.webp" alt="YouTube Logo" class="social-icon">
+                    <div class="social-info">
+                        <span class="social-name">YouTube</span>
+                        <span class="social-cta">Watch Video Analysis &rarr;</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- BlackBull Partner Ad Banner -->
+        <div class="banner-wrap">
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8018" target="_top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573581" width="300" height="250" style="max-width:100%; height:auto;" alt="BlackBull Journey Partner"></a>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
+        <p class="disclaimer">
+            <strong>Financial & Risk Disclosure:</strong> Trading foreign exchange, CFDs, cryptocurrencies, and other financial instruments carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade or invest, you should carefully consider your investment objectives, level of experience, and risk appetite. There is a possibility that you could sustain a loss of some or all of your initial investment; therefore, do not invest money that you cannot afford to lose. All content presented on TraderProDXB is provided for educational and informational purposes only and does not constitute financial, investment, or trading advice. Past performance is not indicative of future results.
+        </p>
     </footer>
 
+    <!-- Scripts: Marquee Duplication & Crypto WebSocket Streaming -->
     <script>
+        // Duplicate Ticker Content for Continuous Loop
         const grp1 = document.getElementById('tickerGroup1');
         const grp2 = document.getElementById('tickerGroup2');
         if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
 
+        // Crypto WebSocket Streaming
         function startCryptoWebSocket() {
             const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
             ws.onmessage = (event) => {
