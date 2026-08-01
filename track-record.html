@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Track Record - Verified performance statement.">
+    <meta name="description" content="TraderProDXB Track Record - Verified live execution metrics and audited Myfxbook performance ledger.">
     <title>Track Record | TraderProDXB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +12,11 @@
         :root {
             --bb-dark: #07090E;
             --bb-card: #121620;
+            --bb-card-hover: #1A202C;
             --bb-red: #E31B23;
             --bb-red-hover: #ff222d;
             --bb-green: #22c55e;
-            --border: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
             --text-main: #FFFFFF;
             --text-muted: #94A3B8;
             --font-sans: 'Inter', sans-serif;
@@ -24,98 +25,209 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; padding-bottom: 60px; }
+        body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; padding-bottom: 60px; }
 
+        /* Navigation Header (25/75 Luxury Split) */
         header { background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 1.75rem; gap: 1.5rem; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; gap: 2rem; }
 
-        .brand-logo { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
-        .brand-logo img { width: 75px; height: 75px; border-radius: 12px; object-fit: cover; border: 2px solid var(--bb-red); }
-        .brand-title { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; }
-        .brand-title span { color: var(--bb-red); }
-        .brand-subtitle { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
+        /* 25% Left Brand Area */
+        .brand-logo-wrap { flex: 0 0 25%; display: flex; flex-direction: column; align-items: flex-start; }
+        .brand-logo { display: inline-block; text-decoration: none; }
+        .brand-logo img { width: 95px; height: 95px; border-radius: 14px; object-fit: cover; border: 2px solid var(--bb-red); box-shadow: 0 0 20px rgba(227, 27, 35, 0.35); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .brand-logo:hover img { transform: scale(1.03); box-shadow: 0 0 28px rgba(227, 27, 35, 0.55); }
+        .brand-reserved-space { height: 10px; width: 100%; }
 
-        .nav-compact-wrap { display: flex; align-items: center; gap: 0.4rem; background: rgba(18, 22, 32, 0.65); border: 1px solid var(--border); padding: 5px 8px; border-radius: 30px; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; padding: 0.45rem 0.85rem; border-radius: 20px; }
-        nav a.active { color: #FFF; background: var(--bb-red); }
-        nav a.nav-broker-btn { background: var(--bb-green); color: #000; font-weight: 800; }
+        /* 75% Right Navigation & CTA Area */
+        .nav-right-wrap { flex: 0 0 75%; display: flex; justify-content: flex-end; align-items: center; gap: 1.25rem; }
+        .nav-compact-wrap { display: flex; align-items: center; gap: 0.35rem; background: rgba(18, 22, 32, 0.65); border: 1px solid var(--border); padding: 6px 12px; border-radius: 40px; }
+        nav { display: flex; align-items: center; gap: 0.25rem; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+        nav::-webkit-scrollbar { display: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; padding: 0.5rem 0.9rem; border-radius: 20px; transition: all 0.2s ease; white-space: nowrap; }
+        nav a:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
+        nav a.active { color: #FFF; background: var(--bb-red); font-weight: 700; box-shadow: 0 0 14px rgba(227, 27, 35, 0.4); }
 
-        #live-ticker-container { width: 100%; background-color: #04060A; border-bottom: 1px solid var(--border); padding: 7px 0; overflow: hidden; }
+        /* High-Converting Broker CTA Pill */
+        .cta-broker-pill {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #000 !important;
+            font-weight: 800 !important;
+            font-size: 0.8rem !important;
+            text-transform: uppercase;
+            padding: 0.65rem 1.35rem !important;
+            border-radius: 30px !important;
+            text-decoration: none;
+            box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+            transition: all 0.25s ease !important;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cta-broker-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
+            filter: brightness(1.1);
+        }
+
+        /* Continuous Loop Marquee Ticker Tape */
+        #live-ticker-container { width: 100%; background-color: #04060A; border-bottom: 1px solid var(--border); padding: 7px 0; overflow: hidden; position: relative; }
         .ticker-marquee { display: flex; width: max-content; animation: ticker-scroll 32s linear infinite; }
         .ticker-marquee:hover { animation-play-state: paused; }
         @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .ticker-group { display: flex; align-items: center; gap: 12px; padding-right: 12px; }
         .ticker-item { font-family: var(--font-mono); font-size: 0.75rem; background: var(--bb-card); padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border); display: flex; gap: 8px; white-space: nowrap; }
-        .closed-badge { font-size: 0.6rem; background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 1px 4px; border-radius: 3px; }
+        .closed-badge { font-size: 0.6rem; background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 1px 5px; border-radius: 3px; font-weight: 600; }
         .pos-up { color: var(--bb-green) !important; }
         .neg-down { color: var(--bb-red) !important; }
 
-        .container { max-width: 1100px; margin: 3.5rem auto; padding: 0 2rem; display: flex; flex-direction: column; align-items: center; }
-        .page-header { width: 100%; max-width: 800px; margin-bottom: 2rem; }
-        .page-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; }
-        .page-subtitle { font-size: 1.1rem; color: var(--text-muted); }
+        /* Container & Layout */
+        .container { max-width: 1000px; margin: 3.5rem auto; padding: 0 2rem; display: flex; flex-direction: column; align-items: center; }
+        .page-header { text-align: center; margin-bottom: 2.5rem; width: 100%; }
+        .page-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
+        .page-desc { color: var(--text-muted); font-size: 1.05rem; }
 
+        /* Widget Container Styling */
         .widget-card {
             background: var(--bb-card);
             border: 1px solid var(--border);
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 2.5rem;
+            border-radius: 16px;
             margin-bottom: 2.5rem;
             border-top: 4px solid var(--bb-red);
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .btn-statement {
-            background: var(--bb-red);
-            color: #FFFFFF;
-            font-size: 0.85rem;
+        .widget-card:hover {
+            transform: translateY(-2px);
+            border-top-color: var(--bb-red-hover);
+        }
+
+        .widget-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .widget-title {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
             font-weight: 700;
-            text-transform: uppercase;
-            padding: 0.75rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            margin-top: 1rem;
-            display: inline-block;
+            color: var(--text-main);
         }
 
-        .btn-statement:hover { background: var(--bb-red-hover); }
+        .verified-badge {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--bb-green);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
 
-        footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; background: #040508; width: 100%; }
+        .widget-card a {
+            display: inline-block;
+            line-height: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .widget-card a:hover {
+            opacity: 0.92;
+        }
+
+        .widget-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .widget-footer-note {
+            margin-top: 1.25rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            text-align: center;
+        }
+
+        .widget-footer-note a {
+            color: var(--bb-red);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .banner-wrap {
+            text-align: center;
+            margin: 1rem 0 3rem 0;
+            padding: 1.5rem;
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 850px;
+        }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.82rem; background: #040508; width: 100%; margin-top: 4rem; }
+        .disclaimer { font-size: 0.75rem; color: #64748B; margin-top: 1.5rem; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.6; text-align: justify; }
 
         @media (max-width: 900px) {
-            .nav-container { flex-direction: column; gap: 1rem; }
-            .nav-compact-wrap nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; text-align: center; }
+            .nav-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .brand-logo-wrap { width: 100%; flex: 0 0 100%; }
+            .nav-right-wrap { width: 100%; flex: 0 0 100%; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+            .nav-compact-wrap { width: 100%; overflow-x: auto; }
+            .page-title { font-size: 2rem; }
+            .widget-card { padding: 1.25rem; }
+            .widget-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <a href="index.html" class="brand-logo">
-                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-                <div class="brand-text">
-                    <span class="brand-title">TraderPro<span>DXB</span></span>
-                    <span class="brand-subtitle">Systemic Trading Hub</span>
+            <!-- 25% Left Brand Area -->
+            <div class="brand-logo-wrap">
+                <a href="index.html" class="brand-logo">
+                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
+                </a>
+                <div class="brand-reserved-space"></div>
+            </div>
+
+            <!-- 75% Right Navigation & Isolated Broker CTA -->
+            <div class="nav-right-wrap">
+                <div class="nav-compact-wrap">
+                    <nav>
+                        <a href="index.html">Home</a>
+                        <a href="infrastructure.html">Infrastructure</a>
+                        <a href="journey.html">Journey</a>
+                        <a href="track-record.html" class="active">Track Record</a>
+                        <a href="positionsize.html">Position Size</a>
+                        <a href="faq.html">FAQ</a>
+                    </nav>
                 </div>
-            </a>
-            <div class="nav-compact-wrap">
-                <nav>
-                    <a href="index.html">Home</a>
-                    <a href="infrastructure.html">Infrastructure</a>
-                    <a href="journey.html">Journey</a>
-                    <a href="track-record.html" class="active">Track Record</a>
-                    <a href="positionsize.html">Position Size</a>
-                    <a href="faq.html">FAQ</a>
-                    <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_Top" class="nav-broker-btn">Trade on BlackBull</a>
-                </nav>
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_top" class="cta-broker-pill">Trade on BlackBull</a>
             </div>
         </div>
     </header>
 
+    <!-- Infinite Continuous Marquee Ticker -->
     <div id="live-ticker-container">
         <div class="ticker-marquee">
             <div class="ticker-group" id="tickerGroup1">
@@ -134,29 +246,48 @@
 
     <div class="container">
         <div class="page-header">
-            <h1 class="page-title">Track Record</h1>
-            <p class="page-subtitle">Verified performance statement and live ledger metrics.</p>
+            <h1 class="page-title">Live Track Record</h1>
+            <p class="page-desc">Transparent execution ledger demonstrating strict procedural adherence.</p>
         </div>
 
+        <!-- MyFxBook Widget Card -->
         <div class="widget-card">
-            <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener noreferrer">
-                <img id="myfxbookWidget" alt="MyFxBook Performance Widget" src="https://widget.myfxbook.com/widget/widget.png?accountOid=12106666&type=6" style="max-width:100%; height:auto;" />
+            <div class="widget-header">
+                <span class="widget-title">Audited Real-Time Execution Ledger</span>
+                <span class="verified-badge">Read-Only Investor API Verified</span>
+            </div>
+            <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener">
+                <img alt="MyFxBook Performance Widget" src="https://widget.myfxbook.com/widget/widget.png?accountOid=12106666&type=6" />
             </a>
-            <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener noreferrer" class="btn-statement">
-                View Official MyFxBook Statement (PDF) &rarr;
+            <p class="widget-footer-note">
+                Click widget above to inspect full performance statement or <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener">Download Official Audit PDF</a>.
+            </p>
+        </div>
+
+        <!-- BlackBull Affiliate Banner -->
+        <div class="banner-wrap">
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8019" target="_top">
+                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573582" width="320" height="50" style="max-width:100%; height:auto;" alt="BlackBull Track Record">
             </a>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
+        <div class="disclaimer">
+            <p><strong>Financial & Risk Disclaimer:</strong> Trading foreign exchange (Forex), Contracts for Difference (CFDs), and other leveraged financial instruments carries a high level of risk and may not be suitable for all investors. Leverage can work against you as well as for you, and losses can exceed initial deposits. Before deciding to trade or invest, you should carefully consider your investment objectives, level of experience, and risk appetite.</p>
+            <p style="margin-top: 0.5rem;">All performance data, trade history, and execution metrics published on this website are provided strictly for educational and informational purposes. Past performance is not indicative of future results. TraderProDXB is not a registered financial advisor or broker-dealer and does not provide personal financial advice. Any investment decisions made based on information contained on this site are solely the responsibility of the individual trader.</p>
+        </div>
     </footer>
 
+    <!-- Scripts: Marquee Duplication & Crypto WebSocket Streaming -->
     <script>
+        // Duplicate Ticker Content for Continuous Loop
         const grp1 = document.getElementById('tickerGroup1');
         const grp2 = document.getElementById('tickerGroup2');
         if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
 
+        // Crypto WebSocket Streaming
         function startCryptoWebSocket() {
             const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
             ws.onmessage = (event) => {
