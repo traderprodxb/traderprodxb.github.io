@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB - Systemic Trading Hub powered by BlackBull Markets.">
-    <title>TraderProDXB | Systemic Trading Hub</title>
+    <meta name="description" content="TraderProDXB - Institutional Trading & Compounding System. Execute precise market strategies engineered to scale systematically toward your capital milestones.">
+    <title>TraderProDXB | Institutional Trading & Compounding System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
             --bb-red: #E31B23;
             --bb-red-hover: #ff222d;
             --bb-green: #22c55e;
-            --border: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
             --text-main: #FFFFFF;
             --text-muted: #94A3B8;
             --font-sans: 'Inter', sans-serif;
@@ -24,252 +24,224 @@
             --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; padding-bottom: 60px; }
 
-        body {
-            background-color: var(--bb-dark);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding-bottom: 60px;
-        }
+        /* Navigation Header (25/75 Luxury Split) */
+        header { background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; gap: 2rem; }
 
-        /* Navigation Header - Option B Compact Layout */
-        header {
-            background: rgba(7, 9, 14, 0.95);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        /* 25% Left Brand Area */
+        .brand-logo-wrap { flex: 0 0 25%; display: flex; flex-direction: column; align-items: flex-start; }
+        .brand-logo { display: inline-block; text-decoration: none; }
+        .brand-logo img { width: 95px; height: 95px; border-radius: 14px; object-fit: cover; border: 2px solid var(--bb-red); box-shadow: 0 0 20px rgba(227, 27, 35, 0.35); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .brand-logo:hover img { transform: scale(1.03); box-shadow: 0 0 28px rgba(227, 27, 35, 0.55); }
+        .brand-reserved-space { height: 10px; width: 100%; }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.85rem 1.75rem;
-            gap: 1.5rem;
-        }
+        /* 75% Right Navigation & CTA Area */
+        .nav-right-wrap { flex: 0 0 75%; display: flex; justify-content: flex-end; align-items: center; gap: 1.25rem; }
+        .nav-compact-wrap { display: flex; align-items: center; gap: 0.35rem; background: rgba(18, 22, 32, 0.65); border: 1px solid var(--border); padding: 6px 12px; border-radius: 40px; }
+        nav { display: flex; align-items: center; gap: 0.25rem; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+        nav::-webkit-scrollbar { display: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; padding: 0.5rem 0.9rem; border-radius: 20px; transition: all 0.2s ease; white-space: nowrap; }
+        nav a:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
+        nav a.active { color: #FFF; background: var(--bb-red); font-weight: 700; box-shadow: 0 0 14px rgba(227, 27, 35, 0.4); }
 
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
+        /* High-Converting Broker CTA Pill */
+        .cta-broker-pill {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: #000 !important;
+            font-weight: 800 !important;
+            font-size: 0.8rem !important;
+            text-transform: uppercase;
+            padding: 0.65rem 1.35rem !important;
+            border-radius: 30px !important;
             text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .brand-logo img {
-            width: 75px;
-            height: 75px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 2px solid var(--bb-red);
-            box-shadow: 0 0 16px rgba(227, 27, 35, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .brand-logo:hover img {
-            transform: scale(1.04);
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-title {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            font-weight: 900;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
-
-        .brand-title span {
-            color: var(--bb-red);
-        }
-
-        .brand-subtitle {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 3px;
-        }
-
-        .nav-compact-wrap {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: rgba(18, 22, 32, 0.65);
-            border: 1px solid var(--border);
-            padding: 5px 8px;
-            border-radius: 30px;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.78rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+            transition: all 0.25s ease !important;
             white-space: nowrap;
-            transition: all 0.2s ease;
-            padding: 0.45rem 0.85rem;
-            border-radius: 20px;
-            border: 1px solid transparent;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        nav a.active {
-            color: #FFFFFF;
-            font-weight: 700;
-            border-color: var(--bb-red);
-            background: var(--bb-red);
-            box-shadow: 0 0 12px rgba(227, 27, 35, 0.4);
-        }
-
-        nav a.nav-broker-btn {
-            background: var(--bb-green);
-            color: #000000;
-            font-weight: 800;
-            border-color: var(--bb-green);
-            box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
-        }
-
-        nav a.nav-broker-btn:hover {
-            background: #16a34a;
-            color: #FFFFFF;
-            box-shadow: 0 0 16px rgba(34, 197, 94, 0.6);
-        }
-
-        /* Continuous Loop Marquee Ticker */
-        #live-ticker-container {
-            width: 100%;
-            background-color: #04060A;
-            border-bottom: 1px solid var(--border);
-            padding: 7px 0;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .ticker-marquee {
-            display: flex;
-            width: max-content;
-            animation: ticker-scroll 32s linear infinite;
-        }
-
-        .ticker-marquee:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes ticker-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .ticker-group {
-            display: flex;
+            letter-spacing: 0.5px;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding-right: 12px;
+            justify-content: center;
+        }
+        .cta-broker-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
+            filter: brightness(1.1);
         }
 
-        .ticker-item {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            background: var(--bb-card);
-            padding: 4px 12px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
-
-        .ticker-item .symbol { color: var(--text-main); font-weight: 700; }
-        .ticker-item .price { color: #cbd5e1; }
-        .ticker-item .delta { font-size: 0.7rem; font-weight: 700; }
-        .ticker-item .closed-badge {
-            font-size: 0.6rem;
-            background: rgba(148, 163, 184, 0.15);
-            color: #94a3b8;
-            padding: 1px 4px;
-            border-radius: 3px;
-        }
-
+        /* Continuous Loop Marquee Ticker Tape */
+        #live-ticker-container { width: 100%; background-color: #04060A; border-bottom: 1px solid var(--border); padding: 7px 0; overflow: hidden; position: relative; }
+        .ticker-marquee { display: flex; width: max-content; animation: ticker-scroll 32s linear infinite; }
+        .ticker-marquee:hover { animation-play-state: paused; }
+        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .ticker-group { display: flex; align-items: center; gap: 12px; padding-right: 12px; }
+        .ticker-item { font-family: var(--font-mono); font-size: 0.75rem; background: var(--bb-card); padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border); display: flex; gap: 8px; white-space: nowrap; }
+        .closed-badge { font-size: 0.6rem; background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 1px 5px; border-radius: 3px; font-weight: 600; }
         .pos-up { color: var(--bb-green) !important; }
         .neg-down { color: var(--bb-red) !important; }
 
-        .container {
-            max-width: 1100px;
-            margin: 3.5rem auto;
-            padding: 0 2rem;
-        }
-
-        .hero-section {
+        /* Hero Section */
+        .hero {
+            padding: 5rem 2rem 3.5rem 2rem;
             text-align: center;
-            margin-bottom: 3rem;
+            background: radial-gradient(circle at 50% 20%, rgba(227, 27, 35, 0.15) 0%, transparent 60%);
         }
 
-        .hero-title {
+        .hero h1 {
             font-family: var(--font-heading);
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 0.75rem;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
         }
 
-        .hero-title span { color: var(--bb-red); }
+        .hero h1 span { color: var(--bb-red); }
 
-        .hero-subtitle {
-            font-size: 1.15rem;
+        .hero p {
             color: var(--text-muted);
+            font-size: 1.25rem;
             max-width: 750px;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto 2.5rem auto;
+            font-weight: 500;
         }
 
         .cta-btn {
             background: var(--bb-red);
-            color: #FFF;
-            font-weight: 700;
-            padding: 0.85rem 2rem;
-            border-radius: 30px;
+            color: #FFFFFF;
+            padding: 0.95rem 2.4rem;
+            border-radius: 6px;
+            font-weight: 800;
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            box-shadow: 0 0 20px rgba(227, 27, 35, 0.4);
-            display: inline-block;
+            letter-spacing: 0.5px;
             transition: all 0.25s ease;
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(227, 27, 35, 0.4);
         }
 
         .cta-btn:hover {
             background: var(--bb-red-hover);
             transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(227, 27, 35, 0.6);
         }
 
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+        /* Sections Layout */
+        .content-card {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+        }
+
+        .card-header {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--bb-red);
+        }
+
+        .manifesto-text p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .manifesto-text p.highlight-path { color: var(--text-main); font-weight: 600; }
+
+        .manifesto-text p.record-statement {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 0;
+            margin: 1.5rem 0;
+        }
+
+        .manifesto-text p.negation {
+            font-family: var(--font-mono);
+            color: var(--bb-red);
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .manifesto-text p.core-values { color: var(--text-main); font-size: 1.25rem; font-weight: 700; }
+
+        .manifesto-text p.conclusion {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .blueprint-details p { color: var(--text-main); font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; }
+
+        .system-rules {
+            list-style: none;
+            margin: 1.5rem 0 2rem 0;
+            background: rgba(7, 9, 14, 0.6);
+            border-radius: 10px;
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .system-rules li {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .system-rules li:last-child { margin-bottom: 0; }
+
+        .system-rules li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--bb-red);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(227, 27, 35, 0.8);
+        }
+
+        .highlight { color: #FFFFFF; font-weight: 700; }
+
+        .footer-note {
+            color: var(--text-muted);
+            font-style: italic;
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0 !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* Banner Wrap */
         .banner-wrap {
             text-align: center;
-            margin: 3rem 0;
+            margin: 2.5rem 0;
             padding: 1.5rem;
             background: var(--bb-card);
             border: 1px solid var(--border);
@@ -278,71 +250,69 @@
             justify-content: center;
         }
 
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            background: #040508;
-        }
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.82rem; background: #040508; margin-top: 4rem; }
 
-        .disclaimer {
-            font-size: 0.725rem;
+        .disclaimer-box {
+            font-size: 0.75rem;
             color: #64748B;
-            margin-top: 1.25rem;
+            margin: 1.5rem auto 0 auto;
             max-width: 950px;
-            margin-left: auto;
-            margin-right: auto;
             line-height: 1.6;
             text-align: justify;
+            background: rgba(18, 22, 32, 0.4);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
         }
 
+        .disclaimer-box p { margin-bottom: 0.8rem; }
+        .disclaimer-box p:last-child { margin-bottom: 0; }
+        .disclaimer-box strong { color: var(--text-main); }
+
         @media (max-width: 900px) {
-            .nav-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            .nav-compact-wrap nav {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.4rem;
-                text-align: center;
-            }
-            .brand-logo img { width: 65px; height: 65px; }
-            .hero-title { font-size: 2rem; }
+            .nav-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .brand-logo-wrap { width: 100%; flex: 0 0 100%; }
+            .nav-right-wrap { width: 100%; flex: 0 0 100%; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+            .nav-compact-wrap { width: 100%; overflow-x: auto; }
+            .hero h1 { font-size: 2.2rem; }
+            .content-card { padding: 2rem 1.5rem; }
+            .system-rules { padding: 1.25rem 1rem; }
+            .disclaimer-box { text-align: left; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <a href="index.html" class="brand-logo">
-                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-                <div class="brand-text">
-                    <span class="brand-title">TraderPro<span>DXB</span></span>
-                    <span class="brand-subtitle">Systemic Trading Hub</span>
+            <!-- 25% Left Brand Area -->
+            <div class="brand-logo-wrap">
+                <a href="index.html" class="brand-logo">
+                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
+                </a>
+                <div class="brand-reserved-space"></div>
+            </div>
+
+            <!-- 75% Right Navigation & Isolated Broker CTA -->
+            <div class="nav-right-wrap">
+                <div class="nav-compact-wrap">
+                    <nav>
+                        <a href="index.html" class="active">Home</a>
+                        <a href="infrastructure.html">Infrastructure</a>
+                        <a href="journey.html">Journey</a>
+                        <a href="track-record.html">Track Record</a>
+                        <a href="positionsize.html">Position Size</a>
+                        <a href="faq.html">FAQ</a>
+                    </nav>
                 </div>
-            </a>
-            
-            <div class="nav-compact-wrap">
-                <nav>
-                    <a href="index.html" class="active">Home</a>
-                    <a href="infrastructure.html">Infrastructure</a>
-                    <a href="journey.html">Journey</a>
-                    <a href="track-record.html">Track Record</a>
-                    <a href="positionsize.html">Position Size</a>
-                    <a href="faq.html">FAQ</a>
-                    <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_Top" class="nav-broker-btn">Trade on BlackBull</a>
-                </nav>
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_top" class="cta-broker-pill">Trade on BlackBull</a>
             </div>
         </div>
     </header>
 
-    <!-- Continuous Infinite Marquee Ticker -->
+    <!-- Infinite Continuous Marquee Ticker -->
     <div id="live-ticker-container">
-        <div class="ticker-marquee" id="tickerMarquee">
+        <div class="ticker-marquee">
             <div class="ticker-group" id="tickerGroup1">
                 <div class="ticker-item" id="ticker-USTECH"><span class="symbol">USTECH</span> <span class="price">22,850.50</span> <span class="delta pos-up">+145.20 (+0.64%)</span> <span class="closed-badge">CLOSED</span></div>
                 <div class="ticker-item" id="ticker-XAUUSD"><span class="symbol">XAUUSD</span> <span class="price">3,340.20</span> <span class="delta pos-up">+$18.40 (+0.55%)</span> <span class="closed-badge">CLOSED</span></div>
@@ -353,46 +323,82 @@
                 <div class="ticker-item" id="ticker-ETHUSD"><span class="symbol">ETHUSD</span> <span class="price">3,480.10</span> <span class="delta pos-up">+$82.30 (+2.42%)</span></div>
                 <div class="ticker-item" id="ticker-TSLA"><span class="symbol">TSLA</span> <span class="price">218.40</span> <span class="delta neg-down">-$3.10 (-1.40%)</span> <span class="closed-badge">CLOSED</span></div>
             </div>
-            <!-- Duplicated Group for Infinite Loop Smoothness -->
             <div class="ticker-group" id="tickerGroup2"></div>
         </div>
     </div>
 
-    <div class="container">
-        <section class="hero-section">
-            <h1 class="hero-title">Systemic Compounding &amp; <span>Precision Risk</span></h1>
-            <p class="hero-subtitle">Executing strict capital management and algorithmic rules mapped to a $4,000,000 roadmap.</p>
-            <a href="track-record.html" class="cta-btn">View Verified Track Record &rarr;</a>
-        </section>
+    <section class="hero">
+        <h1>Systematic <span>Freedom</span></h1>
+        <p>Financial independence is earned through structured discipline and continuous learning.</p>
+        <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_top" class="cta-btn">Open Live Account with BlackBull</a>
+    </section>
 
+    <main class="container">
+        <!-- Section 1: Home Manifesto -->
+        <div class="content-card manifesto-text">
+            <h2 class="card-header" style="text-align: center;">The Commitment</h2>
+            <p class="highlight-path">One path leads to quiet compounding and long-term capital.</p>
+            <p>The other leads to blown accounts and public failure.</p>
+            
+            <p class="record-statement">This site is the live public record of one trader who chose the first path after living both.</p>
+            
+            <p class="negation">No signals. No courses. No managed money.</p>
+            <p class="core-values">Only rules, execution, and external accountability.</p>
+            
+            <p class="conclusion">Enter the system.</p>
+        </div>
+
+        <!-- Section 2: Core System Overview -->
+        <div class="content-card blueprint-details">
+            <h2 class="card-header">System Mechanics</h2>
+            <p>This is a mechanical day-trading system built around one permanent baseline ($400) and four successive 10× stages.</p>
+            
+            <ul class="system-rules">
+                <li>Risk and reward are locked near <span class="highlight">6%</span> of current equity.</li>
+                <li>Only <span class="highlight">one position</span> is allowed at a time.</li>
+                <li><span class="highlight">Five winning micro-steps</span> complete one mini-stage.</li>
+                <li><span class="highlight">Seven mini-stages</span> complete one major stage.</li>
+            </ul>
+
+            <p>Position size is derived from fixed dollar-distance targets so every instrument produces the same equity percentage. High-volatility conditions force size reduction or abstinence. Mondays and Fridays are excluded; weekends are used for crypto.</p>
+            
+            <p class="footer-note">Detailed calculations and infrastructure live on their dedicated pages. Home serves to state the core rules and execution parameters.</p>
+        </div>
+
+        <!-- BlackBull Partner Banner -->
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_top">
-                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573602" width="1080" height="1080" style="max-width:100%; height:auto;" alt="BlackBull Partner Banner">
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_top">
+                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573600" width="1200" height="630" style="max-width:100%; height:auto;" alt="BlackBull Partner">
             </a>
         </div>
-    </div>
+    </main>
 
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        <div class="disclaimer">
-            <p><strong>High-Risk Investment Warning:</strong> Leveraged trading carries significant risk to your capital. Past performance is not indicative of future results.</p>
+        
+        <div class="disclaimer-box">
+            <p><strong>High-Risk Investment Warning:</strong> Trading Foreign Exchange (Forex), Contracts for Difference (CFDs), digital assets, and other leveraged financial derivatives involves a high level of risk and may not be suitable for all investors. Leverage can work against you as well as for you, potentially leading to the substantial loss of your invested capital. You should never invest money that you cannot afford to lose. Before deciding to trade, ensure you fully understand the risks involved, take into account your investment objectives, level of experience, and risk appetite, and seek independent financial advice if necessary.</p>
+
+            <p><strong>No Financial Advice or Solicitation:</strong> The content provided on TraderProDXB is strictly for informational, educational, and personal journal tracking purposes only. Nothing contained on this site constitutes investment, legal, tax, or financial advice, nor is it a recommendation, endorsement, or solicitation to buy or sell any security, currency, derivative, or financial product. TraderProDXB does not operate as a financial broker, dealer, investment advisor, or asset manager.</p>
+
+            <p><strong>Performance Disclaimer:</strong> Any historical trade logs, system calculations, or performance metrics displayed represent individual execution logs and are not indicative of future results. No representation or guarantee is made that any trading system, strategy, or account will or is likely to achieve profits or losses similar to those discussed on this website.</p>
         </div>
     </footer>
 
+    <!-- Scripts: Marquee Duplication & Crypto WebSocket Streaming -->
     <script>
-        // Duplicate Ticker Items for Seamless Continuous Loop
+        // Duplicate Ticker Content for Continuous Loop
         const grp1 = document.getElementById('tickerGroup1');
         const grp2 = document.getElementById('tickerGroup2');
         if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
 
-        // Live Crypto WebSocket Delta Engine
+        // Crypto WebSocket Streaming
         function startCryptoWebSocket() {
             const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 const symbol = data.s === 'BTCUSDT' ? 'BTCUSD' : data.s === 'ETHUSDT' ? 'ETHUSD' : null;
                 if (!symbol) return;
-
                 const price = parseFloat(data.c).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 const priceChange = parseFloat(data.p);
                 const percentChange = parseFloat(data.P);
@@ -408,7 +414,6 @@
             };
             ws.onclose = () => setTimeout(startCryptoWebSocket, 5000);
         }
-
         document.addEventListener('DOMContentLoaded', startCryptoWebSocket);
     </script>
 </body>
