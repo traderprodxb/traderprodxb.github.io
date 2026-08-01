@@ -15,6 +15,7 @@
             --bb-card-hover: #1A202C;
             --bb-red: #E31B23;
             --bb-red-hover: #ff222d;
+            --bb-green: #22c55e;
             --border: rgba(255, 255, 255, 0.1);
             --text-main: #FFFFFF;
             --text-muted: #94A3B8;
@@ -68,8 +69,8 @@
         }
 
         .brand-logo img {
-            width: 95px;
-            height: 95px;
+            width: 75px;
+            height: 75px;
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid var(--bb-red);
@@ -110,7 +111,7 @@
             margin-top: 4px;
         }
 
-        /* Navigation Scroll Wrapper & Dynamic Cues (Top-Right Alignment) */
+        /* Navigation Scroll Wrapper & Dynamic Cues */
         .nav-wrapper {
             position: relative;
             display: flex;
@@ -125,7 +126,6 @@
             border-radius: 40px;
         }
 
-        /* Gradient Mask Indicators for Hidden Scrollable Content */
         .nav-wrapper::before,
         .nav-wrapper::after {
             content: '';
@@ -153,7 +153,6 @@
         .nav-wrapper.can-scroll-left::before { opacity: 1; }
         .nav-wrapper.can-scroll-right::after { opacity: 1; }
 
-        /* Directional Arrow Controls */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -191,7 +190,6 @@
             visibility: visible;
         }
 
-        /* Nav Track */
         nav {
             display: flex;
             align-items: center;
@@ -237,10 +235,78 @@
             box-shadow: 0 0 12px rgba(227, 27, 35, 0.4);
         }
 
+        /* Highlighted Broker CTA Button inside Nav */
+        nav a.nav-broker-btn {
+            background: var(--bb-green);
+            color: #000000;
+            font-weight: 800;
+            border-color: var(--bb-green);
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
+        }
+
+        nav a.nav-broker-btn:hover {
+            background: #16a34a;
+            color: #FFFFFF;
+            box-shadow: 0 0 16px rgba(34, 197, 94, 0.6);
+        }
+
+        /* --- Live Custom Ticker Styles --- */
+        #live-ticker-container {
+            width: 100%;
+            background-color: #04060A;
+            border-bottom: 1px solid var(--border);
+            padding: 8px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        #live-ticker-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 15px;
+            padding: 0 20px;
+            min-width: max-content;
+        }
+
+        .ticker-item {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--bb-card);
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticker-item .symbol {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .ticker-item .price {
+            color: #cbd5e1;
+            transition: color 0.3s ease;
+        }
+
+        /* Flash indicators */
+        .flash-up { color: var(--bb-green) !important; font-weight: 700; }
+        .flash-down { color: var(--bb-red) !important; font-weight: 700; }
+
         /* Layout Container */
         .container {
             max-width: 1100px;
-            margin: 3.5rem auto;
+            margin: 3rem auto;
             padding: 0 2rem;
         }
 
@@ -378,8 +444,8 @@
                 gap: 1.2rem;
             }
             .brand-logo img {
-                width: 70px;
-                height: 70px;
+                width: 60px;
+                height: 60px;
             }
             .nav-wrapper {
                 width: 100%;
@@ -413,11 +479,26 @@
                     <a href="track-record.html">Track Record</a>
                     <a href="positionsize.html">Position Size</a>
                     <a href="faq.html">FAQ</a>
+                    <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_Top" class="nav-broker-btn">Trade on BlackBull</a>
                 </nav>
                 <button class="nav-arrow right" id="scrollRight" aria-label="Scroll Right">&#10095;</button>
             </div>
         </div>
     </header>
+
+    <!-- Custom Link-Free Live Ticker Banner (Below Navigation) -->
+    <div id="live-ticker-container">
+        <div class="ticker-wrapper" id="ticker-wrapper">
+            <div class="ticker-item" id="ticker-USTECH"><span class="symbol">USTECH</span> <span class="price">--.--</span></div>
+            <div class="ticker-item" id="ticker-XAUUSD"><span class="symbol">XAUUSD</span> <span class="price">--.--</span></div>
+            <div class="ticker-item" id="ticker-WTI"><span class="symbol">WTI</span> <span class="price">--.--</span></div>
+            <div class="ticker-item" id="ticker-EURUSD"><span class="symbol">EURUSD</span> <span class="price">--.--</span></div>
+            <div class="ticker-item" id="ticker-USDJPY"><span class="symbol">USDJPY</span> <span class="price">--.--</span></div>
+            <div class="ticker-item" id="ticker-BTCUSD"><span class="symbol">BTCUSD</span> <span class="price">--.--</span></div>
+            <div class="ticker-item" id="ticker-ETHUSD"><span class="symbol">ETHUSD</span> <span class="price">--.--</span></div>
+            <div class="ticker-item" id="ticker-TSLA"><span class="symbol">TSLA</span> <span class="price">--.--</span></div>
+        </div>
+    </div>
 
     <div class="container">
         <h1 class="page-title">Execution Infrastructure</h1>
@@ -434,7 +515,7 @@
                 <li><strong>Institutional Fill Quality:</strong> Sub-millisecond order processing ensuring precise stop-loss and take-profit execution without slippage.</li>
                 <li><strong>Tier-1 Asset Coverage:</strong> Full MetaTrader 5 contract support across all 8 mandatory instruments (Indices, Metals, Energy, FX, Crypto).</li>
                 <li><strong>Capital Protection Safeguards:</strong> Fully segregated tier-1 banking funds paired with negative-balance protection protocols.</li>
-                <li><strong>Institutional Leverage Capabilities:</strong> Provides necessary margin efficiency to execute baseline $400 position parameters safely.</li>
+                <li><strong>Institutional Leverage Capabilities:</strong> Provides necessary margin efficiency to execute baseline position parameters safely.</li>
                 <li><strong>Affiliate Transparency:</strong> An official partnership exists; execution commissions directly support this public ledger without altering trading rules.</li>
             </ul>
 
@@ -457,8 +538,9 @@
         </p>
     </footer>
 
-    <!-- Interactive Navigation Scripts -->
+    <!-- Interactive Navigation & Live Price Ticker Scripts -->
     <script>
+        // --- 1. Navigation Scroll & Center Mechanics ---
         const nav = document.getElementById('navContainer');
         const navWrapper = document.getElementById('navWrapper');
         const btnLeft = document.getElementById('scrollLeft');
@@ -495,34 +577,71 @@
                 const activeWidth = activeBtn.clientWidth;
 
                 const targetScroll = activeLeft - (navWidth / 2) + (activeWidth / 2);
-                
-                nav.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
+                nav.scrollTo({ left: targetScroll, behavior: 'smooth' });
             }
             setTimeout(updateNavState, 300);
         }
 
         if (btnLeft && btnRight && nav) {
-            btnLeft.addEventListener('click', () => {
-                nav.scrollBy({ left: -200, behavior: 'smooth' });
-            });
-
-            btnRight.addEventListener('click', () => {
-                nav.scrollBy({ left: 200, behavior: 'smooth' });
-            });
-
+            btnLeft.addEventListener('click', () => nav.scrollBy({ left: -200, behavior: 'smooth' }));
+            btnRight.addEventListener('click', () => nav.scrollBy({ left: 200, behavior: 'smooth' }));
             nav.addEventListener('scroll', updateNavState);
             window.addEventListener('resize', () => {
                 centerActiveButton();
                 updateNavState();
             });
+            document.addEventListener('DOMContentLoaded', centerActiveButton);
+        }
 
-            document.addEventListener('DOMContentLoaded', () => {
-                centerActiveButton();
+        // --- 2. Live Market Price Ticker Engine ---
+        function updateTickerPrice(id, newPrice) {
+            const el = document.querySelector(`#ticker-${id} .price`);
+            if (!el) return;
+            
+            const currentPrice = parseFloat(el.innerText.replace(/,/g, ''));
+            const updated = parseFloat(newPrice);
+
+            if (!isNaN(currentPrice) && currentPrice !== updated) {
+                el.classList.remove('flash-up', 'flash-down');
+                el.classList.add(updated > currentPrice ? 'flash-up' : 'flash-down');
+                setTimeout(() => el.classList.remove('flash-up', 'flash-down'), 1000);
+            }
+            
+            el.innerText = updated.toLocaleString(undefined, { 
+                minimumFractionDigits: updated < 10 ? 4 : 2, 
+                maximumFractionDigits: updated < 10 ? 4 : 2 
             });
         }
+
+        // Live Crypto Data (Binance WebSocket)
+        function startCryptoWebSocket() {
+            const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade/ethusdt@trade');
+            
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.s === 'BTCUSDT') updateTickerPrice('BTCUSD', data.p);
+                if (data.s === 'ETHUSDT') updateTickerPrice('ETHUSD', data.p);
+            };
+
+            ws.onclose = () => setTimeout(startCryptoWebSocket, 5000);
+        }
+
+        // Forex & Metal Data Polling
+        async function fetchForexPrices() {
+            try {
+                const res = await fetch('https://api.frankfurter.app/latest?from=USD&to=JPY,EUR');
+                const data = await res.json();
+                if (data.rates.JPY) updateTickerPrice('USDJPY', data.rates.JPY);
+                if (data.rates.EUR) updateTickerPrice('EURUSD', (1 / data.rates.EUR));
+            } catch (e) {
+                console.log('Forex API error:', e);
+            }
+        }
+
+        // Initialize Price Engine
+        startCryptoWebSocket();
+        fetchForexPrices();
+        setInterval(fetchForexPrices, 10000);
     </script>
 </body>
 </html>
