@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB - Compounding Journey & 140-Step Accountability Matrix. Track real-time progress across 4 Major Stages scaling from $400 to $4,000,000.">
+    <meta name="description" content="TraderProDXB - Compounding Journey & Distance-Based Matrix. Track absolute dollar-distance progression from $400 to $4,000,000 across 5 uniform micro-stages.">
     <title>Journey & Accountability | TraderProDXB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,7 +195,7 @@
             font-weight: 700;
         }
 
-        /* 140 Micro-Step Table Styling */
+        /* Table Styling */
         .table-scroll {
             max-height: 700px;
             overflow-y: auto;
@@ -232,13 +232,8 @@
             white-space: nowrap;
         }
 
-        /* Stage End Dividers */
-        tr.mini-end {
+        tr.checkpoint-end {
             border-bottom: 2px solid rgba(227, 27, 35, 0.4);
-        }
-
-        tr.major-end {
-            border-bottom: 3px solid var(--bb-red) !important;
         }
 
         tr.completed {
@@ -345,14 +340,12 @@
 <body>
     <header>
         <div class="nav-container">
-            <!-- 25% Left Brand Area -->
             <div class="brand-logo-wrap">
                 <a href="index.html" class="brand-logo">
                     <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
                 </a>
             </div>
 
-            <!-- 75% Right Navigation & Broker CTA -->
             <div class="nav-right-wrap">
                 <div class="nav-compact-wrap">
                     <nav>
@@ -369,7 +362,6 @@
         </div>
     </header>
 
-    <!-- Infinite Continuous Marquee Ticker -->
     <div id="live-ticker-container">
         <div class="ticker-marquee">
             <div class="ticker-group" id="tickerGroup1">
@@ -388,36 +380,33 @@
 
     <section class="page-header">
         <h1>Compounding <span>Journey</span></h1>
-        <p>Dynamic 140-trade accountability matrix. Win moves +1 Step up; Loss moves -1 Step down across 4 major capital stages ($400 → $4,000,000).</p>
+        <p>Absolute dollar-distance matrix. Starting from $400, each mini stage divides distance into 5 uniform trade goals up to $4,000,000.</p>
     </section>
 
     <main class="container">
-        <!-- System Progression Overview Stats -->
         <div class="stats-grid">
             <div class="stat-card">
                 <h3>Initial Capital</h3>
                 <div class="value">$400.00</div>
             </div>
             <div class="stat-card">
-                <h3>Current Equity Target</h3>
-                <div class="value green" id="stat-current-equity">$427.20</div>
+                <h3>Current Equity Baseline</h3>
+                <div class="value green" id="stat-current-equity">$400.00</div>
             </div>
             <div class="stat-card">
                 <h3>Active Trade Step</h3>
                 <div class="value" id="stat-progress-step">Trade 1 / 140</div>
             </div>
             <div class="stat-card">
-                <h3>Active Stage</h3>
-                <div class="value green" id="stat-active-stage">Major 1 (Mini 1)</div>
+                <h3>Active Milestone Leg</h3>
+                <div class="value green" id="stat-active-stage">Leg 1 ($400 $\to$ $550)</div>
             </div>
         </div>
 
-        <!-- 140 Micro-Step Distance Matrix Card -->
         <div class="content-card">
             <div class="card-header-bar">
-                <div class="card-title">140 Sequential Trades Roadmap</div>
+                <div class="card-title">Distance-Based Master Roadmap ($400 $\to$ $4M)</div>
                 
-                <!-- Win/Loss Navigation Controls -->
                 <div class="step-controller">
                     <button class="btn-step btn-loss" onclick="handleTradeResult('loss')">▼ Loss (-1 Step)</button>
                     <button class="btn-step btn-win" onclick="handleTradeResult('win')">▲ Win (+1 Step)</button>
@@ -431,21 +420,19 @@
                     <thead>
                         <tr>
                             <th>Trade #</th>
-                            <th>Stage Hierarchy</th>
+                            <th>Milestone Leg</th>
                             <th>Start Balance</th>
                             <th>Target Win (+1 Step)</th>
                             <th>Risk Boundary (-1 Step)</th>
-                            <th>Win Distance ($)</th>
+                            <th>Step Distance ($)</th>
                         </tr>
                     </thead>
                     <tbody id="roadmap-rows">
-                        <!-- Javascript generates all 140 trade rows -->
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- BlackBull Partner Banner -->
         <div class="banner-wrap">
             <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_top">
                 <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573600" width="1200" height="630" style="max-width:100%; height:auto;" alt="BlackBull Partner">
@@ -458,51 +445,63 @@
         
         <div class="disclaimer-box">
             <p><strong>High-Risk Investment Warning:</strong> Trading Foreign Exchange (Forex), Contracts for Difference (CFDs), digital assets, and other leveraged financial derivatives involves a high level of risk and may not be suitable for all investors. Leverage can work against you as well as for you, potentially leading to the substantial loss of your invested capital. You should never invest money that you cannot afford to lose. Before deciding to trade, ensure you fully understand the risks involved, take into account your investment objectives, level of experience, and risk appetite, and seek independent financial advice if necessary.</p>
-
             <p><strong>No Financial Advice or Solicitation:</strong> The content provided on TraderProDXB is strictly for informational, educational, and personal journal tracking purposes only. Nothing contained on this site constitutes investment, legal, tax, or financial advice, nor is it a recommendation, endorsement, or solicitation to buy or sell any security, currency, derivative, or financial product. TraderProDXB does not operate as a financial broker, dealer, investment advisor, or asset manager.</p>
-
             <p><strong>Performance Disclaimer:</strong> Any historical trade logs, system calculations, or performance metrics displayed represent individual execution logs and are not indicative of future results. No representation or guarantee is made that any trading system, strategy, or account will or is likely to achieve profits or losses similar to those discussed on this website.</p>
         </div>
     </footer>
 
     <script>
-        // Active Step State Variable (1 to 140)
         let currentTradeStep = 1;
 
-        // Stage Base Milestones ($400 -> $4,000 -> $40,000 -> $400,000 -> $4,000,000)
-        const stageBases = [400, 4000, 40000, 400000, 4000000];
+        // Exact Checkpoint Targets derived from your image schedule from $400 to $4,000,000
+        const milestoneCheckpoints = [
+            400, 550, 800, 1100, 1500, 2100, 2900, 
+            4000, 5500, 8000, 11000, 15000, 21000, 29000,
+            40000, 55000, 80000, 110000, 150000, 210000, 290000,
+            400000, 550000, 800000, 1100000, 1500000, 2100000, 2900000, 4000000
+        ];
 
-        // Generate 140 explicit step balance values
-        function calculateTradeBalances() {
+        function calculateDistanceRoadmap() {
             const trades = [];
-            for (let i = 1; i <= 140; i++) {
-                const majorIdx = Math.floor((i - 1) / 35);
-                const stepInMajor = (i - 1) % 35;
-                
-                const startMajorVal = stageBases[majorIdx];
-                const endMajorVal = stageBases[majorIdx + 1];
-                
-                // Linear distance scaling per step across each 35-step major stage
-                const startBalance = startMajorVal + ((endMajorVal - startMajorVal) * (stepInMajor / 35));
-                const targetBalance = startMajorVal + ((endMajorVal - startMajorVal) * ((stepInMajor + 1) / 35));
-                const lossBoundary = Math.max(400, startMajorVal + ((endMajorVal - startMajorVal) * (Math.max(0, stepInMajor - 1) / 35)));
-                const winDistance = targetBalance - startBalance;
+            let currentBalance = milestoneCheckpoints[0];
 
-                trades.push({
-                    tradeNum: i,
-                    majorStage: majorIdx + 1,
-                    miniStage: Math.ceil(i / 5),
-                    microStep: ((i - 1) % 5) + 1,
-                    startBalance: startBalance,
-                    targetBalance: targetBalance,
-                    lossBoundary: lossBoundary,
-                    winDistance: winDistance
-                });
+            for (let i = 0; i < milestoneCheckpoints.length - 1; i++) {
+                const startVal = milestoneCheckpoints[i];
+                const endVal = milestoneCheckpoints[i + 1];
+                const stageDistance = endVal - startVal;
+                const stepDistance = stageDistance / 5; // Exactly 5 uniform micro-stages per leg
+
+                for (let microStep = 1; microStep <= 5; microStep++) {
+                    const tradeNum = (i * 5) + microStep;
+                    const startBalance = currentBalance;
+                    const targetBalance = startBalance + stepDistance;
+
+                    trades.push({
+                        tradeNum: tradeNum,
+                        legIndex: i + 1,
+                        microStep: microStep,
+                        startBalance: startBalance,
+                        targetBalance: targetBalance,
+                        winDistance: stepDistance
+                    });
+
+                    currentBalance = targetBalance;
+                }
             }
+
+            // Assign risk boundaries (-1 step distance)
+            for (let i = 0; i < trades.length; i++) {
+                if (i === 0) {
+                    trades[i].lossBoundary = trades[i].startBalance - trades[i].winDistance;
+                } else {
+                    trades[i].lossBoundary = trades[i - 1].startBalance;
+                }
+            }
+
             return trades;
         }
 
-        const tradeData = calculateTradeBalances();
+        const tradeData = calculateDistanceRoadmap();
 
         function renderRoadmapTable() {
             const tbody = document.getElementById('roadmap-rows');
@@ -510,20 +509,17 @@
 
             const currentTrade = tradeData[currentTradeStep - 1];
 
-            // Update Header Stats
             document.getElementById('live-status').innerText = `Current Position: Trade #${currentTradeStep}`;
             document.getElementById('stat-progress-step').innerText = `Trade ${currentTradeStep} / 140`;
             document.getElementById('stat-current-equity').innerText = `$${currentTrade.startBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            document.getElementById('stat-active-stage').innerText = `Major ${currentTrade.majorStage} (Mini ${currentTrade.miniStage})`;
+            document.getElementById('stat-active-stage').innerText = `Leg ${currentTrade.legIndex} (Step ${currentTrade.microStep}/5)`;
 
-            tradeData.forEach(trade => {
+            tradeData.forEach((trade, idx) => {
                 const row = document.createElement('tr');
                 row.id = `trade-row-${trade.tradeNum}`;
 
-                if (trade.tradeNum % 35 === 0) {
-                    row.classList.add('major-end');
-                } else if (trade.tradeNum % 5 === 0) {
-                    row.classList.add('mini-end');
+                if (trade.microStep === 5) {
+                    row.classList.add('checkpoint-end');
                 }
 
                 if (trade.tradeNum < currentTradeStep) {
@@ -534,7 +530,7 @@
 
                 row.innerHTML = `
                     <td>${trade.tradeNum} ${trade.tradeNum === currentTradeStep ? '<span class="live-tag">LIVE</span>' : ''}</td>
-                    <td style="color: #E2E8F0; font-weight: 700;">Maj ${trade.majorStage} | Min ${trade.miniStage} (Step ${trade.microStep}/5)</td>
+                    <td style="color: #E2E8F0; font-weight: 700;">Leg ${trade.legIndex} ($${milestoneCheckpoints[trade.legIndex-1].toLocaleString()} $\to$ $${milestoneCheckpoints[trade.legIndex].toLocaleString()}) - Step ${trade.microStep}/5</td>
                     <td>$${trade.startBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                     <td style="color: var(--bb-green);">$${trade.targetBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                     <td style="color: var(--bb-red);">$${trade.lossBoundary.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
@@ -565,12 +561,10 @@
             }
         }
 
-        // Marquee Duplication
         const grp1 = document.getElementById('tickerGroup1');
         const grp2 = document.getElementById('tickerGroup2');
         if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
 
-        // Crypto WebSocket Streaming
         function startCryptoWebSocket() {
             const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
             ws.onmessage = (event) => {
