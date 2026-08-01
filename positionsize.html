@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Position Size - Precision risk allocation models mapped across approved asset classes.">
+    <meta name="description" content="TraderProDXB Position Size Calculator.">
     <title>Position Size | TraderProDXB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +12,7 @@
         :root {
             --bb-dark: #07090E;
             --bb-card: #121620;
-            --bb-card-hover: #1A202C;
             --bb-red: #E31B23;
-            --bb-red-hover: #ff222d;
             --bb-green: #22c55e;
             --border: rgba(255, 255, 255, 0.1);
             --text-main: #FFFFFF;
@@ -24,584 +22,49 @@
             --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bb-dark);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding-bottom: 60px;
-        }
-
-        /* Navigation Header */
-        header {
-            background: rgba(7, 9, 14, 0.95);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            gap: 2rem;
-        }
-
-        /* Top-Left Brand Logo & Title Area */
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .brand-logo img {
-            width: 95px;
-            height: 95px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 2px solid var(--bb-red);
-            box-shadow: 0 0 20px rgba(227, 27, 35, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .brand-logo:hover img {
-            transform: scale(1.04);
-            box-shadow: 0 0 28px rgba(227, 27, 35, 0.5);
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .brand-title {
-            font-family: var(--font-heading);
-            font-size: 1.35rem;
-            font-weight: 900;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
-
-        .brand-title span {
-            color: var(--bb-red);
-        }
-
-        .brand-subtitle {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
-
-        /* Navigation Scroll Wrapper & Dynamic Cues */
-        .nav-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            flex-grow: 1;
-            max-width: 850px;
-            justify-content: flex-end;
-            background: rgba(18, 22, 32, 0.6);
-            border: 1px solid var(--border);
-            padding: 6px 8px;
-            border-radius: 40px;
-        }
-
-        .nav-wrapper::before,
-        .nav-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 36px;
-            pointer-events: none;
-            z-index: 2;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 40px;
-        }
-
-        .nav-wrapper::before {
-            left: 0;
-            background: linear-gradient(to right, rgba(18, 22, 32, 0.95), transparent);
-        }
-
-        .nav-wrapper::after {
-            right: 0;
-            background: linear-gradient(to left, rgba(18, 22, 32, 0.95), transparent);
-        }
-
-        .nav-wrapper.can-scroll-left::before { opacity: 1; }
-        .nav-wrapper.can-scroll-right::after { opacity: 1; }
-
-        .nav-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(7, 9, 14, 0.9);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 3;
-            font-size: 0.7rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.25s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
-        }
-
-        .nav-arrow:hover {
-            background: var(--bb-red);
-            border-color: var(--bb-red);
-            color: #FFF;
-        }
-
-        .nav-arrow.left { left: 8px; }
-        .nav-arrow.right { right: 8px; }
-
-        .nav-wrapper.can-scroll-left .nav-arrow.left,
-        .nav-wrapper.can-scroll-right .nav-arrow.right {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 2px 8px;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            width: 100%;
-        }
-
-        nav::-webkit-scrollbar {
-            display: none;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            border: 1px solid transparent;
-            flex-shrink: 0;
-        }
-
-        nav a:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        nav a.active {
-            color: #FFFFFF;
-            font-size: 0.85rem;
-            font-weight: 700;
-            border-color: var(--bb-red);
-            background: var(--bb-red);
-            box-shadow: 0 0 12px rgba(227, 27, 35, 0.4);
-        }
-
-        /* Highlighted Broker CTA Button inside Nav */
-        nav a.nav-broker-btn {
-            background: var(--bb-green);
-            color: #000000;
-            font-weight: 800;
-            border-color: var(--bb-green);
-            box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
-        }
-
-        nav a.nav-broker-btn:hover {
-            background: #16a34a;
-            color: #FFFFFF;
-            box-shadow: 0 0 16px rgba(34, 197, 94, 0.6);
-        }
-
-        /* Live Market Ticker Styles */
-        #live-ticker-container {
-            width: 100%;
-            background-color: #04060A;
-            border-bottom: 1px solid var(--border);
-            padding: 8px 0;
-            overflow-x: auto;
-            white-space: nowrap;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        #live-ticker-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .ticker-wrapper {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            gap: 15px;
-            padding: 0 20px;
-            min-width: max-content;
-        }
-
-        .ticker-item {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            background: var(--bb-card);
-            padding: 5px 12px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ticker-item .symbol {
-            color: var(--text-main);
-            font-weight: 700;
-        }
-
-        .ticker-item .price {
-            color: #cbd5e1;
-            transition: color 0.3s ease;
-        }
-
-        .flash-up { color: var(--bb-green) !important; font-weight: 700; }
-        .flash-down { color: var(--bb-red) !important; font-weight: 700; }
-
-        /* Layout Container */
-        .container {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 2rem;
-        }
-
-        .page-header {
-            margin-bottom: 2rem;
-        }
-
-        .page-title {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.25rem;
-        }
-
-        .page-subtitle {
-            font-family: var(--font-sans);
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        /* Info Grid Layout */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .card {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            padding: 1.75rem;
-            border-radius: 12px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .card-primary {
-            border-top: 4px solid #38bdf8;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .card p strong {
-            color: var(--text-main);
-        }
-
-        /* Alert Box */
-        .alert-card {
-            background: rgba(227, 27, 35, 0.06);
-            border: 1px solid rgba(227, 27, 35, 0.3);
-            border-top: 4px solid var(--bb-red);
-            padding: 1.75rem;
-            border-radius: 12px;
-            height: 100%;
-        }
-
-        .alert-card h4 {
-            font-family: var(--font-heading);
-            font-size: 1.05rem;
-            color: var(--bb-red);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .alert-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Calculator Module */
-        .calc-module {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            border-top: 4px solid #38bdf8;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-            color: #f9fafb;
-        }
-
-        .calc-header {
-            margin-bottom: 1.25rem;
-        }
-
-        .calc-module h2 {
-            margin-top: 0;
-            color: #38bdf8;
-            font-family: var(--font-heading);
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .calc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        .calc-input-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-
-        .calc-input-group input,
-        .calc-input-group select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: #0f172a;
-            color: #fff;
-            font-size: 1rem;
-            font-family: var(--font-sans);
-            outline: none;
-            transition: border-color 0.2s ease;
-        }
-
-        .calc-input-group input:focus,
-        .calc-input-group select:focus {
-            border-color: #38bdf8;
-        }
-
-        .calc-results-box {
-            background: #0f172a;
-            border-radius: 8px;
-            padding: 1.25rem;
-            border: 1px solid var(--border);
-        }
-
-        .calc-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-
-        .calc-row span {
-            color: var(--text-muted);
-        }
-
-        .calc-row strong {
-            font-family: var(--font-mono);
-        }
-
-        .calc-hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 14px 0;
-        }
-
-        .calc-warning {
-            margin-top: 12px;
-            display: none;
-            background: rgba(227, 27, 35, 0.15);
-            border: 1px solid var(--bb-red);
-            color: #fca5a5;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        /* Section Titles */
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        /* Precautions List Grid */
-        .precautions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .precaution-item {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            padding: 1.25rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .precaution-item:hover {
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .precaution-icon {
-            color: var(--bb-red);
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .precaution-text {
-            font-size: 0.88rem;
-            font-weight: 500;
-            color: var(--text-main);
-        }
-
-        /* Note Section */
-        .note-card {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            padding: 1.75rem;
-            border-radius: 12px;
-            margin-bottom: 2.5rem;
-        }
-
-        .note-card h4 {
-            font-family: var(--font-heading);
-            font-size: 1.05rem;
-            color: var(--text-main);
-            margin-bottom: 0.75rem;
-        }
-
-        .note-card p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            line-height: 1.6;
-        }
-
-        /* Banner Container */
-        .banner-wrap {
-            text-align: center;
-            margin: 2.5rem 0;
-            padding: 1.5rem;
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            background: #040508;
-        }
-
-        .disclaimer {
-            font-size: 0.75rem;
-            color: #64748B;
-            margin-top: 1.25rem;
-            max-width: 950px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-            text-align: justify;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; padding-bottom: 60px; }
+
+        header { background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 1.75rem; gap: 1.5rem; }
+
+        .brand-logo { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
+        .brand-logo img { width: 75px; height: 75px; border-radius: 12px; object-fit: cover; border: 2px solid var(--bb-red); }
+        .brand-title { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; }
+        .brand-title span { color: var(--bb-red); }
+        .brand-subtitle { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
+
+        .nav-compact-wrap { display: flex; align-items: center; gap: 0.4rem; background: rgba(18, 22, 32, 0.65); border: 1px solid var(--border); padding: 5px 8px; border-radius: 30px; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; padding: 0.45rem 0.85rem; border-radius: 20px; }
+        nav a.active { color: #FFF; background: var(--bb-red); }
+        nav a.nav-broker-btn { background: var(--bb-green); color: #000; font-weight: 800; }
+
+        #live-ticker-container { width: 100%; background-color: #04060A; border-bottom: 1px solid var(--border); padding: 7px 0; overflow: hidden; }
+        .ticker-marquee { display: flex; width: max-content; animation: ticker-scroll 32s linear infinite; }
+        .ticker-marquee:hover { animation-play-state: paused; }
+        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .ticker-group { display: flex; align-items: center; gap: 12px; padding-right: 12px; }
+        .ticker-item { font-family: var(--font-mono); font-size: 0.75rem; background: var(--bb-card); padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border); display: flex; gap: 8px; white-space: nowrap; }
+        .closed-badge { font-size: 0.6rem; background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 1px 4px; border-radius: 3px; }
+        .pos-up { color: var(--bb-green) !important; }
+        .neg-down { color: var(--bb-red) !important; }
+
+        .container { max-width: 1100px; margin: 3.5rem auto; padding: 0 2rem; }
+        .page-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; }
+        .page-subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+        .calc-module { background: var(--bb-card); border: 1px solid var(--border); border-top: 4px solid #38bdf8; border-radius: 12px; padding: 2rem; }
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+        .calc-input-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+        .calc-input-group input, .calc-input-group select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: #0f172a; color: #fff; font-size: 1rem; outline: none; }
+        .calc-results-box { background: #0f172a; border-radius: 8px; padding: 1.25rem; border: 1px solid var(--border); }
+        .calc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+
+        footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; background: #040508; margin-top: 3rem; }
 
         @media (max-width: 900px) {
-            .nav-container {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 1rem 1.25rem;
-                gap: 1.2rem;
-            }
-            .brand-logo img {
-                width: 70px;
-                height: 70px;
-            }
-            .nav-wrapper {
-                width: 100%;
-                max-width: 100%;
-            }
-            .page-title { font-size: 2rem; }
-            .info-grid { grid-template-columns: 1fr; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .nav-compact-wrap nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; text-align: center; }
             .calc-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -609,7 +72,6 @@
 <body>
     <header>
         <div class="nav-container">
-            <!-- Top-Left Branding Element -->
             <a href="index.html" class="brand-logo">
                 <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
                 <div class="brand-text">
@@ -617,11 +79,8 @@
                     <span class="brand-subtitle">Systemic Trading Hub</span>
                 </div>
             </a>
-            
-            <!-- Top-Right Scrollable Pill Navigation -->
-            <div class="nav-wrapper" id="navWrapper">
-                <button class="nav-arrow left" id="scrollLeft" aria-label="Scroll Left">&#10094;</button>
-                <nav id="navContainer">
+            <div class="nav-compact-wrap">
+                <nav>
                     <a href="index.html">Home</a>
                     <a href="infrastructure.html">Infrastructure</a>
                     <a href="journey.html">Journey</a>
@@ -630,49 +89,31 @@
                     <a href="faq.html">FAQ</a>
                     <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_Top" class="nav-broker-btn">Trade on BlackBull</a>
                 </nav>
-                <button class="nav-arrow right" id="scrollRight" aria-label="Scroll Right">&#10095;</button>
             </div>
         </div>
     </header>
 
-    <!-- Custom Link-Free Live Ticker Banner (Below Navigation) -->
     <div id="live-ticker-container">
-        <div class="ticker-wrapper" id="ticker-wrapper">
-            <div class="ticker-item" id="ticker-USTECH"><span class="symbol">USTECH</span> <span class="price">--.--</span></div>
-            <div class="ticker-item" id="ticker-XAUUSD"><span class="symbol">XAUUSD</span> <span class="price">--.--</span></div>
-            <div class="ticker-item" id="ticker-WTI"><span class="symbol">WTI</span> <span class="price">--.--</span></div>
-            <div class="ticker-item" id="ticker-EURUSD"><span class="symbol">EURUSD</span> <span class="price">--.--</span></div>
-            <div class="ticker-item" id="ticker-USDJPY"><span class="symbol">USDJPY</span> <span class="price">--.--</span></div>
-            <div class="ticker-item" id="ticker-BTCUSD"><span class="symbol">BTCUSD</span> <span class="price">--.--</span></div>
-            <div class="ticker-item" id="ticker-ETHUSD"><span class="symbol">ETHUSD</span> <span class="price">--.--</span></div>
-            <div class="ticker-item" id="ticker-TSLA"><span class="symbol">TSLA</span> <span class="price">--.--</span></div>
+        <div class="ticker-marquee">
+            <div class="ticker-group" id="tickerGroup1">
+                <div class="ticker-item" id="ticker-USTECH"><span class="symbol">USTECH</span> <span class="price">22,850.50</span> <span class="delta pos-up">+145.20 (+0.64%)</span> <span class="closed-badge">CLOSED</span></div>
+                <div class="ticker-item" id="ticker-XAUUSD"><span class="symbol">XAUUSD</span> <span class="price">3,340.20</span> <span class="delta pos-up">+$18.40 (+0.55%)</span> <span class="closed-badge">CLOSED</span></div>
+                <div class="ticker-item" id="ticker-WTI"><span class="symbol">WTI</span> <span class="price">74.80</span> <span class="delta neg-down">-$0.85 (-1.12%)</span> <span class="closed-badge">CLOSED</span></div>
+                <div class="ticker-item" id="ticker-EURUSD"><span class="symbol">EURUSD</span> <span class="price">1.0852</span> <span class="delta pos-up">+0.0012 (+0.11%)</span> <span class="closed-badge">CLOSED</span></div>
+                <div class="ticker-item" id="ticker-USDJPY"><span class="symbol">USDJPY</span> <span class="price">154.20</span> <span class="delta neg-down">-0.45 (-0.29%)</span> <span class="closed-badge">CLOSED</span></div>
+                <div class="ticker-item" id="ticker-BTCUSD"><span class="symbol">BTCUSD</span> <span class="price">65,420.00</span> <span class="delta pos-up">+$1,240.00 (+1.93%)</span></div>
+                <div class="ticker-item" id="ticker-ETHUSD"><span class="symbol">ETHUSD</span> <span class="price">3,480.10</span> <span class="delta pos-up">+$82.30 (+2.42%)</span></div>
+                <div class="ticker-item" id="ticker-TSLA"><span class="symbol">TSLA</span> <span class="price">218.40</span> <span class="delta neg-down">-$3.10 (-1.40%)</span> <span class="closed-badge">CLOSED</span></div>
+            </div>
+            <div class="ticker-group" id="tickerGroup2"></div>
         </div>
     </div>
 
     <div class="container">
-        <div class="page-header">
-            <h1 class="page-title">Position Size</h1>
-            <p class="page-subtitle">Position sizing is the core discipline of the system.</p>
-        </div>
+        <h1 class="page-title">Position Size</h1>
+        <p class="page-subtitle">Calculate contract size mapping strictly to 6% account equity risk.</p>
 
-        <!-- System Overview & Execution Rules -->
-        <div class="info-grid">
-            <div class="card card-primary">
-                <p>Every instrument carries a fixed dollar-distance target. Contract size is calculated so that distance equals approximately <strong>6% of current equity</strong>. Size must always be a whole multiple of the instrument minimum.</p>
-            </div>
-            <div class="alert-card">
-                <h4>&#9888;&#65039; Hard Rule</h4>
-                <p>If the planned 6% dollar amount is smaller than the instrument’s minimum distance, the trade is skipped. This prevents oversizing.</p>
-            </div>
-        </div>
-
-        <!-- Integrated Calculator Module -->
         <section class="calc-module">
-            <div class="calc-header">
-                <h2>Systemic Position Size Calculator</h2>
-                <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 4px;">Calculates contract size so that fixed price distance equals strictly 6% of account equity.</p>
-            </div>
-
             <div class="calc-grid">
                 <div class="calc-input-group">
                     <label for="calcEquity">Account Equity ($)</label>
@@ -699,230 +140,75 @@
                     <strong id="targetRiskVal" style="color: #38bdf8;">$240.00</strong>
                 </div>
                 <div class="calc-row">
-                    <span>Dollar Distance Target:</span>
-                    <strong id="dollarDistVal" style="color: #e2e8f0;">$125 per index</strong>
-                </div>
-                <hr class="calc-hr">
-                <div class="calc-row" style="margin-bottom: 0;">
-                    <span style="font-size: 1.05rem; font-weight: 700; color: var(--text-main);">Recommended Size:</span>
-                    <strong id="recommendedSizeVal" style="font-size: 1.4rem; color: #4ade80;">1.90 Lot</strong>
-                </div>
-                <div id="statusWarning" class="calc-warning">
-                    &#9888;&#65039; <strong>Trade Skipped (Hard Rule):</strong> Calculated size is below broker minimum requirement. Equity is too low for safe execution.
+                    <span>Recommended Size:</span>
+                    <strong id="recommendedSizeVal" style="font-size: 1.3rem; color: #4ade80;">1.90 Lot</strong>
                 </div>
             </div>
         </section>
-
-        <!-- Risk Precautions Section -->
-        <h2 class="section-title">Precautions (Size Reduction or Pause)</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">On the following conditions, position size is cut in half or trading is paused:</p>
-        
-        <div class="precautions-grid">
-            <div class="precaution-item">
-                <span class="precaution-icon">&#x26A0;</span>
-                <span class="precaution-text">High ATR / elevated volatility days</span>
-            </div>
-            <div class="precaution-item">
-                <span class="precaution-icon">&#x1F4C8;</span>
-                <span class="precaution-text">Major economic data releases</span>
-            </div>
-            <div class="precaution-item">
-                <span class="precaution-icon">&#x1F3DB;</span>
-                <span class="precaution-text">FOMC decisions</span>
-            </div>
-            <div class="precaution-item">
-                <span class="precaution-icon">&#x1F30D;</span>
-                <span class="precaution-text">Geopolitical or black-swan market conditions</span>
-            </div>
-        </div>
-
-        <!-- Target Calibration Note -->
-        <div class="note-card">
-            <h4>Note on fixed dollar distances and changing prices</h4>
-            <p>The dollar-distance targets were calibrated at earlier average price levels. Because the targets remain fixed in dollars, a large change in the underlying price can cause the same dollar distance to represent a slightly different percentage move. This may result in a modestly higher or lower contract size than what would be considered perfectly optimal under current conditions. The system keeps the distances fixed for consistency and simplicity. The 6% equity target remains the guide; actual results simply move in a narrow band around it. Manual size reduction remains available whenever the effective percentage feels excessive.</p>
-        </div>
-
-        <!-- BlackBull Partner Banner -->
-        <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8009" target="_top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573602" width="1080" height="1080" style="max-width:100%; height:auto;" alt="BlackBull Position Sizing"></a>
-        </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        <div class="disclaimer">
-            <p><strong>High-Risk Investment Warning:</strong> Trading foreign exchange (Forex), Contracts for Difference (CFDs), and other leveraged financial instruments carries a high level of risk and may not be suitable for all investors. Leverage can work against you as well as for you. Before deciding to trade or invest in financial markets, you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial capital; therefore, you should not invest money that you cannot afford to lose. You should be aware of all the risks associated with trading financial assets and seek advice from an independent financial advisor if you have any doubts.</p>
-            <p style="margin-top: 0.5rem;"><strong>General Information & Content Disclaimer:</strong> Content and tools provided on TraderProDXB are for educational, informational, and analytical purposes only and do not constitute financial, investment, or trading advice. Past performance is not indicative of future results.</p>
-        </div>
     </footer>
 
-    <!-- Interactive Navigation Scripts, Calculator Logic & Live Ticker Engine -->
     <script>
-        // Navigation Bar Logic
-        const nav = document.getElementById('navContainer');
-        const navWrapper = document.getElementById('navWrapper');
-        const btnLeft = document.getElementById('scrollLeft');
-        const btnRight = document.getElementById('scrollRight');
+        const grp1 = document.getElementById('tickerGroup1');
+        const grp2 = document.getElementById('tickerGroup2');
+        if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
 
-        function updateNavState() {
-            if (!nav) return;
-            const scrollLeft = nav.scrollLeft;
-            const maxScroll = nav.scrollWidth - nav.clientWidth;
-
-            if (nav.scrollWidth > nav.clientWidth) {
-                if (scrollLeft > 5) {
-                    navWrapper.classList.add('can-scroll-left');
-                } else {
-                    navWrapper.classList.remove('can-scroll-left');
-                }
-
-                if (scrollLeft < maxScroll - 5) {
-                    navWrapper.classList.add('can-scroll-right');
-                } else {
-                    navWrapper.classList.remove('can-scroll-right');
-                }
-            } else {
-                navWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
-            }
-        }
-
-        function centerActiveButton() {
-            const activeBtn = nav.querySelector('a.active');
-            if (activeBtn) {
-                const navWidth = nav.clientWidth;
-                const activeLeft = activeBtn.offsetLeft;
-                const activeWidth = activeBtn.clientWidth;
-
-                const targetScroll = activeLeft - (navWidth / 2) + (activeWidth / 2);
-                
-                nav.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            }
-            setTimeout(updateNavState, 300);
-        }
-
-        btnLeft.addEventListener('click', () => {
-            nav.scrollBy({ left: -200, behavior: 'smooth' });
-        });
-
-        btnRight.addEventListener('click', () => {
-            nav.scrollBy({ left: 200, behavior: 'smooth' });
-        });
-
-        nav.addEventListener('scroll', updateNavState);
-        window.addEventListener('resize', () => {
-            centerActiveButton();
-            updateNavState();
-        });
-
-        // Position Calculator Script Logic
         const INSTRUMENTS = {
-            USTech:   { name: "USTech",   dist: 125, min: 0.10, step: 0.10, unit: "Index Points", lotLabel: "Lot" },
-            XAUUSD:   { name: "XAUUSD",   dist: 25,  min: 0.01, step: 0.01, unit: "per 0.01 lot ($25/0.01)", lotLabel: "Lot" },
-            WTI:      { name: "WTI",      dist: 1.0, min: 0.01, step: 0.01, unit: "per Barrel ($100/Lot)", lotLabel: "Lot" },
-            EURUSD:   { name: "EURUSD",   dist: 1.0, min: 0.01, step: 0.01, unit: "per 0.01 lot", lotLabel: "Lot" },
-            USDJPY:   { name: "USDJPY",   dist: 1.0, min: 0.01, step: 0.01, unit: "per 0.01 lot", lotLabel: "Lot" },
-            BTCUSD:   { name: "BTCUSD",   dist: 500, min: 0.01, step: 0.01, unit: "per Bitcoin", lotLabel: "Lot" },
-            ETHUSD:   { name: "ETHUSD",   dist: 25,  min: 0.10, step: 0.10, unit: "per Ethereum", lotLabel: "Lot" },
-            Tesla:    { name: "Tesla",    dist: 5.0, min: 1.00, step: 1.00, unit: "per Share", lotLabel: "Share(s)" }
+            USTech:   { dist: 125, min: 0.10, step: 0.10, lotLabel: "Lot" },
+            XAUUSD:   { dist: 25,  min: 0.01, step: 0.01, lotLabel: "Lot" },
+            WTI:      { dist: 1.0, min: 0.01, step: 0.01, lotLabel: "Lot" },
+            EURUSD:   { dist: 1.0, min: 0.01, step: 0.01, lotLabel: "Lot" },
+            USDJPY:   { dist: 1.0, min: 0.01, step: 0.01, lotLabel: "Lot" },
+            BTCUSD:   { dist: 500, min: 0.01, step: 0.01, lotLabel: "Lot" },
+            ETHUSD:   { dist: 25,  min: 0.10, step: 0.10, lotLabel: "Lot" },
+            Tesla:    { dist: 5.0, min: 1.00, step: 1.00, lotLabel: "Share(s)" }
         };
 
         function updateCalculator() {
             const equity = parseFloat(document.getElementById("calcEquity").value) || 0;
             const instKey = document.getElementById("calcInstrument").value;
             const inst = INSTRUMENTS[instKey];
-
             const targetRisk = equity * 0.06;
-            let size = 0;
 
-            if (instKey === "XAUUSD") {
-                size = targetRisk / 2500;
-            } else if (instKey === "WTI") {
-                size = targetRisk / 100;
-            } else if (instKey === "EURUSD" || instKey === "USDJPY") {
-                size = targetRisk / 100;
-            } else {
-                size = targetRisk / inst.dist;
-            }
-
-            // Floating point precision handling
+            let size = (instKey === "XAUUSD") ? targetRisk / 2500 : (instKey === "WTI" || instKey === "EURUSD" || instKey === "USDJPY") ? targetRisk / 100 : targetRisk / inst.dist;
             const formattedSize = Math.floor((size + 0.000001) / inst.step) * inst.step;
             const decimals = inst.step >= 1 ? 0 : 2;
 
             document.getElementById("targetRiskVal").innerText = `$${targetRisk.toFixed(2)}`;
-            document.getElementById("dollarDistVal").innerText = `$${inst.dist} ${inst.unit}`;
-
-            const warningEl = document.getElementById("statusWarning");
-            const sizeEl = document.getElementById("recommendedSizeVal");
-
-            if (formattedSize < inst.min) {
-                sizeEl.innerText = "0.00";
-                sizeEl.style.color = "#f87171";
-                warningEl.style.display = "block";
-            } else {
-                sizeEl.innerText = `${formattedSize.toFixed(decimals)} ${inst.lotLabel}`;
-                sizeEl.style.color = "#4ade80";
-                warningEl.style.display = "none";
-            }
+            document.getElementById("recommendedSizeVal").innerText = `${formattedSize.toFixed(decimals)} ${inst.lotLabel}`;
         }
 
         document.getElementById("calcEquity").addEventListener("input", updateCalculator);
         document.getElementById("calcInstrument").addEventListener("change", updateCalculator);
 
-        // --- Live Market Price Ticker Engine ---
-        function updateTickerPrice(id, newPrice) {
-            const el = document.querySelector(`#ticker-${id} .price`);
-            if (!el) return;
-            
-            const currentPrice = parseFloat(el.innerText.replace(/,/g, ''));
-            const updated = parseFloat(newPrice);
-
-            if (!isNaN(currentPrice) && currentPrice !== updated) {
-                el.classList.remove('flash-up', 'flash-down');
-                el.classList.add(updated > currentPrice ? 'flash-up' : 'flash-down');
-                setTimeout(() => el.classList.remove('flash-up', 'flash-down'), 1000);
-            }
-            
-            el.innerText = updated.toLocaleString(undefined, { 
-                minimumFractionDigits: updated < 10 ? 4 : 2, 
-                maximumFractionDigits: updated < 10 ? 4 : 2 
-            });
-        }
-
-        // Live Crypto Data (Binance WebSocket)
         function startCryptoWebSocket() {
-            const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade/ethusdt@trade');
-            
+            const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
-                if (data.s === 'BTCUSDT') updateTickerPrice('BTCUSD', data.p);
-                if (data.s === 'ETHUSDT') updateTickerPrice('ETHUSD', data.p);
-            };
+                const symbol = data.s === 'BTCUSDT' ? 'BTCUSD' : data.s === 'ETHUSDT' ? 'ETHUSD' : null;
+                if (!symbol) return;
+                const price = parseFloat(data.c).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                const priceChange = parseFloat(data.p);
+                const percentChange = parseFloat(data.P);
+                const sign = priceChange >= 0 ? '+' : '';
+                const colorClass = priceChange >= 0 ? 'pos-up' : 'neg-down';
 
+                document.querySelectorAll(`#ticker-${symbol}`).forEach(item => {
+                    item.querySelector('.price').innerText = price;
+                    const deltaEl = item.querySelector('.delta');
+                    deltaEl.className = `delta ${colorClass}`;
+                    deltaEl.innerText = `${sign}$${Math.abs(priceChange).toFixed(2)} (${sign}${percentChange.toFixed(2)}%)`;
+                });
+            };
             ws.onclose = () => setTimeout(startCryptoWebSocket, 5000);
         }
 
-        // Forex & Metal Data Polling
-        async function fetchForexPrices() {
-            try {
-                const res = await fetch('https://api.frankfurter.app/latest?from=USD&to=JPY,EUR');
-                const data = await res.json();
-                if (data.rates.JPY) updateTickerPrice('USDJPY', data.rates.JPY);
-                if (data.rates.EUR) updateTickerPrice('EURUSD', (1 / data.rates.EUR));
-            } catch (e) {
-                console.log('Forex API error:', e);
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
-            centerActiveButton();
             updateCalculator();
             startCryptoWebSocket();
-            fetchForexPrices();
-            setInterval(fetchForexPrices, 10000);
         });
     </script>
 </body>
