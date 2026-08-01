@@ -38,6 +38,67 @@
             padding-bottom: 60px;
         }
 
+        /* Ticker Bar */
+        .ticker-bar {
+            background: #040508;
+            border-bottom: 1px solid var(--border);
+            height: 38px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .ticker-wrap {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-move {
+            display: flex;
+            gap: 2.5rem;
+            animation: tickerScroll 30s linear infinite;
+            padding-left: 1rem;
+        }
+
+        .ticker-move:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .ticker-symbol {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .ticker-price {
+            color: var(--text-main);
+        }
+
+        .ticker-change.pos {
+            color: #4ade80;
+        }
+
+        .ticker-change.neg {
+            color: #f87171;
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* Navigation Header */
         header {
             background: rgba(7, 9, 14, 0.95);
@@ -68,8 +129,8 @@
         }
 
         .brand-logo img {
-            width: 95px;
-            height: 95px;
+            width: 55px;
+            height: 55px;
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid var(--bb-red);
@@ -525,8 +586,8 @@
                 gap: 1.2rem;
             }
             .brand-logo img {
-                width: 70px;
-                height: 70px;
+                width: 45px;
+                height: 45px;
             }
             .nav-wrapper {
                 width: 100%;
@@ -539,11 +600,36 @@
     </style>
 </head>
 <body>
+    <!-- Live Financial Ticker Bar -->
+    <div class="ticker-bar">
+        <div class="ticker-wrap">
+            <div class="ticker-move" id="tickerMove">
+                <div class="ticker-item"><span class="ticker-symbol">USTEC</span> <span class="ticker-price">18,450.25</span> <span class="ticker-change pos">+1.24%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">XAUUSD</span> <span class="ticker-price">2,342.80</span> <span class="ticker-change pos">+0.45%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">WTI</span> <span class="ticker-price">78.54</span> <span class="ticker-change neg">-0.82%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">EURUSD</span> <span class="ticker-price">1.0875</span> <span class="ticker-change pos">+0.12%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">USDJPY</span> <span class="ticker-price">155.40</span> <span class="ticker-change neg">-0.31%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">BTCUSD</span> <span class="ticker-price">67,820.00</span> <span class="ticker-change pos">+2.15%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">ETHUSD</span> <span class="ticker-price">3,540.50</span> <span class="ticker-change pos">+1.80%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">TSLA</span> <span class="ticker-price">175.20</span> <span class="ticker-change neg">-1.45%</span></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="ticker-item"><span class="ticker-symbol">USTEC</span> <span class="ticker-price">18,450.25</span> <span class="ticker-change pos">+1.24%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">XAUUSD</span> <span class="ticker-price">2,342.80</span> <span class="ticker-change pos">+0.45%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">WTI</span> <span class="ticker-price">78.54</span> <span class="ticker-change neg">-0.82%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">EURUSD</span> <span class="ticker-price">1.0875</span> <span class="ticker-change pos">+0.12%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">USDJPY</span> <span class="ticker-price">155.40</span> <span class="ticker-change neg">-0.31%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">BTCUSD</span> <span class="ticker-price">67,820.00</span> <span class="ticker-change pos">+2.15%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">ETHUSD</span> <span class="ticker-price">3,540.50</span> <span class="ticker-change pos">+1.80%</span></div>
+                <div class="ticker-item"><span class="ticker-symbol">TSLA</span> <span class="ticker-price">175.20</span> <span class="ticker-change neg">-1.45%</span></div>
+            </div>
+        </div>
+    </div>
+
     <header>
         <div class="nav-container">
-            <!-- Top-Left Branding Element -->
+            <!-- Top-Left Branding Element with Updated Logo -->
             <a href="index.html" class="brand-logo">
-                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
+                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/refs/heads/main/logo.jpg" alt="TraderProDXB Logo">
                 <div class="brand-text">
                     <span class="brand-title">TraderPro<span>DXB</span></span>
                     <span class="brand-subtitle">Systemic Trading Hub</span>
