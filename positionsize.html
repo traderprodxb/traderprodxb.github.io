@@ -14,9 +14,8 @@
             --bb-card: #121620;
             --bb-card-hover: #1A202C;
             --bb-red: #E31B23;
-            --bb-gold: #D4AF37;
-            --bb-green: #22c55e;
-            --border: rgba(255, 255, 255, 0.08);
+            --bb-red-hover: #ff222d;
+            --border: rgba(255, 255, 255, 0.1);
             --text-main: #FFFFFF;
             --text-muted: #94A3B8;
             --font-sans: 'Inter', sans-serif;
@@ -24,121 +23,516 @@
             --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; padding-bottom: 60px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* Unified Header (25/75 Luxury Split) */
-        header { background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; gap: 2rem; }
+        body {
+            background-color: var(--bb-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
 
-        /* 25% Left Brand Area */
-        .brand-logo-wrap { flex: 0 0 25%; display: flex; flex-direction: column; align-items: flex-start; }
-        .brand-logo { display: inline-block; text-decoration: none; }
-        .brand-logo img { width: 110px; height: 110px; border-radius: 16px; object-fit: cover; border: 2px solid var(--bb-red); box-shadow: 0 0 25px rgba(227, 27, 35, 0.35); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .brand-logo:hover img { transform: scale(1.03); box-shadow: 0 0 32px rgba(227, 27, 35, 0.55); }
-        .brand-reserved-space { height: 12px; width: 100%; } /* Clean empty space directly below logo */
+        /* Navigation Header */
+        header {
+            background: rgba(7, 9, 14, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-        /* 75% Right Navigation & CTA Area */
-        .nav-right-wrap { flex: 0 0 75%; display: flex; justify-content: flex-end; align-items: center; gap: 1.25rem; }
-        .nav-compact-wrap { display: flex; align-items: center; gap: 0.35rem; background: rgba(18, 22, 32, 0.65); border: 1px solid var(--border); padding: 6px 12px; border-radius: 40px; }
-        nav { display: flex; align-items: center; gap: 0.25rem; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-        nav::-webkit-scrollbar { display: none; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; padding: 0.5rem 0.9rem; border-radius: 20px; transition: all 0.2s ease; white-space: nowrap; }
-        nav a:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
-        nav a.active { color: #FFF; background: var(--bb-red); font-weight: 700; box-shadow: 0 0 14px rgba(227, 27, 35, 0.4); }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            gap: 2rem;
+        }
 
-        /* High-Converting Isolated Broker CTA Pill */
-        .cta-broker-pill {
-            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-            color: #000 !important;
-            font-weight: 800 !important;
-            font-size: 0.8rem !important;
-            text-transform: uppercase;
-            padding: 0.65rem 1.35rem !important;
-            border-radius: 30px !important;
+        /* Top-Left Brand Logo & Title Area */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             text-decoration: none;
-            box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
-            transition: all 0.25s ease !important;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
-            display: inline-flex;
+            flex-shrink: 0;
+        }
+
+        .brand-logo img {
+            width: 95px;
+            height: 95px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid var(--bb-red);
+            box-shadow: 0 0 20px rgba(227, 27, 35, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .brand-logo:hover img {
+            transform: scale(1.04);
+            box-shadow: 0 0 28px rgba(227, 27, 35, 0.5);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .brand-title span {
+            color: var(--bb-red);
+        }
+
+        .brand-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* Navigation Scroll Wrapper & Dynamic Cues */
+        .nav-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            flex-grow: 1;
+            max-width: 850px;
+            justify-content: flex-end;
+            background: rgba(18, 22, 32, 0.6);
+            border: 1px solid var(--border);
+            padding: 6px 8px;
+            border-radius: 40px;
+        }
+
+        .nav-wrapper::before,
+        .nav-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 36px;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 40px;
+        }
+
+        .nav-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(18, 22, 32, 0.95), transparent);
+        }
+
+        .nav-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(18, 22, 32, 0.95), transparent);
+        }
+
+        .nav-wrapper.can-scroll-left::before { opacity: 1; }
+        .nav-wrapper.can-scroll-right::after { opacity: 1; }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(7, 9, 14, 0.9);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+            font-size: 0.7rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
-        .cta-broker-pill:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
-            filter: brightness(1.1);
+
+        .nav-arrow:hover {
+            background: var(--bb-red);
+            border-color: var(--bb-red);
+            color: #FFF;
         }
 
-        /* Continuous Loop Marquee Ticker Tape */
-        #live-ticker-container { width: 100%; background-color: #04060A; border-bottom: 1px solid var(--border); padding: 7px 0; overflow: hidden; position: relative; }
-        .ticker-marquee { display: flex; width: max-content; animation: ticker-scroll 32s linear infinite; }
-        .ticker-marquee:hover { animation-play-state: paused; }
-        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .ticker-group { display: flex; align-items: center; gap: 12px; padding-right: 12px; }
-        .ticker-item { font-family: var(--font-mono); font-size: 0.75rem; background: var(--bb-card); padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border); display: flex; gap: 8px; white-space: nowrap; }
-        .closed-badge { font-size: 0.6rem; background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 1px 5px; border-radius: 3px; font-weight: 600; }
-        .pos-up { color: var(--bb-green) !important; }
-        .neg-down { color: var(--bb-red) !important; }
+        .nav-arrow.left { left: 8px; }
+        .nav-arrow.right { right: 8px; }
 
-        /* Container & Editorial Paragraph Flow */
-        .container { max-width: 1000px; margin: 3.5rem auto; padding: 0 2rem; }
-        .page-header { margin-bottom: 2.5rem; }
-        .page-title { font-family: var(--font-heading); font-size: 2.6rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
-        .page-subtitle { font-size: 1.15rem; color: var(--text-muted); font-weight: 400; }
+        .nav-wrapper.can-scroll-left .nav-arrow.left,
+        .nav-wrapper.can-scroll-right .nav-arrow.right {
+            opacity: 1;
+            visibility: visible;
+        }
 
-        /* Editorial Info Grid */
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; margin-bottom: 2.5rem; }
-        .card { background: var(--bb-card); border: 1px solid var(--border); padding: 1.75rem; border-radius: 12px; }
-        .card-primary { border-top: 3px solid #38bdf8; }
-        .card p { color: var(--text-muted); line-height: 1.6; font-size: 0.98rem; }
-        .card p strong { color: var(--text-main); }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 2px 8px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            width: 100%;
+        }
 
-        .alert-card { background: rgba(227, 27, 35, 0.05); border: 1px solid rgba(227, 27, 35, 0.25); border-top: 3px solid var(--bb-red); padding: 1.75rem; border-radius: 12px; }
-        .alert-card h4 { font-family: var(--font-heading); font-size: 1.05rem; color: var(--bb-red); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .alert-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            flex-shrink: 0;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        nav a.active {
+            color: #FFFFFF;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border-color: var(--bb-red);
+            background: var(--bb-red);
+            box-shadow: 0 0 12px rgba(227, 27, 35, 0.4);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .page-subtitle {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* Info Grid Layout */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            border-radius: 12px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-primary {
+            border-top: 4px solid #38bdf8;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .card p strong {
+            color: var(--text-main);
+        }
+
+        /* Alert Box */
+        .alert-card {
+            background: rgba(227, 27, 35, 0.06);
+            border: 1px solid rgba(227, 27, 35, 0.3);
+            border-top: 4px solid var(--bb-red);
+            padding: 1.75rem;
+            border-radius: 12px;
+            height: 100%;
+        }
+
+        .alert-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            color: var(--bb-red);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
         /* Calculator Module */
-        .calc-module { background: var(--bb-card); border: 1px solid var(--border); border-top: 3px solid #38bdf8; border-radius: 12px; padding: 2.25rem; margin-bottom: 3rem; }
-        .calc-header { margin-bottom: 1.5rem; }
-        .calc-module h2 { color: #38bdf8; font-family: var(--font-heading); font-size: 1.45rem; font-weight: 700; }
-        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 20px; }
-        .calc-input-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
-        .calc-input-group input, .calc-input-group select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: #0b0f17; color: #fff; font-size: 1rem; font-family: var(--font-sans); outline: none; transition: border-color 0.2s ease; }
-        .calc-input-group input:focus, .calc-input-group select:focus { border-color: #38bdf8; }
-        
-        .calc-results-box { background: #0b0f17; border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border); }
-        .calc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.98rem; }
-        .calc-row span { color: var(--text-muted); }
-        .calc-row strong { font-family: var(--font-mono); }
-        .calc-hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
-        .calc-warning { margin-top: 12px; display: none; background: rgba(227, 27, 35, 0.15); border: 1px solid var(--bb-red); color: #fca5a5; padding: 10px 14px; border-radius: 6px; font-size: 0.88rem; line-height: 1.4; }
+        .calc-module {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-top: 4px solid #38bdf8;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            color: #f9fafb;
+        }
 
-        /* Section Titles & Precautions */
-        .section-title { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .precautions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
-        .precaution-item { background: var(--bb-card); border: 1px solid var(--border); padding: 1.25rem; border-radius: 8px; display: flex; align-items: center; gap: 0.85rem; }
-        .precaution-icon { color: var(--bb-red); font-size: 1.2rem; flex-shrink: 0; }
-        .precaution-text { font-size: 0.9rem; font-weight: 500; color: var(--text-main); }
+        .calc-header {
+            margin-bottom: 1.25rem;
+        }
+
+        .calc-module h2 {
+            margin-top: 0;
+            color: #38bdf8;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .calc-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .calc-input-group input,
+        .calc-input-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #0f172a;
+            color: #fff;
+            font-size: 1rem;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .calc-input-group input:focus,
+        .calc-input-group select:focus {
+            border-color: #38bdf8;
+        }
+
+        .calc-results-box {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .calc-row span {
+            color: var(--text-muted);
+        }
+
+        .calc-row strong {
+            font-family: var(--font-mono);
+        }
+
+        .calc-hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 14px 0;
+        }
+
+        .calc-warning {
+            margin-top: 12px;
+            display: none;
+            background: rgba(227, 27, 35, 0.15);
+            border: 1px solid var(--bb-red);
+            color: #fca5a5;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Precautions List Grid */
+        .precautions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .precaution-item {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .precaution-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .precaution-icon {
+            color: var(--bb-red);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .precaution-text {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
 
         /* Note Section */
-        .note-card { background: var(--bb-card); border: 1px solid var(--border); padding: 1.85rem; border-radius: 12px; margin-bottom: 3rem; }
-        .note-card h4 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.75rem; }
-        .note-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+        .note-card {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+        }
+
+        .note-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+        }
+
+        .note-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
 
         /* Banner Container */
-        .banner-wrap { text-align: center; margin: 3rem 0; padding: 1.5rem; background: var(--bb-card); border: 1px solid var(--border); border-radius: 12px; display: flex; justify-content: center; }
+        .banner-wrap {
+            text-align: center;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+        }
 
-        /* Standardized Institutional Footer */
-        footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.82rem; background: #040508; margin-top: 4rem; }
-        .footer-disclaimer { font-size: 0.75rem; color: #64748B; margin-top: 1.5rem; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.6; text-align: justify; }
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            background: #040508;
+        }
+
+        .disclaimer {
+            font-size: 0.75rem;
+            color: #64748B;
+            margin-top: 1.25rem;
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            text-align: justify;
+        }
 
         @media (max-width: 900px) {
-            .nav-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .brand-logo-wrap { width: 100%; flex: 0 0 100%; }
-            .nav-right-wrap { width: 100%; flex: 0 0 100%; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-            .nav-compact-wrap { width: 100%; overflow-x: auto; }
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 1.25rem;
+                gap: 1.2rem;
+            }
+            .brand-logo img {
+                width: 70px;
+                height: 70px;
+            }
+            .nav-wrapper {
+                width: 100%;
+                max-width: 100%;
+            }
+            .page-title { font-size: 2rem; }
             .info-grid { grid-template-columns: 1fr; }
             .calc-grid { grid-template-columns: 1fr; }
         }
@@ -147,47 +541,30 @@
 <body>
     <header>
         <div class="nav-container">
-            <!-- 25% Left Brand Area -->
-            <div class="brand-logo-wrap">
-                <a href="index.html" class="brand-logo">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-                </a>
-                <div class="brand-reserved-space"></div>
-            </div>
-
-            <!-- 75% Right Navigation & Isolated High-Converting CTA -->
-            <div class="nav-right-wrap">
-                <div class="nav-compact-wrap">
-                    <nav>
-                        <a href="index.html">Home</a>
-                        <a href="infrastructure.html">Infrastructure</a>
-                        <a href="journey.html">Journey</a>
-                        <a href="track-record.html">Track Record</a>
-                        <a href="positionsize.html" class="active">Position Size</a>
-                        <a href="faq.html">FAQ</a>
-                    </nav>
+            <!-- Top-Left Branding Element -->
+            <a href="index.html" class="brand-logo">
+                <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
+                <div class="brand-text">
+                    <span class="brand-title">TraderPro<span>DXB</span></span>
+                    <span class="brand-subtitle">Systemic Trading Hub</span>
                 </div>
-                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_top" class="cta-broker-pill">Trade on BlackBull</a>
+            </a>
+            
+            <!-- Top-Right Scrollable Pill Navigation -->
+            <div class="nav-wrapper" id="navWrapper">
+                <button class="nav-arrow left" id="scrollLeft" aria-label="Scroll Left">&#10094;</button>
+                <nav id="navContainer">
+                    <a href="index.html">Home</a>
+                    <a href="infrastructure.html">Infrastructure</a>
+                    <a href="journey.html">Journey</a>
+                    <a href="track-record.html">Track Record</a>
+                    <a href="positionsize.html" class="active">Position Size</a>
+                    <a href="faq.html">FAQ</a>
+                </nav>
+                <button class="nav-arrow right" id="scrollRight" aria-label="Scroll Right">&#10095;</button>
             </div>
         </div>
     </header>
-
-    <!-- Infinite Continuous Marquee Ticker -->
-    <div id="live-ticker-container">
-        <div class="ticker-marquee">
-            <div class="ticker-group" id="tickerGroup1">
-                <div class="ticker-item" id="ticker-USTECH"><span class="symbol">USTECH</span> <span class="price">22,850.50</span> <span class="delta pos-up">+145.20 (+0.64%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-XAUUSD"><span class="symbol">XAUUSD</span> <span class="price">3,340.20</span> <span class="delta pos-up">+$18.40 (+0.55%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-WTI"><span class="symbol">WTI</span> <span class="price">74.80</span> <span class="delta neg-down">-$0.85 (-1.12%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-EURUSD"><span class="symbol">EURUSD</span> <span class="price">1.0852</span> <span class="delta pos-up">+0.0012 (+0.11%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-USDJPY"><span class="symbol">USDJPY</span> <span class="price">154.20</span> <span class="delta neg-down">-0.45 (-0.29%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-BTCUSD"><span class="symbol">BTCUSD</span> <span class="price">65,420.00</span> <span class="delta pos-up">+$1,240.00 (+1.93%)</span></div>
-                <div class="ticker-item" id="ticker-ETHUSD"><span class="symbol">ETHUSD</span> <span class="price">3,480.10</span> <span class="delta pos-up">+$82.30 (+2.42%)</span></div>
-                <div class="ticker-item" id="ticker-TSLA"><span class="symbol">TSLA</span> <span class="price">218.40</span> <span class="delta neg-down">-$3.10 (-1.40%)</span> <span class="closed-badge">CLOSED</span></div>
-            </div>
-            <div class="ticker-group" id="tickerGroup2"></div>
-        </div>
-    </div>
 
     <div class="container">
         <div class="page-header">
@@ -255,7 +632,7 @@
 
         <!-- Risk Precautions Section -->
         <h2 class="section-title">Precautions (Size Reduction or Pause)</h2>
-        <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">On the following conditions, position size is cut in half or trading is paused:</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">On the following conditions, position size is cut in half or trading is paused:</p>
         
         <div class="precautions-grid">
             <div class="precaution-item">
@@ -288,45 +665,75 @@
         </div>
     </div>
 
-    <!-- Standardized Institutional Footer -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        <div class="footer-disclaimer">
+        <div class="disclaimer">
             <p><strong>High-Risk Investment Warning:</strong> Trading foreign exchange (Forex), Contracts for Difference (CFDs), and other leveraged financial instruments carries a high level of risk and may not be suitable for all investors. Leverage can work against you as well as for you. Before deciding to trade or invest in financial markets, you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial capital; therefore, you should not invest money that you cannot afford to lose. You should be aware of all the risks associated with trading financial assets and seek advice from an independent financial advisor if you have any doubts.</p>
             <p style="margin-top: 0.5rem;"><strong>General Information & Content Disclaimer:</strong> Content and tools provided on TraderProDXB are for educational, informational, and analytical purposes only and do not constitute financial, investment, or trading advice. Past performance is not indicative of future results.</p>
         </div>
     </footer>
 
-    <!-- Scripts: Marquee Duplication, Crypto WebSocket, and Position Calculator -->
+    <!-- Interactive Navigation Scripts & Position Calculator Logic -->
     <script>
-        // Duplicate Ticker Content for Continuous Loop
-        const grp1 = document.getElementById('tickerGroup1');
-        const grp2 = document.getElementById('tickerGroup2');
-        if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
+        // Navigation Bar Logic
+        const nav = document.getElementById('navContainer');
+        const navWrapper = document.getElementById('navWrapper');
+        const btnLeft = document.getElementById('scrollLeft');
+        const btnRight = document.getElementById('scrollRight');
 
-        // Crypto WebSocket Streaming
-        function startCryptoWebSocket() {
-            const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
-            ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                const symbol = data.s === 'BTCUSDT' ? 'BTCUSD' : data.s === 'ETHUSDT' ? 'ETHUSD' : null;
-                if (!symbol) return;
-                const price = parseFloat(data.c).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                const priceChange = parseFloat(data.p);
-                const percentChange = parseFloat(data.P);
-                const sign = priceChange >= 0 ? '+' : '';
-                const colorClass = priceChange >= 0 ? 'pos-up' : 'neg-down';
+        function updateNavState() {
+            if (!nav) return;
+            const scrollLeft = nav.scrollLeft;
+            const maxScroll = nav.scrollWidth - nav.clientWidth;
 
-                document.querySelectorAll(`#ticker-${symbol}`).forEach(item => {
-                    item.querySelector('.price').innerText = price;
-                    const deltaEl = item.querySelector('.delta');
-                    deltaEl.className = `delta ${colorClass}`;
-                    deltaEl.innerText = `${sign}$${Math.abs(priceChange).toFixed(2)} (${sign}${percentChange.toFixed(2)}%)`;
-                });
-            };
-            ws.onclose = () => setTimeout(startCryptoWebSocket, 5000);
+            if (nav.scrollWidth > nav.clientWidth) {
+                if (scrollLeft > 5) {
+                    navWrapper.classList.add('can-scroll-left');
+                } else {
+                    navWrapper.classList.remove('can-scroll-left');
+                }
+
+                if (scrollLeft < maxScroll - 5) {
+                    navWrapper.classList.add('can-scroll-right');
+                } else {
+                    navWrapper.classList.remove('can-scroll-right');
+                }
+            } else {
+                navWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
+            }
         }
-        document.addEventListener('DOMContentLoaded', startCryptoWebSocket);
+
+        function centerActiveButton() {
+            const activeBtn = nav.querySelector('a.active');
+            if (activeBtn) {
+                const navWidth = nav.clientWidth;
+                const activeLeft = activeBtn.offsetLeft;
+                const activeWidth = activeBtn.clientWidth;
+
+                const targetScroll = activeLeft - (navWidth / 2) + (activeWidth / 2);
+                
+                nav.scrollTo({
+                    left: targetScroll,
+                    behavior: 'smooth'
+                });
+            }
+            setTimeout(updateNavState, 300);
+        }
+
+        btnLeft.addEventListener('click', () => {
+            nav.scrollBy({ left: -200, behavior: 'smooth' });
+        });
+
+        btnRight.addEventListener('click', () => {
+            nav.scrollBy({ left: 200, behavior: 'smooth' });
+        });
+
+        nav.addEventListener('scroll', updateNavState);
+        window.addEventListener('resize', () => {
+            centerActiveButton();
+            updateNavState();
+        });
 
         // Position Calculator Script Logic
         const INSTRUMENTS = {
@@ -383,6 +790,7 @@
         document.getElementById("calcInstrument").addEventListener("change", updateCalculator);
 
         document.addEventListener('DOMContentLoaded', () => {
+            centerActiveButton();
             updateCalculator();
         });
     </script>
