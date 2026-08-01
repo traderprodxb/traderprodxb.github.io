@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Journey - Systematic account scaling through compounding discipline to $4,000,000.">
-    <title>Journey | TraderProDXB</title>
+    <meta name="description" content="TraderProDXB - Compounding Journey & 140-Step Accountability Matrix. Track real-time progress across 4 Major Stages scaling from $400 to $4,000,000.">
+    <title>Journey & Accountability | TraderProDXB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
             --bb-card-hover: #1A202C;
             --bb-red: #E31B23;
             --bb-red-hover: #ff222d;
-            --bb-gold: #D4AF37;
             --bb-green: #22c55e;
             --border: rgba(255, 255, 255, 0.08);
             --text-main: #FFFFFF;
@@ -28,7 +27,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; padding-bottom: 60px; }
 
-        /* Navigation Header (25/75 Luxury Split) */
+        /* Header Layout (25/75 Luxury Split) */
         header { background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; gap: 2rem; }
 
@@ -37,7 +36,6 @@
         .brand-logo { display: inline-block; text-decoration: none; }
         .brand-logo img { width: 95px; height: 95px; border-radius: 14px; object-fit: cover; border: 2px solid var(--bb-red); box-shadow: 0 0 20px rgba(227, 27, 35, 0.35); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .brand-logo:hover img { transform: scale(1.03); box-shadow: 0 0 28px rgba(227, 27, 35, 0.55); }
-        .brand-reserved-space { height: 10px; width: 100%; }
 
         /* 75% Right Navigation & CTA Area */
         .nav-right-wrap { flex: 0 0 75%; display: flex; justify-content: flex-end; align-items: center; gap: 1.25rem; }
@@ -83,51 +81,264 @@
         .pos-up { color: var(--bb-green) !important; }
         .neg-down { color: var(--bb-red) !important; }
 
-        /* Container & Layout */
-        .container { max-width: 1100px; margin: 3.5rem auto; padding: 0 2rem; }
-        .page-header { margin-bottom: 2.5rem; }
-        .page-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
-        .page-desc { color: var(--text-muted); font-size: 1.1rem; }
+        /* Page Layout & Sections */
+        .page-header {
+            padding: 4rem 2rem 2rem 2rem;
+            text-align: center;
+            background: radial-gradient(circle at 50% 20%, rgba(227, 27, 35, 0.12) 0%, transparent 60%);
+        }
 
-        /* Cards & Section Styling */
-        .card { background: var(--bb-card); border: 1px solid var(--border); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border-top: 3px solid var(--bb-red); }
-        .card h3 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--text-main); font-weight: 700; }
-        .card p { color: var(--text-muted); line-height: 1.6; font-size: 0.98rem; }
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 0.75rem;
+        }
 
-        /* Journey Stages Table */
-        .stage-table-wrap { overflow-x: auto; margin-top: 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
-        .stage-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.88rem; text-align: left; }
-        .stage-table th { background: #0c0f17; color: var(--text-main); font-family: var(--font-heading); padding: 12px 16px; font-size: 0.8rem; text-transform: uppercase; border-bottom: 1px solid var(--border); }
-        .stage-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: #cbd5e1; }
-        .stage-table tr:last-child td { border-bottom: none; }
-        .stage-table tr:hover { background: rgba(255,255,255,0.02); }
-        .stage-badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; font-family: var(--font-sans); }
-        .badge-micro { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-        .badge-mini { background: rgba(212, 175, 55, 0.15); color: var(--bb-gold); border: 1px solid rgba(212, 175, 55, 0.3); }
-        .badge-major { background: rgba(34, 197, 94, 0.15); color: var(--bb-green); border: 1px solid rgba(34, 197, 94, 0.3); }
+        .page-header h1 span { color: var(--bb-red); }
 
-        /* Social Channels Grid */
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
-        .social-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; text-decoration: none; transition: all 0.3s ease; }
-        .social-card:hover { background: var(--bb-card-hover); border-color: var(--bb-red); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
-        .social-icon { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); }
-        .social-info { display: flex; flex-direction: column; overflow: hidden; }
-        .social-name { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
-        .social-cta { font-size: 0.75rem; color: var(--bb-red); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
 
-        /* Banner Wrapper */
-        .banner-wrap { text-align: center; margin: 3rem 0; padding: 1.5rem; background: var(--bb-card); border: 1px solid var(--border); border-radius: 12px; display: flex; justify-content: center; }
+        .container { max-width: 1250px; margin: 0 auto; padding: 2rem; }
 
-        /* Footer */
+        /* Cards & Content */
+        .content-card {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+        }
+
+        .card-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--bb-red);
+            padding-bottom: 0.85rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #FFF;
+        }
+
+        /* Interactive Win/Loss Controls */
+        .step-controller {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #0B0E14;
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .btn-step {
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .btn-win {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--bb-green);
+            border: 1px solid var(--bb-green);
+        }
+
+        .btn-win:hover {
+            background: var(--bb-green);
+            color: #000;
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+        }
+
+        .btn-loss {
+            background: rgba(227, 27, 35, 0.2);
+            color: var(--bb-red);
+            border: 1px solid var(--bb-red);
+        }
+
+        .btn-loss:hover {
+            background: var(--bb-red);
+            color: #FFF;
+            box-shadow: 0 0 12px rgba(227, 27, 35, 0.5);
+        }
+
+        .active-badge {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--bb-green);
+            border: 1px solid var(--bb-green);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* 140 Micro-Step Table Styling */
+        .table-scroll {
+            max-height: 700px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: rgba(7, 9, 14, 0.6);
+            scroll-behavior: smooth;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        th {
+            background: #0B0E14;
+            color: var(--text-muted);
+            padding: 14px 12px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 11px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+        }
+
+        /* Stage End Dividers */
+        tr.mini-end {
+            border-bottom: 2px solid rgba(227, 27, 35, 0.4);
+        }
+
+        tr.major-end {
+            border-bottom: 3px solid var(--bb-red) !important;
+        }
+
+        tr.completed {
+            opacity: 0.35;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        tr.active-step {
+            background: rgba(34, 197, 94, 0.18) !important;
+            font-weight: 700;
+            box-shadow: inset 4px 0 0 var(--bb-green);
+        }
+
+        tr.active-step td {
+            color: #FFFFFF;
+        }
+
+        .live-tag {
+            background: var(--bb-green);
+            color: #000;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            margin-left: 6px;
+        }
+
+        /* Summary Stats Cards Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-family: var(--font-mono);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .stat-card .value.green { color: var(--bb-green); }
+
+        /* Banner Wrap */
+        .banner-wrap {
+            text-align: center;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Institutional Footer */
         footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.82rem; background: #040508; margin-top: 4rem; }
-        .disclaimer { font-size: 0.75rem; color: #64748B; margin-top: 1.5rem; max-width: 950px; margin-left: auto; margin-right: auto; line-height: 1.6; text-align: justify; }
+
+        .disclaimer-box {
+            font-size: 0.75rem;
+            color: #64748B;
+            margin: 1.5rem auto 0 auto;
+            max-width: 950px;
+            line-height: 1.6;
+            text-align: justify;
+            background: rgba(18, 22, 32, 0.4);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .disclaimer-box p { margin-bottom: 0.8rem; }
+        .disclaimer-box p:last-child { margin-bottom: 0; }
+        .disclaimer-box strong { color: var(--text-main); }
 
         @media (max-width: 900px) {
             .nav-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
             .brand-logo-wrap { width: 100%; flex: 0 0 100%; }
             .nav-right-wrap { width: 100%; flex: 0 0 100%; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
             .nav-compact-wrap { width: 100%; overflow-x: auto; }
-            .page-title { font-size: 2rem; }
+            .page-header h1 { font-size: 2.2rem; }
+            .content-card { padding: 1.5rem 1rem; }
+            .disclaimer-box { text-align: left; }
         }
     </style>
 </head>
@@ -139,10 +350,9 @@
                 <a href="index.html" class="brand-logo">
                     <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
                 </a>
-                <div class="brand-reserved-space"></div>
             </div>
 
-            <!-- 75% Right Navigation & Isolated Broker CTA -->
+            <!-- 75% Right Navigation & Broker CTA -->
             <div class="nav-right-wrap">
                 <div class="nav-compact-wrap">
                     <nav>
@@ -154,7 +364,7 @@
                         <a href="faq.html">FAQ</a>
                     </nav>
                 </div>
-                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8017" target="_top" class="cta-broker-pill">Trade on BlackBull</a>
+                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_top" class="cta-broker-pill">Trade on BlackBull</a>
             </div>
         </div>
     </header>
@@ -176,129 +386,186 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="page-header">
-            <h1 class="page-title">The $4,000,000 Journey</h1>
-            <p class="page-desc">Systematic account scaling through compounding discipline.</p>
+    <section class="page-header">
+        <h1>Compounding <span>Journey</span></h1>
+        <p>Dynamic 140-trade accountability matrix. Win moves +1 Step up; Loss moves -1 Step down across 4 major capital stages ($400 → $4,000,000).</p>
+    </section>
+
+    <main class="container">
+        <!-- System Progression Overview Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Initial Capital</h3>
+                <div class="value">$400.00</div>
+            </div>
+            <div class="stat-card">
+                <h3>Current Equity Target</h3>
+                <div class="value green" id="stat-current-equity">$427.20</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Trade Step</h3>
+                <div class="value" id="stat-progress-step">Trade 1 / 140</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Stage</h3>
+                <div class="value green" id="stat-active-stage">Major 1 (Mini 1)</div>
+            </div>
         </div>
 
-        <!-- Compounding Progression Section -->
-        <div class="card">
-            <h3>Compounding Progression Model</h3>
-            <p>Moving methodically across defined capital thresholds through controlled execution, mechanical 6% risk allocation, and strict leverage rules.</p>
-            
-            <div class="stage-table-wrap">
-                <table class="stage-table">
+        <!-- 140 Micro-Step Distance Matrix Card -->
+        <div class="content-card">
+            <div class="card-header-bar">
+                <div class="card-title">140 Sequential Trades Roadmap</div>
+                
+                <!-- Win/Loss Navigation Controls -->
+                <div class="step-controller">
+                    <button class="btn-step btn-loss" onclick="handleTradeResult('loss')">▼ Loss (-1 Step)</button>
+                    <button class="btn-step btn-win" onclick="handleTradeResult('win')">▲ Win (+1 Step)</button>
+                </div>
+
+                <div class="active-badge" id="live-status">Current Position: Trade #1</div>
+            </div>
+
+            <div class="table-scroll" id="tableContainer">
+                <table>
                     <thead>
                         <tr>
-                            <th>Tier Classification</th>
-                            <th>Start Capital</th>
-                            <th>Target Milestone</th>
-                            <th>Compounding Focus</th>
+                            <th>Trade #</th>
+                            <th>Stage Hierarchy</th>
+                            <th>Start Balance</th>
+                            <th>Target Win (+1 Step)</th>
+                            <th>Risk Boundary (-1 Step)</th>
+                            <th>Win Distance ($)</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="stage-badge badge-micro">Micro Stage</span></td>
-                            <td>$550</td>
-                            <td>$800</td>
-                            <td>Initial Mechanics & Execution Accuracy</td>
-                        </tr>
-                        <tr>
-                            <td><span class="stage-badge badge-micro">Micro Stage</span></td>
-                            <td>$800</td>
-                            <td>$1,100</td>
-                            <td>Consistency & Risk Constraint Validation</td>
-                        </tr>
-                        <tr>
-                            <td><span class="stage-badge badge-mini">Mini Stage</span></td>
-                            <td>$1,100</td>
-                            <td>$1,500</td>
-                            <td>Scaling Contract Sizes Smoothly</td>
-                        </tr>
-                        <tr>
-                            <td><span class="stage-badge badge-mini">Mini Stage</span></td>
-                            <td>$1,500</td>
-                            <td>$2,100</td>
-                            <td>Multi-asset Execution Discipline</td>
-                        </tr>
-                        <tr>
-                            <td><span class="stage-badge badge-major">Major Stage</span></td>
-                            <td>$2,100</td>
-                            <td>$2,900</td>
-                            <td>Equity Growth Momentum</td>
-                        </tr>
-                        <tr>
-                            <td><span class="stage-badge badge-major">Major Stage</span></td>
-                            <td>$2,900</td>
-                            <td>$4,000,000</td>
-                            <td>Full Sequential Compounding Acceleration</td>
-                        </tr>
+                    <tbody id="roadmap-rows">
+                        <!-- Javascript generates all 140 trade rows -->
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Social Media Hub CTAs -->
-        <div class="card">
-            <h3>Official Ecosystem & Social Channels</h3>
-            <p>Connect across verified platforms for market insights, live streams, and community updates.</p>
-            
-            <div class="social-grid">
-                <!-- X / Twitter -->
-                <a href="https://x.com/traderprodxb" target="_blank" rel="noopener noreferrer" class="social-card">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/main/64cebdd90aef8ef8c749e848_X-EverythingApp-Logo-Twitter.jpg" alt="X Logo" class="social-icon">
-                    <div class="social-info">
-                        <span class="social-name">X / Twitter</span>
-                        <span class="social-cta">Follow Real-Time Intel &rarr;</span>
-                    </div>
-                </a>
-
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/traderprodxb?igsh=MWExM29yZmVsNXhoMQ==" target="_blank" rel="noopener noreferrer" class="social-card">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/2d37bf3412ea674bffd812d518c4fa125de7f435/modern-badge-logo-instagram-icon_578229-124.jpg" alt="Instagram Logo" class="social-icon">
-                    <div class="social-info">
-                        <span class="social-name">Instagram</span>
-                        <span class="social-cta">View Visual Insights &rarr;</span>
-                    </div>
-                </a>
-
-                <!-- Binance Square -->
-                <a href="https://app.binance.com/uni-qr/cpro/uyghurtrader?l=en&r=YG4FC39K&uc=app_square_share_link&us=copylink" target="_blank" rel="noopener noreferrer" class="social-card">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/2d37bf3412ea674bffd812d518c4fa125de7f435/4f74b69ed53c1d3c0f3d6d30f54155bb.png" alt="Binance Logo" class="social-icon">
-                    <div class="social-info">
-                        <span class="social-name">Binance Square</span>
-                        <span class="social-cta">Join Feed & Insights &rarr;</span>
-                    </div>
-                </a>
-
-                <!-- YouTube -->
-                <a href="https://youtube.com/@traderprodxb?si=ud6egotGu5SSWEu2" target="_blank" rel="noopener noreferrer" class="social-card">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/2d37bf3412ea674bffd812d518c4fa125de7f435/external-logo-core-1.png%3Dn-w1860-h1047-fcrop64%3D1%2C00000000ffffffff-rw.webp" alt="YouTube Logo" class="social-icon">
-                    <div class="social-info">
-                        <span class="social-name">YouTube</span>
-                        <span class="social-cta">Watch Video Analysis &rarr;</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- BlackBull Partner Ad Banner -->
+        <!-- BlackBull Partner Banner -->
         <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8018" target="_top"><img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573581" width="300" height="250" style="max-width:100%; height:auto;" alt="BlackBull Journey Partner"></a>
+            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_top">
+                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573600" width="1200" height="630" style="max-width:100%; height:auto;" alt="BlackBull Partner">
+            </a>
         </div>
-    </div>
+    </main>
 
     <footer>
         <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        <p class="disclaimer">
-            <strong>Financial & Risk Disclosure:</strong> Trading foreign exchange, CFDs, cryptocurrencies, and other financial instruments carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade or invest, you should carefully consider your investment objectives, level of experience, and risk appetite. There is a possibility that you could sustain a loss of some or all of your initial investment; therefore, do not invest money that you cannot afford to lose. All content presented on TraderProDXB is provided for educational and informational purposes only and does not constitute financial, investment, or trading advice. Past performance is not indicative of future results.
-        </p>
+        
+        <div class="disclaimer-box">
+            <p><strong>High-Risk Investment Warning:</strong> Trading Foreign Exchange (Forex), Contracts for Difference (CFDs), digital assets, and other leveraged financial derivatives involves a high level of risk and may not be suitable for all investors. Leverage can work against you as well as for you, potentially leading to the substantial loss of your invested capital. You should never invest money that you cannot afford to lose. Before deciding to trade, ensure you fully understand the risks involved, take into account your investment objectives, level of experience, and risk appetite, and seek independent financial advice if necessary.</p>
+
+            <p><strong>No Financial Advice or Solicitation:</strong> The content provided on TraderProDXB is strictly for informational, educational, and personal journal tracking purposes only. Nothing contained on this site constitutes investment, legal, tax, or financial advice, nor is it a recommendation, endorsement, or solicitation to buy or sell any security, currency, derivative, or financial product. TraderProDXB does not operate as a financial broker, dealer, investment advisor, or asset manager.</p>
+
+            <p><strong>Performance Disclaimer:</strong> Any historical trade logs, system calculations, or performance metrics displayed represent individual execution logs and are not indicative of future results. No representation or guarantee is made that any trading system, strategy, or account will or is likely to achieve profits or losses similar to those discussed on this website.</p>
+        </div>
     </footer>
 
-    <!-- Scripts: Marquee Duplication & Crypto WebSocket Streaming -->
     <script>
-        // Duplicate Ticker Content for Continuous Loop
+        // Active Step State Variable (1 to 140)
+        let currentTradeStep = 1;
+
+        // Stage Base Milestones ($400 -> $4,000 -> $40,000 -> $400,000 -> $4,000,000)
+        const stageBases = [400, 4000, 40000, 400000, 4000000];
+
+        // Generate 140 explicit step balance values
+        function calculateTradeBalances() {
+            const trades = [];
+            for (let i = 1; i <= 140; i++) {
+                const majorIdx = Math.floor((i - 1) / 35);
+                const stepInMajor = (i - 1) % 35;
+                
+                const startMajorVal = stageBases[majorIdx];
+                const endMajorVal = stageBases[majorIdx + 1];
+                
+                // Linear distance scaling per step across each 35-step major stage
+                const startBalance = startMajorVal + ((endMajorVal - startMajorVal) * (stepInMajor / 35));
+                const targetBalance = startMajorVal + ((endMajorVal - startMajorVal) * ((stepInMajor + 1) / 35));
+                const lossBoundary = Math.max(400, startMajorVal + ((endMajorVal - startMajorVal) * (Math.max(0, stepInMajor - 1) / 35)));
+                const winDistance = targetBalance - startBalance;
+
+                trades.push({
+                    tradeNum: i,
+                    majorStage: majorIdx + 1,
+                    miniStage: Math.ceil(i / 5),
+                    microStep: ((i - 1) % 5) + 1,
+                    startBalance: startBalance,
+                    targetBalance: targetBalance,
+                    lossBoundary: lossBoundary,
+                    winDistance: winDistance
+                });
+            }
+            return trades;
+        }
+
+        const tradeData = calculateTradeBalances();
+
+        function renderRoadmapTable() {
+            const tbody = document.getElementById('roadmap-rows');
+            tbody.innerHTML = '';
+
+            const currentTrade = tradeData[currentTradeStep - 1];
+
+            // Update Header Stats
+            document.getElementById('live-status').innerText = `Current Position: Trade #${currentTradeStep}`;
+            document.getElementById('stat-progress-step').innerText = `Trade ${currentTradeStep} / 140`;
+            document.getElementById('stat-current-equity').innerText = `$${currentTrade.startBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('stat-active-stage').innerText = `Major ${currentTrade.majorStage} (Mini ${currentTrade.miniStage})`;
+
+            tradeData.forEach(trade => {
+                const row = document.createElement('tr');
+                row.id = `trade-row-${trade.tradeNum}`;
+
+                if (trade.tradeNum % 35 === 0) {
+                    row.classList.add('major-end');
+                } else if (trade.tradeNum % 5 === 0) {
+                    row.classList.add('mini-end');
+                }
+
+                if (trade.tradeNum < currentTradeStep) {
+                    row.classList.add('completed');
+                } else if (trade.tradeNum === currentTradeStep) {
+                    row.classList.add('active-step');
+                }
+
+                row.innerHTML = `
+                    <td>${trade.tradeNum} ${trade.tradeNum === currentTradeStep ? '<span class="live-tag">LIVE</span>' : ''}</td>
+                    <td style="color: #E2E8F0; font-weight: 700;">Maj ${trade.majorStage} | Min ${trade.miniStage} (Step ${trade.microStep}/5)</td>
+                    <td>$${trade.startBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td style="color: var(--bb-green);">$${trade.targetBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td style="color: var(--bb-red);">$${trade.lossBoundary.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td style="color: var(--text-muted);">+$${trade.winDistance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+
+            scrollToActiveRow();
+        }
+
+        function handleTradeResult(result) {
+            if (result === 'win' && currentTradeStep < 140) {
+                currentTradeStep++;
+            } else if (result === 'loss' && currentTradeStep > 1) {
+                currentTradeStep--;
+            }
+            renderRoadmapTable();
+        }
+
+        function scrollToActiveRow() {
+            const activeRow = document.getElementById(`trade-row-${currentTradeStep}`);
+            const container = document.getElementById('tableContainer');
+            if (activeRow && container) {
+                const rowTop = activeRow.offsetTop - container.offsetTop;
+                container.scrollTop = rowTop - 150;
+            }
+        }
+
+        // Marquee Duplication
         const grp1 = document.getElementById('tickerGroup1');
         const grp2 = document.getElementById('tickerGroup2');
         if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
@@ -325,7 +592,11 @@
             };
             ws.onclose = () => setTimeout(startCryptoWebSocket, 5000);
         }
-        document.addEventListener('DOMContentLoaded', startCryptoWebSocket);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRoadmapTable();
+            startCryptoWebSocket();
+        });
     </script>
 </body>
 </html>
