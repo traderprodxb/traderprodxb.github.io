@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB - Compounding Journey & Distance-Based Matrix. Track absolute dollar-distance progression from $400 to $4,000,000 across 5 uniform micro-stages.">
+    <meta name="description" content="TraderProDXB - Compounding Journey & Distance-Based Matrix. Track absolute dollar-distance progression from $400 to $4,000,000 across interactive hierarchical stages.">
     <title>Journey & Accountability | TraderProDXB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,9 +81,37 @@
         .pos-up { color: var(--bb-green) !important; }
         .neg-down { color: var(--bb-red) !important; }
 
+        /* Social Media Contacts Bar */
+        .social-contacts-bar {
+            background: #0B0E14;
+            border-bottom: 1px solid var(--border);
+            padding: 10px 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .social-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            background: var(--bb-card);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+        .social-chip svg { width: 14px; height: 14px; fill: currentColor; }
+        .social-chip:hover { color: #FFF; border-color: var(--bb-red); background: rgba(227, 27, 35, 0.1); transform: translateY(-1px); }
+
         /* Page Layout & Sections */
         .page-header {
-            padding: 4rem 2rem 2rem 2rem;
+            padding: 3rem 2rem 1.5rem 2rem;
             text-align: center;
             background: radial-gradient(circle at 50% 20%, rgba(227, 27, 35, 0.12) 0%, transparent 60%);
         }
@@ -195,9 +223,79 @@
             font-weight: 700;
         }
 
+        /* Interactive Hierarchy Explorer Styling */
+        .explorer-section {
+            margin-bottom: 2rem;
+        }
+
+        .explorer-nav-path {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .explorer-nav-path button {
+            background: none;
+            border: none;
+            color: var(--bb-green);
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .matrix-btn {
+            background: #0B0E14;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: #FFF;
+            font-family: var(--font-sans);
+        }
+
+        .matrix-btn:hover {
+            border-color: var(--bb-red);
+            background: var(--bb-card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(227, 27, 35, 0.2);
+        }
+
+        .matrix-btn.active {
+            border-color: var(--bb-green);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .matrix-btn h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.35rem;
+            color: var(--text-main);
+        }
+
+        .matrix-btn p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
         /* Table Styling */
         .table-scroll {
-            max-height: 700px;
+            max-height: 600px;
             overflow-y: auto;
             border: 1px solid var(--border);
             border-radius: 10px;
@@ -362,6 +460,27 @@
         </div>
     </header>
 
+    <!-- Social Media Contacts Bar -->
+    <div class="social-contacts-bar">
+        <a href="https://t.me/traderprodxb" target="_blank" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.012-1.252-.242-1.865-.442-752-.245-1.349-.375-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.228.166.331.011.095.025.312.011.482z"/></svg>
+            Telegram Channel
+        </a>
+        <a href="https://twitter.com/traderprodxb" target="_blank" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X (Twitter)
+        </a>
+        <a href="https://instagram.com/traderprodxb" target="_blank" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+        </a>
+        <a href="mailto:support@traderprodxb.com" class="social-chip">
+            <svg viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.717v15.43h24v-15.43l-12 9.717z"/></svg>
+            Direct Support
+        </a>
+    </div>
+
+    <!-- Continuous Loop Marquee Ticker -->
     <div id="live-ticker-container">
         <div class="ticker-marquee">
             <div class="ticker-group" id="tickerGroup1">
@@ -380,7 +499,7 @@
 
     <section class="page-header">
         <h1>Compounding <span>Journey</span></h1>
-        <p>Absolute dollar-distance matrix. Starting from $400, each mini stage divides distance into 5 uniform trade goals up to $4,000,000.</p>
+        <p>Interactive distance-based matrix. Click through Major Stages, Mini Stages, and Micro Trade Steps to navigate your path from $400 to $4,000,000.</p>
     </section>
 
     <main class="container">
@@ -398,14 +517,15 @@
                 <div class="value" id="stat-progress-step">Trade 1 / 140</div>
             </div>
             <div class="stat-card">
-                <h3>Active Milestone Leg</h3>
-                <div class="value green" id="stat-active-stage">Leg 1 ($400 $\to$ $550)</div>
+                <h3>Active Stage</h3>
+                <div class="value green" id="stat-active-stage">Major 1 (Mini 1)</div>
             </div>
         </div>
 
+        <!-- Interactive Hierarchical Explorer Card -->
         <div class="content-card">
             <div class="card-header-bar">
-                <div class="card-title">Distance-Based Master Roadmap ($400 $\to$ $4M)</div>
+                <div class="card-title">Interactive Roadmap Explorer</div>
                 
                 <div class="step-controller">
                     <button class="btn-step btn-loss" onclick="handleTradeResult('loss')">▼ Loss (-1 Step)</button>
@@ -415,12 +535,25 @@
                 <div class="active-badge" id="live-status">Current Position: Trade #1</div>
             </div>
 
+            <!-- Breadcrumb Path Navigator -->
+            <div class="explorer-section">
+                <div class="explorer-nav-path" id="explorerPath">
+                    <span>Viewing:</span> <button onclick="resetExplorer()">Master Roadmap</>
+                </div>
+
+                <!-- Dynamic Clickable Grid Container -->
+                <div id="explorerGrid" class="button-grid">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Detailed Table Display for Selected Range -->
             <div class="table-scroll" id="tableContainer">
                 <table>
                     <thead>
                         <tr>
                             <th>Trade #</th>
-                            <th>Milestone Leg</th>
+                            <th>Stage Hierarchy</th>
                             <th>Start Balance</th>
                             <th>Target Win (+1 Step)</th>
                             <th>Risk Boundary (-1 Step)</th>
@@ -452,8 +585,9 @@
 
     <script>
         let currentTradeStep = 1;
+        let selectedMajor = null; // 1, 2, 3, or 4
+        let selectedMini = null;  // 1 to 7 within the major
 
-        // Exact Checkpoint Targets derived from your image schedule from $400 to $4,000,000
         const milestoneCheckpoints = [
             400, 550, 800, 1100, 1500, 2100, 2900, 
             4000, 5500, 8000, 11000, 15000, 21000, 29000,
@@ -469,27 +603,27 @@
                 const startVal = milestoneCheckpoints[i];
                 const endVal = milestoneCheckpoints[i + 1];
                 const stageDistance = endVal - startVal;
-                const stepDistance = stageDistance / 5; // Exactly 5 uniform micro-stages per leg
+                const stepDistance = stageDistance / 5; 
 
                 for (let microStep = 1; microStep <= 5; microStep++) {
                     const tradeNum = (i * 5) + microStep;
-                    const startBalance = currentBalance;
-                    const targetBalance = startBalance + stepDistance;
+                    const majorStage = Math.floor(i / 7) + 1;
+                    const miniStage = i + 1;
 
                     trades.push({
                         tradeNum: tradeNum,
-                        legIndex: i + 1,
+                        majorStage: majorStage,
+                        miniStage: miniStage,
                         microStep: microStep,
-                        startBalance: startBalance,
-                        targetBalance: targetBalance,
+                        startBalance: currentBalance,
+                        targetBalance: currentBalance + stepDistance,
                         winDistance: stepDistance
                     });
 
-                    currentBalance = targetBalance;
+                    currentBalance += stepDistance;
                 }
             }
 
-            // Assign risk boundaries (-1 step distance)
             for (let i = 0; i < trades.length; i++) {
                 if (i === 0) {
                     trades[i].lossBoundary = trades[i].startBalance - trades[i].winDistance;
@@ -503,6 +637,54 @@
 
         const tradeData = calculateDistanceRoadmap();
 
+        function renderExplorer() {
+            const grid = document.getElementById('explorerGrid');
+            const path = document.getElementById('explorerPath');
+            grid.innerHTML = '';
+
+            if (selectedMajor === null) {
+                path.innerHTML = `<span>Viewing:</span> <strong>All 4 Major Stages</strong>`;
+                for (let m = 1; m <= 4; m++) {
+                    const startB = milestoneCheckpoints[(m - 1) * 7];
+                    const endB = milestoneCheckpoints[m * 7];
+                    const btn = document.createElement('button');
+                    btn.className = 'matrix-btn';
+                    btn.innerHTML = `<h4>Major Stage ${m}</h4><p>$${startB.toLocaleString()} $\to$ $${endB.toLocaleString()}</p>`;
+                    btn.onclick = () => { selectedMajor = m; renderExplorer(); };
+                    grid.appendChild(btn);
+                }
+            } else if (selectedMini === null) {
+                path.innerHTML = `<span>Viewing:</span> <button onclick="resetExplorer()">Major Stages</button> / <strong>Major Stage ${selectedMajor} (Mini Stages)</strong>`;
+                const startIdx = (selectedMajor - 1) * 7;
+                for (let i = 0; i < 7; i++) {
+                    const miniIdx = startIdx + i;
+                    const startB = milestoneCheckpoints[miniIdx];
+                    const endB = milestoneCheckpoints[miniIdx + 1];
+                    const btn = document.createElement('button');
+                    btn.className = 'matrix-btn';
+                    btn.innerHTML = `<h4>Mini Stage ${miniIdx + 1}</h4><p>$${startB.toLocaleString()} $\to$ $${endB.toLocaleString()}</p>`;
+                    btn.onclick = () => { selectedMini = miniIdx + 1; renderExplorer(); };
+                    grid.appendChild(btn);
+                }
+            } else {
+                path.innerHTML = `<span>Viewing:</span> <button onclick="resetExplorer()">Major Stages</button> / <button onclick="selectedMini=null; renderExplorer();">Major ${selectedMajor}</button> / <strong>Mini Stage ${selectedMini} (5 Micro Steps)</strong>`;
+                const miniTrades = tradeData.filter(t => t.miniStage === selectedMini);
+                miniTrades.forEach(trade => {
+                    const btn = document.createElement('button');
+                    btn.className = `matrix-btn ${trade.tradeNum === currentTradeStep ? 'active' : ''}`;
+                    btn.innerHTML = `<h4>Trade #${trade.tradeNum} (Step ${trade.microStep}/5)</h4><p>$${trade.startBalance.toLocaleString(undefined, {maximumFractionDigits:0})} $\to$ $${trade.targetBalance.toLocaleString(undefined, {maximumFractionDigits:0})}</p>`;
+                    btn.onclick = () => { currentTradeStep = trade.tradeNum; renderRoadmapTable(); };
+                    grid.appendChild(btn);
+                });
+            }
+        }
+
+        function resetExplorer() {
+            selectedMajor = null;
+            selectedMini = null;
+            renderExplorer();
+        }
+
         function renderRoadmapTable() {
             const tbody = document.getElementById('roadmap-rows');
             tbody.innerHTML = '';
@@ -512,9 +694,17 @@
             document.getElementById('live-status').innerText = `Current Position: Trade #${currentTradeStep}`;
             document.getElementById('stat-progress-step').innerText = `Trade ${currentTradeStep} / 140`;
             document.getElementById('stat-current-equity').innerText = `$${currentTrade.startBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            document.getElementById('stat-active-stage').innerText = `Leg ${currentTrade.legIndex} (Step ${currentTrade.microStep}/5)`;
+            document.getElementById('stat-active-stage').innerText = `Major ${currentTrade.majorStage} (Mini ${currentTrade.miniStage})`;
 
-            tradeData.forEach((trade, idx) => {
+            // Filter rows based on explorer selection
+            let filteredTrades = tradeData;
+            if (selectedMajor !== null && selectedMini === null) {
+                filteredTrades = tradeData.filter(t => t.majorStage === selectedMajor);
+            } else if (selectedMini !== null) {
+                filteredTrades = tradeData.filter(t => t.miniStage === selectedMini);
+            }
+
+            filteredTrades.forEach(trade => {
                 const row = document.createElement('tr');
                 row.id = `trade-row-${trade.tradeNum}`;
 
@@ -530,7 +720,7 @@
 
                 row.innerHTML = `
                     <td>${trade.tradeNum} ${trade.tradeNum === currentTradeStep ? '<span class="live-tag">LIVE</span>' : ''}</td>
-                    <td style="color: #E2E8F0; font-weight: 700;">Leg ${trade.legIndex} ($${milestoneCheckpoints[trade.legIndex-1].toLocaleString()} $\to$ $${milestoneCheckpoints[trade.legIndex].toLocaleString()}) - Step ${trade.microStep}/5</td>
+                    <td style="color: #E2E8F0; font-weight: 700;">Maj ${trade.majorStage} | Min ${trade.miniStage} (Step ${trade.microStep}/5)</td>
                     <td>$${trade.startBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                     <td style="color: var(--bb-green);">$${trade.targetBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                     <td style="color: var(--bb-red);">$${trade.lossBoundary.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
@@ -540,6 +730,7 @@
                 tbody.appendChild(row);
             });
 
+            renderExplorer();
             scrollToActiveRow();
         }
 
@@ -549,6 +740,12 @@
             } else if (result === 'loss' && currentTradeStep > 1) {
                 currentTradeStep--;
             }
+            
+            // Automatically update explorer filter view to match active step if needed
+            const activeTrade = tradeData[currentTradeStep - 1];
+            selectedMajor = activeTrade.majorStage;
+            selectedMini = activeTrade.miniStage;
+
             renderRoadmapTable();
         }
 
