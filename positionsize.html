@@ -3,579 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Position Size - Precision risk allocation models mapped across approved asset classes.">
-    <title>Position Size | TraderProDXB</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Position Size Calculator | TCS Roadmap</title>
     <style>
         :root {
-            --bb-dark: #07090E;
-            --bb-card: #121620;
-            --bb-card-hover: #1A202C;
-            --bb-red: #E31B23;
-            --bb-red-hover: #ff222d;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
             --bb-green: #22c55e;
-            --border: rgba(255, 255, 255, 0.08);
-            --text-main: #FFFFFF;
-            --text-muted: #94A3B8;
-            --font-sans: 'Inter', sans-serif;
-            --font-heading: 'Montserrat', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --accent-blue: #38bdf8;
+            --border-color: #334155;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bb-dark); color: var(--text-main); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; padding-bottom: 60px; }
-
-        /* Navigation Header (25/75 Luxury Split) */
-        header { background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; gap: 2rem; }
-
-        /* 25% Left Brand Area */
-        .brand-logo-wrap { flex: 0 0 25%; display: flex; flex-direction: column; align-items: flex-start; }
-        .brand-logo { display: inline-block; text-decoration: none; }
-        .brand-logo img { width: 95px; height: 95px; border-radius: 14px; object-fit: cover; border: 2px solid var(--bb-red); box-shadow: 0 0 20px rgba(227, 27, 35, 0.35); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .brand-logo:hover img { transform: scale(1.03); box-shadow: 0 0 28px rgba(227, 27, 35, 0.55); }
-        .brand-reserved-space { height: 10px; width: 100%; }
-
-        /* 75% Right Navigation & CTA Area */
-        .nav-right-wrap { flex: 0 0 75%; display: flex; justify-content: flex-end; align-items: center; gap: 1.25rem; }
-        .nav-compact-wrap { display: flex; align-items: center; gap: 0.35rem; background: rgba(18, 22, 32, 0.65); border: 1px solid var(--border); padding: 6px 12px; border-radius: 40px; }
-        nav { display: flex; align-items: center; gap: 0.25rem; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-        nav::-webkit-scrollbar { display: none; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; padding: 0.5rem 0.9rem; border-radius: 20px; transition: all 0.2s ease; white-space: nowrap; }
-        nav a:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.05); }
-        nav a.active { color: #FFF; background: var(--bb-red); font-weight: 700; box-shadow: 0 0 14px rgba(227, 27, 35, 0.4); }
-
-        /* High-Converting Broker CTA Pill */
-        .cta-broker-pill {
-            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-            color: #000 !important;
-            font-weight: 800 !important;
-            font-size: 0.8rem !important;
-            text-transform: uppercase;
-            padding: 0.65rem 1.35rem !important;
-            border-radius: 30px !important;
-            text-decoration: none;
-            box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
-            transition: all 0.25s ease !important;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .cta-broker-pill:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
-            filter: brightness(1.1);
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Continuous Loop Marquee Ticker Tape */
-        #live-ticker-container { width: 100%; background-color: #04060A; border-bottom: 1px solid var(--border); padding: 7px 0; overflow: hidden; position: relative; }
-        .ticker-marquee { display: flex; width: max-content; animation: ticker-scroll 32s linear infinite; }
-        .ticker-marquee:hover { animation-play-state: paused; }
-        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .ticker-group { display: flex; align-items: center; gap: 12px; padding-right: 12px; }
-        .ticker-item { font-family: var(--font-mono); font-size: 0.75rem; background: var(--bb-card); padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border); display: flex; gap: 8px; white-space: nowrap; }
-        .closed-badge { font-size: 0.6rem; background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 1px 5px; border-radius: 3px; font-weight: 600; }
-        .pos-up { color: var(--bb-green) !important; }
-        .neg-down { color: var(--bb-red) !important; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            padding: 20px;
+        }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
-
-        .page-header {
-            margin: 2.5rem 0 2rem 0;
+        header {
             text-align: center;
+            margin-bottom: 30px;
         }
 
-        .page-title {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--accent-blue);
+            margin-bottom: 5px;
         }
 
-        .page-subtitle {
+        header p {
             color: var(--text-muted);
-            font-size: 1.15rem;
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
             font-weight: 500;
         }
 
-        /* Info Grid Layout */
-        .info-grid {
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .btn-calculate {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-blue);
+            color: #0f172a;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-calculate:hover {
+            background-color: #0ea5e9;
+        }
+
+        .results-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
-        .card {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            border-radius: 16px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+        .result-card {
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
         }
 
-        .card-primary {
-            border-top: 4px solid #38bdf8;
-        }
-
-        .card p {
+        .result-card span {
+            display: block;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            line-height: 1.7;
-            font-size: 1.05rem;
+            margin-bottom: 4px;
         }
 
-        .card p strong {
-            color: var(--text-main);
-        }
-
-        /* Alert Box */
-        .alert-card {
-            background: rgba(227, 27, 35, 0.06);
-            border: 1px solid rgba(227, 27, 35, 0.3);
-            border-top: 4px solid var(--bb-red);
-            padding: 2rem;
-            border-radius: 16px;
-            height: 100%;
-            box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-        }
-
-        .alert-card h4 {
-            font-family: var(--font-heading);
+        .result-card strong {
             font-size: 1.1rem;
-            color: var(--bb-red);
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: var(--text-color);
         }
 
-        .alert-card p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.7;
+        .recommendation-box {
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
         }
 
-        /* Calculator Module */
-        .calc-module {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            border-top: 4px solid #38bdf8;
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-        }
-
-        .calc-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .calc-module h2 {
-            margin-top: 0;
-            color: #38bdf8;
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-        }
-
-        .calc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-
-        .calc-input-group label {
+        .recommendation-box span {
             display: block;
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 8px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 6px;
         }
 
-        .calc-input-group input,
-        .calc-input-group select {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            background: #07090E;
-            color: #fff;
-            font-size: 1.05rem;
-            font-family: var(--font-sans);
-            outline: none;
-            transition: border-color 0.2s ease;
+        .recommendation-box h2 {
+            font-size: 2rem;
+            color: var(--bb-green);
         }
 
-        .calc-input-group input:focus,
-        .calc-input-group select:focus {
-            border-color: #38bdf8;
-        }
-
-        .calc-btn {
-            background: #38bdf8;
-            color: #000;
-            font-weight: 800;
+        .warning-text {
+            color: #f87171;
             font-size: 0.85rem;
-            text-transform: uppercase;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.2s ease;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
-            letter-spacing: 0.5px;
-        }
-
-        .calc-btn:hover {
-            background: #7dd3fc;
-            transform: translateY(-1px);
-            box-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
-        }
-
-        .calc-results-box {
-            background: #07090E;
-            border-radius: 12px;
-            padding: 1.75rem;
-            border: 1px solid var(--border);
-        }
-
-        .calc-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 1.05rem;
-        }
-
-        .calc-row span {
-            color: var(--text-muted);
-        }
-
-        .calc-row strong {
-            font-family: var(--font-mono);
-        }
-
-        .calc-hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 16px 0;
-        }
-
-        .calc-warning {
-            margin-top: 16px;
+            margin-top: 8px;
             display: none;
-            background: rgba(227, 27, 35, 0.15);
-            border: 1px solid var(--bb-red);
-            color: #fca5a5;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            line-height: 1.5;
         }
 
-        /* Section Titles */
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
+        /* Ticker Bar Layout */
+        .ticker-bar {
+            background-color: #0f172a;
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
         }
 
-        /* Precautions List Grid */
-        .precautions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 2.5rem;
+        .ticker-group {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
         }
 
-        .precaution-item {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        .ticker-item {
+            display: inline-block;
+            margin-right: 30px;
         }
 
-        .precaution-item:hover {
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
+        .pos-up { color: var(--bb-green); }
+        .neg-down { color: #f87171; }
 
-        .precaution-icon {
-            color: var(--bb-red);
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .precaution-text {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        /* Note Section */
-        .note-card {
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 16px;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-        }
-
-        .note-card h4 {
-            font-family: var(--font-heading);
-            font-size: 1.15rem;
-            color: var(--text-main);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-        }
-
-        .note-card p {
-            color: var(--text-muted);
-            font-size: 1.02rem;
-            line-height: 1.7;
-        }
-
-        /* Banner Container */
-        .banner-wrap {
-            text-align: center;
-            margin: 2.5rem 0;
-            padding: 1.5rem;
-            background: var(--bb-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            display: flex;
-            justify-content: center;
-            box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-        }
-
-        /* Footer */
-        footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.82rem; background: #040508; margin-top: 4rem; }
-
-        .disclaimer-box {
-            font-size: 0.75rem;
-            color: #64748B;
-            margin: 1.5rem auto 0 auto;
-            max-width: 950px;
-            line-height: 1.6;
-            text-align: justify;
-            background: rgba(18, 22, 32, 0.4);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 8px;
-        }
-
-        .disclaimer-box p { margin-bottom: 0.8rem; }
-        .disclaimer-box p:last-child { margin-bottom: 0; }
-        .disclaimer-box strong { color: var(--text-main); }
-
-        @media (max-width: 900px) {
-            .nav-container { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .brand-logo-wrap { width: 100%; flex: 0 0 100%; }
-            .nav-right-wrap { width: 100%; flex: 0 0 100%; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-            .nav-compact-wrap { width: 100%; overflow-x: auto; }
-            .page-title { font-size: 2.2rem; }
-            .info-grid { grid-template-columns: 1fr; }
-            .calc-grid { grid-template-columns: 1fr; }
-            .calc-module { padding: 1.75rem; }
-            .note-card { padding: 1.75rem; }
-            .disclaimer-box { text-align: left; }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="nav-container">
-            <!-- 25% Left Brand Area -->
-            <div class="brand-logo-wrap">
-                <a href="index.html" class="brand-logo">
-                    <img src="https://raw.githubusercontent.com/traderprodxb/traderprodxb.github.io/b8e68974a326e5673d9a624586270521728f986d/grok_image_x4tfufj.jpg" alt="TraderProDXB Logo">
-                </a>
-                <div class="brand-reserved-space"></div>
-            </div>
 
-            <!-- 75% Right Navigation & Isolated Broker CTA -->
-            <div class="nav-right-wrap">
-                <div class="nav-compact-wrap">
-                    <nav>
-                        <a href="index.html">Home</a>
-                        <a href="infrastructure.html">Infrastructure</a>
-                        <a href="journey.html">Journey</a>
-                        <a href="track-record.html">Track Record</a>
-                        <a href="positionsize.html" class="active">Position Size</a>
-                        <a href="faq.html">FAQ</a>
-                    </nav>
-                </div>
-                <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_top" class="cta-broker-pill">Trade on BlackBull</a>
-            </div>
+    <!-- Live Ticker Bar -->
+    <div class="ticker-bar">
+        <div class="ticker-group" id="tickerGroup1">
+            <span class="ticker-item" id="ticker-BTCUSD"><strong>BTCUSD:</strong> <span class="price">--</span> <span class="delta">--</span></span>
+            <span class="ticker-item" id="ticker-ETHUSD"><strong>ETHUSD:</strong> <span class="price">--</span> <span class="delta">--</span></span>
         </div>
-    </header>
-
-    <!-- Infinite Continuous Marquee Ticker -->
-    <div id="live-ticker-container">
-        <div class="ticker-marquee">
-            <div class="ticker-group" id="tickerGroup1">
-                <div class="ticker-item" id="ticker-USTECH"><span class="symbol">USTECH</span> <span class="price">22,850.50</span> <span class="delta pos-up">+145.20 (+0.64%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-XAUUSD"><span class="symbol">XAUUSD</span> <span class="price">3,340.20</span> <span class="delta pos-up">+$18.40 (+0.55%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-WTI"><span class="symbol">WTI</span> <span class="price">74.80</span> <span class="delta neg-down">-$0.85 (-1.12%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-EURUSD"><span class="symbol">EURUSD</span> <span class="price">1.0852</span> <span class="delta pos-up">+0.0012 (+0.11%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-USDJPY"><span class="symbol">USDJPY</span> <span class="price">154.20</span> <span class="delta neg-down">-0.45 (-0.29%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-BTCUSD"><span class="symbol">BTCUSD</span> <span class="price">65,420.00</span> <span class="delta pos-up">+$1,240.00 (+1.93%)</span></div>
-                <div class="ticker-item" id="ticker-ETHUSD"><span class="symbol">ETHUSD</span> <span class="price">3,480.10</span> <span class="delta pos-up">+$82.30 (+2.42%)</span></div>
-                <div class="ticker-item" id="ticker-TSLA"><span class="symbol">TSLA</span> <span class="price">218.40</span> <span class="delta neg-down">-$3.10 (-1.40%)</span> <span class="closed-badge">CLOSED</span></div>
-            </div>
-            <div class="ticker-group" id="tickerGroup2"></div>
-        </div>
+        <div class="ticker-group" id="tickerGroup2" aria-hidden="true"></div>
     </div>
 
-    <main class="container">
-        <div class="page-header">
-            <h1 class="page-title">Position Size</h1>
-            <p class="page-subtitle">Position sizing is the core discipline of the system.</p>
+    <header>
+        <h1>TCS Position Size Calculator</h1>
+        <p>Mechanical Risk Management System</p>
+    </header>
+
+    <div class="container">
+        <div class="form-group">
+            <label for="calcEquity">Account Equity ($)</label>
+            <input type="number" id="calcEquity" value="400" min="400" step="10">
         </div>
 
-        <!-- System Overview & Execution Rules -->
-        <div class="info-grid">
-            <div class="card card-primary">
-                <p>Every instrument carries a fixed absolute dollar-distance target mapped directly from the TCS 140-trade sequence. While approximately representing a <strong>6% ROI baseline</strong>, the absolute micro take-profit (MTP) stays rigid to ensure exact mechanical blocks while leverage remains fluid to absorb minor deviations.</p>
-            </div>
-            <div class="alert-card">
-                <h4>&#9888;&#65039; Hard Rule</h4>
-                <p>If account equity sits between blocks, it floors down to the preceding Start Balance to minimize friction and prevent oversizing.</p>
-            </div>
+        <div class="form-group">
+            <label for="calcInstrument">Select Instrument</label>
+            <select id="calcInstrument">
+                <option value="USTech">USTech</option>
+                <option value="XAUUSD">XAUUSD</option>
+                <option value="WTI">WTI</option>
+                <option value="EURUSD">EURUSD</option>
+                <option value="USDJPY">USDJPY</option>
+                <option value="BTCUSD">BTCUSD</option>
+                <option value="ETHUSD">ETHUSD</option>
+                <option value="Tesla">Tesla</option>
+            </select>
         </div>
 
-        <!-- Integrated Calculator Module -->
-        <section class="calc-module">
-            <div class="calc-header">
-                <h2>Systemic Position Size Calculator</h2>
-                <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 6px;">Maps live equity to exact TCS 140-trade sequence targets with fluid leverage adjustment.</p>
-            </div>
+        <button class="btn-calculate" id="calcTriggerBtn">Calculate Position Size</button>
 
-            <div class="calc-grid">
-                <div class="calc-input-group">
-                    <label for="calcEquity">Account Equity ($)</label>
-                    <input type="number" id="calcEquity" value="400" min="1" step="10">
-                    <button type="button" id="calcTriggerBtn" class="calc-btn">Calculate Scenario</button>
-                </div>
-                <div class="calc-input-group">
-                    <label for="calcInstrument">Select Instrument</label>
-                    <select id="calcInstrument">
-                        <option value="USTech">USTech (&times;15)</option>
-                        <option value="XAUUSD">XAUUSD / Gold (&times;15)</option>
-                        <option value="WTI">WTI Crude Oil (&times;10)</option>
-                        <option value="EURUSD">EURUSD (&times;50)</option>
-                        <option value="USDJPY" selected>USDJPY (&times;50)</option>
-                        <option value="BTCUSD">BTCUSD (&times;7)</option>
-                        <option value="ETHUSD">ETHUSD (&times;7)</option>
-                        <option value="Tesla">Tesla (&times;5)</option>
-                    </select>
-                </div>
+        <div class="results-grid">
+            <div class="result-card">
+                <span>Active TID</span>
+                <strong id="activeTidVal">TID 140</strong>
             </div>
-
-            <div class="calc-results-box">
-                <div class="calc-row">
-                    <span>Active Trade ID (TID):</span>
-                    <strong id="activeTidVal" style="color: #38bdf8;">TID 140</strong>
-                </div>
-                <div class="calc-row">
-                    <span>Sequence Start Balance (SB):</span>
-                    <strong id="activeSbVal" style="color: #e2e8f0;">$400.00</strong>
-                </div>
-                <div class="calc-row">
-                    <span>Micro Take Profit (MTP):</span>
-                    <strong id="activeMtpVal" style="color: var(--bb-green);">$30.00</strong>
-                </div>
-                <div class="calc-row">
-                    <span>Target End Balance (EB):</span>
-                    <strong id="activeEbVal" style="color: #38bdf8;">$430.00</strong>
-                </div>
-                <hr class="calc-hr">
-                <div class="calc-row" style="margin-bottom: 0;">
-                    <span style="font-size: 1.1rem; font-weight: 700; color: var(--text-main);">Recommended Size:</span>
-                    <strong id="recommendedSizeVal" style="font-size: 1.5rem; color: var(--bb-green);">0.00 Lot</strong>
-                </div>
-                <div id="statusWarning" class="calc-warning">
-                    &#9888;&#65039; <strong>Trade Skipped (Hard Rule):</strong> Calculated size is below broker minimum requirement. Equity is too low for safe execution.
-                </div>
+            <div class="result-card">
+                <span>Starting Balance</span>
+                <strong id="activeSbVal">$400</strong>
             </div>
-        </section>
-
-        <!-- Risk Precautions Section -->
-        <h2 class="section-title">Precautions (Size Reduction or Pause)</h2>
-        <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.25rem;">On the following conditions, position size is cut in half or trading is paused:</p>
-        
-        <div class="precautions-grid">
-            <div class="precaution-item">
-                <span class="precaution-icon">&#x26A0;</span>
-                <span class="precaution-text">High ATR / elevated volatility days</span>
+            <div class="result-card">
+                <span>Target Profit (MTP)</span>
+                <strong id="activeMtpVal">$30</strong>
             </div>
-            <div class="precaution-item">
-                <span class="precaution-icon">&#x1F4C8;</span>
-                <span class="precaution-text">Major economic data releases</span>
-            </div>
-            <div class="precaution-item">
-                <span class="precaution-icon">&#x1F3DB;</span>
-                <span class="precaution-text">FOMC decisions</span>
-            </div>
-            <div class="precaution-item">
-                <span class="precaution-icon">&#x1F30D;</span>
-                <span class="precaution-text">Geopolitical or black-swan market conditions</span>
+            <div class="result-card">
+                <span>Equity Target (EB)</span>
+                <strong id="activeEbVal">$430</strong>
             </div>
         </div>
 
-        <!-- Target Calibration Note -->
-        <div class="note-card">
-            <h4>Note on fixed dollar distances and changing prices</h4>
-            <p>The dollar-distance targets were calibrated at earlier average price levels. Because the targets remain fixed in dollars, a large change in the underlying price can cause the same dollar distance to represent a slightly different percentage move. This may result in a modestly higher or lower contract size than what would be considered perfectly optimal under current conditions. The system keeps the distances fixed for consistency and simplicity. The 6% equity target remains the guide; actual results simply move in a narrow band around it. Manual size reduction remains available whenever the effective percentage feels excessive.</p>
+        <div class="recommendation-box">
+            <span>Recommended Position Size</span>
+            <h2 id="recommendedSizeVal">0.00 Lot</h2>
+            <div class="warning-text" id="statusWarning">Warning: Calculated size is below broker minimum requirement.</div>
         </div>
-
-        <!-- BlackBull Partner Banner -->
-        <div class="banner-wrap">
-            <a href="https://go.blackbull.com/visit/?bta=43394&nci=8011" target="_top">
-                <img border="0" src="https://blackbullmarkets.ck-cdn.com/tn/serve/?cid=573600" width="1200" height="630" style="max-width:100%; height:auto;" alt="BlackBull Partner">
-            </a>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 TraderProDXB. All Rights Reserved. Partnered with BlackBull Markets.</p>
-        
-        <div class="disclaimer-box">
-            <p><strong>High-Risk Investment Warning:</strong> Trading Foreign Exchange (Forex), Contracts for Difference (CFDs), digital assets, and other leveraged financial derivatives involves a high level of risk and may not be suitable for all investors. Leverage can work against you as well as for you, potentially leading to the substantial loss of your invested capital. You should never invest money that you cannot afford to lose. Before deciding to trade, ensure you fully understand the risks involved, take into account your investment objectives, level of experience, and risk appetite, and seek independent financial advice if necessary.</p>
-
-            <p><strong>No Financial Advice or Solicitation:</strong> The content provided on TraderProDXB is strictly for informational, educational, and personal journal tracking purposes only. Nothing contained on this site constitutes investment, legal, tax, or financial advice, nor is it a recommendation, endorsement, or solicitation to buy or sell any security, currency, derivative, or financial product. TraderProDXB does not operate as a financial broker, dealer, investment advisor, or asset manager.</p>
-
-            <p><strong>Performance Disclaimer:</strong> Any historical trade logs, system calculations, or performance metrics displayed represent individual execution logs and are not indicative of future results. No representation or guarantee is made that any trading system, strategy, or account will or is likely to achieve profits or losses similar to those discussed on this website.</p>
-        </div>
-    </footer>
+    </div>
 
     <!-- Interactive Navigation Scripts & Position Calculator Logic -->
     <script>
@@ -764,12 +435,17 @@
         };
 
         function updateCalculator() {
-            const equity = parseFloat(document.getElementById("calcEquity").value) || 0;
-            const instKey = document.getElementById("calcInstrument").value;
+            const equityInput = document.getElementById("calcEquity");
+            const instrumentSelect = document.getElementById("calcInstrument");
+            
+            if (!equityInput || !instrumentSelect) return;
+
+            const equity = parseFloat(equityInput.value) || 0;
+            const instKey = instrumentSelect.value;
             const inst = INSTRUMENTS[instKey];
 
-            // Floor-based balance matching against TCS trades
-            let matchedTrade = TCS_TRADES[TCS_TRADES.length - 1]; // Default to lowest (TID 140, SB $400)
+            // Floor-based balance matching against TCS trades (Descending TID check)
+            let matchedTrade = TCS_TRADES[TCS_TRADES.length - 1]; // Default to lowest
             for (let i = 0; i < TCS_TRADES.length; i++) {
                 if (equity >= TCS_TRADES[i].sb) {
                     matchedTrade = TCS_TRADES[i];
@@ -790,7 +466,6 @@
                 size = targetRisk / inst.dist;
             }
 
-            // Floating point precision handling
             const formattedSize = Math.floor((size + 0.000001) / inst.step) * inst.step;
             const decimals = inst.step >= 1 ? 0 : 2;
 
@@ -805,19 +480,27 @@
             if (formattedSize < inst.min) {
                 sizeEl.innerText = "0.00";
                 sizeEl.style.color = "#f87171";
-                warningEl.style.display = "block";
+                if (warningEl) warningEl.style.display = "block";
             } else {
                 sizeEl.innerText = `${formattedSize.toFixed(decimals)} ${inst.lotLabel}`;
                 sizeEl.style.color = "var(--bb-green)";
-                warningEl.style.display = "none";
+                if (warningEl) warningEl.style.display = "none";
             }
         }
 
-        document.getElementById("calcTriggerBtn").addEventListener("click", updateCalculator);
-        document.getElementById("calcEquity").addEventListener("input", updateCalculator);
-        document.getElementById("calcInstrument").addEventListener("change", updateCalculator);
+        // Explicit direct bindings to force calculation updates on input, change, and button click
+        window.addEventListener("DOMContentLoaded", () => {
+            const btn = document.getElementById("calcTriggerBtn");
+            const eq = document.getElementById("calcEquity");
+            const ins = document.getElementById("calcInstrument");
 
-        document.addEventListener('DOMContentLoaded', () => {
+            if (btn) btn.addEventListener("click", updateCalculator);
+            if (eq) {
+                eq.addEventListener("input", updateCalculator);
+                eq.addEventListener("change", updateCalculator);
+            }
+            if (ins) ins.addEventListener("change", updateCalculator);
+
             updateCalculator();
         });
     </script>
