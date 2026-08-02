@@ -6,13 +6,14 @@
     <title>Position Size Calculator | TCS Roadmap</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --bb-green: #22c55e;
-            --accent-blue: #38bdf8;
-            --border-color: #334155;
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #e6edf3;
+            --text-muted: #8b949e;
+            --bb-green: #238636;
+            --bb-green-hover: #2ea043;
+            --accent-blue: #58a6ff;
+            --border-color: #30363d;
         }
 
         * {
@@ -26,17 +27,88 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.5;
-            padding: 20px;
+            padding: 0;
+        }
+
+        /* Top Navigation Bar */
+        .topnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 24px;
+        }
+
+        .topnav .logo {
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        .topnav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .topnav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .topnav-links a:hover, .topnav-links a.active {
+            color: var(--text-color);
+            background-color: #21262d;
+        }
+
+        /* Live Ticker Bar */
+        .ticker-bar {
+            background-color: #010409;
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 0.85rem;
+        }
+
+        .ticker-group {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        .pos-up { color: #3fb950; }
+        .neg-down { color: #f85149; }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        .main-wrapper {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         header h1 {
             font-size: 1.8rem;
-            color: var(--accent-blue);
+            color: var(--text-color);
             margin-bottom: 5px;
         }
 
@@ -45,14 +117,12 @@
             font-size: 0.95rem;
         }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
+        .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
         .form-group {
@@ -70,9 +140,9 @@
         input[type="number"], select {
             width: 100%;
             padding: 12px;
-            background-color: #0f172a;
+            background-color: #0d1117;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 6px;
             color: var(--text-color);
             font-size: 1rem;
         }
@@ -80,15 +150,16 @@
         input[type="number"]:focus, select:focus {
             outline: none;
             border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
         }
 
         .btn-calculate {
             width: 100%;
             padding: 12px;
-            background-color: var(--accent-blue);
-            color: #0f172a;
-            border: none;
-            border-radius: 8px;
+            background-color: var(--bb-green);
+            color: #ffffff;
+            border: 1px solid rgba(27, 31, 35, 0.15);
+            border-radius: 6px;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
@@ -97,7 +168,7 @@
         }
 
         .btn-calculate:hover {
-            background-color: #0ea5e9;
+            background-color: var(--bb-green-hover);
         }
 
         .results-grid {
@@ -108,9 +179,9 @@
         }
 
         .result-card {
-            background-color: #0f172a;
+            background-color: #0d1117;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 12px;
             text-align: center;
         }
@@ -128,9 +199,9 @@
         }
 
         .recommendation-box {
-            background-color: #0f172a;
+            background-color: #0d1117;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 16px;
             text-align: center;
         }
@@ -144,47 +215,27 @@
 
         .recommendation-box h2 {
             font-size: 2rem;
-            color: var(--bb-green);
+            color: #3fb950;
         }
 
         .warning-text {
-            color: #f87171;
+            color: #f85149;
             font-size: 0.85rem;
             margin-top: 8px;
             display: none;
         }
-
-        /* Ticker Bar Layout */
-        .ticker-bar {
-            background-color: #0f172a;
-            border-bottom: 1px solid var(--border-color);
-            padding: 10px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-        }
-
-        .ticker-group {
-            display: inline-block;
-            animation: ticker 30s linear infinite;
-        }
-
-        .ticker-item {
-            display: inline-block;
-            margin-right: 30px;
-        }
-
-        .pos-up { color: var(--bb-green); }
-        .neg-down { color: #f87171; }
-
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
-        }
     </style>
 </head>
 <body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="topnav">
+        <a href="index.html" class="logo">TRADERPRODXB</a>
+        <div class="topnav-links">
+            <a href="index.html">Home</a>
+            <a href="positionsize.html" class="active">Calculator</a>
+        </div>
+    </nav>
 
     <!-- Live Ticker Bar -->
     <div class="ticker-bar">
@@ -195,60 +246,62 @@
         <div class="ticker-group" id="tickerGroup2" aria-hidden="true"></div>
     </div>
 
-    <header>
-        <h1>TCS Position Size Calculator</h1>
-        <p>Mechanical Risk Management System</p>
-    </header>
+    <div class="main-wrapper">
+        <header>
+            <h1>Position Size Calculator</h1>
+            <p>Mechanical Risk Management System</p>
+        </header>
 
-    <div class="container">
-        <div class="form-group">
-            <label for="calcEquity">Account Equity ($)</label>
-            <input type="number" id="calcEquity" value="400" min="400" step="10">
-        </div>
-
-        <div class="form-group">
-            <label for="calcInstrument">Select Instrument</label>
-            <select id="calcInstrument">
-                <option value="USTech">USTech</option>
-                <option value="XAUUSD">XAUUSD</option>
-                <option value="WTI">WTI</option>
-                <option value="EURUSD">EURUSD</option>
-                <option value="USDJPY">USDJPY</option>
-                <option value="BTCUSD">BTCUSD</option>
-                <option value="ETHUSD">ETHUSD</option>
-                <option value="Tesla">Tesla</option>
-            </select>
-        </div>
-
-        <button class="btn-calculate" id="calcTriggerBtn">Calculate Position Size</button>
-
-        <div class="results-grid">
-            <div class="result-card">
-                <span>Active TID</span>
-                <strong id="activeTidVal">TID 140</strong>
+        <div class="card">
+            <div class="form-group">
+                <label for="calcEquity">Account Equity ($)</label>
+                <input type="number" id="calcEquity" value="400" min="400" step="10">
             </div>
-            <div class="result-card">
-                <span>Starting Balance</span>
-                <strong id="activeSbVal">$400</strong>
-            </div>
-            <div class="result-card">
-                <span>Target Profit (MTP)</span>
-                <strong id="activeMtpVal">$30</strong>
-            </div>
-            <div class="result-card">
-                <span>Equity Target (EB)</span>
-                <strong id="activeEbVal">$430</strong>
-            </div>
-        </div>
 
-        <div class="recommendation-box">
-            <span>Recommended Position Size</span>
-            <h2 id="recommendedSizeVal">0.00 Lot</h2>
-            <div class="warning-text" id="statusWarning">Warning: Calculated size is below broker minimum requirement.</div>
+            <div class="form-group">
+                <label for="calcInstrument">Select Instrument</label>
+                <select id="calcInstrument">
+                    <option value="USTech">USTech</option>
+                    <option value="XAUUSD">XAUUSD</option>
+                    <option value="WTI">WTI</option>
+                    <option value="EURUSD">EURUSD</option>
+                    <option value="USDJPY">USDJPY</option>
+                    <option value="BTCUSD">BTCUSD</option>
+                    <option value="ETHUSD">ETHUSD</option>
+                    <option value="Tesla">Tesla</option>
+                </select>
+            </div>
+
+            <button class="btn-calculate" id="calcTriggerBtn" type="button">Calculate Position Size</button>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <span>Active TID</span>
+                    <strong id="activeTidVal">TID 140</strong>
+                </div>
+                <div class="result-card">
+                    <span>Starting Balance</span>
+                    <strong id="activeSbVal">$400</strong>
+                </div>
+                <div class="result-card">
+                    <span>Target Profit (MTP)</span>
+                    <strong id="activeMtpVal">$30</strong>
+                </div>
+                <div class="result-card">
+                    <span>Equity Target (EB)</span>
+                    <strong id="activeEbVal">$430</strong>
+                </div>
+            </div>
+
+            <div class="recommendation-box">
+                <span>Recommended Position Size</span>
+                <h2 id="recommendedSizeVal">0.00 Lot</h2>
+                <div class="warning-text" id="statusWarning">Warning: Calculated size is below broker minimum requirement.</div>
+            </div>
         </div>
     </div>
 
-    <!-- Interactive Navigation Scripts & Position Calculator Logic -->
+    <!-- Application Script Engine -->
     <script>
         // Duplicate Ticker Content for Continuous Loop
         const grp1 = document.getElementById('tickerGroup1');
@@ -277,7 +330,7 @@
             };
             ws.onclose = () => setTimeout(startCryptoWebSocket, 5000);
         }
-        document.addEventListener('DOMContentLoaded', startCryptoWebSocket);
+        startCryptoWebSocket();
 
         // TCS 140-Trade Sequence Array (Descending TID order from 140 down to 1)
         const TCS_TRADES = [
@@ -444,8 +497,7 @@
             const instKey = instrumentSelect.value;
             const inst = INSTRUMENTS[instKey];
 
-            // Floor-based balance matching against TCS trades (Descending TID check)
-            let matchedTrade = TCS_TRADES[TCS_TRADES.length - 1]; // Default to lowest
+            let matchedTrade = TCS_TRADES[TCS_TRADES.length - 1]; 
             for (let i = 0; i < TCS_TRADES.length; i++) {
                 if (equity >= TCS_TRADES[i].sb) {
                     matchedTrade = TCS_TRADES[i];
@@ -479,17 +531,17 @@
 
             if (formattedSize < inst.min) {
                 sizeEl.innerText = "0.00";
-                sizeEl.style.color = "#f87171";
+                sizeEl.style.color = "#f85149";
                 if (warningEl) warningEl.style.display = "block";
             } else {
                 sizeEl.innerText = `${formattedSize.toFixed(decimals)} ${inst.lotLabel}`;
-                sizeEl.style.color = "var(--bb-green)";
+                sizeEl.style.color = "#3fb950";
                 if (warningEl) warningEl.style.display = "none";
             }
         }
 
-        // Explicit direct bindings to force calculation updates on input, change, and button click
-        window.addEventListener("DOMContentLoaded", () => {
+        // Initialize listeners immediately and safely
+        (function() {
             const btn = document.getElementById("calcTriggerBtn");
             const eq = document.getElementById("calcEquity");
             const ins = document.getElementById("calcInstrument");
@@ -498,11 +550,13 @@
             if (eq) {
                 eq.addEventListener("input", updateCalculator);
                 eq.addEventListener("change", updateCalculator);
+                eq.addEventListener("keyup", updateCalculator);
             }
             if (ins) ins.addEventListener("change", updateCalculator);
 
+            // Run initial calculation once DOM is parsed
             updateCalculator();
-        });
+        })();
     </script>
 </body>
 </html>
