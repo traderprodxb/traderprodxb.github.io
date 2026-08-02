@@ -442,11 +442,11 @@
         <!-- System Overview & Execution Rules -->
         <div class="info-grid">
             <div class="card card-primary">
-                <p>Every instrument carries a fixed dollar-distance target. Contract size is calculated so that distance equals approximately <strong>6% of current equity</strong>. Size must always be a whole multiple of the instrument minimum.</p>
+                <p>Every instrument carries a fixed absolute dollar-distance target mapped directly from the TCS 140-trade sequence. While approximately representing a <strong>6% ROI baseline</strong>, the absolute micro take-profit (MTP) stays rigid to ensure exact mechanical blocks while leverage remains fluid to absorb minor deviations.</p>
             </div>
             <div class="alert-card">
                 <h4>&#9888;&#65039; Hard Rule</h4>
-                <p>If the planned 6% dollar amount is smaller than the instrument’s minimum distance, the trade is skipped. This prevents oversizing.</p>
+                <p>If account equity sits between blocks, it floors down to the preceding Start Balance to minimize friction and prevent oversizing.</p>
             </div>
         </div>
 
@@ -454,13 +454,13 @@
         <section class="calc-module">
             <div class="calc-header">
                 <h2>Systemic Position Size Calculator</h2>
-                <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 6px;">Calculates contract size so that fixed price distance equals strictly 6% of account equity.</p>
+                <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 6px;">Maps live equity to exact TCS 140-trade sequence targets with fluid leverage adjustment.</p>
             </div>
 
             <div class="calc-grid">
                 <div class="calc-input-group">
                     <label for="calcEquity">Account Equity ($)</label>
-                    <input type="number" id="calcEquity" value="4000" min="1" step="10">
+                    <input type="number" id="calcEquity" value="400" min="1" step="10">
                 </div>
                 <div class="calc-input-group">
                     <label for="calcInstrument">Select Instrument</label>
@@ -469,7 +469,7 @@
                         <option value="XAUUSD">XAUUSD / Gold (&times;15)</option>
                         <option value="WTI">WTI Crude Oil (&times;10)</option>
                         <option value="EURUSD">EURUSD (&times;50)</option>
-                        <option value="USDJPY">USDJPY (&times;50)</option>
+                        <option value="USDJPY" selected>USDJPY (&times;50)</option>
                         <option value="BTCUSD">BTCUSD (&times;7)</option>
                         <option value="ETHUSD">ETHUSD (&times;7)</option>
                         <option value="Tesla">Tesla (&times;5)</option>
@@ -479,17 +479,25 @@
 
             <div class="calc-results-box">
                 <div class="calc-row">
-                    <span>6% Equity Target Risk:</span>
-                    <strong id="targetRiskVal" style="color: #38bdf8;">$240.00</strong>
+                    <span>Active Trade ID (TID):</span>
+                    <strong id="activeTidVal" style="color: #38bdf8;">TID 140</strong>
                 </div>
                 <div class="calc-row">
-                    <span>Dollar Distance Target:</span>
-                    <strong id="dollarDistVal" style="color: #e2e8f0;">$125 per index</strong>
+                    <span>Sequence Start Balance (SB):</span>
+                    <strong id="activeSbVal" style="color: #e2e8f0;">$400.00</strong>
+                </div>
+                <div class="calc-row">
+                    <span>Micro Take Profit (MTP):</span>
+                    <strong id="activeMtpVal" style="color: var(--bb-green);">$30.00</strong>
+                </div>
+                <div class="calc-row">
+                    <span>Target End Balance (EB):</span>
+                    <strong id="activeEbVal" style="color: #38bdf8;">$430.00</strong>
                 </div>
                 <hr class="calc-hr">
                 <div class="calc-row" style="margin-bottom: 0;">
                     <span style="font-size: 1.1rem; font-weight: 700; color: var(--text-main);">Recommended Size:</span>
-                    <strong id="recommendedSizeVal" style="font-size: 1.5rem; color: var(--bb-green);">1.90 Lot</strong>
+                    <strong id="recommendedSizeVal" style="font-size: 1.5rem; color: var(--bb-green);">0.00 Lot</strong>
                 </div>
                 <div id="statusWarning" class="calc-warning">
                     &#9888;&#65039; <strong>Trade Skipped (Hard Rule):</strong> Calculated size is below broker minimum requirement. Equity is too low for safe execution.
@@ -577,7 +585,150 @@
         }
         document.addEventListener('DOMContentLoaded', startCryptoWebSocket);
 
-        // Position Calculator Script Logic
+        // TCS 140-Trade Sequence Array (Descending TID order from 140 down to 1)
+        const TCS_TRADES = [
+            { tid: 140, sb: 400, mtp: 30, eb: 430 },
+            { tid: 139, sb: 430, mtp: 30, eb: 460 },
+            { tid: 138, sb: 460, mtp: 30, eb: 490 },
+            { tid: 137, sb: 490, mtp: 30, eb: 520 },
+            { tid: 136, sb: 520, mtp: 30, eb: 550 },
+            { tid: 135, sb: 550, mtp: 50, eb: 600 },
+            { tid: 134, sb: 600, mtp: 50, eb: 650 },
+            { tid: 133, sb: 650, mtp: 50, eb: 700 },
+            { tid: 132, sb: 700, mtp: 50, eb: 750 },
+            { tid: 131, sb: 750, mtp: 50, eb: 800 },
+            { tid: 130, sb: 800, mtp: 60, eb: 860 },
+            { tid: 129, sb: 860, mtp: 60, eb: 920 },
+            { tid: 128, sb: 920, mtp: 60, eb: 980 },
+            { tid: 127, sb: 980, mtp: 60, eb: 1040 },
+            { tid: 126, sb: 1040, mtp: 60, eb: 1100 },
+            { tid: 125, sb: 1100, mtp: 80, eb: 1180 },
+            { tid: 124, sb: 1180, mtp: 80, eb: 1260 },
+            { tid: 123, sb: 1260, mtp: 80, eb: 1340 },
+            { tid: 122, sb: 1340, mtp: 80, eb: 1420 },
+            { tid: 121, sb: 1420, mtp: 80, eb: 1500 },
+            { tid: 120, sb: 1500, mtp: 120, eb: 1620 },
+            { tid: 119, sb: 1620, mtp: 120, eb: 1740 },
+            { tid: 118, sb: 1740, mtp: 120, eb: 1860 },
+            { tid: 117, sb: 1860, mtp: 120, eb: 1980 },
+            { tid: 116, sb: 1980, mtp: 120, eb: 2100 },
+            { tid: 115, sb: 2100, mtp: 160, eb: 2260 },
+            { tid: 114, sb: 2260, mtp: 160, eb: 2420 },
+            { tid: 113, sb: 2420, mtp: 160, eb: 2580 },
+            { tid: 112, sb: 2580, mtp: 160, eb: 2740 },
+            { tid: 111, sb: 2740, mtp: 160, eb: 2900 },
+            { tid: 110, sb: 2900, mtp: 220, eb: 3120 },
+            { tid: 109, sb: 3120, mtp: 220, eb: 3340 },
+            { tid: 108, sb: 3340, mtp: 220, eb: 3560 },
+            { tid: 107, sb: 3560, mtp: 220, eb: 3780 },
+            { tid: 106, sb: 3780, mtp: 220, eb: 4000 },
+            { tid: 105, sb: 4000, mtp: 300, eb: 4300 },
+            { tid: 104, sb: 4300, mtp: 300, eb: 4600 },
+            { tid: 103, sb: 4600, mtp: 300, eb: 4900 },
+            { tid: 102, sb: 4900, mtp: 300, eb: 5200 },
+            { tid: 101, sb: 5200, mtp: 300, eb: 5500 },
+            { tid: 100, sb: 5500, mtp: 500, eb: 6000 },
+            { tid: 99, sb: 6000, mtp: 500, eb: 6500 },
+            { tid: 98, sb: 6500, mtp: 500, eb: 7000 },
+            { tid: 97, sb: 7000, mtp: 500, eb: 7500 },
+            { tid: 96, sb: 7500, mtp: 500, eb: 8000 },
+            { tid: 95, sb: 8000, mtp: 600, eb: 8600 },
+            { tid: 94, sb: 8600, mtp: 600, eb: 9200 },
+            { tid: 93, sb: 9200, mtp: 600, eb: 9800 },
+            { tid: 92, sb: 9800, mtp: 600, eb: 10400 },
+            { tid: 91, sb: 10400, mtp: 600, eb: 11000 },
+            { tid: 90, sb: 11000, mtp: 800, eb: 11800 },
+            { tid: 89, sb: 11800, mtp: 800, eb: 12600 },
+            { tid: 88, sb: 12600, mtp: 800, eb: 13400 },
+            { tid: 87, sb: 13400, mtp: 800, eb: 14200 },
+            { tid: 86, sb: 14200, mtp: 800, eb: 15000 },
+            { tid: 85, sb: 15000, mtp: 1200, eb: 16200 },
+            { tid: 84, sb: 16200, mtp: 1200, eb: 17400 },
+            { tid: 83, sb: 17400, mtp: 1200, eb: 18600 },
+            { tid: 82, sb: 18600, mtp: 1200, eb: 19800 },
+            { tid: 81, sb: 19800, mtp: 1200, eb: 21000 },
+            { tid: 80, sb: 21000, mtp: 1600, eb: 22600 },
+            { tid: 79, sb: 22600, mtp: 1600, eb: 24200 },
+            { tid: 78, sb: 24200, mtp: 1600, eb: 25800 },
+            { tid: 77, sb: 25800, mtp: 1600, eb: 27400 },
+            { tid: 76, sb: 27400, mtp: 1600, eb: 29000 },
+            { tid: 75, sb: 29000, mtp: 2200, eb: 31200 },
+            { tid: 74, sb: 31200, mtp: 2200, eb: 33400 },
+            { tid: 73, sb: 33400, mtp: 2200, eb: 35600 },
+            { tid: 72, sb: 35600, mtp: 2200, eb: 37800 },
+            { tid: 71, sb: 37800, mtp: 2200, eb: 40000 },
+            { tid: 70, sb: 40000, mtp: 3000, eb: 43000 },
+            { tid: 69, sb: 43000, mtp: 3000, eb: 46000 },
+            { tid: 68, sb: 46000, mtp: 3000, eb: 49000 },
+            { tid: 67, sb: 49000, mtp: 3000, eb: 52000 },
+            { tid: 66, sb: 52000, mtp: 3000, eb: 55000 },
+            { tid: 65, sb: 55000, mtp: 5000, eb: 60000 },
+            { tid: 64, sb: 60000, mtp: 5000, eb: 65000 },
+            { tid: 63, sb: 65000, mtp: 5000, eb: 70000 },
+            { tid: 62, sb: 70000, mtp: 5000, eb: 75000 },
+            { tid: 61, sb: 75000, mtp: 5000, eb: 80000 },
+            { tid: 60, sb: 80000, mtp: 6000, eb: 86000 },
+            { tid: 59, sb: 86000, mtp: 6000, eb: 92000 },
+            { tid: 58, sb: 92000, mtp: 6000, eb: 98000 },
+            { tid: 57, sb: 98000, mtp: 6000, eb: 104000 },
+            { tid: 56, sb: 104000, mtp: 6000, eb: 110000 },
+            { tid: 55, sb: 110000, mtp: 8000, eb: 118000 },
+            { tid: 54, sb: 118000, mtp: 8000, eb: 126000 },
+            { tid: 53, sb: 126000, mtp: 8000, eb: 134000 },
+            { tid: 52, sb: 134000, mtp: 8000, eb: 142000 },
+            { tid: 51, sb: 142000, mtp: 8000, eb: 150000 },
+            { tid: 50, sb: 150000, mtp: 12000, eb: 162000 },
+            { tid: 49, sb: 162000, mtp: 12000, eb: 174000 },
+            { tid: 48, sb: 174000, mtp: 12000, eb: 186000 },
+            { tid: 47, sb: 186000, mtp: 12000, eb: 198000 },
+            { tid: 46, sb: 198000, mtp: 12000, eb: 210000 },
+            { tid: 45, sb: 210000, mtp: 16000, eb: 226000 },
+            { tid: 44, sb: 226000, mtp: 16000, eb: 242000 },
+            { tid: 43, sb: 242000, mtp: 16000, eb: 258000 },
+            { tid: 42, sb: 258000, mtp: 16000, eb: 274000 },
+            { tid: 41, sb: 274000, mtp: 16000, eb: 290000 },
+            { tid: 40, sb: 290000, mtp: 22000, eb: 312000 },
+            { tid: 39, sb: 312000, mtp: 22000, eb: 334000 },
+            { tid: 38, sb: 334000, mtp: 22000, eb: 356000 },
+            { tid: 37, sb: 356000, mtp: 22000, eb: 378000 },
+            { tid: 36, sb: 378000, mtp: 22000, eb: 400000 },
+            { tid: 35, sb: 400000, mtp: 30000, eb: 430000 },
+            { tid: 34, sb: 430000, mtp: 30000, eb: 460000 },
+            { tid: 33, sb: 460000, mtp: 30000, eb: 490000 },
+            { tid: 32, sb: 490000, mtp: 30000, eb: 520000 },
+            { tid: 31, sb: 520000, mtp: 30000, eb: 550000 },
+            { tid: 30, sb: 550000, mtp: 50000, eb: 600000 },
+            { tid: 29, sb: 600000, mtp: 50000, eb: 650000 },
+            { tid: 28, sb: 650000, mtp: 50000, eb: 700000 },
+            { tid: 27, sb: 700000, mtp: 50000, eb: 750000 },
+            { tid: 26, sb: 750000, mtp: 50000, eb: 800000 },
+            { tid: 25, sb: 800000, mtp: 60000, eb: 860000 },
+            { tid: 24, sb: 860000, mtp: 60000, eb: 920000 },
+            { tid: 23, sb: 920000, mtp: 60000, eb: 980000 },
+            { tid: 22, sb: 980000, mtp: 60000, eb: 1040000 },
+            { tid: 21, sb: 1040000, mtp: 60000, eb: 1100000 },
+            { tid: 20, sb: 1100000, mtp: 80000, eb: 1180000 },
+            { tid: 19, sb: 1180000, mtp: 80000, eb: 1260000 },
+            { tid: 18, sb: 1260000, mtp: 80000, eb: 1340000 },
+            { tid: 17, sb: 1340000, mtp: 80000, eb: 1420000 },
+            { tid: 16, sb: 1420000, mtp: 80000, eb: 1500000 },
+            { tid: 15, sb: 1500000, mtp: 120000, eb: 1620000 },
+            { tid: 14, sb: 1620000, mtp: 120000, eb: 1740000 },
+            { tid: 13, sb: 1740000, mtp: 120000, eb: 1860000 },
+            { tid: 12, sb: 1860000, mtp: 120000, eb: 1980000 },
+            { tid: 11, sb: 1980000, mtp: 120000, eb: 2100000 },
+            { tid: 10, sb: 2100000, mtp: 160000, eb: 2260000 },
+            { tid: 9, sb: 2260000, mtp: 160000, eb: 2420000 },
+            { tid: 8, sb: 2420000, mtp: 160000, eb: 2580000 },
+            { tid: 7, sb: 2580000, mtp: 160000, eb: 2740000 },
+            { tid: 6, sb: 2740000, mtp: 160000, eb: 2900000 },
+            { tid: 5, sb: 2900000, mtp: 220000, eb: 3120000 },
+            { tid: 4, sb: 3120000, mtp: 220000, eb: 3340000 },
+            { tid: 3, sb: 3340000, mtp: 220000, eb: 3560000 },
+            { tid: 2, sb: 3560000, mtp: 220000, eb: 3780000 },
+            { tid: 1, sb: 3780000, mtp: 220000, eb: 4000000 }
+        ];
+
         const INSTRUMENTS = {
             USTech:   { name: "USTech",   dist: 125, min: 0.10, step: 0.10, unit: "Index Points", lotLabel: "Lot" },
             XAUUSD:   { name: "XAUUSD",   dist: 25,  min: 0.01, step: 0.01, unit: "per 0.01 lot ($25/0.01)", lotLabel: "Lot" },
@@ -594,7 +745,16 @@
             const instKey = document.getElementById("calcInstrument").value;
             const inst = INSTRUMENTS[instKey];
 
-            const targetRisk = equity * 0.06;
+            // Floor-based balance matching against TCS trades
+            let matchedTrade = TCS_TRADES[TCS_TRADES.length - 1]; // Default to lowest (TID 140, SB $400)
+            for (let i = 0; i < TCS_TRADES.length; i++) {
+                if (equity >= TCS_TRADES[i].sb) {
+                    matchedTrade = TCS_TRADES[i];
+                    break;
+                }
+            }
+
+            const targetRisk = matchedTrade.mtp;
             let size = 0;
 
             if (instKey === "XAUUSD") {
@@ -611,8 +771,10 @@
             const formattedSize = Math.floor((size + 0.000001) / inst.step) * inst.step;
             const decimals = inst.step >= 1 ? 0 : 2;
 
-            document.getElementById("targetRiskVal").innerText = `$${targetRisk.toFixed(2)}`;
-            document.getElementById("dollarDistVal").innerText = `$${inst.dist} ${inst.unit}`;
+            document.getElementById("activeTidVal").innerText = `TID ${matchedTrade.tid}`;
+            document.getElementById("activeSbVal").innerText = `$${matchedTrade.sb.toLocaleString()}`;
+            document.getElementById("activeMtpVal").innerText = `$${matchedTrade.mtp.toLocaleString()}`;
+            document.getElementById("activeEbVal").innerText = `$${matchedTrade.eb.toLocaleString()}`;
 
             const warningEl = document.getElementById("statusWarning");
             const sizeEl = document.getElementById("recommendedSizeVal");
