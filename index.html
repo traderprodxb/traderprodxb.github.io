@@ -314,14 +314,14 @@
     <div id="live-ticker-container">
         <div class="ticker-marquee">
             <div class="ticker-group" id="tickerGroup1">
-                <div class="ticker-item" id="ticker-USTECH"><span class="symbol">USTECH</span> <span class="price">21,450.80</span> <span class="delta pos-up">+182.40 (+0.86%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-XAUUSD"><span class="symbol">XAUUSD</span> <span class="price">2,745.50</span> <span class="delta pos-up">+$24.30 (+0.89%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-WTI"><span class="symbol">WTI</span> <span class="price">71.20</span> <span class="delta neg-down">-$1.10 (-1.52%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-EURUSD"><span class="symbol">EURUSD</span> <span class="price">1.0825</span> <span class="delta pos-up">+0.0018 (+0.17%)</span> <span class="closed-badge">CLOSED</span></div>
-                <div class="ticker-item" id="ticker-USDJPY"><span class="symbol">USDJPY</span> <span class="price">152.80</span> <span class="delta neg-down">-0.35 (-0.23%)</span> <span class="closed-badge">CLOSED</span></div>
+                <div class="ticker-item" id="ticker-USTECH"><span class="symbol">USTECH</span> <span class="price">21,450.80</span> <span class="delta pos-up">+182.40 (+0.86%)</span> <span class="closed-badge">DELAYED</span></div>
+                <div class="ticker-item" id="ticker-XAUUSD"><span class="symbol">XAUUSD</span> <span class="price">2,745.50</span> <span class="delta pos-up">+$24.30 (+0.89%)</span> <span class="closed-badge">DELAYED</span></div>
+                <div class="ticker-item" id="ticker-WTI"><span class="symbol">WTI</span> <span class="price">71.20</span> <span class="delta neg-down">-$1.10 (-1.52%)</span> <span class="closed-badge">DELAYED</span></div>
+                <div class="ticker-item" id="ticker-EURUSD"><span class="symbol">EURUSD</span> <span class="price">1.0825</span> <span class="delta pos-up">+0.0018 (+0.17%)</span> <span class="closed-badge">DELAYED</span></div>
+                <div class="ticker-item" id="ticker-USDJPY"><span class="symbol">USDJPY</span> <span class="price">152.80</span> <span class="delta neg-down">-0.35 (-0.23%)</span> <span class="closed-badge">DELAYED</span></div>
                 <div class="ticker-item" id="ticker-BTCUSD"><span class="symbol">BTCUSD</span> <span class="price">95,420.00</span> <span class="delta pos-up">+$1,840.00 (+1.97%)</span></div>
                 <div class="ticker-item" id="ticker-ETHUSD"><span class="symbol">ETHUSD</span> <span class="price">2,850.10</span> <span class="delta pos-up">+$92.30 (+3.35%)</span></div>
-                <div class="ticker-item" id="ticker-TSLA"><span class="symbol">TSLA</span> <span class="price">242.10</span> <span class="delta neg-down">-$4.20 (-1.70%)</span> <span class="closed-badge">CLOSED</span></div>
+                <div class="ticker-item" id="ticker-TSLA"><span class="symbol">TSLA</span> <span class="price">242.10</span> <span class="delta neg-down">-$4.20 (-1.70%)</span> <span class="closed-badge">DELAYED</span></div>
             </div>
             <div class="ticker-group" id="tickerGroup2"></div>
         </div>
@@ -392,37 +392,88 @@
         </div>
     </footer>
 
-    <!-- Scripts: Marquee Duplication & Multi-Asset WebSocket Streaming -->
+    <!-- Scripts: Marquee Duplication + Robust Binance WebSocket (Crypto only) -->
     <script>
-        // Duplicate Ticker Content for Continuous Loop
+        // Duplicate ticker for seamless marquee loop
         const grp1 = document.getElementById('tickerGroup1');
         const grp2 = document.getElementById('tickerGroup2');
-        if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
-
-        // Multi-Asset WebSocket Streaming (Binance Combined Ticker Stream for Crypto, Forex & Indices proxies)
-        function startCryptoWebSocket() {
-            // Using Binance stream for active crypto assets, plus simulated/live forex/index tracking updates if applicable
-            const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
-            ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                const symbol = data.s === 'BTCUSDT' ? 'BTCUSD' : data.s === 'ETHUSDT' ? 'ETHUSD' : null;
-                if (!symbol) return;
-                const price = parseFloat(data.c).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                const priceChange = parseFloat(data.p);
-                const percentChange = parseFloat(data.P);
-                const sign = priceChange >= 0 ? '+' : '';
-                const colorClass = priceChange >= 0 ? 'pos-up' : 'neg-down';
-
-                document.querySelectorAll(`#ticker-${symbol}`).forEach(item => {
-                    item.querySelector('.price').innerText = price;
-                    const deltaEl = item.querySelector('.delta');
-                    deltaEl.className = `delta ${colorClass}`;
-                    deltaEl.innerText = `${sign}$${Math.abs(priceChange).toFixed(2)} (${sign}${percentChange.toFixed(2)}%)`;
-                });
-            };
-            ws.onclose = () => setTimeout(startCryptoWebSocket, 5000);
+        if (grp1 && grp2) {
+            grp2.innerHTML = grp1.innerHTML;
         }
-        document.addEventListener('DOMContentLoaded', startCryptoWebSocket);
+
+        // ========== ROBUST BINANCE WEBSOCKET (BTC + ETH only) ==========
+        let ws = null;
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 20;
+
+        function connectBinance() {
+            // Combined stream for better reliability
+            ws = new WebSocket('wss://stream.binance.com:9443/stream?streams=btcusdt@ticker/ethusdt@ticker');
+
+            ws.onopen = () => {
+                console.log('Binance WebSocket connected');
+                reconnectAttempts = 0;
+            };
+
+            ws.onmessage = (event) => {
+                try {
+                    const message = JSON.parse(event.data);
+                    if (!message.data) return;
+
+                    const data = message.data;
+                    const symbol = data.s === 'BTCUSDT' ? 'BTCUSD' : data.s === 'ETHUSDT' ? 'ETHUSD' : null;
+                    if (!symbol) return;
+
+                    const price = parseFloat(data.c);
+                    const priceChange = parseFloat(data.p);
+                    const percentChange = parseFloat(data.P);
+                    const sign = priceChange >= 0 ? '+' : '';
+                    const colorClass = priceChange >= 0 ? 'pos-up' : 'neg-down';
+
+                    // Format price nicely
+                    let formattedPrice;
+                    if (symbol === 'BTCUSD') {
+                        formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    } else {
+                        formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    }
+
+                    // Update all matching ticker items (both marquee groups)
+                    document.querySelectorAll(`#ticker-${symbol}`).forEach(item => {
+                        const priceEl = item.querySelector('.price');
+                        const deltaEl = item.querySelector('.delta');
+
+                        if (priceEl) priceEl.textContent = formattedPrice;
+                        if (deltaEl) {
+                            deltaEl.className = `delta ${colorClass}`;
+                            deltaEl.textContent = `${sign}$${Math.abs(priceChange).toFixed(2)} (${sign}${percentChange.toFixed(2)}%)`;
+                        }
+                    });
+                } catch (err) {
+                    console.error('Ticker parse error:', err);
+                }
+            };
+
+            ws.onclose = () => {
+                console.log('Binance WebSocket closed');
+                if (reconnectAttempts < maxReconnectAttempts) {
+                    const delay = Math.min(1000 * Math.pow(1.5, reconnectAttempts), 30000);
+                    reconnectAttempts++;
+                    console.log(`Reconnecting in ${delay}ms... (attempt ${reconnectAttempts})`);
+                    setTimeout(connectBinance, delay);
+                }
+            };
+
+            ws.onerror = (err) => {
+                console.error('WebSocket error:', err);
+                ws.close();
+            };
+        }
+
+        // Start connection when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            connectBinance();
+        });
     </script>
 </body>
 </html>
