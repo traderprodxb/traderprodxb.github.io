@@ -45,6 +45,7 @@
             color: var(--accent-blue);
             font-size: 1.1rem;
             text-decoration: none;
+            letter-spacing: 1px;
         }
 
         .topnav-links {
@@ -145,6 +146,7 @@
             border-radius: 6px;
             color: var(--text-color);
             font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         input[type="number"]:focus, select:focus {
@@ -214,8 +216,9 @@
         }
 
         .recommendation-box h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #3fb950;
+            margin: 5px 0;
         }
 
         .warning-text {
@@ -223,6 +226,13 @@
             font-size: 0.85rem;
             margin-top: 8px;
             display: none;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -249,13 +259,13 @@
     <div class="main-wrapper">
         <header>
             <h1>Position Size Calculator</h1>
-            <p>Mechanical Risk Management System</p>
+            <p>TCS Roadmap: Micro Stage, Mini Stage, Major Stage</p>
         </header>
 
         <div class="card">
             <div class="form-group">
                 <label for="calcEquity">Account Equity ($)</label>
-                <input type="number" id="calcEquity" value="400" min="400" step="10">
+                <input type="number" id="calcEquity" value="400" min="0" step="10">
             </div>
 
             <div class="form-group">
@@ -308,7 +318,7 @@
         const grp2 = document.getElementById('tickerGroup2');
         if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
 
-        // Crypto WebSocket Streaming
+        // Crypto WebSocket Streaming (Binance)
         function startCryptoWebSocket() {
             const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
             ws.onmessage = (event) => {
@@ -332,7 +342,7 @@
         }
         startCryptoWebSocket();
 
-        // TCS 140-Trade Sequence Array (Descending TID order from 140 down to 1)
+        // Complete TCS 140-Trade Sequence Array (Ascending Order)
         const TCS_TRADES = [
             { tid: 140, sb: 400, mtp: 30, eb: 430 },
             { tid: 139, sb: 430, mtp: 30, eb: 460 },
@@ -497,8 +507,10 @@
             const instKey = instrumentSelect.value;
             const inst = INSTRUMENTS[instKey];
 
-            let matchedTrade = TCS_TRADES[TCS_TRADES.length - 1]; 
-            for (let i = 0; i < TCS_TRADES.length; i++) {
+            // FIX: Loop backward from the highest tier down to the lowest
+            // This ensures it catches the correct highest bracket without stopping at $400 immediately
+            let matchedTrade = TCS_TRADES[0]; // fallback to lowest if nothing matches
+            for (let i = TCS_TRADES.length - 1; i >= 0; i--) {
                 if (equity >= TCS_TRADES[i].sb) {
                     matchedTrade = TCS_TRADES[i];
                     break;
