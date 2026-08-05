@@ -239,12 +239,10 @@
 
     <!-- Scripts: Marquee Duplication & Crypto WebSocket Streaming -->
     <script>
-        // Duplicate Ticker Content for Continuous Loop
         const grp1 = document.getElementById('tickerGroup1');
         const grp2 = document.getElementById('tickerGroup2');
         if (grp1 && grp2) grp2.innerHTML = grp1.innerHTML;
 
-        // Crypto WebSocket Streaming
         function startCryptoWebSocket() {
             const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker/ethusdt@ticker');
             ws.onmessage = (event) => {
