@@ -605,7 +605,6 @@
             const instKey = instrumentSelect.value;
             const inst = INSTRUMENTS[instKey];
 
-            // Loop backward from the highest tier down to the lowest
             let matchedTrade = TCS_TRADES[0]; 
             for (let i = TCS_TRADES.length - 1; i >= 0; i--) {
                 if (equity >= TCS_TRADES[i].sb) {
