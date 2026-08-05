@@ -394,24 +394,20 @@
 
     <!-- Scripts: Marquee Duplication + Robust Binance WebSocket (Crypto only) -->
     <script>
-        // Duplicate ticker for seamless marquee loop
         const grp1 = document.getElementById('tickerGroup1');
         const grp2 = document.getElementById('tickerGroup2');
         if (grp1 && grp2) {
             grp2.innerHTML = grp1.innerHTML;
         }
 
-        // ========== ROBUST BINANCE WEBSOCKET (BTC + ETH only) ==========
         let ws = null;
         let reconnectAttempts = 0;
         const maxReconnectAttempts = 20;
 
         function connectBinance() {
-            // Combined stream for better reliability
             ws = new WebSocket('wss://stream.binance.com:9443/stream?streams=btcusdt@ticker/ethusdt@ticker');
 
             ws.onopen = () => {
-                console.log('Binance WebSocket connected');
                 reconnectAttempts = 0;
             };
 
@@ -430,15 +426,8 @@
                     const sign = priceChange >= 0 ? '+' : '';
                     const colorClass = priceChange >= 0 ? 'pos-up' : 'neg-down';
 
-                    // Format price nicely
-                    let formattedPrice;
-                    if (symbol === 'BTCUSD') {
-                        formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                    } else {
-                        formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                    }
+                    const formattedPrice = price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-                    // Update all matching ticker items (both marquee groups)
                     document.querySelectorAll(`#ticker-${symbol}`).forEach(item => {
                         const priceEl = item.querySelector('.price');
                         const deltaEl = item.querySelector('.delta');
@@ -455,22 +444,18 @@
             };
 
             ws.onclose = () => {
-                console.log('Binance WebSocket closed');
                 if (reconnectAttempts < maxReconnectAttempts) {
                     const delay = Math.min(1000 * Math.pow(1.5, reconnectAttempts), 30000);
                     reconnectAttempts++;
-                    console.log(`Reconnecting in ${delay}ms... (attempt ${reconnectAttempts})`);
                     setTimeout(connectBinance, delay);
                 }
             };
 
             ws.onerror = (err) => {
-                console.error('WebSocket error:', err);
                 ws.close();
             };
         }
 
-        // Start connection when page loads
         document.addEventListener('DOMContentLoaded', () => {
             connectBinance();
         });
