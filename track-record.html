@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TraderProDXB Track Record - Verified live execution metrics and audited Myfxbook performance ledger.">
+    <meta name="description" content="TraderProDXB Track Record - Verified live execution metrics, audited Myfxbook performance ledger, and FX Blue telemetry dashboard.">
     <title>Track Record | TraderProDXB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,27 +111,41 @@
         .social-chip:hover { color: #FFF; border-color: var(--bb-red); background: rgba(227, 27, 35, 0.1); transform: translateY(-1px); }
 
         /* Container & Layout */
-        .container { max-width: 1000px; margin: 3.5rem auto; padding: 0 2rem; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 1400px; margin: 3.5rem auto; padding: 0 2rem; display: flex; flex-direction: column; align-items: center; }
         .page-header { text-align: center; margin-bottom: 2.5rem; width: 100%; }
         .page-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
         .page-desc { color: var(--text-muted); font-size: 1.05rem; }
+
+        /* Dashboard Grid System */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            margin-bottom: 2.5rem;
+        }
 
         /* Widget Container Styling */
         .widget-card {
             background: var(--bb-card);
             border: 1px solid var(--border);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 16px;
-            margin-bottom: 2.5rem;
             border-top: 4px solid var(--bb-red);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             width: 100%;
-            max-width: 850px;
             box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .widget-card.full-width {
+            grid-column: 1 / -1;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .widget-card:hover {
@@ -151,7 +165,7 @@
 
         .widget-title {
             font-family: var(--font-heading);
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text-main);
         }
@@ -166,6 +180,25 @@
             border-radius: 20px;
             font-weight: 600;
             text-transform: uppercase;
+        }
+
+        .widget-content-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 8px;
+            background: rgba(4, 6, 10, 0.4);
+            border: 1px solid var(--border);
+            padding: 10px;
+        }
+
+        .widget-card iframe {
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            border: none;
         }
 
         .widget-card a {
@@ -191,6 +224,7 @@
             color: var(--text-muted);
             font-family: var(--font-mono);
             text-align: center;
+            width: 100%;
         }
 
         .widget-footer-note a {
@@ -209,7 +243,7 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            max-width: 850px;
+            max-width: 900px;
         }
 
         /* Footer */
@@ -222,6 +256,7 @@
             .nav-right-wrap { width: 100%; flex: 0 0 100%; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
             .nav-compact-wrap { width: 100%; overflow-x: auto; }
             .page-title { font-size: 2rem; }
+            .dashboard-grid { grid-template-columns: 1fr; }
             .widget-card { padding: 1.25rem; }
             .widget-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
         }
@@ -295,11 +330,11 @@
     <div class="container">
         <div class="page-header">
             <h1 class="page-title">Live Track Record</h1>
-            <p class="page-desc">Transparent execution ledger demonstrating strict procedural adherence.</p>
+            <p class="page-desc">Transparent execution ledger demonstrating strict procedural adherence and real-time telemetry.</p>
         </div>
 
-        <!-- MyFxBook Widget Card -->
-        <div class="widget-card">
+        <!-- MyFxBook Widget Card (Full Width) -->
+        <div class="widget-card full-width" style="margin-bottom: 3rem;">
             <div class="widget-header">
                 <span class="widget-title">Audited Real-Time Execution Ledger</span>
                 <span class="verified-badge">Read-Only Investor API Verified</span>
@@ -310,6 +345,134 @@
             <p class="widget-footer-note">
                 Click widget above to inspect full performance statement or <a href="https://www.myfxbook.com/statements/12106666/statement.pdf" target="_blank" rel="noopener">Download Official Audit PDF</a>.
             </p>
+        </div>
+
+        <div class="page-header" style="margin-bottom: 2rem;">
+            <h2 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700;">FX Blue Telemetry Dashboard</h2>
+            <p class="page-desc" style="font-size: 0.95rem;">Granular analytics streams displaying risk profiles, drawdowns, duration, and execution distribution.</p>
+        </div>
+
+        <!-- FX Blue 20-Widget Responsive Grid -->
+        <div class="dashboard-grid">
+            <!-- 1. Account Info -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Account Info</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_accountinfo&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 2. Account Stats -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Account Stats</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_accountstats&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 3. Account Risk -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Account Risk & Exposure</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_accountrisk&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 4. Cumulative Profit -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Cumulative Profit</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_cumulativeprofit&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 5. Cumulative Return -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Cumulative Return</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_cumulativereturn&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 6. Balance Drawdown -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Balance Drawdown (%)</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_balancedrawdown&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 7. Floating P/L -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Floating P/L</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_floatingpl&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 8. Daily Performance -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Daily Performance</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_daily&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 9. Weekly Return -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Weekly Return</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_weeklyreturn&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 10. Monthly Performance -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Monthly Performance</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_monthly&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 11. Monthly Return -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Monthly Return (%)</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_monthlyreturn&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 12. Weekly Return Spread -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Weekly Return Spread</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_returnspreadweeks&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 13. Trade Counts -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Trade Frequency Counts</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_tradecounts&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 14. Trade Duration -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Trade Duration Tracking</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_tradeduration&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 15. Consecutive Runs -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Consecutive Winning/Losing Runs</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_consecutiveruns&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 16. Weekly Win/Loss -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Weekly Win/Loss Breakdown</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_winlossweekly&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 17. Day of Week Profit -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Day of Week Profit</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_dowprofit&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 18. Day of Week Trades -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Day of Week Trade Counts</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_dowtrades&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 19. Hour of Day Profit -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Hour of Day Profit</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_hourprofit&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
+
+            <!-- 20. Magic Trades -->
+            <div class="widget-card">
+                <div class="widget-header"><span class="widget-title">Magic Number Trade Breakdown</span><span class="verified-badge">Live Feed</span></div>
+                <div class="widget-content-wrap"><iframe src="//www.fxblue.com/fxbluechart.aspx?c=ch_magictrades&id=TraderProDXB" frameborder="0" width="400" height="200"><a href="//www.fxblue.com">FX Blue Tools</a></iframe></div>
+            </div>
         </div>
 
         <!-- BlackBull Affiliate Banner -->
